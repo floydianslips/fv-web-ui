@@ -125,7 +125,10 @@ export default class PageDialectLearnPhrases extends PageDialectLearnBase {
               <div className={classNames('row', 'row-create-wrapper')}>
                 <div className={classNames('col-xs-12', 'col-md-4', 'col-md-offset-8', 'text-right')}>
                   <AuthorizationFilter hideFromSections={true} routeParams={this.props.routeParams} filter={{role: ['Record', 'Approve', 'Everything'], entity: selectn('response', computeDocument), login: this.props.computeLogin}}>
-                    <RaisedButton label="Create New Phrase" onTouchTap={this._onNavigateRequest.bind(this, 'create')} primary={true} />
+                    <div style={{'display':'inline-block', 'marginTop':'5px'}}>
+                      <RaisedButton label="Bulk Import" secondary={true} style={{'marginRight':'5px'}} onTouchTap={this._onNavigateRequest.bind(this, 'bulk-import')} />
+                      <RaisedButton label="Create New Phrase" onTouchTap={this._onNavigateRequest.bind(this, 'create')} primary={true} />
+                    </div>
                   </AuthorizationFilter>
                 </div>
               </div>

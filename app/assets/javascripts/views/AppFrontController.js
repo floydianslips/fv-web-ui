@@ -21,7 +21,7 @@ import Footer from 'views/components/Navigation/Footer';
 
 import { PageIntro, PageHome, PageTest, PageKidsHome, PageContent, PageExploreDialects, PageExploreArchive, PageExploreFamily, PageExploreLanguage, PageExploreDialect } from 'views/pages';
 
-import { PageDialectLearn, PageDialectMedia, PageDialectPlay, PageDialectGalleryView, PageDialectGalleries, PageDialectReports, PageDialectReportsView, PageDialectUsers } from 'views/pages';
+import { PageDialectLearn, PageDialectMedia, PageDialectPlay, PageDialectGalleryView, PageDialectGalleries, PageDialectReports, PageDialectReportsView, PageDialectUsers, PageBulkImport } from 'views/pages';
 
 import { PageDialectLearnWords, PageDialectLearnPhrases, PageDialectLearnStoriesAndSongs, PageDialectViewDictionaryItem } from 'views/pages';
 
@@ -419,6 +419,13 @@ export default class AppFrontController extends Component {
         path: [KIDS_OR_DEFAULT, 'FV', 'Workspaces', 'Data', ANYTHING_BUT_SLASH, ANYTHING_BUT_SLASH, ANYTHING_BUT_SLASH, 'users' ],
         title: 'Users | {$dialect_name}',
         page: <PageDialectUsers />,
+        redirects: [WORKSPACE_TO_SECTION_REDIRECT],
+        extractPaths: true
+      },
+      {
+        path: [KIDS_OR_DEFAULT, 'FV', 'Workspaces', 'Data', ANYTHING_BUT_SLASH, ANYTHING_BUT_SLASH, ANYTHING_BUT_SLASH, 'bulk-import' ],
+        title: 'Bulk Import | {$dialect_name}',
+        page: <PageBulkImport />,
         redirects: [WORKSPACE_TO_SECTION_REDIRECT],
         extractPaths: true
       },

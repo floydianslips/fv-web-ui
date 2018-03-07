@@ -139,6 +139,10 @@ export default class PageToolbar extends Component {
     }
   }
 
+  _bulkImportButtonPressed() {
+    console.log('bulkImportButtonPressed() called');
+  }
+
   componentDidMount() {
     this.props.fetchTasks(selectn('response.uid', this.props.computeEntity));
   }
@@ -191,7 +195,7 @@ export default class PageToolbar extends Component {
       });
     }
 
-    return <Toolbar className="page-toolbar">
+    return <Toolbar className="page-toolbar" style={{'padding':'0 0 0 24px'}}>
 
                   <ToolbarGroup className="visible-xs" style={{textAlign: 'right'}}>
                     <IconButton iconClassName="material-icons" onTouchTap={(e) => {this.setState({showActionsMobile: !this.state.showActionsMobile}); e.preventDefault(); }}>menu</IconButton>
@@ -246,7 +250,7 @@ export default class PageToolbar extends Component {
                         if (this.props.showPublish) {
 
                           return <AuthorizationFilter filter={{permission: 'Write', entity: selectn('response', permissionEntity)}} style={toolbarGroupItem}>
-                            <div style={{display:'inline-block', float: 'left', margin: '17px 5px 10px 5px', position:'relative'}}>
+                            <div style={{display:'inline-block', float: 'left', margin: '17px 0 10px 5px', position:'relative'}}>
                               <Toggle
                                 toggled={documentPublished}
                                 onToggle={this._documentActionsTogglePublished}
@@ -270,7 +274,7 @@ export default class PageToolbar extends Component {
                     {(() => {
                       if (this.props.actions.includes('publish')) {
                           return <AuthorizationFilter filter={{permission: 'Write', entity: selectn('response', permissionEntity)}} style={toolbarGroupItem}>
-                            <RaisedButton data-guide-role="publish-changes" disabled={!documentPublished} label="Publish Changes" style={{marginRight: '5px', marginLeft: '0'}} secondary={true} onTouchTap={this._publishChanges} />
+                              <RaisedButton data-guide-role="publish-changes" disabled={!documentPublished} label="Publish Changes" style={{marginRight: '5px', marginLeft: '0'}} secondary={true} onTouchTap={this._publishChanges} />
                           </AuthorizationFilter>;
                       }
                     })()}
@@ -286,12 +290,12 @@ export default class PageToolbar extends Component {
                     {(() => {
                       if (this.props.actions.includes('add-child')) {
                         return <AuthorizationFilter filter={{permission: 'Write', entity: selectn('response', computeEntity)}} style={toolbarGroupItem}>
-                                <RaisedButton label="Add New Page" style={{marginRight: '5px', marginLeft: '0'}} onTouchTap={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/create')} primary={true} />
+                          <RaisedButton label="Add New Page" style={{marginRight: '5px', marginLeft: '0'}} onTouchTap={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/create')} primary={true} />
                         </AuthorizationFilter>;
                       }
                     })()}
 
-                    <ToolbarSeparator className="hidden-xs" />
+                    <ToolbarSeparator className="hidden-xs" style={{'marginLeft':'16px'}} />
 
                     {(() => {
                       if (this.props.actions.includes('more-options')) {
@@ -300,14 +304,17 @@ export default class PageToolbar extends Component {
                           <MenuItem onTouchTap={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/reports')} key="reports" primaryText="Reports" />,
                           <MenuItem onTouchTap={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/media')} key="media" primaryText="Media Browser" />,
                           <AuthorizationFilter key="users" filter={{permission: 'Write', entity: selectn('response', computeEntity)}}>
-                            <MenuItem onTouchTap={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/users')} primaryText="Users" />
+                            <div>
+                              <MenuItem onTouchTap={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/bulk-import')} key="bulkImport" primaryText="Bulk Import" />
+                              <MenuItem onTouchTap={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/users')} primaryText="Users" />
+                            </div>
                           </AuthorizationFilter>];
 
                         return React.createElement(UIHelpers.isViewSize('xs') ? Menu : IconMenu, {
                           anchorOrigin: {horizontal: 'right', vertical: 'top'},
                           targetOrigin: {horizontal: 'right', vertical: 'top'},
                           iconButtonElement:
-                            <IconButton tooltip="More Options" tooltipPosition="top-center" touch={true} className={classNames( {'hidden-xs': !this.state.showActionsMobile})}>
+                            <IconButton tooltip="More Options" tooltipPosition="top-center" touch={true} className={classNames( {'hidden-xs': !this.state.showActionsMobile})} style={{'marginTop':'4px'}}>
                               <NavigationExpandMoreIcon />
                             </IconButton>
                           }, children);
