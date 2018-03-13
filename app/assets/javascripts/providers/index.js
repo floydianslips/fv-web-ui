@@ -22,6 +22,7 @@ import FVResources from './FVResources';
 import FVCharacter from './FVCharacter';
 import FVGallery from './FVGallery';
 import FVUser from './FVUser';
+import FVBulkImport from './FVBulkImport';
 
 import connect from './connect';
 import navigation from './navigation'
@@ -54,6 +55,7 @@ const providers = { page,
   FVCharacter,
   FVGallery,
   FVUser,
+  FVBulkImport,
   reports,
   search,
   tasks };

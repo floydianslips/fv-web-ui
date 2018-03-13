@@ -542,7 +542,54 @@ export default class DocumentOperations extends BaseOperations {
 		        	})
 	        	.catch((error) => { reject(error); });
 	        });
-	  }    
+	  }
+
+
+    static getBulkImportId() {
+
+      let properties = this.properties;
+      
+      // Expose fields to promise
+      let client = this.properties.client;
+
+      return new Promise(
+        function(resolve, reject) {
+
+          var request = new XMLHttpRequest();
+
+          request.onload = function(e) {
+            if (request.readyState == 4) {
+              var uInt8Array = new Uint8Array(this.response);
+              var i = uInt8Array.length;
+              var biStr = new Array(i);
+              while (i--) { 
+                biStr[i] = String.fromCharCode(uInt8Array[i]);
+              }
+              var data = biStr.join('');
+              var jsonData = JSON.parse(data);
+              resolve({batchId: jsonData.batchId});
+            } else {
+              reject("Unable to fetch Batch Id");
+            }
+          }
+          
+          if(!client._auth.username) {
+            client._auth.username = 'Administrator';
+            client._auth.password = 'Administrator';
+          }
+          
+          request.open("POST", client._baseURL +"api/v1/upload", true);
+          request.responseType = "arraybuffer";
+          request.setRequestHeader("authorization", "Basic " + window.btoa(unescape(encodeURIComponent(client._auth.username + ":" + client._auth.password))));
+          request.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+          request.setRequestHeader("Content-Type", "application/json+nxrequest");
+          request.send(JSON.stringify({}));
+
+        }
+      );
+
+
+    }
    
    
 }

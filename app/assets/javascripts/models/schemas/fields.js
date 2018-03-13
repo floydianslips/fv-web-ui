@@ -117,7 +117,11 @@ const fields = {
     'dc:description': t.maybe(t.String),
     'fvlink:url': t.maybe(t.String)/*,
     'file:content': t.maybe(t.form.File)*/
-  })
+  }),
+  FVBulkImportCSV: {
+    'bulkImportFile': t.maybe(t.form.File),
+    'bulkImportRadioOptions': t.maybe(t.String)
+  },
 }
 
 export default fields;

@@ -19,6 +19,7 @@ import Immutable, { List, Map } from 'immutable';
 import classNames from 'classnames';
 import provide from 'react-redux-provide';
 import selectn from 'selectn';
+import t from 'tcomb-form';
 
 import ConfGlobal from 'conf/local.json';
 
@@ -26,21 +27,21 @@ import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
 
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
-import PageDialectLearnBase from 'views/pages/explore/dialect/learn/base';
-
-import RaisedButton from 'material-ui/lib/raised-button';
-
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
 import MenuItem from 'material-ui/lib/menus/menu-item';
-
+import RaisedButton from 'material-ui/lib/raised-button';
 import CircularProgress from 'material-ui/lib/circular-progress';
+
+import fields from 'models/schemas/fields';
+import options from 'models/schemas/options';
 
 /**
 * Learn songs
 */
 @provide
 export default class PageBulkImport extends Component {
+
 
   static propTypes = {
     properties: PropTypes.object.isRequired,
@@ -52,23 +53,27 @@ export default class PageBulkImport extends Component {
     computePortal: PropTypes.object.isRequired,
     computeLogin: PropTypes.object.isRequired, 
     routeParams: PropTypes.object.isRequired,
+    createBulkImportId: PropTypes.func.isRequired,
+    computeCreateBulkImportId: PropTypes.object.isRequired,
   };
+
 
   constructor(props, context) {
     super(props, context);
 
     this.state = {
       filteredList: null,
-      displayBulkImportLoading:false,
+      formValue: null,
+      bulkImportFormSubmitErrorMessage:null,
       bulkImportFormErrors:false,
-      bulkImportFilePath:null,
-      bulkImportFilePathError:false,
-      radioDuplicateOption:'duplicateAdd',
       bulkImportState:null,
+      displayBulkImportLoading:false,
+      bulkImportBatchId: null,
     };
 
     this.bulkImportStates = {
       formIdle : 'formIdle',
+      fetchBatchId : 'fetchBatchId',
       uploadingCSV : 'uploadingCSV',
       validatingCSV : 'validatingCSV',
       processingCSV : 'processingCSV',
@@ -77,106 +82,196 @@ export default class PageBulkImport extends Component {
     };
   }
 
+
   fetchData(newProps) {
     newProps.fetchDialect2(newProps.routeParams.dialect_path);
   }
+
 
   // Fetch data on initial render
   componentDidMount() {
     this.fetchData(this.props);
   }
 
+
   // Refetch data on URL change
   componentWillReceiveProps(nextProps) {
+    
     if (nextProps.windowPath !== this.props.windowPath) {
       this.fetchData(nextProps);
     }
+
+    // If ComputeCreateBulkImportId is updating
+    if(nextProps.computeCreateBulkImportId !== this.props.computeCreateBulkImportId) {
+      
+      // If Create Bulk Import Id request was successfull
+      if(!nextProps.computeCreateBulkImportId.isFetching && nextProps.computeCreateBulkImportId.success) {
+
+        // If Data Object Exists
+        if(nextProps.computeCreateBulkImportId.data) {
+          
+          // If Data Object response is Successful
+          if(nextProps.computeCreateBulkImportId.data.success) {
+            
+            // Capture Batch Id value and Update Component State
+            let batchId = nextProps.computeCreateBulkImportId.data.response.batchId;
+            this.setState({
+              'bulkImportBatchId': batchId,
+              'bulkImportState': this.bulkImportStates.uploadingCSV
+            });
+
+          }
+
+        }
+
+      }
+
+    }
   }
 
-  // On Choose Bulk Import File Change Event
-  _onChooseFileChange(changeEvent) {
-    
-    // Validate File Path
-    let filePathError = true;
-    if(changeEvent.target.value) {
-      filePathError = false;
 
-      // Verify that path ends with '.csv'
-      if(!changeEvent.target.value.endsWith('.csv')) {
-        filePathError = true;
-      }
+  _validateBulkImportForm(formProperties) {
+    // console.log('-- _validateBulkImportForm() called');
+
+    let formErrors = [];
+
+    if(!formProperties['bulkImportFile']) {
+      formErrors.push(<li key="error1">Please choose a CSV file.</li>);
+    }
+    else if(!formProperties['bulkImportFile'].name.length) {
+      formErrors.push(<li key="error2">Please choose a CSV file.</li>);
+    }
+    else if(!formProperties['bulkImportFile'].name.endsWith('.csv')) {
+      formErrors.push(<li key="error3">File must be a CSV file.</li>);
     }
 
-    this.setState({
-      bulkImportFilePath:changeEvent.target.value,
-      bulkImportFilePathError:filePathError
-    });
+    //
+    // TODO: Process Duplicate Records option
+    //
+
+    // Skip Duplicate Entry for now
+    if(!formProperties['bulkImportRadioOptions']) {
+      // formErrors.push(<li key="error4">Please choose a Duplicate Record Option.</li>);
+    }
+
+    return formErrors;
 
   }
 
-  // On Radio Select for Duplicate Options Change Event
-  _onRadioChangeDuplicateOptions(changeEvent) {
-    this.setState({
-      radioDuplicateOption: changeEvent.target.value
-    });
-  }
 
-  // Bulk Import Form Submit button press
   _onSubmitBulkImportForm(e) {
     e.preventDefault();
 
-    // Verify Bulk Import File Path
-    if(!this.state.bulkImportFilePath) {
-      this.setState({
-        bulkImportFilePathError : true
-      });
+    // Reset Form Errors
+    this.setState({
+      'bulkImportFormSubmitErrorMessage':null
+    });
 
+    // Get Bulk Import Form Values
+    let formValue = this.refs["form_bulk_import"].getValue();
+    
+    // Capture Form Properties
+    let properties = {};
+    for (let key in formValue) {
+      if (formValue.hasOwnProperty(key) && key) {
+        if (formValue[key] && formValue[key] != '') {
+          properties[key] = formValue[key];
+        }
+      }
+    }
+
+    // console.log(properties);
+    // "properties['bulkImportFile'].name" is the file name. Ex: "myFile.csv"
+    // "properties['bulkImportFile'].type" is the file type. Ex: "text/csv"
+    // "properties['bulkImportFile'].size" is the size of the file. Ex: "155266"
+    // "properties['bulkImportRadioOptions']" returns the value of the input field.
+
+    let formErrors = this._validateBulkImportForm(properties);
+    let errorStateValue = false;
+    if(formErrors.length) {
+      errorStateValue = true;
+    }
+
+    this.setState({
+      'bulkImportFormErrors2':errorStateValue,
+      'bulkImportFormSubmitErrorMessage': formErrors,
+      'formValue': properties
+    });
+
+    // Hault if there are Errors
+    if(errorStateValue) {
       return;
     }
 
-    // Verify Duplicate Entries Option
-    let duplicateOption = this.state.radioDuplicateOption;
-    if(duplicateOption !== 'duplicateAdd' && duplicateOption !== 'duplicateUpdate' && duplicateOption !== 'duplicateIgnore') {
-      duplicateOption = 'duplicateAdd'; // Set default value
-    }
-    
-    // If there are no Errors
-    if(!this.state.bulkImportFilePathError) {
-      this._processBulkImport(duplicateOption);
-    }
+    // Else there are no error. Proceed.
+    this._processBulkImport(properties);
+
+    // Scroll to top
+    // window.scrollTo(0, 0);
 
   }
+
 
   _closeImportFinishedMessage() {
     
     this._clearBulkImportForm();
 
     this.setState({
-      bulkImportState:this.bulkImportStates.formIdle
+      'bulkImportState':this.bulkImportStates.formIdle
     });
   }
+
 
   // Clear/Reset the Bulk Import Form
   _clearBulkImportForm() {
+
+    // console.log('>>>> formValue:');
+    // console.log(this.state.formValue);
+
     this.setState({
-      radioDuplicateOption:'duplicateAdd',
-      bulkImportFilePath:null,
-      bulkImportFilePathError:false
+      'radioDuplicateOption':'duplicateAdd',
+      'bulkImportFilePath':null,
+      'bulkImportFilePathError':false,
+
+      'bulkImportFormErrors2': false,
+      'formValue': {'bulkImportFile': {}, 'bulkImportRadioOptions':''}
     });
+
+    //
+    // TODO: Fix Reseting the bulkImportFile value above.
+    // The value behind the scenes is updated, but is not reflected in the UI.
+    //
+
   }
 
-  _processBulkImport(duplicateOption) {
 
-    //
-    // TODO: Process Bulk Import
-    //
+  _processBulkImport(properties) {
+
+    // FV/Workspaces/BulkImportDocs/BulkImportResources/<docTitle>
+
+    // Find CSV Path
+    let csvPath = properties['bulkImportFile'].name;
+    // console.log('csvPath: '+ csvPath);
+
+    // Find DuplicateEntyOption
+    let duplicateOption = properties['bulkImportRadioOptions'];
+    if(!duplicateOption) {
+      duplicateOption = 'duplicateAdd';
+    }
+
+    // Update Bulk Import State to FetchBatchId
     this.setState({
-      bulkImportState : this.bulkImportStates.uploadingCSV
+      bulkImportState : this.bulkImportStates.fetchBatchId
     });
+    
+    // Get Bulk Import Id
+    let now = Date.now();
 
+    // Request new Bulk Import Id
+    this.props.createBulkImportId('/api/v1/upload', {
+      type: 'FVBulkImport'
+    }, null, now);
 
-    // Clear Form for now
-    // this._clearBulkImportForm();
   }
 
 
@@ -189,19 +284,48 @@ export default class PageBulkImport extends Component {
 
     const computeDialect2 = ProviderHelpers.getEntry(this.props.computeDialect2, this.props.routeParams.dialect_path);
 
+    let FVBulkImportCSV = Object.assign({}, selectn("FVBulkImportCSV", options));
+    // FVBulkImportCSV['fields'] = selectn("bulkImportRadioOptions", options);
+
+
+    if(this.state.bulkImportBatchId) {
+      // console.log('!!!! - this.state.bulkImportBatchId: '+ this.state.bulkImportBatchId);
+
+    }
+
+
+    // If there are any Form Error Messages
+    let formErrorMessage;
+    if(this.state.bulkImportFormErrors2) {
+      formErrorMessage = (
+        <div style={{'color':'#990000','border':'1px solid #990000', 'padding':'1rem', 'backgroundColor':'#ffcccc', 'marginBottom':'2.2rem'}}>
+          <p style={{'marginBottom':'0'}}>Form Error:</p>
+          <ul style={{padding:'0 0 0 3.2rem', 'marginBottom':'0'}}>
+            {Object.values(this.state.bulkImportFormSubmitErrorMessage)}
+          </ul>
+        </div>
+      );
+    }
+
     let formStyleDisplay = 'none';
     let loadingHTML = '';
 
     if(this.state.bulkImportState === this.bulkImportStates.formIdle || !this.state.bulkImportState) {
       formStyleDisplay = 'block';
     }
+    
+    if(this.state.bulkImportState === this.bulkImportStates.fetchBatchId) {
+      // Render Loading View with message "Uploading CSV"
+      loadingHTML = (<div><CircularProgress mode="indeterminate" style={{verticalAlign: 'middle'}} size={1} /> Preparing Bulk Import... {this.state.bulkImportBatchId}</div>);
+    }
 
+        
     if(this.state.bulkImportState === this.bulkImportStates.uploadingCSV) {
       // Render Loading View with message "Uploading CSV"
-      loadingHTML = (<div><CircularProgress mode="indeterminate" style={{verticalAlign: 'middle'}} size={1} /> Uploading CSV file...</div>);
+      loadingHTML = (<div><CircularProgress mode="indeterminate" style={{verticalAlign: 'middle'}} size={1} /> Uploading CSV file... {this.state.bulkImportBatchId}</div>);
 
       // Set Timeout for next step: validatingCSV
-      setTimeout(function(){ this.setState({bulkImportState:this.bulkImportStates.validatingCSV});}.bind(this), 2000);
+      setTimeout(function(){ this.setState({bulkImportState:this.bulkImportStates.validatingCSV});}.bind(this), 3500);
     }
 
     if(this.state.bulkImportState === this.bulkImportStates.validatingCSV) {
@@ -209,7 +333,7 @@ export default class PageBulkImport extends Component {
       loadingHTML = (<div><CircularProgress mode="indeterminate" style={{verticalAlign: 'middle'}} size={1} /> Validating CSV file...</div>);
 
       // Set Timeout for next step: processingCSV
-      setTimeout(function(){ this.setState({bulkImportState:this.bulkImportStates.processingCSV});}.bind(this), 2000);
+      setTimeout(function(){ this.setState({bulkImportState:this.bulkImportStates.processingCSV});}.bind(this), 500);
     }
 
     if(this.state.bulkImportState === this.bulkImportStates.processingCSV) {
@@ -217,90 +341,48 @@ export default class PageBulkImport extends Component {
       loadingHTML = (<div><CircularProgress mode="indeterminate" style={{verticalAlign: 'middle'}} size={1} /> Processing CSV Entries...</div>);
 
       // Set Timeout for next step: importSuccess
-      setTimeout(function(){ this.setState({bulkImportState:this.bulkImportStates.importSuccess});}.bind(this), 2000);
+      setTimeout(function(){ this.setState({bulkImportState:this.bulkImportStates.importSuccess});}.bind(this), 500);
     }
 
     if(this.state.bulkImportState === this.bulkImportStates.importSuccess || this.state.bulkImportState === this.bulkImportStates.importError) {
       // Display Bulk Import Status Message.
       loadingHTML = (<div><h4 style={{'marginTop':'0'}}>Import Success</h4><div style={{'marginTop':'1.2rem'}}>• 300 new Words added.<br />• 100 Words ignored.<br /><button className="btn btn-primary" onClick={this._closeImportFinishedMessage.bind(this)} style={{'marginTop':'1.6rem'}}>Close</button></div></div>);
     }
-    
-    // Determine File Chooser Text Color
-    let fileChooserTextColor = '#333';
-    if(this.state.bulkImportFilePathError) {
-      fileChooserTextColor = '#990000';
-    }
 
     return (
-      <div className="row" style={{marginBottom: '20px'}}>
-        <div className={classNames('col-xs-12', 'col-md-8')}>
-          
-          <h1>Bulk Import</h1>
-          <p style={{'marginTop':'1.8rem'}}>Submit a CSV file to Bulk Import entries into the <i>{selectn('response.title', computeDialect2)}</i> dialect.</p>
-          <p style={{'marginTop':'1.8rem'}}>For more information about Bulk Importing, see our <span style={{'color':'#006699','textDecoration':'underline'}}>FirstVoices Bulk Importing Guide</span>.</p>
-          <p style={{'marginTop':'1.8rem'}}>Download our <span style={{'color':'#006699','textDecoration':'underline'}}>FirstVoices Excel Templates</span> to help get started with Bulk Importing.</p>
-          
-          <div style={{'marginTop':'3.6rem'}}>
-            <h2>Bulk Import Form</h2>
-            <section style={{'backgroundColor':'#eee', 'marginTop':'1.8rem', 'padding':'1rem', 'borderRadius':'1rem', 'minHeight':'302px'}}>
-              
-              <form name="bulk-imports" onSubmit={this._onSubmitBulkImportForm.bind(this)} style={{'display':formStyleDisplay}}>
-                <div className="form-group" style={{'margin':'0', 'color':fileChooserTextColor}}>
-                  <label for="input-bulk-file">Choose CSV file</label>
-                  <input type="file" name="bulkfile" id="input-bulk-file"
-                    style={{'lineHeight':'0'}}
-                    onChange={this._onChooseFileChange.bind(this)}
-                    value={this.state.bulkImportFilePath}
+      <PromiseWrapper renderOnError={true} computeEntities={computeEntities}>
+        <div className="row" style={{marginBottom: '20px'}}>
+          <div className={classNames('col-xs-12', 'col-md-8')}>
+
+            <h1>Bulk Import</h1>
+            <p style={{'marginTop':'1.8rem'}}>Submit a CSV file to Bulk Import entries into the <i>{selectn('response.title', computeDialect2)}</i> dialect.</p>
+            <p style={{'marginTop':'1.8rem'}}>For more information about Bulk Importing, see our <span style={{'color':'#006699','textDecoration':'underline'}}>FirstVoices Bulk Importing Guide</span>.</p>
+            <p style={{'marginTop':'1.8rem'}}>Download our <span style={{'color':'#006699','textDecoration':'underline'}}>FirstVoices Excel Templates</span> to help get started with Bulk Importing.</p>
+            
+            <h2 style={{'marginBottom':'2.4rem'}}>Bulk Import Form</h2>
+            <div style={{'marginTop':'1.4rem','padding':'1rem','backgroundColor':'#cfe7ff','borderRadius':'1rem','minHeight':'280px'}}>
+              <div style={{'display':formStyleDisplay}}>
+                {formErrorMessage}
+                <form onSubmit={this._onSubmitBulkImportForm.bind(this)}>
+                  <t.form.Form
+                    ref="form_bulk_import"
+                    type={t.struct(selectn("FVBulkImportCSV", fields))}
+                    context={selectn('response', computeDialect2)}
+                    value={this.state.formValue}
+                    options={FVBulkImportCSV}
                   />
-                </div>
-                <div className="form-group" style={{'marginTop':'2.4rem'}}>
-                  <label>Duplicate Record options</label>
-                  <p>What should happen when a record already exists?</p>
-                  <div className="form-group" style={{'paddingLeft':'1.8rem'}}>
-                    <input
-                      type="radio"
-                      name="duplicateAdd"
-                      id="duplicateAdd"
-                      value="duplicateAdd"
-                      checked={this.state.radioDuplicateOption === 'duplicateAdd'}
-                      onChange={this._onRadioChangeDuplicateOptions.bind(this)}
-                      ref={(input) => { this.radioDuplicate = input; }}
-                      style={{'position':'relative','top':'-2px'}}
-                    /> - <label for="duplicateAdd">Add duplicate records</label><br />
-                    <input
-                      type="radio"
-                      name="duplicateOption"
-                      id="duplicateUpdate"
-                      value="duplicateUpdate"
-                      checked={this.state.radioDuplicateOption === 'duplicateUpdate'}
-                      onChange={this._onRadioChangeDuplicateOptions.bind(this)}
-                      ref={(input) => { this.radioDuplicate = input; }}
-                      style={{'position':'relative','top':'-2px'}}
-                    /> - <label for="duplicateUpdate">Update duplicate records</label><br />
-                    <input
-                      type="radio"
-                      name="duplicateOption"
-                      id="duplicateIgnore"
-                      value="duplicateIgnore"
-                      checked={this.state.radioDuplicateOption === 'duplicateIgnore'}
-                      onChange={this._onRadioChangeDuplicateOptions.bind(this)}
-                      ref={(input) => { this.radioIgnore = input; }}
-                      style={{'position':'relative','top':'-2px'}}
-                    /> - <label for="duplicateIgnore">Ignore duplicate records</label>
+                  <div className="form-group" style={{'marginTop':'1.2rem', 'marginBottom':'0'}}>
+                    <button type="submit" className="btn btn-primary">Submit</button>
                   </div>
-                </div>
-                <div className="form-group" style={{'marginTop':'2.4rem', 'marginBottom':'0'}}>
-                  <button type="submit" className="btn btn-primary">Submit</button>
-                </div>
-              </form>
+                </form>
+              </div>
 
               {loadingHTML}
 
-            </section>
+            </div>
           </div>
-
         </div>
-      </div>
+      </PromiseWrapper>
     );
 
   }

@@ -9,6 +9,7 @@ import WysiwygFactory from 'views/components/Editor/fields/wysiwyg';
 import SelectSuggestFactory from 'views/components/Editor/fields/selectSuggest';
 import SelectFactory from 'views/components/Editor/fields/select';
 import MediaFactory from 'views/components/Editor/fields/media';
+import BulkImportRadioOptionsFactory from 'views/components/Editor/fields/bulkImportRadioOptions';
 
 import { FlatButton, IconButton } from 'material-ui';
 
@@ -116,6 +117,31 @@ const RelatedMediaLayout = function (locals) {
     </div>
   );
 };
+
+
+const BulkImportLayout = function (locals) {
+  
+  let content = '';
+  let renderError = false;
+  let renderErrorMessage = '';
+  let radioElementsName;
+  let defaultValue;
+
+  // Iterate Options to compose Radios
+  if (locals.item.options) {
+    let numOptions = locals.attrs.options.length;
+    for(let i in locals.attrs.options) {
+      console.log('Options: '+ locals.attrs.options[i].value)
+      content += (<div style={{'backgroundColor':'#66ffff'}}><input type="radio" name={radioElementsName} id={locals.attrs.options[i].value} value={locals.attrs.options[i].value} /> - <label for={locals.attrs.options[i].value}>{locals.attrs.options[i].label}</label></div>);
+
+      //content += <RadioButton value={locals.attrs.options[i].value} label={locals.attrs.options[i].label} />;
+
+    }
+  }
+
+  return (<div className="row" style={{margin: '15px 0'}}>{content}</div>);
+};
+
 
 t.String.getValidationErrorMessage = (value, path, context) => {
   if (!value) {
@@ -926,7 +952,32 @@ const options = {
         type: 'file'
       },*/
     }
+  },
+
+  FVBulkImportCSV: {
+    fields: {
+      'bulkImportFile': {
+        label: 'Choose CSV file',
+        help: 'File type must be CSV.',
+        type: 'file'
+      },
+      'bulkImportRadioOptions': {
+        label: 'Duplicate Record options',
+        help: 'What should happen when a record already exists?',
+        factory: BulkImportRadioOptionsFactory,
+        attrs: {
+          elementName: 'duplicateOption',
+          defaultValue: 'duplicateAdd',
+          options: [
+            {value: 'duplicateAdd', label: 'Add duplicate records'},
+            {value: 'duplicateUpdate', label: 'Update duplicate records'},
+            {value: 'duplicateIgnore', label: 'Ignore duplicate records'}
+          ]
+        }
+      }
+    }
   }
+
 };
 
 export default options;

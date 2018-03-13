@@ -30,15 +30,23 @@ export default {
 	fetch: function(key, type, properties = {}) {
 		return function fetch(pathOrId, messageStart = null, messageSuccess = null, messageError = null) {
 			return function (dispatch) {
-
-			    dispatch( { type: key + '_FETCH_START', pathOrId: pathOrId, message: (messageStart || 'Fetch started...') } );
-
-				    return DocumentOperations.getDocument(pathOrId, type, { headers: properties.headers })
-				    .then((response) => {
-				      dispatch( { type: key + '_FETCH_SUCCESS', message: messageSuccess, response: response, pathOrId: pathOrId } )
-				    }).catch((error) => {
-				        dispatch( { type: key + '_FETCH_ERROR', message: (messageError || error), pathOrId: pathOrId } )
-				    });
+				dispatch( { type: key + '_FETCH_START', pathOrId: pathOrId, message: (messageStart || 'Fetch started...') } );
+			    	if(key === 'FV_BULKIMPORT') {
+			    		return DocumentOperations.getBulkImportId()
+					    .then((response) => {
+					      dispatch( { type: key + '_FETCH_SUCCESS', message: messageSuccess, response: response, pathOrId: pathOrId, success: true } )
+					    }).catch((error) => {
+					        dispatch( { type: key + '_FETCH_ERROR', message: (messageError || error), pathOrId: pathOrId } )
+					    });
+			    	}
+			    	else {
+			    		return DocumentOperations.getDocument(pathOrId, type, { headers: properties.headers })
+					    .then((response) => {
+					      dispatch( { type: key + '_FETCH_SUCCESS', message: messageSuccess, response: response, pathOrId: pathOrId } )
+					    }).catch((error) => {
+					        dispatch( { type: key + '_FETCH_ERROR', message: (messageError || error), pathOrId: pathOrId } )
+					    });
+			    	}
 			}
 		}
 	},
