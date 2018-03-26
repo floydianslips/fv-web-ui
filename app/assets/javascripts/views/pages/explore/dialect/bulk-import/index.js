@@ -36,6 +36,8 @@ import CircularProgress from 'material-ui/lib/circular-progress';
 import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';
 
+const defaultFormValues = {'file:content': {}, 'bulkImportRadioOptions':'duplicateAdd'};
+
 /**
 * Learn songs
 */
@@ -55,17 +57,21 @@ export default class PageBulkImport extends Component {
     routeParams: PropTypes.object.isRequired,
     createBulkImportId: PropTypes.func.isRequired,
     computeCreateBulkImportId: PropTypes.object.isRequired,
+    createBulkImportCSV: PropTypes.func.isRequired,
+    computeCreateBulkImportCSV: PropTypes.object.isRequired,
+    processBulkImportCSV : PropTypes.func.isRequired,
+    computeProcessBulkImportCSV: PropTypes.object.isRequired,
   };
-
 
   constructor(props, context) {
     super(props, context);
 
     this.state = {
       filteredList: null,
-      formValue: null,
+      formValue: defaultFormValues,
       bulkImportFormSubmitErrorMessage:null,
       bulkImportFormErrors:false,
+      bulkImportProcessErrorMessage:null,
       bulkImportState:null,
       displayBulkImportLoading:false,
       bulkImportBatchId: null,
@@ -80,6 +86,8 @@ export default class PageBulkImport extends Component {
       importSuccess : 'importSuccess',
       importError : 'importError'
     };
+
+    this.isProcessingCSV = false;
   }
 
 
@@ -101,47 +109,82 @@ export default class PageBulkImport extends Component {
       this.fetchData(nextProps);
     }
 
-    // If ComputeCreateBulkImportId is updating
-    if(nextProps.computeCreateBulkImportId !== this.props.computeCreateBulkImportId) {
+    // If in the Uploading CSV State
+    if(this.state.bulkImportState === this.bulkImportStates.uploadingCSV) {
+
+      if(nextProps.computeCreateBulkImportCSV !== this.props.computeCreateBulkImportCSV) {
       
-      // If Create Bulk Import Id request was successfull
-      if(!nextProps.computeCreateBulkImportId.isFetching && nextProps.computeCreateBulkImportId.success) {
+        // If CSV File Uploaded Successfully
+        if(!nextProps.computeCreateBulkImportCSV.isFetching && nextProps.computeCreateBulkImportCSV.success) {
 
-        // If Data Object Exists
-        if(nextProps.computeCreateBulkImportId.data) {
+          // Start Processing the Bulk Import Form
+          this._processBulkImport(nextProps.computeCreateBulkImportCSV.data);
+
+        }
+        else if(!nextProps.computeCreateBulkImportCSV.isFetching && !nextProps.computeCreateBulkImportCSV.success) {
           
-          // If Data Object response is Successful
-          if(nextProps.computeCreateBulkImportId.data.success) {
-            
-            // Capture Batch Id value and Update Component State
-            let batchId = nextProps.computeCreateBulkImportId.data.response.batchId;
-            this.setState({
-              'bulkImportBatchId': batchId,
-              'bulkImportState': this.bulkImportStates.uploadingCSV
-            });
+          // If there was an Error Uploading the CSV File
 
-          }
+          console.log('There was an error Uploading the CSV file.');
+
+          //
+          // TODO: Display Error View to user
+          //
 
         }
 
       }
 
     }
+    // Else If in the Processing CSV State
+    else if(this.state.bulkImportState === this.bulkImportStates.processingCSV) {
+
+      if(nextProps.computeProcessBulkImportCSV !== this.props.computeProcessBulkImportCSV) {
+      
+
+        // If CSV File Processed Successfully
+        if(!nextProps.computeProcessBulkImportCSV.isFetching && nextProps.computeProcessBulkImportCSV.success) {
+
+          // Update State
+          this.setState({ bulkImportState:this.bulkImportStates.importSuccess });
+
+
+        }
+        else if(!nextProps.computeProcessBulkImportCSV.isFetching && !nextProps.computeProcessBulkImportCSV.success) {
+          
+          // If there was an Error processing the CSV File
+
+          console.log('There was an error Processing the CSV file:');
+          console.log(nextProps.computeProcessBulkImportCSV.error);
+
+          // TODO: Extract Error Message from Server
+          let errorMessage = 'There was an error processing the CSV File.';
+          
+          // Display Error View to user
+          this.setState({
+            bulkImportState:this.bulkImportStates.importError,
+            bulkImportProcessErrorMessage: errorMessage
+          });
+
+        }
+
+      }
+    }
+    
   }
 
 
   _validateBulkImportForm(formProperties) {
-    // console.log('-- _validateBulkImportForm() called');
 
     let formErrors = [];
 
-    if(!formProperties['bulkImportFile']) {
+    if(!formProperties['file:content']) {
       formErrors.push(<li key="error1">Please choose a CSV file.</li>);
     }
-    else if(!formProperties['bulkImportFile'].name.length) {
+    else if(!formProperties['file:content'].name.length) {
       formErrors.push(<li key="error2">Please choose a CSV file.</li>);
     }
-    else if(!formProperties['bulkImportFile'].name.endsWith('.csv')) {
+    else if(!formProperties['file:content'].name.endsWith('.csv')) {
       formErrors.push(<li key="error3">File must be a CSV file.</li>);
     }
 
@@ -151,7 +194,7 @@ export default class PageBulkImport extends Component {
 
     // Skip Duplicate Entry for now
     if(!formProperties['bulkImportRadioOptions']) {
-      // formErrors.push(<li key="error4">Please choose a Duplicate Record Option.</li>);
+      formErrors.push(<li key="error4">Please choose a Duplicate Record Option.</li>);
     }
 
     return formErrors;
@@ -169,24 +212,18 @@ export default class PageBulkImport extends Component {
 
     // Get Bulk Import Form Values
     let formValue = this.refs["form_bulk_import"].getValue();
-    
+
     // Capture Form Properties
-    let properties = {};
+    let formProps = {};
     for (let key in formValue) {
       if (formValue.hasOwnProperty(key) && key) {
         if (formValue[key] && formValue[key] != '') {
-          properties[key] = formValue[key];
+          formProps[key] = formValue[key];
         }
       }
     }
 
-    // console.log(properties);
-    // "properties['bulkImportFile'].name" is the file name. Ex: "myFile.csv"
-    // "properties['bulkImportFile'].type" is the file type. Ex: "text/csv"
-    // "properties['bulkImportFile'].size" is the size of the file. Ex: "155266"
-    // "properties['bulkImportRadioOptions']" returns the value of the input field.
-
-    let formErrors = this._validateBulkImportForm(properties);
+    let formErrors = this._validateBulkImportForm(formProps);
     let errorStateValue = false;
     if(formErrors.length) {
       errorStateValue = true;
@@ -195,7 +232,7 @@ export default class PageBulkImport extends Component {
     this.setState({
       'bulkImportFormErrors2':errorStateValue,
       'bulkImportFormSubmitErrorMessage': formErrors,
-      'formValue': properties
+      'formValue': formProps
     });
 
     // Hault if there are Errors
@@ -203,11 +240,17 @@ export default class PageBulkImport extends Component {
       return;
     }
 
-    // Else there are no error. Proceed.
-    this._processBulkImport(properties);
+    // If bulkImportRadioOptions is not set, set default value
+    if(!formProps['bulkImportRadioOptions']) {
+      formProps['bulkImportRadioOptions'] = 'duplicateAdd';
+    }
 
-    // Scroll to top
-    // window.scrollTo(0, 0);
+    this._uploadBatchImportCSV(formProps);
+
+    // Update Bulk Import State to FetchBatchId
+    this.setState({
+      bulkImportState : this.bulkImportStates.uploadingCSV
+    });
 
   }
 
@@ -217,7 +260,8 @@ export default class PageBulkImport extends Component {
     this._clearBulkImportForm();
 
     this.setState({
-      'bulkImportState':this.bulkImportStates.formIdle
+      'bulkImportState':this.bulkImportStates.formIdle,
+      'bulkImportProcessErrorMessage':null,
     });
   }
 
@@ -225,53 +269,106 @@ export default class PageBulkImport extends Component {
   // Clear/Reset the Bulk Import Form
   _clearBulkImportForm() {
 
-    // console.log('>>>> formValue:');
-    // console.log(this.state.formValue);
-
     this.setState({
       'radioDuplicateOption':'duplicateAdd',
       'bulkImportFilePath':null,
       'bulkImportFilePathError':false,
-
       'bulkImportFormErrors2': false,
-      'formValue': {'bulkImportFile': {}, 'bulkImportRadioOptions':''}
+      'formValue': defaultFormValues
     });
-
-    //
-    // TODO: Fix Reseting the bulkImportFile value above.
-    // The value behind the scenes is updated, but is not reflected in the UI.
-    //
 
   }
 
 
-  _processBulkImport(properties) {
-
-    // FV/Workspaces/BulkImportDocs/BulkImportResources/<docTitle>
-
-    // Find CSV Path
-    let csvPath = properties['bulkImportFile'].name;
-    // console.log('csvPath: '+ csvPath);
+  // Upload a CSV file to be used for Batch Import
+  _uploadBatchImportCSV(formProps) {
 
     // Find DuplicateEntyOption
-    let duplicateOption = properties['bulkImportRadioOptions'];
+    let duplicateOption = formProps['bulkImportRadioOptions'];
     if(!duplicateOption) {
       duplicateOption = 'duplicateAdd';
     }
 
-    // Update Bulk Import State to FetchBatchId
-    this.setState({
-      bulkImportState : this.bulkImportStates.fetchBatchId
-    });
+    // Set up and process File Form Data object
+    let file;
+    let fd = new FormData();
+    for (let k in formProps) {
+      let v = formProps[k];
+      if (t.form.File.is(v)) {
+        fd.append(k, v, v.name);
+        file = v;
+      } else {
+        fd.append(k, v);
+      }
+    }
+
+    // If File exists
+    if(file) {
+      
+      // Path for Upload
+      let uploadPath = '/FV/Workspaces/BulkImportDocs/BulkImportResources';
+
+      let dialect = ProviderHelpers.getEntry(this.props.computeDialect2, this.props.routeParams.dialect_path);
+      let dialectUid = dialect.response.uid;
+
+      let docDescription = {
+        dialectUid : dialectUid,
+        duplicateOption : duplicateOption
+      };
+
+      let properties = {};
+
+      for (let key in formProps) {
+        if (formProps.hasOwnProperty(key) && key && key != 'file') {
+          if (formProps[key] && formProps[key] != '') {
+            properties[key] = formProps[key];
+          }
+        }
+      }
+
+      // Timestamp
+      let timestamp = Date.now();
+
+      // Set Document Parameters
+      let docParams = {
+        dialect: this.props.routeParams['language_name'],
+        description: docDescription
+      };
+
+      // Upload Bulk Import CSV, and attach CSV to New Document
+      this.props.createBulkImportCSV(uploadPath, docParams, file, timestamp);
+
+    }
+
+  }
+
+
+  _processBulkImport(csvProps) {
+
+
+    // Prevent Multiple calls. This might be because a Rest Action is not being used.
+    if (this.state.bulkImportState === this.bulkImportStates.uploadingCSV) {
     
-    // Get Bulk Import Id
-    let now = Date.now();
+      const dialect = ProviderHelpers.getEntry(this.props.computeDialect2, this.props.routeParams.dialect_path);
+      
+      // csvProps.response.uid
+      let dialectUid = dialect.response.uid;
+      let csvPath = csvProps.response.path;
+      let csvUid = csvProps.response.uid;
+      let duplicateEntryOption = this.state.formValue.bulkImportRadioOptions;
 
-    // Request new Bulk Import Id
-    this.props.createBulkImportId('/api/v1/upload', {
-      type: 'FVBulkImport'
-    }, null, now);
+      let operationParams = {
+        dialectUid: "doc:"+ dialectUid,
+        csvUid: "doc:"+ csvUid,
+        duplicateEntryOption:duplicateEntryOption
+      };
 
+      // Request to Execute Service for Processing Bulk Import CSV File
+      this.props.processBulkImportCSV(csvPath, operationParams, null, operationParams, "Processing CSV File success. Maybe.");
+      
+      // Update State
+      this.setState({ bulkImportState:this.bulkImportStates.processingCSV });
+    }
   }
 
 
@@ -284,15 +381,8 @@ export default class PageBulkImport extends Component {
 
     const computeDialect2 = ProviderHelpers.getEntry(this.props.computeDialect2, this.props.routeParams.dialect_path);
 
+    // Fetch Bulk Import Form Options
     let FVBulkImportCSV = Object.assign({}, selectn("FVBulkImportCSV", options));
-    // FVBulkImportCSV['fields'] = selectn("bulkImportRadioOptions", options);
-
-
-    if(this.state.bulkImportBatchId) {
-      // console.log('!!!! - this.state.bulkImportBatchId: '+ this.state.bulkImportBatchId);
-
-    }
-
 
     // If there are any Form Error Messages
     let formErrorMessage;
@@ -307,6 +397,7 @@ export default class PageBulkImport extends Component {
       );
     }
 
+    let bulkImportProcessingError;
     let formStyleDisplay = 'none';
     let loadingHTML = '';
 
@@ -323,9 +414,6 @@ export default class PageBulkImport extends Component {
     if(this.state.bulkImportState === this.bulkImportStates.uploadingCSV) {
       // Render Loading View with message "Uploading CSV"
       loadingHTML = (<div><CircularProgress mode="indeterminate" style={{verticalAlign: 'middle'}} size={1} /> Uploading CSV file... {this.state.bulkImportBatchId}</div>);
-
-      // Set Timeout for next step: validatingCSV
-      setTimeout(function(){ this.setState({bulkImportState:this.bulkImportStates.validatingCSV});}.bind(this), 3500);
     }
 
     if(this.state.bulkImportState === this.bulkImportStates.validatingCSV) {
@@ -333,7 +421,7 @@ export default class PageBulkImport extends Component {
       loadingHTML = (<div><CircularProgress mode="indeterminate" style={{verticalAlign: 'middle'}} size={1} /> Validating CSV file...</div>);
 
       // Set Timeout for next step: processingCSV
-      setTimeout(function(){ this.setState({bulkImportState:this.bulkImportStates.processingCSV});}.bind(this), 500);
+      // setTimeout(function(){ this.setState({bulkImportState:this.bulkImportStates.processingCSV});}.bind(this), 500);
     }
 
     if(this.state.bulkImportState === this.bulkImportStates.processingCSV) {
@@ -341,12 +429,20 @@ export default class PageBulkImport extends Component {
       loadingHTML = (<div><CircularProgress mode="indeterminate" style={{verticalAlign: 'middle'}} size={1} /> Processing CSV Entries...</div>);
 
       // Set Timeout for next step: importSuccess
-      setTimeout(function(){ this.setState({bulkImportState:this.bulkImportStates.importSuccess});}.bind(this), 500);
+      // setTimeout(function(){ this.setState({bulkImportState:this.bulkImportStates.importSuccess});}.bind(this), 500);
     }
 
-    if(this.state.bulkImportState === this.bulkImportStates.importSuccess || this.state.bulkImportState === this.bulkImportStates.importError) {
+    if(this.state.bulkImportState === this.bulkImportStates.importSuccess) {
       // Display Bulk Import Status Message.
       loadingHTML = (<div><h4 style={{'marginTop':'0'}}>Import Success</h4><div style={{'marginTop':'1.2rem'}}>• 300 new Words added.<br />• 100 Words ignored.<br /><button className="btn btn-primary" onClick={this._closeImportFinishedMessage.bind(this)} style={{'marginTop':'1.6rem'}}>Close</button></div></div>);
+    }
+
+    if(this.state.bulkImportState === this.bulkImportStates.importError) {
+
+      let processingErrorMessage = this.state.bulkImportProcessErrorMessage;
+
+      // Display Bulk Import Status Message.
+      loadingHTML = (<div><h4 style={{'marginTop':'0'}}>Error Processing CSV File</h4><div style={{'marginTop':'1.2rem'}}>• {processingErrorMessage}<br /><button className="btn btn-primary" onClick={this._closeImportFinishedMessage.bind(this)} style={{'marginTop':'1.6rem'}}>Close</button></div></div>);
     }
 
     return (

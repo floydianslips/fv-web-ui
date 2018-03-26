@@ -118,10 +118,10 @@ const fields = {
     'fvlink:url': t.maybe(t.String)/*,
     'file:content': t.maybe(t.form.File)*/
   }),
-  FVBulkImportCSV: {
-    'bulkImportFile': t.maybe(t.form.File),
+  FVBulkImportCSV: Object.assign({}, {
+    'file:content': t.form.File,
     'bulkImportRadioOptions': t.maybe(t.String)
-  },
+  }),
 }
 
 export default fields;

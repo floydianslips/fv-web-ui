@@ -6,17 +6,27 @@ export default {
 		return function create(parentDoc, docParams, file = null, timestamp) {
 			return function (dispatch) {
 
-				// timestamp specified as we can't rely on pathOrId to be unique at this point
+				// Timestamp specified as we can't rely on pathOrId to be unique at this point
 				let pathOrId = parentDoc + '/' + docParams.name + '.' + timestamp;
-
 			    dispatch( { type: key + '_CREATE_START', pathOrId: pathOrId } );
 
 			    if (file) {
-					return DocumentOperations.createDocumentWithBlob(parentDoc, docParams, file).then((response) => {
-					dispatch( { type: key + '_CREATE_SUCCESS', message: 'Document with blob created successfully!', response: response, pathOrId: pathOrId } )
-					}).catch((error) => {
-						dispatch( { type: key + '_CREATE_ERROR', message: error, pathOrId: pathOrId } )
-					});
+
+			    	if(key === 'FV_BULKIMPORT') {
+						return DocumentOperations.createBulkImportFileWithBlob(parentDoc, docParams, file).then((response) => {
+							dispatch( { type: key + '_CREATE_SUCCESS', message: 'Document with blob created successfully!', response: response } )
+						}).catch((error) => {
+							dispatch( { type: key + '_CREATE_ERROR', message: error } )
+						});
+					}
+			    	else {
+			    		return DocumentOperations.createDocumentWithBlob(parentDoc, docParams, file).then((response) => {
+						dispatch( { type: key + '_CREATE_SUCCESS', message: 'Document with blob created successfully!', response: response, pathOrId: pathOrId } )
+						}).catch((error) => {
+							dispatch( { type: key + '_CREATE_ERROR', message: error, pathOrId: pathOrId } )
+						});
+			    	}
+					
 			    } else {
 					return DocumentOperations.createDocument(parentDoc, docParams).then((response) => {
 					dispatch( { type: key + '_CREATE_SUCCESS', message: 'Document created successfully!', response: response, pathOrId: pathOrId } )

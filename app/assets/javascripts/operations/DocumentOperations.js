@@ -162,6 +162,8 @@ export default class DocumentOperations extends BaseOperations {
 
     let properties = this.properties;
     
+    console.log('++++ About to call Operation FVPublishDialect with pathOrUid: '+ pathOrUid);
+
     return new Promise(
       function(resolve, reject) {
       properties.client
@@ -178,7 +180,7 @@ export default class DocumentOperations extends BaseOperations {
           }
         );
       });
-    });            
+    });
   }
 
   /**
@@ -405,6 +407,13 @@ export default class DocumentOperations extends BaseOperations {
   */
   static executeOperation(input, operationName, operationParams, headers = {}, params = {}) {
 
+    console.log('++++ executeOperation() called with input: '+ input +', operationName: '+ operationName +', operationParams: ...');
+    console.log(operationParams);
+    console.log('headers: ...');
+    console.log(headers);
+    console.log('params: ...');
+    console.log(params);
+
     let sanitizeKeys = ['dialectPath'];
 
     let properties = this.properties;
@@ -544,7 +553,7 @@ export default class DocumentOperations extends BaseOperations {
 	        });
 	  }
 
-
+    // Not used. Here for reference
     static getBulkImportId() {
 
       let properties = this.properties;
@@ -590,6 +599,93 @@ export default class DocumentOperations extends BaseOperations {
 
 
     }
-   
+
+
+  static createBulkImportFileWithBlob(parentDir, docParams, file) {
+
+    // Expose Properties to Promise
+    let properties = this.properties;
+
+    return new Promise(
+      function(resolve, reject) {
+
+        // If file not empty, process blob and upload
+        if (file) {
+
+          // Create new Nuxeo Blob
+          let blob = new Nuxeo.Blob({ content: file });
+
+          // Upload Blob
+          properties.client
+          .batchUpload()
+          .upload(blob)
+          .then((uploadedFile) => {
+
+            // Set new Doc parameters with the blob set in the file:content property
+            var newDocParams = {
+              "entity-type": "document",
+              "type": "File",
+              "name": file.name,
+              "title": file.name,
+              "properties": {
+                "dc:title": docParams.dialect +'_'+ file.name,
+                "file:content": uploadedFile.blob,
+                "dc:description": docParams.description
+              }
+            };
+
+            // Create a New Document
+            properties.client
+            .operation('Document.Create')
+            .params(newDocParams)
+            .input(parentDir)
+            .execute()
+            .then((newDoc) => {
+
+              resolve(newDoc);
+
+            })
+            .catch((error) => { reject('Failed to create new file.'); } );
+
+          })
+          .catch((error) => { reject('Failed to upload file.'); } );
+
+        }
+    });
+  }
+
+
+  /**
+  * Process Bulk Import CSV file for a Dialect
+  */
+  static processBulkImportCSV(dialectUid, csvUid, duplicateEntryOption) {
+
+    let properties = this.properties;
+    
+    // Set Input Params
+    let inputParams = {
+      dialectUid : dialectUid,
+      csvUid: csvUid,
+      duplicateEntryOption: duplicateEntryOption
+    }
+
+    return new Promise(
+      function(resolve, reject) {
+      properties.client
+      .operation('FVProcessBulkImportCSV')
+      .input(inputParams)
+      .execute()
+      .then((doc) => {
+        resolve(doc);
+      })
+      .catch((error) => {
+        error.response.json().then(
+          (jsonError) => {
+            reject(StringHelpers.extractErrorMessage(jsonError));
+          }
+        );
+      });
+    });            
+  }
    
 }

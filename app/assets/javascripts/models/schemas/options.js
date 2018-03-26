@@ -956,7 +956,7 @@ const options = {
 
   FVBulkImportCSV: {
     fields: {
-      'bulkImportFile': {
+      'file:content': {
         label: 'Choose CSV file',
         help: 'File type must be CSV.',
         type: 'file'
@@ -964,19 +964,16 @@ const options = {
       'bulkImportRadioOptions': {
         label: 'Duplicate Record options',
         help: 'What should happen when a record already exists?',
-        factory: BulkImportRadioOptionsFactory,
-        attrs: {
-          elementName: 'duplicateOption',
-          defaultValue: 'duplicateAdd',
-          options: [
-            {value: 'duplicateAdd', label: 'Add duplicate records'},
-            {value: 'duplicateUpdate', label: 'Update duplicate records'},
-            {value: 'duplicateIgnore', label: 'Ignore duplicate records'}
-          ]
-        }
+        factory: t.form.Radio,
+        // factory: BulkImportRadioOptionsFactory,
+        options: [
+          {value: 'duplicateAdd', text: 'Add duplicate records'},
+          {value: 'duplicateUpdate', text: 'Update duplicate records'},
+          {value: 'duplicateIgnore', text: 'Ignore duplicate records'}
+        ]
       }
     }
-  }
+  },
 
 };
 
