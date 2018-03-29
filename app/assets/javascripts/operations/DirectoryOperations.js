@@ -223,47 +223,5 @@ export default class DirectoryOperations extends BaseOperations {
 
       });
   }
-  /*getWordsByLangauge (client, language) {
-    return new Promise(
-        // The resolver function is called with the ability to resolve or
-        // reject the promise
-        function(resolve, reject) {
-
-          language = StringHelpers.clean(StringHelpers);
-
-          client.operation('Document.Query')
-            .params({
-              query: "SELECT * FROM Document WHERE (dc:title = '" + language + "' AND ecm:primaryType = 'Workspace' AND ecm:currentLifeCycleState <> 'deleted'))"
-            })
-          .execute(function(error, response) {
-            if (error) {
-              throw error;
-            }
-            // Create a Workspace Document based on returned data
-            
-            if (response.entries.length > 0) {
-              var workspaceID = response.entries[0].uid;
-
-              client.operation('Document.Query')
-                .params({
-                  query: "SELECT * FROM Document WHERE (ecm:parentId = '" + workspaceID + "' AND ecm:primaryType = 'Word' AND ecm:currentLifeCycleState <> 'deleted')"
-                })
-              .execute(function(error, response) {
-
-                    // Handle error
-                if (error) {
-                  throw error;
-                }
-
-                var nuxeoListDocs = new Words(response.entries);
-                resolve(nuxeoListDocs.toJSON());
-
-              });
-            } else {
-              reject('Workspace not found');
-            }
-
-          });
-    });
-  }*/
+  
 }

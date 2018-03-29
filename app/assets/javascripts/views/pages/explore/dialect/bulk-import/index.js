@@ -36,7 +36,7 @@ import CircularProgress from 'material-ui/lib/circular-progress';
 import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';
 
-const defaultFormValues = {'file:content': {}, 'bulkImportRadioOptions':'duplicateAdd'};
+const defaultFormValues = {'file:content': null, 'bulkImportRadioOptions':'duplicateAdd', bulkImportFormSuccessMessage: null};
 
 /**
 * Learn songs
@@ -69,6 +69,7 @@ export default class PageBulkImport extends Component {
     this.state = {
       filteredList: null,
       formValue: defaultFormValues,
+      bulkImportFormSuccessMessage:null,
       bulkImportFormSubmitErrorMessage:null,
       bulkImportFormErrors:false,
       bulkImportProcessErrorMessage:null,
@@ -145,9 +146,18 @@ export default class PageBulkImport extends Component {
         // If CSV File Processed Successfully
         if(!nextProps.computeProcessBulkImportCSV.isFetching && nextProps.computeProcessBulkImportCSV.success) {
 
-          // Update State
-          this.setState({ bulkImportState:this.bulkImportStates.importSuccess });
 
+          console.log('---- Bulk Import Processed Successfully with resonse:');
+          console.log(nextProps.computeProcessBulkImportCSV);
+          console.log(nextProps.computeProcessBulkImportCSV.data.response.properties['dc:description']);
+
+          let responseJsonString = nextProps.computeProcessBulkImportCSV.data.response.properties['dc:description'];
+
+          // Update State
+          this.setState({
+            bulkImportFormSuccessMessage: responseJsonString,
+            bulkImportState:this.bulkImportStates.importSuccess
+          });
 
         }
         else if(!nextProps.computeProcessBulkImportCSV.isFetching && !nextProps.computeProcessBulkImportCSV.success) {
@@ -434,7 +444,7 @@ export default class PageBulkImport extends Component {
 
     if(this.state.bulkImportState === this.bulkImportStates.importSuccess) {
       // Display Bulk Import Status Message.
-      loadingHTML = (<div><h4 style={{'marginTop':'0'}}>Import Success</h4><div style={{'marginTop':'1.2rem'}}>• 300 new Words added.<br />• 100 Words ignored.<br /><button className="btn btn-primary" onClick={this._closeImportFinishedMessage.bind(this)} style={{'marginTop':'1.6rem'}}>Close</button></div></div>);
+      loadingHTML = (<div><h4 style={{'marginTop':'0'}}>Import Success</h4><div style={{'marginTop':'1.2rem'}}>Server Response:<br /><div style={{'fontFamily':'Monaco','fontSize':'14px','wordWrap':'break-word'}}>{this.state.bulkImportFormSuccessMessage}</div><button className="btn btn-primary" onClick={this._closeImportFinishedMessage.bind(this)} style={{'marginTop':'1.6rem'}}>Close</button></div></div>);
     }
 
     if(this.state.bulkImportState === this.bulkImportStates.importError) {

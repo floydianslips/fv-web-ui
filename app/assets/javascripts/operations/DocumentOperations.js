@@ -407,13 +407,6 @@ export default class DocumentOperations extends BaseOperations {
   */
   static executeOperation(input, operationName, operationParams, headers = {}, params = {}) {
 
-    console.log('++++ executeOperation() called with input: '+ input +', operationName: '+ operationName +', operationParams: ...');
-    console.log(operationParams);
-    console.log('headers: ...');
-    console.log(headers);
-    console.log('params: ...');
-    console.log(params);
-
     let sanitizeKeys = ['dialectPath'];
 
     let properties = this.properties;
