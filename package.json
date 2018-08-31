@@ -42,7 +42,7 @@
     "react-redux": "~4.4.5",
     "react-redux-provide": "git+ssh://git@github.com/First-Peoples-Cultural-Council/react-redux-provide.git#v5.2.3",
     "react-tap-event-plugin": "~0.2.0",
-    "redux": "~3.5.2",
+    "redux": "~4.0.0",
     "redux-logger": "~3.0.6",
     "redux-thunk": "~2.0.1",
     "request": "~2.65.0",
