@@ -36,7 +36,7 @@ import CardText from 'material-ui/lib/card/card-text';
 import FlatButton from 'material-ui/lib/flat-button';
 import Divider from 'material-ui/lib/divider';
 
-import CircularProgress from 'material-ui/lib/circular-progress';
+import CircularProgress from 'material-ui/CircularProgress';
 import IntlService from "views/services/intl";
 
 const intl = IntlService.instance;

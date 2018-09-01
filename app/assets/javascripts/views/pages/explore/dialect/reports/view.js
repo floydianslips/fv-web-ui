@@ -36,7 +36,7 @@ import SongsStoriesListViewAlt from 'views/pages/explore/dialect/learn/songs-sto
 
 import ReportBrowser from './browse-view';
 
-import CircularProgress from 'material-ui/lib/circular-progress';
+import CircularProgress from 'material-ui/CircularProgress';
 import RaisedButton from 'material-ui/lib/raised-button';
 
 import FacetFilterList from 'views/components/Browsing/facet-filter-list';

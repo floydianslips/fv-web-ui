@@ -55,7 +55,7 @@ import RaisedButton from 'material-ui/lib/raised-button';
 
 import Tab from 'material-ui/lib/tabs/tab';
 
-import CircularProgress from 'material-ui/lib/circular-progress';
+import CircularProgress from 'material-ui/CircularProgress';
 
 import '!style-loader!css-loader!react-image-gallery/build/image-gallery.css';
 

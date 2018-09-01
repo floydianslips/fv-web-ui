@@ -29,7 +29,7 @@ import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 import PageDialectLearnBase from 'views/pages/explore/dialect/learn/base';
 import PhraseListView from 'views/pages/explore/dialect/learn/phrases/list-view';
 
-import CircularProgress from 'material-ui/lib/circular-progress';
+import CircularProgress from 'material-ui/CircularProgress';
 import RaisedButton from 'material-ui/lib/raised-button';
 
 import FacetFilterList from 'views/components/Browsing/facet-filter-list';

@@ -15,7 +15,7 @@ import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';
 
 import IconButton from 'material-ui/lib/icon-button';
-import CircularProgress from 'material-ui/lib/circular-progress';
+import CircularProgress from 'material-ui/CircularProgress';
 import IntlService from "views/services/intl";
 
 const intl = IntlService.instance;

@@ -28,7 +28,7 @@ import TextField from 'material-ui/lib/text-field';
 
 import ActionExitToAppIcon from 'material-ui/lib/svg-icons/action/exit-to-app';
 
-import CircularProgress from 'material-ui/lib/circular-progress';
+import CircularProgress from 'material-ui/CircularProgress';
 
 import {BrowserView, MobileView, isBrowser, isMobile} from 'react-device-detect';
 import IntlService from "views/services/intl";

@@ -37,7 +37,7 @@ import RaisedButton from 'material-ui/lib/raised-button';
 import FlatButton from 'material-ui/lib/flat-button';
 
 import Paper from 'material-ui/lib/paper';
-import CircularProgress from 'material-ui/lib/circular-progress';
+import CircularProgress from 'material-ui/CircularProgress';
 
 import BookEntryEdit from 'views/pages/explore/dialect/learn/songs-stories/entry/edit';
 import BookEntryList from 'views/pages/explore/dialect/learn/songs-stories/entry/list-view';

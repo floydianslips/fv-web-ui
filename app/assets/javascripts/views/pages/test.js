@@ -27,7 +27,7 @@ import DirectoryOperations from 'operations/DirectoryOperations';
 
 import GridList from 'material-ui/lib/grid-list/grid-list';
 import GridTile from 'material-ui/lib/grid-list/grid-tile';
-import CircularProgress from 'material-ui/lib/circular-progress';
+import CircularProgress from 'material-ui/CircularProgress';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 
