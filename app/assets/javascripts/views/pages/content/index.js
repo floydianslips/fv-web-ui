@@ -20,7 +20,7 @@ import provide from 'react-redux-provide';
 import selectn from 'selectn';
 import classNames from 'classnames';
 
-import Colors from 'material-ui/lib/styles/colors';
+import Colors from 'material-ui/styles/colors';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
@@ -30,10 +30,10 @@ import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 import GridList from 'material-ui/lib/grid-list/grid-list';
 import GridTile from 'material-ui/lib/grid-list/grid-tile';
 import CircularProgress from 'material-ui/CircularProgress';
-import Paper from 'material-ui/lib/paper';
-import RaisedButton from 'material-ui/lib/raised-button';
+import Paper from 'material-ui/Paper';
+import RaisedButton from 'material-ui/RaisedButton';
 
-import TextField from 'material-ui/lib/text-field';
+import TextField from 'material-ui/TextField';
 
 import IconMenu from 'material-ui/lib/menus/icon-menu';
 import MenuItem from 'material-ui/lib/menus/menu-item';

@@ -20,11 +20,11 @@ import provide from 'react-redux-provide';
 import selectn from 'selectn';
 
 // Components
-import Popover from 'material-ui/lib/popover/popover';
-import FlatButton from 'material-ui/lib/flat-button';
-import IconButton from 'material-ui/lib/icon-button';
-import RaisedButton from 'material-ui/lib/raised-button';
-import TextField from 'material-ui/lib/text-field';
+import Popover from 'material-ui/Popover';
+import FlatButton from 'material-ui/FlatButton';
+import IconButton from 'material-ui/IconButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 import ActionExitToAppIcon from '@material-ui/icons/ExitToApp';
 

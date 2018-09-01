@@ -24,16 +24,16 @@ import provide from 'react-redux-provide';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 
-import Paper from 'material-ui/lib/paper';
+import Paper from 'material-ui/Paper';
 
 import Toolbar from 'material-ui/lib/toolbar/toolbar';
 import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
 import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
-import RaisedButton from 'material-ui/lib/raised-button';
-import Toggle from 'material-ui/lib/toggle';
+import RaisedButton from 'material-ui/RaisedButton';
+import Toggle from 'material-ui/Toggle';
 import IconMenu from 'material-ui/lib/menus/icon-menu';
 import MenuItem from 'material-ui/lib/menus/menu-item';
-import IconButton from 'material-ui/lib/icon-button';
+import IconButton from 'material-ui/IconButton';
 import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CircularProgress from 'material-ui/CircularProgress';
 

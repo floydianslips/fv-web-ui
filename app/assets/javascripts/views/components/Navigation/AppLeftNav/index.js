@@ -21,7 +21,7 @@ import selectn from 'selectn';
 
 import {Divider, List, ListItem, LeftNav, AppBar} from 'material-ui/lib';
 
-import IconButton from 'material-ui/lib/icon-button';
+import IconButton from 'material-ui/IconButton';
 import NavigationClose from '@material-ui/icons/Close';
 
 import { SelectableContainerEnhance } from 'material-ui/lib/hoc/selectable-enhance';

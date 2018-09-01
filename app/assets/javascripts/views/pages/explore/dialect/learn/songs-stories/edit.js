@@ -33,16 +33,16 @@ import Tab from 'material-ui/lib/tabs/tab';
 import {Document} from 'nuxeo';
 
 // Views
-import RaisedButton from 'material-ui/lib/raised-button';
-import FlatButton from 'material-ui/lib/flat-button';
+import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 
-import Paper from 'material-ui/lib/paper';
+import Paper from 'material-ui/Paper';
 import CircularProgress from 'material-ui/CircularProgress';
 
 import BookEntryEdit from 'views/pages/explore/dialect/learn/songs-stories/entry/edit';
 import BookEntryList from 'views/pages/explore/dialect/learn/songs-stories/entry/list-view';
 
-import Dialog from 'material-ui/lib/dialog';
+import Dialog from 'material-ui/Dialog';
 
 import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';

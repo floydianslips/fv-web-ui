@@ -14,7 +14,7 @@ import {Document} from 'nuxeo';
 import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';
 
-import IconButton from 'material-ui/lib/icon-button';
+import IconButton from 'material-ui/IconButton';
 import CircularProgress from 'material-ui/CircularProgress';
 import IntlService from "views/services/intl";
 

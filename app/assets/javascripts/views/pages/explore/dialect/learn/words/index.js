@@ -30,7 +30,7 @@ import PageDialectLearnBase from 'views/pages/explore/dialect/learn/base';
 import WordListView from 'views/pages/explore/dialect/learn/words/list-view';
 
 import CircularProgress from 'material-ui/CircularProgress';
-import RaisedButton from 'material-ui/lib/raised-button';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import FacetFilterList from 'views/components/Browsing/facet-filter-list';
 

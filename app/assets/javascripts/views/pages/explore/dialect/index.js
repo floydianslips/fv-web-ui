@@ -28,17 +28,17 @@ import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 import Header from 'views/pages/explore/dialect/header';
 import PageToolbar from 'views/pages/explore/dialect/page-toolbar';
 
-import Toggle from 'material-ui/lib/toggle';
-import TextField from 'material-ui/lib/text-field';
+import Toggle from 'material-ui/Toggle';
+import TextField from 'material-ui/TextField';
 import DropDownMenu from 'material-ui/lib/DropDownMenu';
 import IconMenu from 'material-ui/lib/menus/icon-menu';
 import MenuItem from 'material-ui/lib/menus/menu-item';
-import FlatButton from 'material-ui/lib/flat-button';
+import FlatButton from 'material-ui/FlatButton';
 
 import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Paper from 'material-ui/lib/paper';
+import Paper from 'material-ui/Paper';
 import CircularProgress from 'material-ui/CircularProgress';
-import Snackbar from 'material-ui/lib/snackbar';
+import Snackbar from 'material-ui/Snackbar';
 
 import Toolbar from 'material-ui/lib/toolbar/toolbar';
 import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
