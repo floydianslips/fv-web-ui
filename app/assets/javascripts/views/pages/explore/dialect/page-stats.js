@@ -26,19 +26,16 @@ import ProviderHelpers from 'common/ProviderHelpers';
 
 import Paper from 'material-ui/Paper';
 
-import Toolbar from 'material-ui/lib/toolbar/toolbar';
-import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
-import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
+import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
 import RaisedButton from 'material-ui/RaisedButton';
 import Toggle from 'material-ui/Toggle';
-import IconMenu from 'material-ui/lib/menus/icon-menu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CircularProgress from 'material-ui/CircularProgress';
 
-import Tabs from 'material-ui/lib/tabs/tabs';
-import Tab from 'material-ui/lib/tabs/tab';
+import { Tabs, Tab } from 'material-ui/Tabs';
 import Statistics from 'views/components/Dashboard/Statistics';
 
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';

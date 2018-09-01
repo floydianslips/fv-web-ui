@@ -30,9 +30,9 @@ import PageToolbar from 'views/pages/explore/dialect/page-toolbar';
 
 import Toggle from 'material-ui/Toggle';
 import TextField from 'material-ui/TextField';
-import DropDownMenu from 'material-ui/lib/DropDownMenu';
-import IconMenu from 'material-ui/lib/menus/icon-menu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
 
 import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -40,14 +40,9 @@ import Paper from 'material-ui/Paper';
 import CircularProgress from 'material-ui/CircularProgress';
 import Snackbar from 'material-ui/Snackbar';
 
-import Toolbar from 'material-ui/lib/toolbar/toolbar';
-import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
-import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
+import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
 
-import ListUI from 'material-ui/lib/lists/list';
-import ListItem from 'material-ui/lib/lists/list-item';
-
-import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
+import { List as ListUI, ListItem } from 'material-ui/List';
 
 import Preview from 'views/components/Editor/Preview';
 

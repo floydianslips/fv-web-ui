@@ -2,7 +2,7 @@
 //import createLoggerMiddleware from 'redux-logger';
 import thunk from 'redux-thunk';
 
-import ThemeManager from 'material-ui/styles/theme-manager';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import FirstVoicesTheme from 'views/themes/FirstVoicesTheme.js';
 import FirstVoicesKidsTheme from 'views/themes/FirstVoicesKidsTheme.js';
@@ -90,15 +90,15 @@ const actions = {
   // Change theme
   changeTheme(id) {
 
-    let theme = ThemeManager.getMuiTheme(FirstVoicesTheme);
+    let theme = getMuiTheme(FirstVoicesTheme);
 
     switch (id) {
       case 'kids':
-        theme = ThemeManager.getMuiTheme(FirstVoicesKidsTheme);
+        theme = getMuiTheme(FirstVoicesKidsTheme);
       break;
 
       case 'workspace':
-        theme = ThemeManager.getMuiTheme(FirstVoicesWorkspaceTheme);
+        theme = getMuiTheme(FirstVoicesWorkspaceTheme);
       break;
     }
 

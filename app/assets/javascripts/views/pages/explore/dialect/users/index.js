@@ -32,17 +32,14 @@ import SearchBar from 'views/pages/explore/dialect/search-bar';
 
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
-import Toolbar from 'material-ui/lib/toolbar/toolbar';
-import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
-import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
+import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
 import FlatButton from 'material-ui/FlatButton';
 import CircularProgress from 'material-ui/CircularProgress';
-import IconMenu from 'material-ui/lib/menus/icon-menu';
+import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import MenuItem from 'material-ui/MenuItem';
 import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Tabs from 'material-ui/lib/tabs/tabs';
-import Tab from 'material-ui/lib/tabs/tab';
+import { Tabs, Tab } from 'material-ui/Tabs';
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 
 import EditableComponent, {EditableComponentHelper} from 'views/components/Editor/EditableComponent';

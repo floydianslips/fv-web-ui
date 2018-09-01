@@ -18,7 +18,7 @@ import 'babel-polyfill';
 import React, { Component, PropTypes } from 'react';
 import { render } from 'react-dom'
 
-import ThemeManager from 'material-ui/styles/theme-manager';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import FirstVoicesTheme from 'views/themes/FirstVoicesTheme.js';
 
@@ -47,7 +47,7 @@ const context = {
             pageTitleParams: null,
             domain: ConfGlobal.domain,
             theme: {
-                palette: ThemeManager.getMuiTheme(FirstVoicesTheme),
+                palette: getMuiTheme(FirstVoicesTheme),
                 id: 'default'
             }
         }

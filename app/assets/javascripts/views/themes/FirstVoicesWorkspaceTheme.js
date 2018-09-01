@@ -1,5 +1,5 @@
 import Colors from 'material-ui/styles/colors';
-import ColorManipulator from 'material-ui/utils/color-manipulator';
+import ColorManipulator from 'material-ui/utils/colorManipulator';
 import Spacing from 'material-ui/styles/spacing';
 import zIndex from 'material-ui/styles/zIndex';
 

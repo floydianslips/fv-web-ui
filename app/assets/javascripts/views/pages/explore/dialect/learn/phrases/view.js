@@ -44,16 +44,13 @@ import Avatar from 'material-ui/Avatar';
 import FlatButton from 'material-ui/FlatButton';
 import Divider from 'material-ui/Divider';
 
-import ListUI from 'material-ui/lib/lists/list';
-import ListItem from 'material-ui/lib/lists/list-item';
+import { List as ListUI, ListItem } from 'material-ui/List';
 
-import Toolbar from 'material-ui/lib/toolbar/toolbar';
-import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
-import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
+import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
 import FontIcon from 'material-ui/FontIcon';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import Tab from 'material-ui/lib/tabs/tab';
+import { Tab } from 'material-ui/Tabs';
 
 import CircularProgress from 'material-ui/CircularProgress';
 
