@@ -18,7 +18,7 @@ import 'babel-polyfill';
 import React, { Component, PropTypes } from 'react';
 import { render } from 'react-dom'
 
-import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import ThemeManager from 'material-ui/styles/theme-manager';
 
 import FirstVoicesTheme from 'views/themes/FirstVoicesTheme.js';
 

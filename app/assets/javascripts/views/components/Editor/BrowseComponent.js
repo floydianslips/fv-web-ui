@@ -77,7 +77,7 @@ class SharedResourceGridTile extends Component {
         }
 
         return <GridTile
-            onTouchTap={(this.props.action) ? this.props.action.bind(this, this.props.tile) : null}
+            onClick={(this.props.action) ? this.props.action.bind(this, this.props.tile) : null}
             key={selectn('uid', tile)}
             title={selectn('properties.dc:title', tile)}
             actionPosition="right"
@@ -176,7 +176,7 @@ export default class BrowseComponent extends React.Component {
             <FlatButton
                 label={intl.trans('cancel', 'Cancel', 'first')}
                 secondary={true}
-                onTouchTap={this._handleClose}/>
+                onClick={this._handleClose}/>
         ];
 
         let title = '';
@@ -255,7 +255,7 @@ export default class BrowseComponent extends React.Component {
 
         return (
             <div style={{display: 'inline'}}>
-                <RaisedButton label={this.props.label} onTouchTap={this._handleOpen}/>
+                <RaisedButton label={this.props.label} onClick={this._handleOpen}/>
                 <Dialog
                     title={title}
                     actions={actions}

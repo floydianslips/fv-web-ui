@@ -221,7 +221,7 @@ export default function withFilter(ComposedFilter, DefaultFetcherParams) {
                                         value={this.state.formValue}
                                         options={options.toJS()}/>
                                     <RaisedButton
-                                        onTouchTap={this._onReset}
+                                        onClick={this._onReset}
                                         label={intl.trans('reset', 'Reset', 'first')}
                                         primary={true}/> &nbsp;
                                     <RaisedButton

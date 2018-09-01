@@ -200,7 +200,7 @@ export default class PageDialectLearnAlphabet extends PageDialectLearnBase {
                             return <RaisedButton
                                 primary={true}
                                 label={"View Words and Phrases that start with " + this.state.current_char.title}
-                                onTouchTap={this._onNavigateRequest.bind(this, this.state.current_char.path.split('/')[this.state.current_char.path.split('/').length - 1])}
+                                onClick={this._onNavigateRequest.bind(this, this.state.current_char.path.split('/')[this.state.current_char.path.split('/').length - 1])}
                                 style={{minWidth: 'inherit', textTransform: 'initial', margin: '10px 0'}}/>;
                         }
                     })()}
@@ -222,8 +222,8 @@ export default class PageDialectLearnAlphabet extends PageDialectLearnBase {
                                             <FlatButton
                                              icon={<FontIcon
                                                 className="material-icons">play_arrow</FontIcon>}
-                                                onTouchTap={this._onCharAudioTouchTap.bind(this, char)}
-                                                //onTouchTap={this._onNavigateRequest.bind(this, char.path.split('/')[char.path.split('/').length - 1])}
+                                                onClick={this._onCharAudioTouchTap.bind(this, char)}
+                                                //onClick={this._onNavigateRequest.bind(this, char.path.split('/')[char.path.split('/').length - 1])}
                                                 label={char.title} style={{minWidth: 'inherit', textTransform: 'initial'}}/>
                                             {(char.contextParameters.character.related_audio[0]) ?
                                                 <span>

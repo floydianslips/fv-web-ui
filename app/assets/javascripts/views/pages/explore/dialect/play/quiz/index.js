@@ -67,7 +67,7 @@ class Answer extends React.Component {
 
         return <div className="col-xs-6">
             <RaisedButton style={{'width': '100%'}} labelColor={labelColor} disabled={disabled}
-                          backgroundColor={backgroundColor} onTouchTap={this.props.onSelect.bind(this, data, correct)}
+                          backgroundColor={backgroundColor} onClick={this.props.onSelect.bind(this, data, correct)}
                           label={(data) ? selectn('word', data) : 'Loading...'}/>
         </div>;
     }
@@ -309,7 +309,7 @@ export default class Quiz extends Component {
                                 marginTop: '15px',
                                 padding: '0'
                             }}>{intl.trans('views.pages.explore.dialect.play.quiz.completed_this_quiz', 'Nice! You\'ve completed this quiz!')} {skillLevel}
-                                <RaisedButton onTouchTap={this._restart}
+                                <RaisedButton onClick={this._restart}
                                               label={intl.trans('views.pages.explore.dialect.play.quiz.new_quiz', 'New Quiz', 'words')}
                                               style={{marginLeft: '10px'}}/></div> : ''}
 
@@ -336,7 +336,7 @@ export default class Quiz extends Component {
 
                     <div className={classNames('col-xs-2', 'text-left')}>
                         <IconButton style={{backgroundColor: '#ffffff'}}
-                                    onTouchTap={this._handleNavigate.bind(this, 'previous')}
+                                    onClick={this._handleNavigate.bind(this, 'previous')}
                                     iconClassName="material-icons"
                                     tooltip={intl.trans('views.pages.explore.dialect.play.quiz.previous_question', 'Previous Question', 'words')}>
                         chevron_left
@@ -357,7 +357,7 @@ export default class Quiz extends Component {
 
                     <div className={classNames('col-xs-2', 'text-right')}>
                         <IconButton style={{backgroundColor: '#ffffff'}}
-                                    onTouchTap={this._handleNavigate.bind(this, 'next')}
+                                    onClick={this._handleNavigate.bind(this, 'next')}
                                     disabled={!isCorrect || isComplete}
                                     iconClassName="material-icons"
                                     tooltip={intl.trans('views.pages.explore.dialect.play.quiz.next_question', 'Next Question', 'words')}>

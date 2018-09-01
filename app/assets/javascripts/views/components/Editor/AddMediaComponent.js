@@ -193,7 +193,7 @@ export default class AddMediaComponent extends Component {
             <FlatButton
                 label={intl.trans('cancel', 'Cancel', 'first')}
                 secondary={true}
-                onTouchTap={this.handleClose}/>
+                onClick={this.handleClose}/>
         ];
 
         switch (this.props.type) {
@@ -238,13 +238,13 @@ export default class AddMediaComponent extends Component {
             actions.push(<FlatButton
                 label={intl.trans('insert_into_entry', 'Insert into Entry', 'first')}
                 primary={true}
-                onTouchTap={this._handleSelectElement.bind(this, computeCreate.response)}/>);
+                onClick={this._handleSelectElement.bind(this, computeCreate.response)}/>);
             form = "";
         }
 
         return (
             <div style={{display: 'inline'}}>
-                <RaisedButton label={this.props.label} onTouchTap={this.handleOpen}/>
+                <RaisedButton label={this.props.label} onClick={this.handleOpen}/>
                 <Dialog
                     title={intl.trans('views.components.editor.create_new_x_in_the_x_dialect',
                         "Create New " + fileTypeLabel + " in the " + selectn('properties.dc:title', this.props.dialect) + " dialect.",

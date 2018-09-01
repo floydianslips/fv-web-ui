@@ -107,15 +107,15 @@ export default class ToolbarNavigation extends Component {
         return <Toolbar className="dialect-navigation">
 
             <ToolbarGroup firstChild={true} float="left">
-                <FlatButton onTouchTap={this._onNavigateRequest.bind(this, 'words')}
+                <FlatButton onClick={this._onNavigateRequest.bind(this, 'words')}
                             label={intl.trans('words', 'Words', 'first') + " (" + wordCount + ")"}/>
-                <FlatButton onTouchTap={this._onNavigateRequest.bind(this, 'phrases')}
+                <FlatButton onClick={this._onNavigateRequest.bind(this, 'phrases')}
                             label={intl.trans('phrases', 'Phrases', 'first') + " (" + phraseCount + ")"}/>
-                <FlatButton onTouchTap={this._onNavigateRequest.bind(this, 'songs')}
+                <FlatButton onClick={this._onNavigateRequest.bind(this, 'songs')}
                             label={intl.trans('songs', 'Songs', 'first') + " (" + songCount + ")"}/>
-                <FlatButton onTouchTap={this._onNavigateRequest.bind(this, 'stories')}
+                <FlatButton onClick={this._onNavigateRequest.bind(this, 'stories')}
                             label={intl.trans('stories', 'Stories', 'first') + " (" + storyCount + ")"}/>
-                <FlatButton onTouchTap={this._onNavigateRequest.bind(this, 'alphabet')}
+                <FlatButton onClick={this._onNavigateRequest.bind(this, 'alphabet')}
                             label={intl.trans('alphabet', 'Alphabet', 'first')}/>
             </ToolbarGroup>
 
@@ -123,7 +123,7 @@ export default class ToolbarNavigation extends Component {
                                   routeParams={this.props.routeParams}>
                 <ToolbarGroup className={classNames('hidden-xs', {'hidden': !this.props.showStats})} firstChild={false}
                               float="right">
-                    <FlatButton icon={<EditorInsertChart/>} style={{color: '#fff'}} onTouchTap={this.props.showStats}
+                    <FlatButton icon={<EditorInsertChart/>} style={{color: '#fff'}} onClick={this.props.showStats}
                                 label={intl.trans('language_statistics', 'Language Statistics')}/>
                 </ToolbarGroup>
             </AuthenticationFilter>

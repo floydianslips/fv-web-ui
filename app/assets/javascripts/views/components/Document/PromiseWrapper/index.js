@@ -22,7 +22,7 @@ import ConfGlobal from 'conf/local.json';
 
 import StatusBar from 'views/components/StatusBar';
 
-import CircularProgress from 'material-ui/lib/circular-progress';
+import CircularProgress from 'material-ui/CircularProgress';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 import IntlService from "views/services/intl";

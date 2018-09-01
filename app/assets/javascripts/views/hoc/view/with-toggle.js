@@ -35,7 +35,7 @@ export default function withToggle() {
                 <div className="panel-heading">
                     {label} <FlatButton className={classNames({'visible-xs': mobileOnly})}
                                         label={(this.state.open) ? intl.trans('hide', 'Hide', 'first') : intl.trans('show', 'Show', 'first')}
-                                        labelPosition="before" onTouchTap={(e) => {
+                                        labelPosition="before" onClick={(e) => {
                     this.setState({open: !this.state.open});
                     e.preventDefault();
                 }} icon={<FontIcon

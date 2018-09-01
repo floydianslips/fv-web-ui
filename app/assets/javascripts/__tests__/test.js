@@ -4,7 +4,7 @@ import expect from 'expect';
 import providers from '../providers/index';
 import ConfGlobal from 'conf/local.json';
 import AppWrapper from '../views/AppWrapper';
-import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import ThemeManager from 'material-ui/styles/theme-manager';
 import FirstVoicesTheme from '../views/themes/FirstVoicesTheme.js';
 
 const context = {

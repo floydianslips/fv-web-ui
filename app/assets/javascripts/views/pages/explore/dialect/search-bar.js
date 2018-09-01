@@ -67,7 +67,7 @@ export default class SearchBar extends Component {
             <TextField ref="dialectSearchField"
                        hintText={intl.trans('views.pages.explore.dialect.search_dialect', 'Search Dialect...', 'words')}
                        onEnterKeyDown={this._handleDialectSearchSubmit}/>
-            <IconButton onTouchTap={this._handleDialectSearchSubmit} iconClassName="material-icons"
+            <IconButton onClick={this._handleDialectSearchSubmit} iconClassName="material-icons"
                         iconStyle={{fontSize: '24px'}}
                         tooltip={intl.trans('search', 'Search', 'first')}>search</IconButton>
         </div>;

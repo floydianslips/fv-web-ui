@@ -170,27 +170,27 @@ export default class Navigation extends Component {
         return <div>
             <AppBar
                 title={<a style={{textDecoration: 'none', color: '#fff'}}
-                          onTouchTap={this._onNavigateRequest.bind(this, (!this.props.routeParams.dialect_path) ? '/kids' : '/kids' + this.props.routeParams.dialect_path)}>{avatar}
+                          onClick={this._onNavigateRequest.bind(this, (!this.props.routeParams.dialect_path) ? '/kids' : '/kids' + this.props.routeParams.dialect_path)}>{avatar}
                     <span
                         className="hidden-xs">{(selectn('response.contextParameters.ancestry.dialect.dc:title', computePortal) || this.props.properties.title) + ' ' + intl.trans('views.pages.explore.dialect.for_kids', 'for Kids')}</span></a>}
                 iconClassNameRight="muidocs-icon-navigation-expand-more"
                 showMenuIconButton={false}
-                onRightIconButtonTouchTap={() => this.props.toggleMenuAction("AppLeftNav")}>
+                onRightIconButtonClick={() => this.props.toggleMenuAction("AppLeftNav")}>
 
                 <ToolbarGroup style={{paddingTop: '5px'}}>
 
                     <IconButton className={classNames({'hidden': this.props.frontpage})}
-                                onTouchTap={(e) => NavigationHelpers.navigateBack()}
+                                onClick={(e) => NavigationHelpers.navigateBack()}
                                 style={{paddingTop: 0, top: '8px', left: '-10px'}} iconClassName="material-icons"
                                 tooltipPosition="bottom-left"
                                 tooltip={intl.trans('back', 'Back', 'first')}>keyboard_backspace</IconButton>
 
                     <IconButton
-                        onTouchTap={this._onNavigateRequest.bind(this, '/kids' + (this.props.routeParams.dialect_path ? this.props.routeParams.dialect_path : ''))}
+                        onClick={this._onNavigateRequest.bind(this, '/kids' + (this.props.routeParams.dialect_path ? this.props.routeParams.dialect_path : ''))}
                         style={{paddingTop: 0, top: '8px', left: '-10px'}} iconClassName="material-icons"
                         tooltipPosition="bottom-left" tooltip={intl.trans('home', 'Home', 'first')}>home</IconButton>
 
-                    <IconButton onTouchTap={this._onNavigateRequest.bind(this, '/kids/FV/Workspaces/Data')}
+                    <IconButton onClick={this._onNavigateRequest.bind(this, '/kids/FV/Workspaces/Data')}
                                 style={{paddingTop: 0, top: '8px', left: '-10px'}} iconClassName="material-icons"
                                 tooltipPosition="bottom-left"
                                 tooltip={intl.trans('choose_lang', 'Choose a Language', 'first')}>apps</IconButton>
@@ -198,7 +198,7 @@ export default class Navigation extends Component {
                     <ToolbarSeparator style={{float: 'none', marginLeft: '0', marginRight: '15px'}}/>
 
                     <IconButton style={{paddingTop: 0, paddingRight: 0, top: '8px', left: '-10px'}}
-                                iconClassName="material-icons" onTouchTap={this._onNavigateRequest.bind(this, '/')}
+                                iconClassName="material-icons" onClick={this._onNavigateRequest.bind(this, '/')}
                                 tooltipPosition="bottom-left"
                                 tooltip={intl.trans('back_to_main_site', 'Back to Main Site', 'words')}>clear</IconButton>
 

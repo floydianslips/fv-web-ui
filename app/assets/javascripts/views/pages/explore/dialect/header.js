@@ -19,8 +19,8 @@ import ConfGlobal from 'conf/local.json';
 import selectn from 'selectn';
 import classNames from 'classnames';
 
-import FlatButton from 'material-ui/lib/flat-button';
-import FontIcon from 'material-ui/lib/font-icon';
+import FlatButton from 'material-ui/FlatButton';
+import FontIcon from 'material-ui/FontIcon';
 
 import PageStats from 'views/pages/explore/dialect/page-stats';
 
@@ -115,7 +115,7 @@ export default class Header extends Component {
                         <FlatButton
                             label={(this.state.showArchiveInfoMobile) ? intl.trans('info', 'Info', 'first') : intl.trans('info', 'Info', 'first')}
                             labelPosition="before"
-                            onTouchTap={(e) => {
+                            onClick={(e) => {
                                 this.setState({showArchiveInfoMobile: !this.state.showArchiveInfoMobile});
                                 e.preventDefault();
                             }} icon={<FontIcon

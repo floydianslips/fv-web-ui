@@ -304,7 +304,7 @@ export default class AppWrapper extends Component {
                         key: 'super_admin_tools',
                         default: 'Super Admin Tools',
                         case: 'words'
-                    })}: <FlatButton onTouchTap={this._startAdminGuideAssist.bind(this.props.windowPath)}
+                    })}: <FlatButton onClick={this._startAdminGuideAssist.bind(this.props.windowPath)}
                                      disabled={this.state.adminGuideStarted} label={this.intl.translate({
                     key: 'admin_guide_assist',
                     default: 'Admin Guide Assist', case: 'words'

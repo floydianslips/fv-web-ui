@@ -164,7 +164,7 @@ export default class PageDialectLearnStoriesAndSongs extends Component {
                     }}>
                         <RaisedButton
                             label={intl.trans('views.pages.explore.dialect.learn.songs_stories.create_x_book', "Create " + this.props.typeFilter + " Book", 'words', [this.props.typeFilter])}
-                            onTouchTap={this._onNavigateRequest.bind(this, this.props.windowPath + '/create')}
+                            onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/create')}
                             primary={true}/>
                     </AuthorizationFilter>
                 </div>

@@ -19,10 +19,10 @@ import selectn from 'selectn';
 
 import ConfGlobal from 'conf/local.json';
 
-import Colors from 'material-ui/lib/styles/colors';
+import Colors from 'material-ui/styles/colors';
 
-import GridList from 'material-ui/lib/grid-list/grid-list';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
+import GridList from 'material-ui/GridList/GridList';
+import GridTile from 'material-ui/GridList/GridTile';
 
 import UIHelpers from 'common/UIHelpers';
 import IntlService from "views/services/intl";
@@ -90,7 +90,7 @@ export default class CategoryList extends Component {
                 {(items).map(function (tile, i) {
 
                     return <GridTile
-                        onTouchTap={action.bind(this, tile)}
+                        onClick={action.bind(this, tile)}
                         key={tile.uid}
                         title={this.intl.searchAndReplace(tile.title)}
                         className="category-grid-tile"

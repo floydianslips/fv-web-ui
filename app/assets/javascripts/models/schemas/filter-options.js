@@ -28,7 +28,7 @@ const SearchDocumentTypesTemplate = function (locals) {
         <div className="row" style={{margin: '15px 0'}}>
             <fieldset>
                 <legend>{locals.label} {(locals.items.length < 4) ?
-                    <FlatButton label={locals.add.label} onTouchTap={locals.add.click}/> : ''}</legend>
+                    <FlatButton label={locals.add.label} onClick={locals.add.click}/> : ''}</legend>
                 {(locals.items || []).map(function (item, i) {
                     return <div key={i} className={classNames('col-xs-12')}>
                         <div style={{width: '60%', display: 'inline-block'}}>{item.input}</div>

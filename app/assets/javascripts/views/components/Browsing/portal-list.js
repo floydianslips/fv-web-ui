@@ -17,11 +17,11 @@ import React, {Component, PropTypes} from 'react';
 import Immutable, {List, Map} from 'immutable';
 import selectn from 'selectn';
 
-import Colors from 'material-ui/lib/styles/colors';
+import Colors from 'material-ui/styles/colors';
 
-import GridList from 'material-ui/lib/grid-list/grid-list';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
-import ActionGrade from 'material-ui/lib/svg-icons/action/grade';
+import GridList from 'material-ui/GridList/GridList';
+import GridTile from 'material-ui/GridList/GridTile';
+import ActionGrade from 'material-ui/svg-icons/action/grade';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 import UIHelpers from 'common/UIHelpers';
@@ -83,7 +83,7 @@ export default class PortalList extends Component {
                     let logo = selectn(this.props.fieldMapping.logo, tile);
 
                     return <GridTile
-                        onTouchTap={this.props.action.bind(this, tile.path.replace('/Portal', ''))}
+                        onClick={this.props.action.bind(this, tile.path.replace('/Portal', ''))}
                         key={tile.uid}
                         title={IntlService.instance.searchAndReplace(title)}
                         actionPosition="right"

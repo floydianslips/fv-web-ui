@@ -152,7 +152,7 @@ export default class Login extends Component {
                 <div className="hidden-xs" style={{display: "inline-block", paddingRight: '15px'}}>
                     {this.intl.translate({key: 'general.welcome', default: 'WELCOME', case: 'upper'})}, <a
                     style={{color: '#fff', textTransform: 'uppercase', cursor: 'pointer'}}
-                    onTouchTap={this._onNavigateRequest.bind(this, 'profile')}>{selectn("response.properties.firstName", this.props.computeLogin)}</a>
+                    onClick={this._onNavigateRequest.bind(this, 'profile')}>{selectn("response.properties.firstName", this.props.computeLogin)}</a>
                 </div>
             );
         } else {
@@ -173,7 +173,7 @@ export default class Login extends Component {
                 <FlatButton ref={(el) => {
                     this.anchorEl = el
                 }} label={this.props.label} style={{"color": themePalette.alternateTextColor}}
-                            onTouchTap={this._handleOpen}/>
+                            onClick={this._handleOpen}/>
                 <Popover open={this.state.open}
                          anchorEl={ReactDOM.findDOMNode(this.anchorEl)}
                          useLayerForClickAway={false}
@@ -191,7 +191,7 @@ export default class Login extends Component {
                                 default: 'Sign in Below',
                                 case: 'first'
                             })} <a style={{"cursor": "pointer", "fontWeight": "100"}}
-                                   onTouchTap={this._onNavigateRequest.bind(this, "forgotpassword")}
+                                   onClick={this._onNavigateRequest.bind(this, "forgotpassword")}
                                    className="pull-right">{this.intl.translate({
                                 key: 'general.forgot?',
                                 default: 'Forgot?',
@@ -215,7 +215,7 @@ export default class Login extends Component {
                                 "backgroundColor": themePalette.primary4ColorLightest,
                                 "padding": "0 3px"
                             }}>{loginFeedbackMessage}</p>
-                            <RaisedButton style={{"width": "100%"}} secondary={true} onTouchTap={this._handleLogin}
+                            <RaisedButton style={{"width": "100%"}} secondary={true} onClick={this._handleLogin}
                                           label={this.intl.translate({
                                             key: 'views.pages.users.login.sign_in',
                                             default: 'Sign In',
@@ -226,7 +226,7 @@ export default class Login extends Component {
                                 default: 'New to FirstVoices?'
                             })}</h6>
                             <RaisedButton style={{"width": "100%"}} primary={true}
-                                          onTouchTap={this._onNavigateRequest.bind(this, "register")}
+                                          onClick={this._onNavigateRequest.bind(this, "register")}
                                           label={this.intl.translate({
                                               key: 'general.register',
                                               default: 'Register',

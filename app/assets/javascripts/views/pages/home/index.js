@@ -170,7 +170,7 @@ export default class PageHome extends Component {
                                     default: 'Get Started!',
                                     case: 'words'
                                 }) + '!'} primary={true}
-                                              onTouchTap={this._onNavigateRequest.bind(this, '/explore/FV/sections/Data/')}
+                                              onClick={this._onNavigateRequest.bind(this, '/explore/FV/sections/Data/')}
                                               style={{marginRight: '10px', height: '50px'}}
                                               labelColor={alternateTextColor} labelStyle={{fontSize: '1.34em'}}/>
                                 <div className="hidden" style={{display: 'inline-block'}}><RaisedButton primary={true}
@@ -179,7 +179,7 @@ export default class PageHome extends Component {
                                                                                                             default: 'Language Map',
                                                                                                             case: 'words'
                                                                                                         })}
-                                                                                                        onTouchTap={() => this.setState({mapVisible: !this.state.mapVisible})}/>
+                                                                                                        onClick={() => this.setState({mapVisible: !this.state.mapVisible})}/>
                                 </div>
                             </div>
                         </div>

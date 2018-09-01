@@ -251,7 +251,7 @@ export default class Search extends DataListView {
                                     options={selectn('Search', options)}
                                 />
                                 <RaisedButton
-                                    onTouchTap={this._onReset}
+                                    onClick={this._onReset}
                                     label={intl.trans('reset', 'Reset', 'first')}
                                     primary={true}/> &nbsp;
                                 <RaisedButton

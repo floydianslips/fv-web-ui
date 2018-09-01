@@ -15,16 +15,16 @@ import {RaisedButton, FontIcon, FlatButton} from 'material-ui';
 
 import PageToolbar from 'views/pages/explore/dialect/page-toolbar';
 
-import Tabs from 'material-ui/lib/tabs/tabs';
-import Tab from 'material-ui/lib/tabs/tab';
+import Tabs from 'material-ui/Tabs/Tabs';
+import Tab from 'material-ui/Tabs/Tab';
 
-import Toolbar from 'material-ui/lib/toolbar/toolbar';
-import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
-import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
+import Toolbar from 'material-ui/Toolbar/Toolbar';
+import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
+import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
 
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 
-import Dialog from 'material-ui/lib/dialog';
+import Dialog from 'material-ui/Dialog';
 import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;
@@ -228,7 +228,7 @@ export default function withActions(ComposedFilter, publishWarningEnabled = fals
                                 <FlatButton
                                     label={intl.trans('cancel', 'Cancel', 'first')}
                                     secondary={true}
-                                    onTouchTap={() => this.setState({
+                                    onClick={() => this.setState({
                                         prePublishDialogOpen: false,
                                         publishToggleCancelled: true,
                                         prePublishCompleteAction: null
@@ -237,7 +237,7 @@ export default function withActions(ComposedFilter, publishWarningEnabled = fals
                                     label={intl.trans('publish', 'Publish', 'first')}
                                     primary={true}
                                     keyboardFocused={true}
-                                    onTouchTap={this.state.prePublishCompleteAction}/>]}
+                                    onClick={this.state.prePublishCompleteAction}/>]}
                             modal={false}
                             open={this.state.prePublishDialogOpen}
                             onRequestClose={() => this.setState({
@@ -268,7 +268,7 @@ export default function withActions(ComposedFilter, publishWarningEnabled = fals
                             <Toolbar className="toolbar">
                                 <ToolbarGroup key={0} float="right">
                                     <RaisedButton icon={<FontIcon className="material-icons">delete</FontIcon>}
-                                                  onTouchTap={() => this.setState({deleteDialogOpen: true})}
+                                                  onClick={() => this.setState({deleteDialogOpen: true})}
                                                   secondary={true}
                                                   label={intl.trans('views.hoc.view.delete_x', "Delete " + StringHelpers.toTitleCase(this.props.labels.single), 'first', [StringHelpers.toTitleCase(this.props.labels.single)])}/>
                                 </ToolbarGroup>
@@ -280,12 +280,12 @@ export default function withActions(ComposedFilter, publishWarningEnabled = fals
                                     <FlatButton
                                         label={intl.trans('cancel', 'Cancel', 'first')}
                                         secondary={true}
-                                        onTouchTap={() => this.setState({deleteDialogOpen: false})}/>,
+                                        onClick={() => this.setState({deleteDialogOpen: false})}/>,
                                     <FlatButton
                                         label={intl.trans('delete', 'Delete', 'first')}
                                         primary={true}
                                         keyboardFocused={true}
-                                        onTouchTap={this._delete.bind(this, selectn('response', this.props.computeItem))}/>]}
+                                        onClick={this._delete.bind(this, selectn('response', this.props.computeItem))}/>]}
                                 modal={false}
                                 open={this.state.deleteDialogOpen}
                                 onRequestClose={this._handleCancelDelete}>
@@ -304,12 +304,12 @@ export default function withActions(ComposedFilter, publishWarningEnabled = fals
                                     <FlatButton
                                         label={intl.trans('views.hoc.view.return_to_previous_page', "Return to Previous Page", 'words')}
                                         secondary={true}
-                                        onTouchTap={() => window.history.back()}/>,
+                                        onClick={() => window.history.back()}/>,
                                     <FlatButton
                                         label={intl.trans('views.hoc.view.go_to_dialect_language_home', "Go to Dialect Language Home", 'words')}
                                         primary={true}
                                         keyboardFocused={true}
-                                        onTouchTap={this.props.onNavigateRequest.bind(this, '/' + this.props.splitWindowPath.slice(0, this.props.splitWindowPath.length - 2).join('/'))}/>]}
+                                        onClick={this.props.onNavigateRequest.bind(this, '/' + this.props.splitWindowPath.slice(0, this.props.splitWindowPath.length - 2).join('/'))}/>]}
                                 modal={true}
                                 open={this.state.deleteSuccessDialogOpen}>
                                 {intl.trans(

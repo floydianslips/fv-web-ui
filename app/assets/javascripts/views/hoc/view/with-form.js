@@ -144,9 +144,9 @@ export default function withForm(ComposedFilter, publishWarningEnabled = false) 
 
                                     <div className="form-group" style={{textAlign: 'right'}}>
 
-                                        <FlatButton onTouchTap={this._onRequestCancelForm} style={{marginRight: '10px'}}
+                                        <FlatButton onClick={this._onRequestCancelForm} style={{marginRight: '10px'}}
                                                 label={intl.trans('cancel', 'Cancel', 'first')}/>
-                                        <RaisedButton onTouchTap={this._onRequestSaveForm.bind(this, computeItem)}
+                                        <RaisedButton onClick={this._onRequestSaveForm.bind(this, computeItem)}
                                                 primary={true} label={intl.trans('save', 'Save', 'first')}/>
 
                                     </div>
@@ -164,9 +164,9 @@ export default function withForm(ComposedFilter, publishWarningEnabled = false) 
 
                                     <div className="form-group" style={{textAlign: 'right'}}>
 
-                                        <FlatButton onTouchTap={this._onRequestCancelForm} style={{marginRight: '10px'}}
+                                        <FlatButton onClick={this._onRequestCancelForm} style={{marginRight: '10px'}}
                                                     label={intl.trans('cancel', 'Cancel', 'first')}/>
-                                        <RaisedButton onTouchTap={this._onRequestSaveForm.bind(this, computeItem)}
+                                        <RaisedButton onClick={this._onRequestSaveForm.bind(this, computeItem)}
                                                       primary={true} label={intl.trans('save', 'Save', 'first')}/>
 
                                         <Popover
@@ -178,10 +178,10 @@ export default function withForm(ComposedFilter, publishWarningEnabled = false) 
                                             <div style={{padding: '10px', margin: '0 15px', borderRadius: '5px'}}>
                                                 <span dangerouslySetInnerHTML={{__html: intl.trans('views.hoc.view.discard_warning', 'Are you sure you want to <strong>discard your changes</strong>?', 'first')}}></span>
                                                 <FlatButton style={confirmationButtonsStyle}
-                                                            onTouchTap={this._onRequestCancelForm.bind(this, true)}
+                                                            onClick={this._onRequestCancelForm.bind(this, true)}
                                                             label={intl.trans('yes', 'Yes', 'first') + '!'}/>
                                                 <FlatButton style={confirmationButtonsStyle}
-                                                            onTouchTap={() => this.setState({showCancelWarning: false})}
+                                                            onClick={() => this.setState({showCancelWarning: false})}
                                                             label={intl.trans('no', 'No', 'first') + '!'}/>
                                             </div>
                                         </Popover>

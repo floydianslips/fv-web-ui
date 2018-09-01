@@ -20,15 +20,15 @@ import classNames from 'classnames';
 
 import ConfGlobal from 'conf/local.json';
 
-import Colors from 'material-ui/lib/styles/colors';
+import Colors from 'material-ui/styles/colors';
 
-import GridList from 'material-ui/lib/grid-list/grid-list';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
+import GridList from 'material-ui/GridList/GridList';
+import GridTile from 'material-ui/GridList/GridTile';
 
-import IconButton from 'material-ui/lib/icon-button';
+import IconButton from 'material-ui/IconButton';
 
-import AVPlayArrow from 'material-ui/lib/svg-icons/av/play-arrow';
-import AVStop from 'material-ui/lib/svg-icons/av/stop';
+import AVPlayArrow from 'material-ui/svg-icons/av/play-arrow';
+import AVStop from 'material-ui/svg-icons/av/stop';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 import UIHelpers from 'common/UIHelpers';
@@ -146,10 +146,10 @@ export default class GridView extends Component {
 
                     let audioIconAction = <IconButton style={{marginRight: '10px'}}
                                                       iconStyle={{width: '40px', height: '40px'}}
-                                                      onTouchTap={audioCallback}>{audioIcon}</IconButton>;
+                                                      onClick={audioCallback}>{audioIcon}</IconButton>;
 
                     return <GridTile
-                        onTouchTap={(this.props.action) ? this.props.action.bind(this, tile.uid, tile) : audioCallback}
+                        onClick={(this.props.action) ? this.props.action.bind(this, tile.uid, tile) : audioCallback}
                         key={i}
                         title={title}
                         titleBackground='rgba(180, 0, 0, 0.75)'

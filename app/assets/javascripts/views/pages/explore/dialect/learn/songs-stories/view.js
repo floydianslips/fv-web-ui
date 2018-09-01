@@ -195,7 +195,7 @@ export default class View extends Component {
                 items={selectn('response.entries', computeBookEntries) || []}
                 appendControls={[(this.state.bookOpen) ? <RaisedButton
                     label={intl.trans('views.pages.explore.dialect.learn.songs_stories.close_book', 'Close Book', 'first')}
-                    key="close" onTouchTap={() => {
+                    key="close" onClick={() => {
                     this.setState({bookOpen: false})
                 }}/> : '']}/>
         }

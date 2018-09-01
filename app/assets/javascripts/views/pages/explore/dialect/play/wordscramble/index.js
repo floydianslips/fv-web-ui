@@ -240,7 +240,7 @@ export class Scramble extends Component {
                     color: '#3f8b53'
                 }}><img style={{marginRight: '10px'}}
                         src={UIHelpers.getThumbnail(this.props.sentence.picture, 'Thumbnail')}/> {this.props.sentence.translation} {(this.state.complete) ?
-                    <IconButton onTouchTap={audioCallback}>{audioIcon}</IconButton> : ''}</div>
+                    <IconButton onClick={audioCallback}>{audioIcon}</IconButton> : ''}</div>
                 <div style={{minHeight: '50px', borderBottom: '1px solid #CCC', marginBottom: '16px'}}>
                     {this.state.selected.map((word, index) => {
                         return <RaisedButton key={index} style={{backgroundColor: '#a7fba5'}} label={word}

@@ -3,11 +3,11 @@ import Immutable, {List, Set, Map} from 'immutable';
 
 import selectn from 'selectn';
 
-import Paper from 'material-ui/lib/paper';
-import ListUI from 'material-ui/lib/lists/list';
-import ListItem from 'material-ui/lib/lists/list-item';
-import ActionGrade from 'material-ui/lib/svg-icons/action/grade';
-import Checkbox from 'material-ui/lib/checkbox';
+import Paper from 'material-ui/Paper';
+import ListUI from 'material-ui/List/List';
+import ListItem from 'material-ui/List/ListItem';
+import ActionGrade from 'material-ui/svg-icons/action/grade';
+import Checkbox from 'material-ui/Checkbox';
 import withToggle from 'views/hoc/view/with-toggle';
 import IntlService from "views/services/intl";
 

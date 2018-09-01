@@ -2,7 +2,7 @@
 //import createLoggerMiddleware from 'redux-logger';
 import thunk from 'redux-thunk';
 
-import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import ThemeManager from 'material-ui/styles/theme-manager';
 
 import FirstVoicesTheme from 'views/themes/FirstVoicesTheme.js';
 import FirstVoicesKidsTheme from 'views/themes/FirstVoicesKidsTheme.js';

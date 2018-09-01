@@ -20,15 +20,15 @@ import selectn from 'selectn';
 
 import DOMPurify from 'dompurify';
 
-import Card from 'material-ui/lib/card/card';
-import CardTitle from 'material-ui/lib/card/card-title';
-import CardActions from 'material-ui/lib/card/card-actions';
-import CardHeader from 'material-ui/lib/card/card-header';
-import CardMedia from 'material-ui/lib/card/card-media';
-import CardText from 'material-ui/lib/card/card-text';
+import Card from 'material-ui/Card/Card';
+import CardTitle from 'material-ui/Card/CardTitle';
+import CardActions from 'material-ui/Card/CardActions';
+import CardHeader from 'material-ui/Card/CardHeader';
+import CardMedia from 'material-ui/Card/CardMedia';
+import CardText from 'material-ui/Card/CardText';
 
-import IconButton from 'material-ui/lib/icon-button';
-import FlatButton from 'material-ui/lib/flat-button';
+import IconButton from 'material-ui/IconButton';
+import FlatButton from 'material-ui/FlatButton';
 import IntlService from "views/services/intl";
 
 const defaultStyle = {marginBottom: '20px'};
@@ -100,7 +100,7 @@ export default class CardView extends Component {
 
                         <IconButton iconClassName="material-icons"
                                     style={{position: 'absolute', right: 0, zIndex: 1000}}
-                                    onTouchTap={() => this.setState({showIntro: false})}>clear</IconButton>
+                                    onClick={() => this.setState({showIntro: false})}>clear</IconButton>
 
                         {this.intl.searchAndReplace(introduction)}
 
@@ -110,7 +110,7 @@ export default class CardView extends Component {
                 <CardText style={{padding: '4px'}}>
 
                     <FlatButton
-                        onTouchTap={this.props.action.bind(this, this.props.item)}
+                        onClick={this.props.action.bind(this, this.props.item)}
                         primary={true} label={this.intl.translate({
                         key: 'views.pages.dialect.learn.songs_stories.continue_to_entry',
                         default: 'Continue to Entry',
@@ -127,7 +127,7 @@ export default class CardView extends Component {
                                 height: 'auto',
                                 'float': 'right'
                             }} tooltipPosition="top-left"
-                                               onTouchTap={() => this.setState({showIntro: !this.state.showIntro})}
+                                               onClick={() => this.setState({showIntro: !this.state.showIntro})}
                                                touch={true}>flip_to_front</IconButton>;
                         }
                     })()}

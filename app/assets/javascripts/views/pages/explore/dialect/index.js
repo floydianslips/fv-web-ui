@@ -277,14 +277,14 @@ export default class ExploreDialect extends Component {
                 <Toolbar className="dialect-navigation">
 
                     <ToolbarGroup firstChild={true}>
-                        <FlatButton onTouchTap={this._onNavigateRequest.bind(this, this.props.windowPath + '/learn')}
+                        <FlatButton onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/learn')}
                                     label={intl.trans('learn_our_lang', 'Learn Our Language', 'words')}/>
-                        <FlatButton onTouchTap={this._onNavigateRequest.bind(this, this.props.windowPath + '/play')}
+                        <FlatButton onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/play')}
                                     label={intl.trans('views.pages.explore.dialect.play_game', 'Play a Game', 'words')}/>
-                        <FlatButton onTouchTap={this._onNavigateRequest.bind(this, this.props.windowPath + '/gallery')}
+                        <FlatButton onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/gallery')}
                                     label={intl.trans('views.pages.explore.dialect.photo_gallery', 'Photo Gallery', 'words')}/>
                         <FlatButton
-                            onTouchTap={this._onNavigateRequest.bind(this, this.props.windowPath.replace('explore', 'kids'))}
+                            onClick={this._onNavigateRequest.bind(this, this.props.windowPath.replace('explore', 'kids'))}
                             label={intl.trans('views.pages.explore.dialect.kids_portal', 'Kids Portal', 'words')}/>
                     </ToolbarGroup>
 

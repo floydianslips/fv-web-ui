@@ -79,7 +79,7 @@ export default class PageKidsHome extends Component {
                 <span style={{width: '45%'}}>
                   <RaisedButton fullWidth={true}
                                 label={intl.trans('views.pages.kids.enter', 'Enter Kids Area', 'words')}
-                                onTouchTap={this._onNavigateRequest.bind(this, '/FV/Workspaces/Data/')}
+                                onClick={this._onNavigateRequest.bind(this, '/FV/Workspaces/Data/')}
                                 style={{marginTop: '20vh'}}/>
                 </span>
                     </div>

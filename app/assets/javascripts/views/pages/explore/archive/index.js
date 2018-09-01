@@ -100,7 +100,7 @@ export default class ExploreArchive extends Component {
                         >
                             {(selectn('response.entries', computeLanguageFamilies) || []).map((tile, i) =>
                                 <GridTile
-                                    onTouchTap={this._onNavigateRequest.bind(this, tile.path)}
+                                    onClick={this._onNavigateRequest.bind(this, tile.path)}
                                     key={tile.uid}
                                     title={tile.title}
                                     subtitle={tile.description}

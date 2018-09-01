@@ -73,7 +73,7 @@ export default class Kids extends Component {
                       style={{width: '100%', overflowY: 'auto', marginBottom: 0}}
                       >
                       <GridTile
-                            onTouchTap={this._onNavigateRequest.bind(this, this.props.windowPath + '/learn/words/categories')}
+                            onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/learn/words/categories')}
                             key='words'
                             title={<span style={tileTitleStyle}>Words</span>}
                             style={tileStyle}
@@ -82,7 +82,7 @@ export default class Kids extends Component {
                       </GridTile>
 
                       <GridTile
-                            onTouchTap={this._onNavigateRequest.bind(this, this.props.windowPath + '/learn/phrases/categories')}
+                            onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/learn/phrases/categories')}
                             key='phrases'
                             title={<span style={tileTitleStyle}>Phrases</span>}
                             style={tileStyle}
@@ -91,7 +91,7 @@ export default class Kids extends Component {
                       </GridTile>
 
                       <GridTile
-                            onTouchTap={this._onNavigateRequest.bind(this, this.props.windowPath + '/learn/songs-stories')}
+                            onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/learn/songs-stories')}
                             key='songs-stories'
                             title={<span style={tileTitleStyle}>Songs and Stories</span>}
                             style={tileStyle}
@@ -100,7 +100,7 @@ export default class Kids extends Component {
                       </GridTile>
 
                       <GridTile
-                            onTouchTap={this._onNavigateRequest.bind(this, this.props.windowPath + '/play')}
+                            onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/play')}
                             key='games'
                             title={<span style={tileTitleStyle}>Games</span>}
                             style={tileStyle}

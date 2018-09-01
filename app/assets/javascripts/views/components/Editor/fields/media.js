@@ -2,8 +2,8 @@ import React from 'react';
 import t from 'tcomb-form';
 import selectn from 'selectn';
 
-import FontIcon from 'material-ui/lib/font-icon';
-import FlatButton from 'material-ui/lib/flat-button';
+import FontIcon from 'material-ui/FontIcon';
+import FlatButton from 'material-ui/FlatButton';
 
 import AddMediaComponent from 'views/components/Editor/AddMediaComponent';
 import SelectMediaComponent from 'views/components/Editor/SelectMediaComponent';
@@ -49,7 +49,7 @@ function renderInput(locals) {
             textAlign: 'center',
             borderTop: 0,
             borderRight: 0
-        }} onTouchTap={_onRequestEdit} label={intl.trans('replace', 'Replace', 'first')} labelPosition="after">
+        }} onClick={_onRequestEdit} label={intl.trans('replace', 'Replace', 'first')} labelPosition="after">
             <FontIcon style={{verticalAlign: 'middle'}} className="material-icons">swap_horiz</FontIcon>
         </FlatButton>
     </div>;
@@ -63,7 +63,7 @@ function renderInput(locals) {
                                   onComplete={onComplete}
                                   dialect={locals.context}/>
             {(selectn('context.initialValues.' + locals.attrs.name, locals)) ?
-                <FlatButton onTouchTap={onCancel} label={intl.trans('cancel', 'Cancel', 'first')}/> : ''}
+                <FlatButton onClick={onCancel} label={intl.trans('cancel', 'Cancel', 'first')}/> : ''}
         </div>;
     }
 

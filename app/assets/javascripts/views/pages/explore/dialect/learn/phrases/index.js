@@ -159,7 +159,7 @@ export default class PageDialectLearnPhrases extends PageDialectLearnBase {
                     }}>
                         <RaisedButton
                             label={intl.trans('views.pages.explore.dialect.phrases.create_new_phrase', 'Create New Phrase', 'words')}
-                            onTouchTap={this._onNavigateRequest.bind(this, 'create')} primary={true}/>
+                            onClick={this._onNavigateRequest.bind(this, 'create')} primary={true}/>
                     </AuthorizationFilter>
                 </div>
             </div>

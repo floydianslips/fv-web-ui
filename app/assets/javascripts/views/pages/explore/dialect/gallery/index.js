@@ -156,7 +156,7 @@ export default class PageDialectGalleries extends Component {
                         login: this.props.computeLogin
                     }}>
                         <RaisedButton label={"Create Gallery"}
-                                      onTouchTap={this._onNavigateRequest.bind(this, this.props.windowPath + '/create')}
+                                      onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/create')}
                                       primary={true}/>
                     </AuthorizationFilter>
                 </div>

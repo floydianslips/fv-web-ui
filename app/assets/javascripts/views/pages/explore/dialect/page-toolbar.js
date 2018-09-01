@@ -198,7 +198,7 @@ export default class PageToolbar extends Component {
         return <Toolbar className="page-toolbar">
 
             <ToolbarGroup className="visible-xs" style={{textAlign: 'right'}}>
-                <IconButton iconClassName="material-icons" onTouchTap={(e) => {
+                <IconButton iconClassName="material-icons" onClick={(e) => {
                     this.setState({showActionsMobile: !this.state.showActionsMobile});
                     e.preventDefault();
                 }}>menu</IconButton>
@@ -225,22 +225,22 @@ export default class PageToolbar extends Component {
                                     label={intl.trans('enable', 'Enable', 'first') + " (" + (enableTasks.length + this.state.enableActions) + ")"}
                                     disabled={selectn('response.state', computeEntity) != 'Disabled' && selectn('response.state', computeEntity) != 'New'}
                                     style={{marginRight: '5px', marginLeft: '0'}} secondary={true}
-                                    onTouchTap={this._documentActionsStartWorkflow.bind(this, 'enable')}/>
+                                    onClick={this._documentActionsStartWorkflow.bind(this, 'enable')}/>
                                 <RaisedButton
                                     label={intl.trans('disable', 'Disable', 'first') + " (" + (disableTasks.length + this.state.disableActions) + ")"}
                                     disabled={selectn('response.state', computeEntity) != 'Enabled' && selectn('response.state', computeEntity) != 'New'}
                                     style={{marginRight: '5px', marginLeft: '0'}} secondary={true}
-                                    onTouchTap={this._documentActionsStartWorkflow.bind(this, 'disable')}/>
+                                    onClick={this._documentActionsStartWorkflow.bind(this, 'disable')}/>
                                 <RaisedButton
                                     label={intl.trans('publish', 'Publish', 'first') + " (" + (publishTasks.length + this.state.publishActions) + ")"}
                                     disabled={selectn('response.state', computeEntity) != 'Enabled'}
                                     style={{marginRight: '5px', marginLeft: '0'}} secondary={true}
-                                    onTouchTap={this._documentActionsStartWorkflow.bind(this, 'publish')}/>
+                                    onClick={this._documentActionsStartWorkflow.bind(this, 'publish')}/>
                                 <RaisedButton
                                     label={intl.trans('unpublish', 'Unpublish', 'first') + " (" + (unpublishTasks.length + this.state.unpublishActions) + ")"}
                                     disabled={selectn('response.state', computeEntity) != 'Published'}
                                     style={{marginRight: '5px', marginLeft: '0'}} secondary={true}
-                                    onTouchTap={this._documentActionsStartWorkflow.bind(this, 'unpublish')}/>
+                                    onClick={this._documentActionsStartWorkflow.bind(this, 'unpublish')}/>
 
                             </div>
 
@@ -321,7 +321,7 @@ export default class PageToolbar extends Component {
                             <RaisedButton data-guide-role="publish-changes" disabled={!documentPublished}
                                           label={intl.trans('publish_changes', 'Publish Changes', 'words')}
                                           style={{marginRight: '5px', marginLeft: '0'}}
-                                          secondary={true} onTouchTap={this._publishChanges}/>
+                                          secondary={true} onClick={this._publishChanges}/>
                         </AuthorizationFilter>;
                     }
                 })()}
@@ -333,7 +333,7 @@ export default class PageToolbar extends Component {
                             style={toolbarGroupItem}>
                             <RaisedButton label={intl.trans('edit', 'Edit', 'first') + " " + intl.searchAndReplace(this.props.label)}
                                           style={{marginRight: '5px', marginLeft: '0'}} primary={true}
-                                          onTouchTap={this.props.handleNavigateRequest.bind(this, this.props.windowPath.replace('sections', 'Workspaces') + '/edit')}/>
+                                          onClick={this.props.handleNavigateRequest.bind(this, this.props.windowPath.replace('sections', 'Workspaces') + '/edit')}/>
                         </AuthorizationFilter>;
                     }
                 })()}
@@ -345,7 +345,7 @@ export default class PageToolbar extends Component {
                             style={toolbarGroupItem}>
                             <RaisedButton label={intl.trans('add_new_page', "Add New Page", 'words')}
                                           style={{marginRight: '5px', marginLeft: '0'}}
-                                          onTouchTap={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/create')}
+                                          onClick={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/create')}
                                           primary={true}/>
                         </AuthorizationFilter>;
                     }
@@ -358,10 +358,10 @@ export default class PageToolbar extends Component {
 
                         let children = [
                             <MenuItem
-                                onTouchTap={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/reports')}
+                                onClick={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/reports')}
                                 key="reports" primaryText={intl.trans('reports', 'Reports', 'first')}/>,
                             <MenuItem
-                                onTouchTap={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/media')}
+                                onClick={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/media')}
                                 key="media"
                                 primaryText={intl.trans('views.pages.explore.dialect.media_browser', 'Media Browser', 'words')}/>,
                             <AuthorizationFilter key="users" filter={{
@@ -369,7 +369,7 @@ export default class PageToolbar extends Component {
                                 entity: selectn('response', computeEntity)
                             }}>
                                 <MenuItem
-                                    onTouchTap={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/users')}
+                                    onClick={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/users')}
                                     primaryText={intl.trans('users', "Users", 'first')}/>
                             </AuthorizationFilter>];
 

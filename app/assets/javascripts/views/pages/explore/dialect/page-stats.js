@@ -115,10 +115,10 @@ export default class PageStats extends Component {
 
                                   <span style={{paddingRight: '15px'}}>REQUEST: </span>
 
-                                  <RaisedButton label={"Enable (" + (enableTasks.length + this.state.enableActions ) + ")"} disabled={selectn('response.state', computeEntity) != 'Disabled' && selectn('response.state', computeEntity) != 'New'} style={{marginRight: '5px', marginLeft: '0'}} secondary={true} onTouchTap={this._documentActionsStartWorkflow.bind(this, 'enable')} />
-                                  <RaisedButton label={"Disable (" + (disableTasks.length + this.state.disableActions) + ")"} disabled={selectn('response.state', computeEntity) != 'Enabled' && selectn('response.state', computeEntity) != 'New'} style={{marginRight: '5px', marginLeft: '0'}} secondary={true} onTouchTap={this._documentActionsStartWorkflow.bind(this, 'disable')} />
-                                  <RaisedButton label={"Publish (" + (publishTasks.length + this.state.publishActions) + ")"} disabled={selectn('response.state', computeEntity) != 'Enabled'} style={{marginRight: '5px', marginLeft: '0'}} secondary={true} onTouchTap={this._documentActionsStartWorkflow.bind(this, 'publish')} />
-                                  <RaisedButton label={"Unpublish (" + (unpublishTasks.length + this.state.unpublishActions) + ")"} disabled={selectn('response.state', computeEntity) != 'Published'} style={{marginRight: '5px', marginLeft: '0'}} secondary={true} onTouchTap={this._documentActionsStartWorkflow.bind(this, 'unpublish')} />
+                                  <RaisedButton label={"Enable (" + (enableTasks.length + this.state.enableActions ) + ")"} disabled={selectn('response.state', computeEntity) != 'Disabled' && selectn('response.state', computeEntity) != 'New'} style={{marginRight: '5px', marginLeft: '0'}} secondary={true} onClick={this._documentActionsStartWorkflow.bind(this, 'enable')} />
+                                  <RaisedButton label={"Disable (" + (disableTasks.length + this.state.disableActions) + ")"} disabled={selectn('response.state', computeEntity) != 'Enabled' && selectn('response.state', computeEntity) != 'New'} style={{marginRight: '5px', marginLeft: '0'}} secondary={true} onClick={this._documentActionsStartWorkflow.bind(this, 'disable')} />
+                                  <RaisedButton label={"Publish (" + (publishTasks.length + this.state.publishActions) + ")"} disabled={selectn('response.state', computeEntity) != 'Enabled'} style={{marginRight: '5px', marginLeft: '0'}} secondary={true} onClick={this._documentActionsStartWorkflow.bind(this, 'publish')} />
+                                  <RaisedButton label={"Unpublish (" + (unpublishTasks.length + this.state.unpublishActions) + ")"} disabled={selectn('response.state', computeEntity) != 'Published'} style={{marginRight: '5px', marginLeft: '0'}} secondary={true} onClick={this._documentActionsStartWorkflow.bind(this, 'unpublish')} />
 
                                 </div>
 
@@ -169,7 +169,7 @@ export default class PageStats extends Component {
                         {(() => {
                           if (this.props.actions.includes('publish')) {
                             return <AuthorizationFilter filter={{permission: 'Write', entity: selectn('response', permissionEntity)}} style={toolbarGroupItem}>
-                              <RaisedButton data-guide-role="publish-changes" disabled={!documentPublished} label="Publish Changes" style={{marginRight: '5px', marginLeft: '0'}} secondary={true} onTouchTap={this._publishChanges} />
+                              <RaisedButton data-guide-role="publish-changes" disabled={!documentPublished} label="Publish Changes" style={{marginRight: '5px', marginLeft: '0'}} secondary={true} onClick={this._publishChanges} />
                             </AuthorizationFilter>;
                           }
                         })()}
@@ -177,7 +177,7 @@ export default class PageStats extends Component {
                         {(() => {
                           if (this.props.actions.includes('edit')) {
                             return <AuthorizationFilter filter={{permission: 'Write', entity: selectn('response', computeEntity)}} style={toolbarGroupItem}>
-                              <RaisedButton label={"Edit " + this.props.label} style={{marginRight: '5px', marginLeft: '0'}} primary={true} onTouchTap={this.props.handleNavigateRequest.bind(this, this.props.windowPath.replace('sections', 'Workspaces') + '/edit')} />
+                              <RaisedButton label={"Edit " + this.props.label} style={{marginRight: '5px', marginLeft: '0'}} primary={true} onClick={this.props.handleNavigateRequest.bind(this, this.props.windowPath.replace('sections', 'Workspaces') + '/edit')} />
                             </AuthorizationFilter>;
                           }
                         })()}
@@ -185,7 +185,7 @@ export default class PageStats extends Component {
                         {(() => {
                           if (this.props.actions.includes('add-child')) {
                             return <AuthorizationFilter filter={{permission: 'Write', entity: selectn('response', computeEntity)}} style={toolbarGroupItem}>
-                                    <RaisedButton label="Add New Page" style={{marginRight: '5px', marginLeft: '0'}} onTouchTap={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/create')} primary={true} />
+                                    <RaisedButton label="Add New Page" style={{marginRight: '5px', marginLeft: '0'}} onClick={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/create')} primary={true} />
                             </AuthorizationFilter>;
                           }
                         })()}
@@ -199,8 +199,8 @@ export default class PageStats extends Component {
                                       <NavigationExpandMoreIcon />
                                     </IconButton>
                                   }>
-                                    <MenuItem onTouchTap={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/reports')} primaryText="Reports" />
-                                    <MenuItem onTouchTap={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/media')} primaryText="Media Browser" />
+                                    <MenuItem onClick={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/reports')} primaryText="Reports" />
+                                    <MenuItem onClick={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/media')} primaryText="Media Browser" />
                                   </IconMenu>;
                           }
                         })()}

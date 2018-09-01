@@ -20,8 +20,8 @@ import DataGrid from 'react-datagrid';
 
 import GridView from 'views/pages/explore/dialect/learn/base/grid-view';
 
-import ClearFix from 'material-ui/lib/clearfix';
-import Paper from 'material-ui/lib/paper';
+import ClearFix from 'material-ui/clearfix';
+import Paper from 'material-ui/Paper';
 
 import withPagination from 'views/hoc/grid-list/with-pagination';
 
