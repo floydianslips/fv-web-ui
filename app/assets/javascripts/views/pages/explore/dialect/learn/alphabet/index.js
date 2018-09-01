@@ -28,11 +28,11 @@ import ProviderHelpers from 'common/ProviderHelpers';
 import PageDialectLearnBase from 'views/pages/explore/dialect/learn/base';
 import AlphabetListView from 'views/pages/explore/dialect/learn/alphabet/list-view';
 
-import Paper from 'material-ui/lib/paper';
-import FlatButton from 'material-ui/lib/flat-button';
-import RaisedButton from 'material-ui/lib/raised-button';
-import FontIcon from 'material-ui/lib/font-icon';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
+import Paper from 'material-ui/Paper';
+import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import FontIcon from 'material-ui/FontIcon';
+import GridTile from 'material-ui/GridList/GridTile';
 
 import Header from 'views/pages/explore/dialect/header';
 import ToolbarNavigation from 'views/pages/explore/dialect/learn/base/toolbar-navigation';

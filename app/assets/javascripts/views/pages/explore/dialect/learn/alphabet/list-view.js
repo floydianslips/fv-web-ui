@@ -19,7 +19,7 @@ import classNames from 'classnames';
 import provide from 'react-redux-provide';
 import selectn from 'selectn';
 
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
+import GridTile from 'material-ui/GridList/GridTile';
 
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 

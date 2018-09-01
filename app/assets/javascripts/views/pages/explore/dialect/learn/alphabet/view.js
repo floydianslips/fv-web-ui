@@ -39,29 +39,29 @@ import {Link} from 'provide-page';
 
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 
-import Dialog from 'material-ui/lib/dialog';
+import Dialog from 'material-ui/Dialog';
 
-import Avatar from 'material-ui/lib/avatar';
-import Card from 'material-ui/lib/card/card';
-import CardActions from 'material-ui/lib/card/card-actions';
-import CardHeader from 'material-ui/lib/card/card-header';
-import CardMedia from 'material-ui/lib/card/card-media';
-import CardTitle from 'material-ui/lib/card/card-title';
-import FlatButton from 'material-ui/lib/flat-button';
-import CardText from 'material-ui/lib/card/card-text';
-import Divider from 'material-ui/lib/divider';
+import Avatar from 'material-ui/Avatar';
+import Card from 'material-ui/Card/Card';
+import CardActions from 'material-ui/Card/CardActions';
+import CardHeader from 'material-ui/Card/CardHeader';
+import CardMedia from 'material-ui/Card/CardMedia';
+import CardTitle from 'material-ui/Card/CardTitle';
+import FlatButton from 'material-ui/FlatButton';
+import CardText from 'material-ui/Card/CardText';
+import Divider from 'material-ui/Divider';
 
-import ListUI from 'material-ui/lib/lists/list';
-import ListItem from 'material-ui/lib/lists/list-item';
+import ListUI from 'material-ui/List/List';
+import ListItem from 'material-ui/List/ListItem';
 
-import Toolbar from 'material-ui/lib/toolbar/toolbar';
-import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
-import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
-import FontIcon from 'material-ui/lib/font-icon';
-import RaisedButton from 'material-ui/lib/raised-button';
+import Toolbar from 'material-ui/Toolbar/Toolbar';
+import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
+import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
+import FontIcon from 'material-ui/FontIcon';
+import RaisedButton from 'material-ui/RaisedButton';
 
-import Tabs from 'material-ui/lib/tabs/tabs';
-import Tab from 'material-ui/lib/tabs/tab';
+import Tabs from 'material-ui/Tabs/Tabs';
+import Tab from 'material-ui/Tabs/Tab';
 
 import WordListView from 'views/pages/explore/dialect/learn/words/list-view';
 import PhraseListView from 'views/pages/explore/dialect/learn/phrases/list-view';

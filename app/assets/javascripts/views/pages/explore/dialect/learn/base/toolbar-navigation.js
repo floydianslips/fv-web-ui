@@ -23,10 +23,10 @@ import ProviderHelpers from 'common/ProviderHelpers';
 import NavigationHelpers from 'common/NavigationHelpers';
 
 import EditorInsertChart from '@material-ui/icons/InsertChart';
-import Toolbar from 'material-ui/lib/toolbar/toolbar';
-import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
-import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
-import FlatButton from 'material-ui/lib/flat-button';
+import Toolbar from 'material-ui/Toolbar/Toolbar';
+import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
+import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
+import FlatButton from 'material-ui/FlatButton';
 
 import AuthenticationFilter from 'views/components/Document/AuthenticationFilter';
 import IntlService from 'views/services/intl';

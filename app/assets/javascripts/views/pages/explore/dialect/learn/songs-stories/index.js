@@ -29,12 +29,12 @@ import NavigationHelpers from 'common/NavigationHelpers';
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 import PageDialectLearnBase from 'views/pages/explore/dialect/learn/base';
 
-import RaisedButton from 'material-ui/lib/raised-button';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
-import DropDownMenu from 'material-ui/lib/DropDownMenu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
 
 import GeneralList from 'views/components/Browsing/general-list';
 import {CardView} from './list-view';

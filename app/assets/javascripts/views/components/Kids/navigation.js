@@ -25,21 +25,20 @@ import provide from 'react-redux-provide';
 import ProviderHelpers from 'common/ProviderHelpers';
 import NavigationHelpers from 'common/NavigationHelpers';
 
-// Components
-import AppBar from 'material-ui/lib/app-bar';
+import AppBar from 'material-ui/AppBar';
 
-import TextField from 'material-ui/lib/text-field';
+import TextField from 'material-ui/TextField';
 
-import Avatar from 'material-ui/lib/avatar';
-import IconMenu from 'material-ui/lib/menus/icon-menu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
+import Avatar from 'material-ui/Avatar';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
 
-import Badge from 'material-ui/lib/badge';
-import FlatButton from 'material-ui/lib/flat-button';
-import Toolbar from 'material-ui/lib/toolbar/toolbar';
-import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
-import IconButton from 'material-ui/lib/icon-button';
+import Badge from 'material-ui/Badge';
+import FlatButton from 'material-ui/FlatButton';
+import Toolbar from 'material-ui/Toolbar/Toolbar';
+import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
+import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 

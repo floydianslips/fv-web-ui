@@ -20,8 +20,8 @@ import selectn from 'selectn';
 
 import provide from 'react-redux-provide';
 
-import TextField from 'material-ui/lib/text-field';
-import IconButton from 'material-ui/lib/icon-button';
+import TextField from 'material-ui/TextField';
+import IconButton from 'material-ui/IconButton';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 import IntlService from 'views/services/intl';

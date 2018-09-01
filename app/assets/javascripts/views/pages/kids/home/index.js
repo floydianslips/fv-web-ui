@@ -20,7 +20,7 @@ import provide from 'react-redux-provide';
 import selectn from 'selectn';
 import classNames from 'classnames';
 
-import RaisedButton from 'material-ui/lib/raised-button';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 import IntlService from "views/services/intl";

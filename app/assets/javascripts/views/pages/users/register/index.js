@@ -24,8 +24,7 @@ import {User} from 'nuxeo';
 import ProviderHelpers from 'common/ProviderHelpers';
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
-// Views
-import RaisedButton from 'material-ui/lib/raised-button';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';

@@ -25,10 +25,9 @@ import NavigationHelpers from 'common/NavigationHelpers';
 
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
-// Views
-import RaisedButton from 'material-ui/lib/raised-button';
-import Paper from 'material-ui/lib/paper';
-import Snackbar from 'material-ui/lib/snackbar';
+import RaisedButton from 'material-ui/RaisedButton';
+import Paper from 'material-ui/Paper';
+import Snackbar from 'material-ui/Snackbar';
 
 import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';

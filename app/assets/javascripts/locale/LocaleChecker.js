@@ -8,7 +8,7 @@ import IntlService from 'views/services/intl';
 String.prototype.toUpperCaseWords = function () {
     return this.replace(/\w+/g, function (a) {
         return a.charAt(0).toUpperCase() + a.slice(1).toLowerCase()
-    })
+    });
 }
 
 String.prototype.toUpperCaseFirst = function () {

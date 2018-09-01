@@ -26,9 +26,9 @@ import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
-import Paper from 'material-ui/lib/paper';
+import Paper from 'material-ui/Paper';
 
-import RaisedButton from 'material-ui/lib/raised-button';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import PageToolbar from 'views/pages/explore/dialect/page-toolbar';
 import Preview from 'views/components/Editor/Preview';

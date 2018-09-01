@@ -25,12 +25,12 @@ import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
 
 import {Dialog, FlatButton, RaisedButton} from 'material-ui';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
+import GridTile from 'material-ui/GridList/GridTile';
 
 import MediaList from 'views/components/Browsing/media-list';
-import LinearProgress from 'material-ui/lib/linear-progress';
+import LinearProgress from 'material-ui/LinearProgress';
 
-import IconButton from 'material-ui/lib/icon-button';
+import IconButton from 'material-ui/IconButton';
 import ActionInfo from '@material-ui/icons/Info';
 import ActionInfoOutline from '@material-ui/icons/InfoOutlined';
 

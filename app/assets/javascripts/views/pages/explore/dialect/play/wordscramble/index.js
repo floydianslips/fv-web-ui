@@ -17,11 +17,11 @@ import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import Immutable, {List, Map} from 'immutable';
 
-import RaisedButton from 'material-ui/lib/raised-button';
-import TextField from 'material-ui/lib/text-field';
-import Colors from 'material-ui/lib/styles/colors';
-import FontIcon from 'material-ui/lib/font-icon';
-import IconButton from 'material-ui/lib/icon-button';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
+import Colors from 'material-ui/styles/colors';
+import FontIcon from 'material-ui/FontIcon';
+import IconButton from 'material-ui/IconButton';
 import AVPlayArrow from '@material-ui/icons/PlayArrow';
 import AVStop from '@material-ui/icons/Stop';
 

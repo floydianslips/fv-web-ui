@@ -30,9 +30,9 @@ import AppFrontController from './AppFrontController';
 
 import Shepherd from 'tether-shepherd';
 
-import FontIcon from 'material-ui/lib/font-icon';
-import Paper from 'material-ui/lib/paper';
-import FlatButton from 'material-ui/lib/flat-button';
+import FontIcon from 'material-ui/FontIcon';
+import Paper from 'material-ui/Paper';
+import FlatButton from 'material-ui/FlatButton';
 
 import IntlService from 'views/services/intl';
 

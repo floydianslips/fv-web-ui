@@ -5,8 +5,8 @@ import provide from 'react-redux-provide';
 import selectn from 'selectn';
 import Autosuggest from 'react-autosuggest';
 
-import RefreshIndicator from 'material-ui/lib/refresh-indicator';
-import LinearProgress from 'material-ui/lib/linear-progress';
+import RefreshIndicator from 'material-ui/RefreshIndicator';
+import LinearProgress from 'material-ui/LinearProgress';
 import IntlService from "views/services/intl";
 
 const theme = {

@@ -26,13 +26,13 @@ import t from 'tcomb-form';
 import fields from 'models/schemas/filter-fields';
 import options from 'models/schemas/filter-options';
 
-import TextField from 'material-ui/lib/text-field';
-import RaisedButton from 'material-ui/lib/raised-button';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 
-import IconButton from 'material-ui/lib/icon-button';
+import IconButton from 'material-ui/IconButton';
 
-import SelectField from 'material-ui/lib/select-field';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
