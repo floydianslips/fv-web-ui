@@ -34,7 +34,7 @@ import Toggle from 'material-ui/lib/toggle';
 import IconMenu from 'material-ui/lib/menus/icon-menu';
 import Menu from 'material-ui/lib/menus/menu';
 import MenuItem from 'material-ui/lib/menus/menu-item';
-import NavigationExpandMoreIcon from 'material-ui/lib/svg-icons/navigation/expand-more';
+import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 

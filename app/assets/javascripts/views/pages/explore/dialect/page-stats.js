@@ -34,7 +34,7 @@ import Toggle from 'material-ui/lib/toggle';
 import IconMenu from 'material-ui/lib/menus/icon-menu';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 import IconButton from 'material-ui/lib/icon-button';
-import NavigationExpandMoreIcon from 'material-ui/lib/svg-icons/navigation/expand-more';
+import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CircularProgress from 'material-ui/CircularProgress';
 
 import Tabs from 'material-ui/lib/tabs/tabs';

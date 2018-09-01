@@ -31,8 +31,8 @@ import MediaList from 'views/components/Browsing/media-list';
 import LinearProgress from 'material-ui/lib/linear-progress';
 
 import IconButton from 'material-ui/lib/icon-button';
-import ActionInfo from 'material-ui/lib/svg-icons/action/info';
-import ActionInfoOutline from 'material-ui/lib/svg-icons/action/info-outline';
+import ActionInfo from '@material-ui/icons/Info';
+import ActionInfoOutline from '@material-ui/icons/InfoOutlined';
 
 import PhraseListView from 'views/pages/explore/dialect/learn/phrases/list-view';
 import WordListView from 'views/pages/explore/dialect/learn/words/list-view';

@@ -40,7 +40,7 @@ import CircularProgress from 'material-ui/CircularProgress';
 import IconMenu from 'material-ui/lib/menus/icon-menu';
 import IconButton from 'material-ui/lib/icon-button';
 import MenuItem from 'material-ui/lib/menus/menu-item';
-import NavigationExpandMoreIcon from 'material-ui/lib/svg-icons/navigation/expand-more';
+import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Tabs from 'material-ui/lib/tabs/tabs';
 import Tab from 'material-ui/lib/tabs/tab';
 

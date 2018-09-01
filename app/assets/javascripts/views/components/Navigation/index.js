@@ -49,9 +49,9 @@ import FlatButton from 'material-ui/lib/flat-button';
 import Toolbar from 'material-ui/lib/toolbar/toolbar';
 import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
 import IconButton from 'material-ui/lib/icon-button';
-import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
-import NotificationsIcon from 'material-ui/lib/svg-icons/social/notifications';
-import ActionHelp from 'material-ui/lib/svg-icons/action/help';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import ActionHelp from '@material-ui/icons/Help';
 import Popover from 'material-ui/lib/popover/popover';
 import Avatar from 'material-ui/lib/avatar';
 
@@ -63,7 +63,7 @@ import AppLeftNav from 'views/components/Navigation/AppLeftNav';
 import IntlService from 'views/services/intl';
 
 import FontIcon from 'material-ui/lib/font-icon';
-import NavigationExpandMoreIcon from 'material-ui/lib/svg-icons/navigation/expand-more';
+import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
 
 @provide

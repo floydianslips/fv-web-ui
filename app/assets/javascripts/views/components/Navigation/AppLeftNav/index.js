@@ -22,7 +22,7 @@ import selectn from 'selectn';
 import {Divider, List, ListItem, LeftNav, AppBar} from 'material-ui/lib';
 
 import IconButton from 'material-ui/lib/icon-button';
-import NavigationClose from 'material-ui/lib/svg-icons/navigation/close';
+import NavigationClose from '@material-ui/icons/Close';
 
 import { SelectableContainerEnhance } from 'material-ui/lib/hoc/selectable-enhance';
 import IntlService from 'views/services/intl';

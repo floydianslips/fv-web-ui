@@ -26,7 +26,7 @@ import IconButton from 'material-ui/lib/icon-button';
 import RaisedButton from 'material-ui/lib/raised-button';
 import TextField from 'material-ui/lib/text-field';
 
-import ActionExitToAppIcon from 'material-ui/lib/svg-icons/action/exit-to-app';
+import ActionExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import CircularProgress from 'material-ui/CircularProgress';
 

@@ -18,8 +18,8 @@ import classNames from 'classnames';
 
 import ReactPaginate from 'react-paginate';
 
-import ChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
-import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
+import ChevronLeft from '@material-ui/icons/ChevronLeft';
+import ChevronRight from '@material-ui/icons/ChevronRight';
 
 export default class Pagination extends Component {
 

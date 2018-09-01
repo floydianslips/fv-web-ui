@@ -22,8 +22,8 @@ import TextField from 'material-ui/lib/text-field';
 import Colors from 'material-ui/lib/styles/colors';
 import FontIcon from 'material-ui/lib/font-icon';
 import IconButton from 'material-ui/lib/icon-button';
-import AVPlayArrow from 'material-ui/lib/svg-icons/av/play-arrow';
-import AVStop from 'material-ui/lib/svg-icons/av/stop';
+import AVPlayArrow from '@material-ui/icons/PlayArrow';
+import AVStop from '@material-ui/icons/Stop';
 
 import classNames from 'classnames';
 

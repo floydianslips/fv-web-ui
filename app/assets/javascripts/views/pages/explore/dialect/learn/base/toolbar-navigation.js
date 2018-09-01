@@ -22,7 +22,7 @@ import selectn from 'selectn';
 import ProviderHelpers from 'common/ProviderHelpers';
 import NavigationHelpers from 'common/NavigationHelpers';
 
-import EditorInsertChart from 'material-ui/lib/svg-icons/editor/insert-chart';
+import EditorInsertChart from '@material-ui/icons/InsertChart';
 import Toolbar from 'material-ui/lib/toolbar/toolbar';
 import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
 import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
