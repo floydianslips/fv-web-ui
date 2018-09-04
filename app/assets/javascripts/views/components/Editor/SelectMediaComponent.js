@@ -202,11 +202,7 @@ export default class SelectMediaComponent extends React.Component {
         const computeResources = ProviderHelpers.getEntry(this.props.computeResources, '/FV/Workspaces/');
         const dialect = this.props.dialect;
 
-        var SharedResourceGridTileWithDialect = React.createClass({
-            render: function () {
-                return React.createElement(SharedResourceGridTile, {...this.props, dialect: dialect});
-            }
-        });
+        var SharedResourceGridTileWithDialect = props => React.createElement(SharedResourceGridTile, {...props, dialect: dialect});
 
         return (
             <div style={{display: 'inline'}}>

@@ -230,11 +230,7 @@ export default class Search extends DataListView {
 	let _onEntryNavigateRequest = this._onEntryNavigateRequest;
 	let searchTerm = this.props.routeParams.searchTerm;
 
-	let SearchResultTileWithProps = React.createClass({
-		render: function() {
-			return React.createElement(SearchResultTile, {searchTerm: searchTerm, action: _onEntryNavigateRequest, ...this.props });
-		}
-	});
+	let SearchResultTileWithProps = props => React.createElement(SearchResultTile, {searchTerm: searchTerm, action: _onEntryNavigateRequest, ...props });
 
     return <div>
 
