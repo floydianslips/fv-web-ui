@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import provide from 'react-redux-provide';
 import selectn from 'selectn';
 import t from 'tcomb-form';
