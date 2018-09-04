@@ -34,7 +34,7 @@
     "provide-theme": "~1.0.0",
     "react": "^16.4.2",
     "react-autosuggest": "~8.0.0",
-    "react-chartjs": "~0.7.3",
+    "react-chartjs": "^1.2.0",
     "react-datagrid": "~2.1.1",
     "react-device-detect": "^0.1.0",
     "react-dom": "^16.4.2",

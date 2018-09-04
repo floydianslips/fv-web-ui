@@ -2440,7 +2440,7 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-create-react-class@^15.5.1:
+create-react-class@^15.5.1, create-react-class@^15.6.2:
   version "15.6.3"
   resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.6.3.tgz#2d73237fb3f970ae6ebe011a9e66f46dbca80036"
   dependencies:
@@ -7883,9 +7883,11 @@ react-autowhatever@^7.0.0:
     react-themeable "^1.1.0"
     section-iterator "^2.0.0"
 
-react-chartjs@~0.7.3:
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/react-chartjs/-/react-chartjs-0.7.3.tgz#9bd0364bdc245ca732e7a1028656e319ef6932c5"
+react-chartjs@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-chartjs/-/react-chartjs-1.2.0.tgz#54d0f90f3e9026666d9fcae447cd090bab65689d"
+  dependencies:
+    create-react-class "^15.6.2"
 
 react-class@^1.2.4:
   version "1.2.4"
