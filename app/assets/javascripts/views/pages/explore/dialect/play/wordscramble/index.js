@@ -19,7 +19,7 @@ import Immutable, {List, Map} from 'immutable';
 
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import Colors from 'material-ui/styles/colors';
+import * as Colors from 'material-ui/styles/colors';
 import FontIcon from 'material-ui/FontIcon';
 import IconButton from 'material-ui/IconButton';
 import AVPlayArrow from '@material-ui/icons/PlayArrow';

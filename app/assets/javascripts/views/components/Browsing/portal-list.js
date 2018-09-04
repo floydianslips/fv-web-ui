@@ -17,7 +17,7 @@ import React, {Component, PropTypes} from 'react';
 import Immutable, {List, Map} from 'immutable';
 import selectn from 'selectn';
 
-import Colors from 'material-ui/styles/colors';
+import * as Colors from 'material-ui/styles/colors';
 
 import GridList from 'material-ui/GridList/GridList';
 import GridTile from 'material-ui/GridList/GridTile';

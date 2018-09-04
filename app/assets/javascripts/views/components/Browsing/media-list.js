@@ -19,7 +19,7 @@ import selectn from 'selectn';
 
 import ConfGlobal from 'conf/local.json';
 
-import Colors from 'material-ui/styles/colors';
+import * as Colors from 'material-ui/styles/colors';
 
 import GridList from 'material-ui/GridList/GridList';
 import GridTile from 'material-ui/GridList/GridTile';

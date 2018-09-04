@@ -32,7 +32,7 @@ import StringHelpers from 'common/StringHelpers';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 
-import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/table';
+import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 
 import SelectFactory from 'views/components/Editor/fields/select';
 import DocumentView from 'views/components/Document/view';

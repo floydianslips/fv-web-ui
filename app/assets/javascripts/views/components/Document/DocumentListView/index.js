@@ -20,7 +20,6 @@ import DataGrid from 'react-datagrid';
 
 import GridView from 'views/pages/explore/dialect/learn/base/grid-view';
 
-import ClearFix from 'material-ui/clearfix';
 import Paper from 'material-ui/Paper';
 
 import withPagination from 'views/hoc/grid-list/with-pagination';
@@ -139,7 +138,7 @@ export default class DocumentListView extends Component {
             }
         }
 
-        return <Paper><ClearFix>
+        return <Paper>
             <DataGrid
                 idProperty="uid"
                 dataSource={selectn('response.entries', this.props.data)}
@@ -164,6 +163,6 @@ export default class DocumentListView extends Component {
                 onPageSizeChange={this._onPageSizeChange}
                 emptyText={intl.trans('no_records', 'No records', 'words')}
                 showCellBorders={true}/>
-        </ClearFix></Paper>;
+        </Paper>;
     }
 }
