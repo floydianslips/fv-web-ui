@@ -232,12 +232,12 @@ class MultiQuiz extends React.Component {
 }
 
 MultiQuiz.contextTypes = {
-  muiTheme: React.PropTypes.object,
-  router: React.PropTypes.func
+  muiTheme: PropTypes.object,
+  router: PropTypes.func
 };
 
 MultiQuiz.childContextTypes = {
-  muiTheme: React.PropTypes.object
+  muiTheme: PropTypes.object
 };
 
 

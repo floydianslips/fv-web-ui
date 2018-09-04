@@ -141,7 +141,7 @@ class WordCreateView extends React.Component {
 }
 
 WordCreateView.contextTypes = {
-  router: React.PropTypes.func
+  router: PropTypes.func
 };
 
 module.exports = WordCreateView;

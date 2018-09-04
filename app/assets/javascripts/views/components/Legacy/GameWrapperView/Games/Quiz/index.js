@@ -242,12 +242,12 @@ class Quiz extends React.Component {
 }
 
 Quiz.contextTypes = {
-  muiTheme: React.PropTypes.object,
-  router: React.PropTypes.func
+  muiTheme: PropTypes.object,
+  router: PropTypes.func
 };
 
 Quiz.childContextTypes = {
-  muiTheme: React.PropTypes.object
+  muiTheme: PropTypes.object
 };
 
 

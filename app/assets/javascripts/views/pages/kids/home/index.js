@@ -39,7 +39,7 @@ export default class PageKidsHome extends Component {
     };
 
     /*static contextTypes = {
-        muiTheme: React.PropTypes.object.isRequired
+        muiTheme: PropTypes.object.isRequired
     };*/
 
     constructor(props, context) {

@@ -203,7 +203,7 @@ class WordAddMediaView extends React.Component {
 }
 
 WordAddMediaView.contextTypes = {
-  router: React.PropTypes.func
+  router: PropTypes.func
 };
 
 module.exports = WordAddMediaView;

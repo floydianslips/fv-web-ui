@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import AlloyEditor from 'alloyeditor';
+// import AlloyEditor from 'alloyeditor';
 
 export default class AlloyEditorComponent extends Component {
     componentDidMount() {
-        this._editor = AlloyEditor.editable(this.props.container, this.props.alloyEditorConfig);
+        // this._editor = AlloyEditor.editable(this.props.container, this.props.alloyEditorConfig);
         this._nativeEditor = this._editor.get('nativeEditor');
 
         var _this = this;

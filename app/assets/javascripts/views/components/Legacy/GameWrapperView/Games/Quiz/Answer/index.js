@@ -59,7 +59,7 @@ class Answer extends React.Component {
 }
 
 Answer.childContextTypes = {
-  muiTheme: React.PropTypes.object
+  muiTheme: PropTypes.object
 };
 
 module.exports = Answer;

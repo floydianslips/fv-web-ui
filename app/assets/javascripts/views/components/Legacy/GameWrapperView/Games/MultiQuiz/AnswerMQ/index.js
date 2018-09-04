@@ -105,7 +105,7 @@ class AnswerMQ extends React.Component {
 }
 
 AnswerMQ.childContextTypes = {
-  muiTheme: React.PropTypes.object
+  muiTheme: PropTypes.object
 };
 
 module.exports = AnswerMQ;
