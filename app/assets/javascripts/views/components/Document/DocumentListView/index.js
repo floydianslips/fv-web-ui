@@ -17,7 +17,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import selectn from 'selectn';
-import DataGrid from 'react-datagrid';
+import DataGrid from 'react-datagrid2';
 
 import GridView from 'views/pages/explore/dialect/learn/base/grid-view';
 
@@ -26,7 +26,7 @@ import Paper from 'material-ui/Paper';
 import withPagination from 'views/hoc/grid-list/with-pagination';
 
 // Stylesheet
-import '!style-loader!css-loader!react-datagrid/dist/index.min.css';
+import '!style-loader!css-loader!react-datagrid2/dist/index.min.css';
 
 const GridViewWithPagination = withPagination(GridView, 8);
 
