@@ -7698,7 +7698,7 @@ proto-list@~1.2.1:
 
 "provide-page@git+ssh://git@github.com/calebissharp/provide-page.git#react16-patch":
   version "0.2.2"
-  resolved "git+ssh://git@github.com/calebissharp/provide-page.git#0950531686f627f5a7e7ed708bdf3f0b9cdef4cd"
+  resolved "git+ssh://git@github.com/calebissharp/provide-page.git#b7a9c81ebb5d52f88a7f0659624c0bfc3d307ea9"
   dependencies:
     exenv "^1.2.0"
     react "^16.4.2"
