@@ -184,11 +184,7 @@ export default class AppLeftNav extends Component {
             iconElementLeft={<IconButton onClick={this._onRequestChange}><NavigationClose /></IconButton>}
             title={<img src="/assets/images/logo.png" style={{padding: '0 0 5px 0'}} alt={this.props.properties.title} />} />
 
-          <SelectableList
-            valueLink={{
-              value: location.pathname,
-              requestChange: this._onNavigateRequest
-          }}>
+          <SelectableList value={location.pathname} onChange={this._onNavigateRequest}>
 
             {this.state.routes.map((d, i) => 
                 <ListItem
@@ -213,11 +209,7 @@ export default class AppLeftNav extends Component {
 
             if (selectn("isConnected", this.props.computeLogin)) {
               
-              return <SelectableList
-                valueLink={{
-                  value: location.pathname,
-                  requestChange: this._onNavigateRequest
-              }}>
+              return <SelectableList value={location.pathname} onChange={this._onNavigateRequest}>
 
               <ListItem
                   key="profile"
