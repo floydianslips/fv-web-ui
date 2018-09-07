@@ -22,7 +22,8 @@ import selectn from 'selectn';
 import provide from 'react-redux-provide';
 
 import TextField from 'material-ui/TextField';
-import IconButton from 'material-ui/IconButton';
+import IconButton from '@material-ui/core/IconButton';
+import Icon from '@material-ui/core/Icon';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 import IntlService from 'views/services/intl';
@@ -70,7 +71,7 @@ export default class SearchBar extends Component {
                        onEnterKeyDown={this._handleDialectSearchSubmit}/>
             <IconButton onClick={this._handleDialectSearchSubmit} iconClassName="material-icons"
                         iconStyle={{fontSize: '24px'}}
-                        tooltip={intl.trans('search', 'Search', 'first')}>search</IconButton>
+                        tooltip={intl.trans('search', 'Search', 'first')}><Icon>search</Icon></IconButton>
         </div>;
     }
 }

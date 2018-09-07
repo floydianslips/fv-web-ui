@@ -26,7 +26,6 @@ import ProviderHelpers from 'common/ProviderHelpers';
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
 import FlatButton from 'material-ui/FlatButton';
-import IconButton from 'material-ui/IconButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 

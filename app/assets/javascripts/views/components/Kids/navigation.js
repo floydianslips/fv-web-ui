@@ -39,7 +39,8 @@ import Badge from 'material-ui/Badge';
 import FlatButton from 'material-ui/FlatButton';
 import Toolbar from 'material-ui/Toolbar/Toolbar';
 import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
-import IconButton from 'material-ui/IconButton';
+import IconButton from '@material-ui/core/IconButton';
+import Icon from '@material-ui/core/Icon';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
@@ -183,24 +184,24 @@ export default class Navigation extends Component {
                                 onClick={(e) => NavigationHelpers.navigateBack()}
                                 style={{paddingTop: 0, top: '8px', left: '-10px'}} iconClassName="material-icons"
                                 tooltipPosition="bottom-left"
-                                tooltip={intl.trans('back', 'Back', 'first')}>keyboard_backspace</IconButton>
+                                tooltip={intl.trans('back', 'Back', 'first')}><Icon>keyboard_backspace</Icon></IconButton>
 
                     <IconButton
                         onClick={this._onNavigateRequest.bind(this, '/kids' + (this.props.routeParams.dialect_path ? this.props.routeParams.dialect_path : ''))}
                         style={{paddingTop: 0, top: '8px', left: '-10px'}} iconClassName="material-icons"
-                        tooltipPosition="bottom-left" tooltip={intl.trans('home', 'Home', 'first')}>home</IconButton>
+                        tooltipPosition="bottom-left" tooltip={intl.trans('home', 'Home', 'first')}><Icon>home</Icon></IconButton>
 
                     <IconButton onClick={this._onNavigateRequest.bind(this, '/kids/FV/Workspaces/Data')}
                                 style={{paddingTop: 0, top: '8px', left: '-10px'}} iconClassName="material-icons"
                                 tooltipPosition="bottom-left"
-                                tooltip={intl.trans('choose_lang', 'Choose a Language', 'first')}>apps</IconButton>
+                                tooltip={intl.trans('choose_lang', 'Choose a Language', 'first')}><Icon>apps</Icon></IconButton>
 
                     <ToolbarSeparator style={{float: 'none', marginLeft: '0', marginRight: '15px'}}/>
 
                     <IconButton style={{paddingTop: 0, paddingRight: 0, top: '8px', left: '-10px'}}
                                 iconClassName="material-icons" onClick={this._onNavigateRequest.bind(this, '/')}
                                 tooltipPosition="bottom-left"
-                                tooltip={intl.trans('back_to_main_site', 'Back to Main Site', 'words')}>clear</IconButton>
+                                tooltip={intl.trans('back_to_main_site', 'Back to Main Site', 'words')}><Icon>clear</Icon></IconButton>
 
                 </ToolbarGroup>
 

@@ -31,7 +31,6 @@ import CardHeader from 'material-ui/Card/CardHeader';
 import CardMedia from 'material-ui/Card/CardMedia';
 import CardText from 'material-ui/Card/CardText';
 
-import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 
 import CanadaGeoJSON from 'json-loader!models/data/map.geojson';

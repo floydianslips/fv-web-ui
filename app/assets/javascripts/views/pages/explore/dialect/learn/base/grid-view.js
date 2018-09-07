@@ -26,7 +26,7 @@ import * as Colors from 'material-ui/styles/colors';
 import GridList from 'material-ui/GridList/GridList';
 import GridTile from 'material-ui/GridList/GridTile';
 
-import IconButton from 'material-ui/IconButton';
+import IconButton from '@material-ui/core/IconButton';
 
 import AVPlayArrow from '@material-ui/icons/PlayArrow';
 import AVStop from '@material-ui/icons/Stop';
