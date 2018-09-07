@@ -176,11 +176,11 @@ export default class PageDialectReports extends React.Component {
 	const { computeReportDocuments, computeReportWordsAll, computeReportPhrasesAll, computeReportSongsAll, computeReportStoriesAll } = this.props;
 
 	if(computeReportWordsAll.isFetching || computeReportPhrasesAll.isFetching || computeReportSongsAll.isFetching || computeReportStoriesAll.isFetching) {
-		return <CircularProgress mode="indeterminate" size={3} />;
+		return <CircularProgress mode="indeterminate" size={178.5} />;
 	}	
 	
 	if(!computeReportWordsAll.success || !computeReportPhrasesAll.success || !computeReportSongsAll.success || !computeReportStoriesAll.success) {
-		return <CircularProgress mode="indeterminate" size={3} />;
+		return <CircularProgress mode="indeterminate" size={178.5} />;
 	}	
 
 	let wordsCount = computeReportWordsAll.response.resultsCount;
@@ -191,7 +191,7 @@ export default class PageDialectReports extends React.Component {
 	// If a report has been selected, display the query results
 	if(this.state.queryName != '') {		
 		if(computeReportDocuments.isFetching || !computeReportDocuments.success) {
-			return <CircularProgress mode="indeterminate" size={3} />;
+			return <CircularProgress mode="indeterminate" size={178.5} />;
 		}
         let docTypeCount;
 		if(this.state.queryDocType == 'words') {

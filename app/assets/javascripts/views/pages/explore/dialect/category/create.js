@@ -169,7 +169,7 @@ export default class PageDialectCategoryCreate extends Component {
         let category = ProviderHelpers.getEntry(computeCategory, this.state.categoryPath);
 
         if (computeDialect.isFetching || !computeDialect.success) {
-            return <CircularProgress mode="indeterminate" size={2}/>;
+            return <CircularProgress mode="indeterminate" size={119}/>;
         }
 
         return <div>

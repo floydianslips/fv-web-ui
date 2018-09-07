@@ -113,7 +113,7 @@ export default class PromiseWrapper extends Component {
                 // If response already exists, and instructed to hide future fetches, render null (e.g. for pagination, filtering)
                 render = (this.props.hideFetch && selectn('response_prev', reducedOperation)) ? null :
                     <div><CircularProgress mode="indeterminate" style={{verticalAlign: 'middle'}}
-                                           size={1}/> {selectn('message', reducedOperation)}</div>;
+                                           size={59.5}/> {selectn('message', reducedOperation)}</div>;
                 return false;
             }
 
