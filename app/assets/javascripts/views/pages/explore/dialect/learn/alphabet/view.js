@@ -42,7 +42,7 @@ import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 
 import Dialog from 'material-ui/Dialog';
 
-import Avatar from 'material-ui/Avatar';
+import Avatar from '@material-ui/core/Avatar';
 import Card from 'material-ui/Card/Card';
 import CardActions from 'material-ui/Card/CardActions';
 import CardHeader from 'material-ui/Card/CardHeader';
