@@ -41,7 +41,7 @@ import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
 import RadioButton from 'material-ui/RadioButton';
 import RadioButtonGroup from 'material-ui/RadioButton/RadioButtonGroup';
 
-import Badge from 'material-ui/Badge';
+import Badge from '@material-ui/core/Badge';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
@@ -332,10 +332,12 @@ export default class Navigation extends Component {
             <AuthenticationFilter login={this.props.computeLogin} anon={false} routeParams={this.props.routeParams} containerStyle={{display: 'inline'}}>
               <span>
                 <Badge
+                  style={{
+                    root: {top: '8px', left: '-15px', padding: '0 0 12px 12px'},
+                    badge: {top: '12px',left: '42px', width: '15px', height: '15px', borderRadius: '25%', visibility: (userTaskCount == 0) ? 'hidden' : 'visible'}
+                  }}
                   badgeContent={userTaskCount}
-                  style={{top: '8px', left: '-15px', padding: '0 0 12px 12px'}}
-                  badgeStyle={{top: '12px',left: '42px', width: '15px', height: '15px', borderRadius: '25%', visibility: (userTaskCount == 0) ? 'hidden' : 'visible'}}
-                  primary={true}
+                  variant="primary"
                 >
                   <IconButton iconStyle={{fill: '#fff'}} onClick={this._onNavigateRequest.bind(this, '/tasks/')} disabled={(userTaskCount == 0) ? true : false}>
                     <NotificationsIcon />
