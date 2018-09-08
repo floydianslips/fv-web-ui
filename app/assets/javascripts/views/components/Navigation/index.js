@@ -336,7 +336,7 @@ export default class Navigation extends Component {
                     root: {top: '8px', left: '-15px', padding: '0 0 12px 12px'},
                     badge: {top: '12px',left: '42px', width: '15px', height: '15px', borderRadius: '25%', visibility: (userTaskCount == 0) ? 'hidden' : 'visible'}
                   }}
-                  badgeContent={userTaskCount}
+                  badgeContent={userTaskCount || ''}
                   variant="primary"
                 >
                   <IconButton iconStyle={{fill: '#fff'}} onClick={this._onNavigateRequest.bind(this, '/tasks/')} disabled={(userTaskCount == 0) ? true : false}>
