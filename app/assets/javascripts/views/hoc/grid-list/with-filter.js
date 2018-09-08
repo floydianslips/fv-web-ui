@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List, Map} from 'immutable';
 import classNames from 'classnames';
 import selectn from 'selectn';
@@ -221,7 +222,7 @@ export default function withFilter(ComposedFilter, DefaultFetcherParams) {
                                         value={this.state.formValue}
                                         options={options.toJS()}/>
                                     <RaisedButton
-                                        onTouchTap={this._onReset}
+                                        onClick={this._onReset}
                                         label={intl.trans('reset', 'Reset', 'first')}
                                         primary={true}/> &nbsp;
                                     <RaisedButton

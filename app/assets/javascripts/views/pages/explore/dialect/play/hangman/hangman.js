@@ -13,9 +13,10 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import RaisedButton from 'material-ui/lib/raised-button';
+import RaisedButton from 'material-ui/RaisedButton';
 import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;
@@ -306,7 +307,7 @@ export default class HangmanGame extends Component {
             {(this.state.failed ? this.renderFailure() : false)}
 
             <div style={{margin: '15px 0'}}>
-                <RaisedButton secondary={true} onTouchTap={this.props.newPuzzle}
+                <RaisedButton secondary={true} onClick={this.props.newPuzzle}
                               label={intl.trans('views.pages.explore.dialect.play.hangman.new_puzzle', 'New Puzzle', 'words')}
                               style={{marginRight: '10px'}}/>
                 <RaisedButton primary={true} onMouseDown={this.restart}

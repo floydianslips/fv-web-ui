@@ -13,31 +13,31 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List} from 'immutable';
 
 import provide from 'react-redux-provide';
 import selectn from 'selectn';
 import classNames from 'classnames';
 
-import Colors from 'material-ui/lib/styles/colors';
+import * as Colors from 'material-ui/styles/colors';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
-import GridList from 'material-ui/lib/grid-list/grid-list';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
-import CircularProgress from 'material-ui/lib/circular-progress';
-import Paper from 'material-ui/lib/paper';
-import RaisedButton from 'material-ui/lib/raised-button';
+import { GridList, GridTile } from 'material-ui/GridList';
+import CircularProgress from 'material-ui/CircularProgress';
+import Paper from 'material-ui/Paper';
+import RaisedButton from 'material-ui/RaisedButton';
 
 //import Map from 'views/components/Geo/map';
 
-import TextField from 'material-ui/lib/text-field';
+import TextField from 'material-ui/TextField';
 
-import IconMenu from 'material-ui/lib/menus/icon-menu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
 
 import IntroCardView from 'views/components/Browsing/intro-card-view';
 import TextHeader from 'views/components/Document/Typography/text-header';
@@ -64,7 +64,7 @@ export default class PageHome extends Component {
     };
 
     /*static contextTypes = {
-        muiTheme: React.PropTypes.object.isRequired
+        muiTheme: PropTypes.object.isRequired
     };*/
 
     intl = IntlService.instance;
@@ -170,7 +170,7 @@ export default class PageHome extends Component {
                                     default: 'Get Started!',
                                     case: 'words'
                                 }) + '!'} primary={true}
-                                              onTouchTap={this._onNavigateRequest.bind(this, '/explore/FV/sections/Data/')}
+                                              onClick={this._onNavigateRequest.bind(this, '/explore/FV/sections/Data/')}
                                               style={{marginRight: '10px', height: '50px'}}
                                               labelColor={alternateTextColor} labelStyle={{fontSize: '1.34em'}}/>
                                 <div className="hidden" style={{display: 'inline-block'}}><RaisedButton primary={true}
@@ -179,7 +179,7 @@ export default class PageHome extends Component {
                                                                                                             default: 'Language Map',
                                                                                                             case: 'words'
                                                                                                         })}
-                                                                                                        onTouchTap={() => this.setState({mapVisible: !this.state.mapVisible})}/>
+                                                                                                        onClick={() => this.setState({mapVisible: !this.state.mapVisible})}/>
                                 </div>
                             </div>
                         </div>

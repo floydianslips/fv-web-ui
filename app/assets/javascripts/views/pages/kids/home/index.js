@@ -13,14 +13,15 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List, Map} from 'immutable';
 
 import provide from 'react-redux-provide';
 import selectn from 'selectn';
 import classNames from 'classnames';
 
-import RaisedButton from 'material-ui/lib/raised-button';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 import IntlService from "views/services/intl";
@@ -38,7 +39,7 @@ export default class PageKidsHome extends Component {
     };
 
     /*static contextTypes = {
-        muiTheme: React.PropTypes.object.isRequired
+        muiTheme: PropTypes.object.isRequired
     };*/
 
     constructor(props, context) {
@@ -79,7 +80,7 @@ export default class PageKidsHome extends Component {
                 <span style={{width: '45%'}}>
                   <RaisedButton fullWidth={true}
                                 label={intl.trans('views.pages.kids.enter', 'Enter Kids Area', 'words')}
-                                onTouchTap={this._onNavigateRequest.bind(this, '/FV/Workspaces/Data/')}
+                                onClick={this._onNavigateRequest.bind(this, '/FV/Workspaces/Data/')}
                                 style={{marginTop: '20vh'}}/>
                 </span>
                     </div>

@@ -14,7 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, { List, Map } from 'immutable';
 
 import classNames from 'classnames';
@@ -26,13 +27,13 @@ import t from 'tcomb-form';
 import fields from 'models/schemas/filter-fields';
 import options from 'models/schemas/filter-options';
 
-import TextField from 'material-ui/lib/text-field';
-import RaisedButton from 'material-ui/lib/raised-button';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 
-import IconButton from 'material-ui/lib/icon-button';
+import IconButton from 'material-ui/IconButton';
 
-import SelectField from 'material-ui/lib/select-field';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
@@ -229,11 +230,7 @@ export default class Search extends DataListView {
 	let _onEntryNavigateRequest = this._onEntryNavigateRequest;
 	let searchTerm = this.props.routeParams.searchTerm;
 
-	let SearchResultTileWithProps = React.createClass({
-		render: function() {
-			return React.createElement(SearchResultTile, {searchTerm: searchTerm, action: _onEntryNavigateRequest, ...this.props });
-		}
-	});
+	let SearchResultTileWithProps = props => React.createElement(SearchResultTile, {searchTerm: searchTerm, action: _onEntryNavigateRequest, ...props });
 
     return <div>
 
@@ -251,7 +248,7 @@ export default class Search extends DataListView {
                                     options={selectn('Search', options)}
                                 />
                                 <RaisedButton
-                                    onTouchTap={this._onReset}
+                                    onClick={this._onReset}
                                     label={intl.trans('reset', 'Reset', 'first')}
                                     primary={true}/> &nbsp;
                                 <RaisedButton

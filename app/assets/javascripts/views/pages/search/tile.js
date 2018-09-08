@@ -1,10 +1,11 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List, Map} from 'immutable';
 
 import selectn from 'selectn';
 import DOMPurify from 'dompurify';
 
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
+import GridTile from 'material-ui/GridList/GridTile';
 
 import UIHelpers from 'common/UIHelpers';
 import NavigationHelpers from 'common/NavigationHelpers';
@@ -119,7 +120,7 @@ export default class SearchResultTile extends Component {
             key={selectn('uid', tile)}
             title={<a
                 href={targetPath}
-                //onTouchTap={(typeof this.props.action === "function") ? this.props.action.bind(this, targetPath) : null}
+                //onClick={(typeof this.props.action === "function") ? this.props.action.bind(this, targetPath) : null}
                 style={{fontSize: '1.2em', cursor: 'pointer'}}>{title}<strong
                 style={{fontSize: '0.6em'}}> [{type.replace('FV', '')}]</strong></a>}
             actionPosition="right"

@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List, Map} from 'immutable';
 import classNames from 'classnames';
 import provide from 'react-redux-provide';
@@ -28,11 +29,11 @@ import ProviderHelpers from 'common/ProviderHelpers';
 import PageDialectLearnBase from 'views/pages/explore/dialect/learn/base';
 import AlphabetListView from 'views/pages/explore/dialect/learn/alphabet/list-view';
 
-import Paper from 'material-ui/lib/paper';
-import FlatButton from 'material-ui/lib/flat-button';
-import RaisedButton from 'material-ui/lib/raised-button';
-import FontIcon from 'material-ui/lib/font-icon';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
+import Paper from 'material-ui/Paper';
+import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import FontIcon from 'material-ui/FontIcon';
+import GridTile from 'material-ui/GridList/GridTile';
 
 import Header from 'views/pages/explore/dialect/header';
 import ToolbarNavigation from 'views/pages/explore/dialect/learn/base/toolbar-navigation';
@@ -200,7 +201,7 @@ export default class PageDialectLearnAlphabet extends PageDialectLearnBase {
                             return <RaisedButton
                                 primary={true}
                                 label={"View Words and Phrases that start with " + this.state.current_char.title}
-                                onTouchTap={this._onNavigateRequest.bind(this, this.state.current_char.path.split('/')[this.state.current_char.path.split('/').length - 1])}
+                                onClick={this._onNavigateRequest.bind(this, this.state.current_char.path.split('/')[this.state.current_char.path.split('/').length - 1])}
                                 style={{minWidth: 'inherit', textTransform: 'initial', margin: '10px 0'}}/>;
                         }
                     })()}
@@ -222,8 +223,8 @@ export default class PageDialectLearnAlphabet extends PageDialectLearnBase {
                                             <FlatButton
                                              icon={<FontIcon
                                                 className="material-icons">play_arrow</FontIcon>}
-                                                onTouchTap={this._onCharAudioTouchTap.bind(this, char)}
-                                                //onTouchTap={this._onNavigateRequest.bind(this, char.path.split('/')[char.path.split('/').length - 1])}
+                                                onClick={this._onCharAudioTouchTap.bind(this, char)}
+                                                //onClick={this._onNavigateRequest.bind(this, char.path.split('/')[char.path.split('/').length - 1])}
                                                 label={char.title} style={{minWidth: 'inherit', textTransform: 'initial'}}/>
                                             {(char.contextParameters.character.related_audio[0]) ?
                                                 <span>

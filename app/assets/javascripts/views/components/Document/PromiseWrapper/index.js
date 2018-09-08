@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List, Map} from 'immutable';
 
 import selectn from 'selectn';
@@ -22,7 +23,7 @@ import ConfGlobal from 'conf/local.json';
 
 import StatusBar from 'views/components/StatusBar';
 
-import CircularProgress from 'material-ui/lib/circular-progress';
+import CircularProgress from 'material-ui/CircularProgress';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 import IntlService from "views/services/intl";
@@ -112,7 +113,7 @@ export default class PromiseWrapper extends Component {
                 // If response already exists, and instructed to hide future fetches, render null (e.g. for pagination, filtering)
                 render = (this.props.hideFetch && selectn('response_prev', reducedOperation)) ? null :
                     <div><CircularProgress mode="indeterminate" style={{verticalAlign: 'middle'}}
-                                           size={1}/> {selectn('message', reducedOperation)}</div>;
+                                           size={59.5}/> {selectn('message', reducedOperation)}</div>;
                 return false;
             }
 

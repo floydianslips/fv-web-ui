@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List, Map} from 'immutable';
 
 import provide from 'react-redux-provide';
@@ -26,9 +27,8 @@ import ProviderHelpers from 'common/ProviderHelpers';
 
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
-import GridList from 'material-ui/lib/grid-list/grid-list';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
-import CircularProgress from 'material-ui/lib/circular-progress';
+import { GridList, GridTile } from 'material-ui/GridList';
+import CircularProgress from 'material-ui/CircularProgress';
 import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;
@@ -46,7 +46,7 @@ export default class ExploreArchive extends Component {
     };
 
     /*static contextTypes = {
-        muiTheme: React.PropTypes.object.isRequired
+        muiTheme: PropTypes.object.isRequired
     };*/
 
     constructor(props, context) {
@@ -100,7 +100,7 @@ export default class ExploreArchive extends Component {
                         >
                             {(selectn('response.entries', computeLanguageFamilies) || []).map((tile, i) =>
                                 <GridTile
-                                    onTouchTap={this._onNavigateRequest.bind(this, tile.path)}
+                                    onClick={this._onNavigateRequest.bind(this, tile.path)}
                                     key={tile.uid}
                                     title={tile.title}
                                     subtitle={tile.description}

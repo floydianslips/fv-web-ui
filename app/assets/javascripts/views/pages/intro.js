@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List} from 'immutable';
 
 import provide from 'react-redux-provide';
@@ -22,16 +23,15 @@ import classNames from 'classnames';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 
-import GridList from 'material-ui/lib/grid-list/grid-list';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
-import CircularProgress from 'material-ui/lib/circular-progress';
-import Paper from 'material-ui/lib/paper';
-import RaisedButton from 'material-ui/lib/raised-button';
+import { GridList, GridTile } from 'material-ui/GridList';
+import CircularProgress from 'material-ui/CircularProgress';
+import Paper from 'material-ui/Paper';
+import RaisedButton from 'material-ui/RaisedButton';
 
-import TextField from 'material-ui/lib/text-field';
+import TextField from 'material-ui/TextField';
 
-import IconMenu from 'material-ui/lib/menus/icon-menu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
 import IntlService from "views/services/intl";
 
 /**
@@ -47,7 +47,7 @@ export default class PageHome extends Component {
     };
 
     /*static contextTypes = {
-        muiTheme: React.PropTypes.object.isRequired
+        muiTheme: PropTypes.object.isRequired
     };*/
 
     constructor(props, context) {
@@ -88,7 +88,7 @@ export default class PageHome extends Component {
                         marginRight: '14px'
                     }}/></a>
                     <RaisedButton label={this.intl.translate({key: 'enter_firstvoices', default: "Enter FirstVoices"})}
-                                  onTouchTap={(e, v) => this._onNavigateRequest('/')}
+                                  onClick={(e, v) => this._onNavigateRequest('/')}
                                   style={{textAlign: 'center'}}/>
                     <p><img src="/assets/images/intro-french.gif"
                             alt="Des patrimoines linguistiques célébrant des cultures indigènes"

@@ -13,15 +13,16 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 import ConfGlobal from 'conf/local.json';
 import selectn from 'selectn';
 
 import provide from 'react-redux-provide';
 
-import TextField from 'material-ui/lib/text-field';
-import IconButton from 'material-ui/lib/icon-button';
+import TextField from 'material-ui/TextField';
+import IconButton from 'material-ui/IconButton';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 import IntlService from 'views/services/intl';
@@ -41,7 +42,7 @@ export default class SearchBar extends Component {
     };
 
     /*static contextTypes = {
-        muiTheme: React.PropTypes.object.isRequired
+        muiTheme: PropTypes.object.isRequired
     };*/
 
     constructor(props, context) {
@@ -67,7 +68,7 @@ export default class SearchBar extends Component {
             <TextField ref="dialectSearchField"
                        hintText={intl.trans('views.pages.explore.dialect.search_dialect', 'Search Dialect...', 'words')}
                        onEnterKeyDown={this._handleDialectSearchSubmit}/>
-            <IconButton onTouchTap={this._handleDialectSearchSubmit} iconClassName="material-icons"
+            <IconButton onClick={this._handleDialectSearchSubmit} iconClassName="material-icons"
                         iconStyle={{fontSize: '24px'}}
                         tooltip={intl.trans('search', 'Search', 'first')}>search</IconButton>
         </div>;

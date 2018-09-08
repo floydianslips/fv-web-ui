@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import selectn from 'selectn';
 
@@ -21,18 +22,18 @@ import DOMPurify from 'dompurify';
 
 import ConfGlobal from 'conf/local.json';
 
-import Paper from 'material-ui/lib/paper';
+import Paper from 'material-ui/Paper';
 
 import Preview from 'views/components/Editor/Preview';
 import MediaPanel from 'views/pages/explore/dialect/learn/base/media-panel';
 
 import {Introduction} from '../list-view';
 
-import RaisedButton from 'material-ui/lib/raised-button';
-import Tabs from 'material-ui/lib/tabs/tabs';
-import Tab from 'material-ui/lib/tabs/tab';
+import RaisedButton from 'material-ui/RaisedButton';
+import Tabs from 'material-ui/Tabs/Tabs';
+import Tab from 'material-ui/Tabs/Tab';
 
-import ActionLaunch from 'material-ui/lib/svg-icons/action/launch';
+import ActionLaunch from '@material-ui/icons/Launch';
 import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;
@@ -101,7 +102,7 @@ class Cover extends Component {
                 <div className={classNames('col-xs-12', 'text-right')}>
                     {(this.props.openBookAction && this.props.pageCount > 0) ?
                         <RaisedButton style={{marginRight: '10px'}} primary={true} label="Open Book"
-                                      onTouchTap={this.props.openBookAction} icon={<ActionLaunch/>}/> : ''}
+                                      onClick={this.props.openBookAction} icon={<ActionLaunch/>}/> : ''}
                 </div>
             </div>
 
@@ -161,7 +162,7 @@ class Page extends Component {
             <div className="row">
                 <div className={classNames('col-xs-12', 'text-right')}>
                     {(this.props.editAction) ? <RaisedButton label={intl.trans('edit', 'Edit', 'first')}
-                                                             onTouchTap={this.props.editAction.bind(this, this.props.entry)}/> : ''}
+                                                             onClick={this.props.editAction.bind(this, this.props.entry)}/> : ''}
                     <div className="pull-right">{this.props.appendEntryControls}</div>
                 </div>
             </div>

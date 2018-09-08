@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {Map} from 'immutable';
 
 import provide from 'react-redux-provide';
@@ -25,14 +26,14 @@ import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
 
 import {Dialog, FlatButton, RaisedButton} from 'material-ui';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
+import GridTile from 'material-ui/GridList/GridTile';
 
 import MediaList from 'views/components/Browsing/media-list';
-import LinearProgress from 'material-ui/lib/linear-progress';
+import LinearProgress from 'material-ui/LinearProgress';
 
-import IconButton from 'material-ui/lib/icon-button';
-import ActionInfo from 'material-ui/lib/svg-icons/action/info';
-import ActionInfoOutline from 'material-ui/lib/svg-icons/action/info-outline';
+import IconButton from 'material-ui/IconButton';
+import ActionInfo from '@material-ui/icons/Info';
+import ActionInfoOutline from '@material-ui/icons/InfoOutlined';
 
 import PhraseListView from 'views/pages/explore/dialect/learn/phrases/list-view';
 import WordListView from 'views/pages/explore/dialect/learn/words/list-view';
@@ -77,7 +78,7 @@ class SharedResourceGridTile extends Component {
         }
 
         return <GridTile
-            onTouchTap={(this.props.action) ? this.props.action.bind(this, this.props.tile) : null}
+            onClick={(this.props.action) ? this.props.action.bind(this, this.props.tile) : null}
             key={selectn('uid', tile)}
             title={selectn('properties.dc:title', tile)}
             actionPosition="right"
@@ -176,7 +177,7 @@ export default class BrowseComponent extends React.Component {
             <FlatButton
                 label={intl.trans('cancel', 'Cancel', 'first')}
                 secondary={true}
-                onTouchTap={this._handleClose}/>
+                onClick={this._handleClose}/>
         ];
 
         let title = '';
@@ -255,7 +256,7 @@ export default class BrowseComponent extends React.Component {
 
         return (
             <div style={{display: 'inline'}}>
-                <RaisedButton label={this.props.label} onTouchTap={this._handleOpen}/>
+                <RaisedButton label={this.props.label} onClick={this._handleOpen}/>
                 <Dialog
                     title={title}
                     actions={actions}

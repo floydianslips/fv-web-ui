@@ -13,22 +13,23 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
 import provide from 'react-redux-provide';
 import selectn from 'selectn';
 
 // Components
-import Popover from 'material-ui/lib/popover/popover';
-import FlatButton from 'material-ui/lib/flat-button';
-import IconButton from 'material-ui/lib/icon-button';
-import RaisedButton from 'material-ui/lib/raised-button';
-import TextField from 'material-ui/lib/text-field';
+import Popover from 'material-ui/Popover';
+import FlatButton from 'material-ui/FlatButton';
+import IconButton from 'material-ui/IconButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
-import ActionExitToAppIcon from 'material-ui/lib/svg-icons/action/exit-to-app';
+import ActionExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-import CircularProgress from 'material-ui/lib/circular-progress';
+import CircularProgress from 'material-ui/CircularProgress';
 
 import {BrowserView, MobileView, isBrowser, isMobile} from 'react-device-detect';
 import IntlService from "views/services/intl";
@@ -152,7 +153,7 @@ export default class Login extends Component {
                 <div className="hidden-xs" style={{display: "inline-block", paddingRight: '15px'}}>
                     {this.intl.translate({key: 'general.welcome', default: 'WELCOME', case: 'upper'})}, <a
                     style={{color: '#fff', textTransform: 'uppercase', cursor: 'pointer'}}
-                    onTouchTap={this._onNavigateRequest.bind(this, 'profile')}>{selectn("response.properties.firstName", this.props.computeLogin)}</a>
+                    onClick={this._onNavigateRequest.bind(this, 'profile')}>{selectn("response.properties.firstName", this.props.computeLogin)}</a>
                 </div>
             );
         } else {
@@ -173,7 +174,7 @@ export default class Login extends Component {
                 <FlatButton ref={(el) => {
                     this.anchorEl = el
                 }} label={this.props.label} style={{"color": themePalette.alternateTextColor}}
-                            onTouchTap={this._handleOpen}/>
+                            onClick={this._handleOpen}/>
                 <Popover open={this.state.open}
                          anchorEl={ReactDOM.findDOMNode(this.anchorEl)}
                          useLayerForClickAway={false}
@@ -191,7 +192,7 @@ export default class Login extends Component {
                                 default: 'Sign in Below',
                                 case: 'first'
                             })} <a style={{"cursor": "pointer", "fontWeight": "100"}}
-                                   onTouchTap={this._onNavigateRequest.bind(this, "forgotpassword")}
+                                   onClick={this._onNavigateRequest.bind(this, "forgotpassword")}
                                    className="pull-right">{this.intl.translate({
                                 key: 'general.forgot?',
                                 default: 'Forgot?',
@@ -215,7 +216,7 @@ export default class Login extends Component {
                                 "backgroundColor": themePalette.primary4ColorLightest,
                                 "padding": "0 3px"
                             }}>{loginFeedbackMessage}</p>
-                            <RaisedButton style={{"width": "100%"}} secondary={true} onTouchTap={this._handleLogin}
+                            <RaisedButton style={{"width": "100%"}} secondary={true} onClick={this._handleLogin}
                                           label={this.intl.translate({
                                             key: 'views.pages.users.login.sign_in',
                                             default: 'Sign In',
@@ -226,7 +227,7 @@ export default class Login extends Component {
                                 default: 'New to FirstVoices?'
                             })}</h6>
                             <RaisedButton style={{"width": "100%"}} primary={true}
-                                          onTouchTap={this._onNavigateRequest.bind(this, "register")}
+                                          onClick={this._onNavigateRequest.bind(this, "register")}
                                           label={this.intl.translate({
                                               key: 'general.register',
                                               default: 'Register',

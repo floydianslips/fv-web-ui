@@ -14,7 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component} from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import selectn from 'selectn';
 import ConfGlobal from 'conf/local.json';
@@ -28,32 +29,31 @@ import Shepherd from 'tether-shepherd';
 
 import {Link} from 'provide-page';
 
-// Components
-import AppBar from 'material-ui/lib/app-bar';
+import AppBar from 'material-ui/AppBar';
 
-import TextField from 'material-ui/lib/text-field';
+import TextField from 'material-ui/TextField';
 
-import IconMenu from 'material-ui/lib/menus/icon-menu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import SelectField from 'material-ui/lib/select-field';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import SelectField from 'material-ui/SelectField';
 
-import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
-import RadioButton from 'material-ui/lib/radio-button';
-import RadioButtonGroup from 'material-ui/lib/radio-button-group';
+import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
+import RadioButton from 'material-ui/RadioButton';
+import RadioButtonGroup from 'material-ui/RadioButton/RadioButtonGroup';
 
-import Badge from 'material-ui/lib/badge';
-import DropDownMenu from 'material-ui/lib/DropDownMenu';
-import RaisedButton from 'material-ui/lib/raised-button';
-import FlatButton from 'material-ui/lib/flat-button';
+import Badge from 'material-ui/Badge';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 
-import Toolbar from 'material-ui/lib/toolbar/toolbar';
-import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
-import IconButton from 'material-ui/lib/icon-button';
-import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
-import NotificationsIcon from 'material-ui/lib/svg-icons/social/notifications';
-import ActionHelp from 'material-ui/lib/svg-icons/action/help';
-import Popover from 'material-ui/lib/popover/popover';
-import Avatar from 'material-ui/lib/avatar';
+import Toolbar from 'material-ui/Toolbar/Toolbar';
+import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
+import IconButton from 'material-ui/IconButton';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import ActionHelp from '@material-ui/icons/Help';
+import Popover from 'material-ui/Popover';
+import Avatar from 'material-ui/Avatar';
 
 import AuthenticationFilter from 'views/components/Document/AuthenticationFilter';
 
@@ -62,9 +62,9 @@ import AppLeftNav from 'views/components/Navigation/AppLeftNav';
 
 import IntlService from 'views/services/intl';
 
-import FontIcon from 'material-ui/lib/font-icon';
-import NavigationExpandMoreIcon from 'material-ui/lib/svg-icons/navigation/expand-more';
-import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
+import FontIcon from 'material-ui/FontIcon';
+import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ToolbarTitle from 'material-ui/Toolbar/ToolbarTitle';
 
 @provide
 export default class Navigation extends Component {
@@ -112,7 +112,7 @@ export default class Navigation extends Component {
     };
 
     // Bind methods to 'this'
-    ['_handleChangeLocale', '_handleDisplayLocaleOptions', 'handleChangeRequestLeftNav', 'handleRequestChangeList', '_handleNavigationSearchSubmit', '_startTour', '_removePopoverUnlessOptionSelected', '_handleOpenMenuRequest'].forEach( (method => this[method] = this[method].bind(this)) );
+    ['_handleChangeLocale', '_handleDisplayLocaleOptions', 'handleChangeRequestLeftNav', 'handleRequestChangeList', '_handleNavigationSearchSubmit', '_handleNavigationSearchChange', '_startTour', '_removePopoverUnlessOptionSelected', '_handleOpenMenuRequest'].forEach( (method => this[method] = this[method].bind(this)) );
   }
 
   _setExplorePath(props = this.props){
@@ -215,10 +215,16 @@ export default class Navigation extends Component {
       newTour.start();
   }
 
+  _handleNavigationSearchChange(e) {
+    if (e.keyCode === 13) {
+      this._handleNavigationSearchSubmit()
+    }
+  }
+
   _handleNavigationSearchSubmit(e) {
 
     // If search bar is not visible, this button should show it
-    if (this.refs.navigationSearchField._getInputNode().offsetParent === null) {
+    if (this.refs.navigationSearchField.input.offsetParent === null) {
       this.setState({
         searchBarVisibleInMobile: true,
         searchContextPopoverOpen: false
@@ -253,7 +259,7 @@ export default class Navigation extends Component {
       }
 
       // Clear out the input field
-      this.refs.navigationSearchField.setValue("");
+      this.refs.navigationSearchField.input.value = '';
 
       if (searchQueryParam && searchQueryParam != '') {
         this.props.replaceWindowPath(queryPath + '/search/' + searchQueryParam);
@@ -307,7 +313,7 @@ export default class Navigation extends Component {
         <AppBar
           title={<span className="hidden-xs"><img src="/assets/images/logo.png" style={{padding: "0 0 5px 0"}} alt={this.props.properties.title} /></span>}
           showMenuIconButton={isDialect ? true : true}
-          onLeftIconButtonTouchTap={this._handleOpenMenuRequest}>
+          onLeftIconButtonClick={this._handleOpenMenuRequest}>
 
           <ToolbarGroup style={{position: 'relative', color: '#fff'}}>
 
@@ -331,7 +337,7 @@ export default class Navigation extends Component {
                   badgeStyle={{top: '12px',left: '42px', width: '15px', height: '15px', borderRadius: '25%', visibility: (userTaskCount == 0) ? 'hidden' : 'visible'}}
                   primary={true}
                 >
-                  <IconButton iconStyle={{fill: '#fff'}} onTouchTap={this._onNavigateRequest.bind(this, '/tasks/')} disabled={(userTaskCount == 0) ? true : false}>
+                  <IconButton iconStyle={{fill: '#fff'}} onClick={this._onNavigateRequest.bind(this, '/tasks/')} disabled={(userTaskCount == 0) ? true : false}>
                     <NotificationsIcon />
                   </IconButton>
                 </Badge>
@@ -342,7 +348,7 @@ export default class Navigation extends Component {
                   badgeStyle={{top: '12px',left: '42px', width: '15px', height: '15px', borderRadius: '25%', visibility: (guideCount == 0) ? 'hidden' : 'visible'}}
                   primary={true}
                 >
-                  <IconButton iconStyle={{fill: '#fff'}} onTouchTap={(e) => this.setState({guidePopoverOpen: !this.state.guidePopoverOpen, guidePopoverAnchorEl: e.target})} disabled={(guideCount == 0) ? true : false}>
+                  <IconButton iconStyle={{fill: '#fff'}} onClick={(e) => this.setState({guidePopoverOpen: !this.state.guidePopoverOpen, guidePopoverAnchorEl: e.target})} disabled={(guideCount == 0) ? true : false}>
                     <ActionHelp />
                   </IconButton>
                 </Badge>*/}
@@ -377,7 +383,7 @@ export default class Navigation extends Component {
                                     return <tr key={'guide' + i}>
                                         <td>{selectn('properties.dc:title', guide)}<br/>{selectn('properties.dc:description', guide)}
                                         </td>
-                                        <td><RaisedButton onTouchTap={this._startTour.bind(this, guide)}
+                                        <td><RaisedButton onClick={this._startTour.bind(this, guide)}
                                                             primary={false} label={this.intl.translate({
                                             key: 'views.components.navigation.launch_guide',
                                             default: 'Launch Guide',
@@ -396,12 +402,12 @@ export default class Navigation extends Component {
             <ToolbarSeparator className="search-bar-seperator" style={{float: 'none', marginRight: 0, marginLeft: 0}} />
 
             <div style={{background: themePalette.primary1Color, display: 'inline-block'}} className={classNames({'hidden-xs': !this.state.searchBarVisibleInMobile, 'search-bar-mobile': this.state.searchBarVisibleInMobile})}>
-              <TextField underlineStyle={{width:'79%'}} style={{marginLeft: (this.state.searchBarVisibleInMobile) ? '15px' : '30px', fontSize: '15px', height: '38px', backgroundColor: '#fff', paddingLeft: '10px', lineHeight: '1', width: (this.state.searchBarVisibleInMobile) ? '214px' : 'inherit', paddingRight: (this.state.searchBarVisibleInMobile) ? '0' : '40px'}} ref="navigationSearchField" hintText={this.intl.translate({key: 'general.search', default: 'Search', case: 'first', append: ':'})} onBlur={() => this.setState({searchContextPopoverOpen: (isDialect) ? true : false })} onFocus={(e) => this.setState({searchContextPopoverOpen: true, searchContextPopoverAnchorEl: e.target})} onEnterKeyDown={this._handleNavigationSearchSubmit} name="searchbox" />
-              <FlatButton className={classNames({'hidden': !this.state.searchBarVisibleInMobile})} style={{color: themePalette.alternateTextColor}} label={this.intl.translate({key: 'general.cancel',default: 'Cancel',case: 'first'})} onTouchTap={(e) => {this.setState({searchBarVisibleInMobile: false}); e.preventDefault(); }} />
+              <TextField underlineStyle={{width:'79%'}} style={{marginLeft: (this.state.searchBarVisibleInMobile) ? '15px' : '30px', fontSize: '15px', height: '38px', backgroundColor: '#fff', paddingLeft: '10px', lineHeight: '1', width: (this.state.searchBarVisibleInMobile) ? '214px' : 'inherit', paddingRight: (this.state.searchBarVisibleInMobile) ? '0' : '40px'}} ref="navigationSearchField" hintText={this.intl.translate({key: 'general.search', default: 'Search', case: 'first', append: ':'})} onBlur={() => this.setState({searchContextPopoverOpen: (isDialect) ? true : false })} onFocus={(e) => this.setState({searchContextPopoverOpen: true, searchContextPopoverAnchorEl: e.target})} onKeyDown={this._handleNavigationSearchChange} name="searchbox" />
+              <FlatButton className={classNames({'hidden': !this.state.searchBarVisibleInMobile})} style={{color: themePalette.alternateTextColor}} label={this.intl.translate({key: 'general.cancel',default: 'Cancel',case: 'first'})} onClick={(e) => {this.setState({searchBarVisibleInMobile: false}); e.preventDefault(); }} />
             </div>
 
             <IconButton
-                onTouchTap={this._handleNavigationSearchSubmit}
+                onClick={this._handleNavigationSearchSubmit}
                 iconClassName="material-icons"
                 style={{position:'relative', top: '7px', padding: '0', left: 0}}
                 iconStyle={{fontSize: '24px', padding: '3px', borderRadius: '20px', color: '#FFFFFF'}}>
@@ -492,7 +498,7 @@ export default class Navigation extends Component {
           <ToolbarSeparator className="locale-seperator" style={{float: 'none', marginRight: 0, marginLeft: 0}} />
 
           <IconButton
-              onTouchTap={this._handleDisplayLocaleOptions}
+              onClick={this._handleDisplayLocaleOptions}
               iconClassName="material-icons"
               style={{position:'relative', top: '7px', padding: '0', left: 0}}
               iconStyle={{fontSize: '24px', padding: '3px', borderRadius: '20px', color: '#FFFFFF'}}>
@@ -526,7 +532,7 @@ export default class Navigation extends Component {
                   return <div className="row" style={{backgroundColor: themePalette.primary2Color, minHeight: '64px', margin: '0'}}>
 
                       <div className="col-xs-12">
-                        <h2 style={{fontWeight: '500', margin: '0'}}><a style={{textDecoration: 'none', color: '#fff'}} onTouchTap={this._onNavigateRequest.bind(this, '/explore' + this.props.routeParams.dialect_path)}><Avatar src={UIHelpers.getThumbnail(portalLogo, 'Thumbnail')} size={50} style={{marginRight: '10px', marginTop: '8px', marginLeft: '3px'}} /> <span style={{verticalAlign: '-5px'}}>{this.intl.searchAndReplace(portalTitle)}</span></a></h2>
+                        <h2 style={{fontWeight: '500', margin: '0'}}><a style={{textDecoration: 'none', color: '#fff'}} onClick={this._onNavigateRequest.bind(this, '/explore' + this.props.routeParams.dialect_path)}><Avatar src={UIHelpers.getThumbnail(portalLogo, 'Thumbnail')} size={50} style={{marginRight: '10px', marginTop: '8px', marginLeft: '3px'}} /> <span style={{verticalAlign: '-5px'}}>{this.intl.searchAndReplace(portalTitle)}</span></a></h2>
                       </div>
 
                     </div>;

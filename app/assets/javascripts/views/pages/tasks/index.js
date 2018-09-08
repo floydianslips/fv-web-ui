@@ -14,7 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
  */
 
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List, Map} from 'immutable';
 import classNames from 'classnames';
 import provide from 'react-redux-provide';
@@ -24,15 +25,15 @@ import ConfGlobal from 'conf/local.json';
 
 import t from 'tcomb-form';
 
-import Dialog from 'material-ui/lib/dialog';
+import Dialog from 'material-ui/Dialog';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
 
-import RaisedButton from 'material-ui/lib/raised-button';
-import FlatButton from 'material-ui/lib/flat-button';
+import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/lib/table';
+import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 
 import SelectFactory from 'views/components/Editor/fields/select';
 import DocumentView from 'views/components/Document/view';
@@ -202,16 +203,16 @@ export default class Tasks extends React.Component {
 
             let tableRow = <TableRow key={i}>
                 <TableRowColumn>
-                    <a onTouchTap={this._handleOpen.bind(this, task.docref)}>{task.documentTitle}</a>
+                    <a onClick={this._handleOpen.bind(this, task.docref)}>{task.documentTitle}</a>
                 </TableRowColumn>
                 <TableRowColumn>
                     <span>{intl.searchAndReplace(task.name)}</span>
                 </TableRowColumn>
                 <TableRowColumn>
                     <RaisedButton label={intl.trans('approve', 'Approve', 'first')} secondary={true}
-                                  onTouchTap={this._handleTaskActions.bind(this, task.id, 'approve')}/> &nbsp;
+                                  onClick={this._handleTaskActions.bind(this, task.id, 'approve')}/> &nbsp;
                     <RaisedButton label={intl.trans('reject', 'Reject', 'first')} secondary={true}
-                                  onTouchTap={this._handleTaskActions.bind(this, task.id, 'reject')}/>
+                                  onClick={this._handleTaskActions.bind(this, task.id, 'reject')}/>
                 </TableRowColumn>
                 <TableRowColumn>{task.dueDate}</TableRowColumn>
             </TableRow>;
@@ -227,16 +228,16 @@ export default class Tasks extends React.Component {
 
             let tableRow = <TableRow key={i}>
                 <TableRowColumn>
-                    <a onTouchTap={this._handleOpen.bind(this, uid)}>{selectn('properties.dc:title', task)}</a>
+                    <a onClick={this._handleOpen.bind(this, uid)}>{selectn('properties.dc:title', task)}</a>
                 </TableRowColumn>
                 <TableRowColumn>
                     <span>{intl.trans('views.pages.tasks.request_to_join', 'Request to join')} {selectn('properties.docinfo:documentTitle', task)}</span>
                 </TableRowColumn>
                 <TableRowColumn>
                     <RaisedButton label={intl.trans('approve', 'Approve', 'first')} secondary={true}
-                                  onTouchTap={this._handlePreApprovalOpen.bind(this, task, 'approve')}/> &nbsp;
+                                  onClick={this._handlePreApprovalOpen.bind(this, task, 'approve')}/> &nbsp;
                     <RaisedButton label={intl.trans('reject', 'Reject', 'first')} secondary={true}
-                                  onTouchTap={this._handleRegistrationActions.bind(this, uid, 'reject')}/>
+                                  onClick={this._handleRegistrationActions.bind(this, uid, 'reject')}/>
                 </TableRowColumn>
                 <TableRowColumn>N/A</TableRowColumn>
             </TableRow>;

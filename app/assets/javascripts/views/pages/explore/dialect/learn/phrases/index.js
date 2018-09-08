@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List, Set, Map} from 'immutable';
 import classNames from 'classnames';
 import provide from 'react-redux-provide';
@@ -29,8 +30,8 @@ import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 import PageDialectLearnBase from 'views/pages/explore/dialect/learn/base';
 import PhraseListView from 'views/pages/explore/dialect/learn/phrases/list-view';
 
-import CircularProgress from 'material-ui/lib/circular-progress';
-import RaisedButton from 'material-ui/lib/raised-button';
+import CircularProgress from 'material-ui/CircularProgress';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import FacetFilterList from 'views/components/Browsing/facet-filter-list';
 
@@ -159,7 +160,7 @@ export default class PageDialectLearnPhrases extends PageDialectLearnBase {
                     }}>
                         <RaisedButton
                             label={intl.trans('views.pages.explore.dialect.phrases.create_new_phrase', 'Create New Phrase', 'words')}
-                            onTouchTap={this._onNavigateRequest.bind(this, 'create')} primary={true}/>
+                            onClick={this._onNavigateRequest.bind(this, 'create')} primary={true}/>
                     </AuthorizationFilter>
                 </div>
             </div>

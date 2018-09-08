@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import provide from 'react-redux-provide';
 import selectn from 'selectn';
 
@@ -26,17 +27,12 @@ import UIHelpers from 'common/UIHelpers';
 
 import MetadataList from 'views/components/Browsing/metadata-list';
 
-import Avatar from 'material-ui/lib/avatar';
-import Card from 'material-ui/lib/card/card';
-import CardActions from 'material-ui/lib/card/card-actions';
-import CardHeader from 'material-ui/lib/card/card-header';
-import CardMedia from 'material-ui/lib/card/card-media';
-import CardTitle from 'material-ui/lib/card/card-title';
-import CardText from 'material-ui/lib/card/card-text';
-import FlatButton from 'material-ui/lib/flat-button';
-import Divider from 'material-ui/lib/divider';
+import Avatar from 'material-ui/Avatar';
+import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
+import Divider from 'material-ui/Divider';
 
-import CircularProgress from 'material-ui/lib/circular-progress';
+import CircularProgress from 'material-ui/CircularProgress';
 import IntlService from "views/services/intl";
 
 const intl = IntlService.instance;
@@ -257,7 +253,7 @@ export default class Preview extends Component {
             padding: '10px 0'
         }, this.props.styles);
 
-        let body = <CircularProgress mode="indeterminate" size={1}/>;
+        let body = <CircularProgress mode="indeterminate" size={59.5}/>;
 
         switch (this.props.type) {
             case 'FVWord':

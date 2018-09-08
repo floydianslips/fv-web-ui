@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 
 import classNames from 'classnames';
@@ -28,26 +29,21 @@ import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 import Header from 'views/pages/explore/dialect/header';
 import PageToolbar from 'views/pages/explore/dialect/page-toolbar';
 
-import Toggle from 'material-ui/lib/toggle';
-import TextField from 'material-ui/lib/text-field';
-import DropDownMenu from 'material-ui/lib/DropDownMenu';
-import IconMenu from 'material-ui/lib/menus/icon-menu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import FlatButton from 'material-ui/lib/flat-button';
+import Toggle from 'material-ui/Toggle';
+import TextField from 'material-ui/TextField';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import FlatButton from 'material-ui/FlatButton';
 
-import NavigationExpandMoreIcon from 'material-ui/lib/svg-icons/navigation/expand-more';
-import Paper from 'material-ui/lib/paper';
-import CircularProgress from 'material-ui/lib/circular-progress';
-import Snackbar from 'material-ui/lib/snackbar';
+import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Paper from 'material-ui/Paper';
+import CircularProgress from 'material-ui/CircularProgress';
+import Snackbar from 'material-ui/Snackbar';
 
-import Toolbar from 'material-ui/lib/toolbar/toolbar';
-import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
-import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
+import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
 
-import ListUI from 'material-ui/lib/lists/list';
-import ListItem from 'material-ui/lib/lists/list-item';
-
-import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
+import { List as ListUI, ListItem } from 'material-ui/List';
 
 import Preview from 'views/components/Editor/Preview';
 
@@ -277,14 +273,14 @@ export default class ExploreDialect extends Component {
                 <Toolbar className="dialect-navigation">
 
                     <ToolbarGroup firstChild={true}>
-                        <FlatButton onTouchTap={this._onNavigateRequest.bind(this, this.props.windowPath + '/learn')}
+                        <FlatButton onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/learn')}
                                     label={intl.trans('learn_our_lang', 'Learn Our Language', 'words')}/>
-                        <FlatButton onTouchTap={this._onNavigateRequest.bind(this, this.props.windowPath + '/play')}
+                        <FlatButton onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/play')}
                                     label={intl.trans('views.pages.explore.dialect.play_game', 'Play a Game', 'words')}/>
-                        <FlatButton onTouchTap={this._onNavigateRequest.bind(this, this.props.windowPath + '/gallery')}
+                        <FlatButton onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/gallery')}
                                     label={intl.trans('views.pages.explore.dialect.photo_gallery', 'Photo Gallery', 'words')}/>
                         <FlatButton
-                            onTouchTap={this._onNavigateRequest.bind(this, this.props.windowPath.replace('explore', 'kids'))}
+                            onClick={this._onNavigateRequest.bind(this, this.props.windowPath.replace('explore', 'kids'))}
                             label={intl.trans('views.pages.explore.dialect.kids_portal', 'Kids Portal', 'words')}/>
                     </ToolbarGroup>
 

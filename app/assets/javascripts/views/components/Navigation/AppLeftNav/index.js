@@ -13,21 +13,26 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, { Component, PropTypes } from 'react';
+import React, { Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, { Map } from 'immutable';
 
 import provide from 'react-redux-provide';
 import selectn from 'selectn';
 
-import {Divider, List, ListItem, LeftNav, AppBar} from 'material-ui/lib';
+// import {Divider, List, ListItem, LeftNav, AppBar} from 'material-ui';
+import Divider from 'material-ui/Divider'
+import { List, ListItem } from 'material-ui/List'
+import Drawer from 'material-ui/Drawer'
+import AppBar from 'material-ui/AppBar'
+import { makeSelectable } from 'material-ui/List'
 
-import IconButton from 'material-ui/lib/icon-button';
-import NavigationClose from 'material-ui/lib/svg-icons/navigation/close';
+import IconButton from 'material-ui/IconButton';
+import NavigationClose from '@material-ui/icons/Close';
 
-import { SelectableContainerEnhance } from 'material-ui/lib/hoc/selectable-enhance';
 import IntlService from 'views/services/intl';
 
-let SelectableList = SelectableContainerEnhance(List);
+let SelectableList = makeSelectable(List);
 
 @provide
 export default class AppLeftNav extends Component {
@@ -169,21 +174,17 @@ export default class AppLeftNav extends Component {
   render() {
 
     return (
-      <LeftNav 
+      <Drawer 
         docked={true}
         style={{height: 'auto'}}
         open={this.props.computeToggleMenuAction.menuVisible}
         onRequestChange={this._onRequestChange}
         >
           <AppBar
-            iconElementLeft={<IconButton onTouchTap={this._onRequestChange}><NavigationClose /></IconButton>}
+            iconElementLeft={<IconButton onClick={this._onRequestChange}><NavigationClose /></IconButton>}
             title={<img src="/assets/images/logo.png" style={{padding: '0 0 5px 0'}} alt={this.props.properties.title} />} />
 
-          <SelectableList
-            valueLink={{
-              value: location.pathname,
-              requestChange: this._onNavigateRequest
-          }}>
+          <SelectableList value={location.pathname} onChange={this._onNavigateRequest}>
 
             {this.state.routes.map((d, i) => 
                 <ListItem
@@ -208,11 +209,7 @@ export default class AppLeftNav extends Component {
 
             if (selectn("isConnected", this.props.computeLogin)) {
               
-              return <SelectableList
-                valueLink={{
-                  value: location.pathname,
-                  requestChange: this._onNavigateRequest
-              }}>
+              return <SelectableList value={location.pathname} onChange={this._onNavigateRequest}>
 
               <ListItem
                   key="profile"
@@ -238,7 +235,7 @@ export default class AppLeftNav extends Component {
 
           })()}
 
-      </LeftNav>
+      </Drawer>
     );
   }
 }

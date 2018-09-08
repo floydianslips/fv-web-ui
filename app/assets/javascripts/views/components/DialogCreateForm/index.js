@@ -1,7 +1,7 @@
 import React from 'react';
-import Dialog from 'material-ui/lib/dialog';
-import FlatButton from 'material-ui/lib/flat-button';
-import RaisedButton from 'material-ui/lib/raised-button';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import PageDialectPhrasesCreate from 'views/pages/explore/dialect/learn/phrases/create';
 import PageDialectCategoryCreate from 'views/pages/explore/dialect/category/create';
@@ -117,14 +117,14 @@ export default class DialogCreateForm extends React.Component {
         // Show Create New button, unless otherwise specified
         let createNewButton = "";
         if (!this.props.fieldAttributes.disableCreateNewButton || this.props.fieldAttributes.disableCreateNewButton === false) {
-            createNewButton = <RaisedButton label={createNewButtonLabel} onTouchTap={this.handleOpen}/>;
+            createNewButton = <RaisedButton label={createNewButtonLabel} onClick={this.handleOpen}/>;
         }
 
         const actions = [
             <FlatButton
                 label={intl.trans('cancel', 'Cancel', 'first')}
                 secondary={true}
-                onTouchTap={this.handleClose}/>
+                onClick={this.handleClose}/>
         ];
 
         return (

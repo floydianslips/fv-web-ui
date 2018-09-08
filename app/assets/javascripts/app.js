@@ -15,10 +15,11 @@ limitations under the License.
 */
 import 'babel-polyfill';
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component} from 'react';
+import PropTypes from 'prop-types';
 import { render } from 'react-dom'
 
-import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import FirstVoicesTheme from 'views/themes/FirstVoicesTheme.js';
 
@@ -47,7 +48,7 @@ const context = {
             pageTitleParams: null,
             domain: ConfGlobal.domain,
             theme: {
-                palette: ThemeManager.getMuiTheme(FirstVoicesTheme),
+                palette: getMuiTheme(FirstVoicesTheme),
                 id: 'default'
             }
         }

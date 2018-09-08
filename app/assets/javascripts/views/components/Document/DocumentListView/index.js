@@ -13,20 +13,20 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import selectn from 'selectn';
-import DataGrid from 'react-datagrid';
+import DataGrid from 'react-datagrid2';
 
 import GridView from 'views/pages/explore/dialect/learn/base/grid-view';
 
-import ClearFix from 'material-ui/lib/clearfix';
-import Paper from 'material-ui/lib/paper';
+import Paper from 'material-ui/Paper';
 
 import withPagination from 'views/hoc/grid-list/with-pagination';
 
 // Stylesheet
-import '!style-loader!css-loader!react-datagrid/dist/index.min.css';
+import '!style-loader!css-loader!react-datagrid2/dist/index.min.css';
 
 const GridViewWithPagination = withPagination(GridView, 8);
 
@@ -139,7 +139,7 @@ export default class DocumentListView extends Component {
             }
         }
 
-        return <Paper><ClearFix>
+        return <Paper>
             <DataGrid
                 idProperty="uid"
                 dataSource={selectn('response.entries', this.props.data)}
@@ -164,6 +164,6 @@ export default class DocumentListView extends Component {
                 onPageSizeChange={this._onPageSizeChange}
                 emptyText={intl.trans('no_records', 'No records', 'words')}
                 showCellBorders={true}/>
-        </ClearFix></Paper>;
+        </Paper>;
     }
 }

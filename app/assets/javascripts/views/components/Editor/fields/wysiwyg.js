@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import t from 'tcomb-form';
 import classNames from 'classnames';
 import AlloyEditorComponent from 'views/components/Editor/AlloyEditorComponent';

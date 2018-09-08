@@ -13,16 +13,17 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import provide from 'react-redux-provide';
 import selectn from 'selectn';
 import t from 'tcomb-form';
 
 // Views
-import RaisedButton from 'material-ui/lib/raised-button';
-import Paper from 'material-ui/lib/paper';
-import CircularProgress from 'material-ui/lib/circular-progress';
+import RaisedButton from 'material-ui/RaisedButton';
+import Paper from 'material-ui/Paper';
+import CircularProgress from 'material-ui/CircularProgress';
 
 import StatusBar from 'views/components/StatusBar';
 
@@ -160,7 +161,7 @@ export default class PageDialectContributorsCreate extends Component {
         let contributor = ProviderHelpers.getEntry(computeContributor, this.state.contributorPath);
 
         if (computeDialect.isFetching || !computeDialect.success) {
-            return <CircularProgress mode="indeterminate" size={2}/>;
+            return <CircularProgress mode="indeterminate" size={59.5}/>;
         }
 
         return <div>

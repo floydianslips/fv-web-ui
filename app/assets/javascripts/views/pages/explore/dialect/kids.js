@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 
 import classNames from 'classnames';
@@ -21,8 +22,8 @@ import provide from 'react-redux-provide';
 
 import selectn from 'selectn';
 
-import GridList from 'material-ui/lib/grid-list/grid-list';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
+import GridList from 'material-ui/GridList/GridList';
+import GridTile from 'material-ui/GridList/GridTile';
 
 import UIHelpers from 'common/UIHelpers';
 import IntlService from 'views/services/intl';
@@ -73,7 +74,7 @@ export default class Kids extends Component {
                       style={{width: '100%', overflowY: 'auto', marginBottom: 0}}
                       >
                       <GridTile
-                            onTouchTap={this._onNavigateRequest.bind(this, this.props.windowPath + '/learn/words/categories')}
+                            onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/learn/words/categories')}
                             key='words'
                             title={<span style={tileTitleStyle}>Words</span>}
                             style={tileStyle}
@@ -82,7 +83,7 @@ export default class Kids extends Component {
                       </GridTile>
 
                       <GridTile
-                            onTouchTap={this._onNavigateRequest.bind(this, this.props.windowPath + '/learn/phrases/categories')}
+                            onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/learn/phrases/categories')}
                             key='phrases'
                             title={<span style={tileTitleStyle}>Phrases</span>}
                             style={tileStyle}
@@ -91,7 +92,7 @@ export default class Kids extends Component {
                       </GridTile>
 
                       <GridTile
-                            onTouchTap={this._onNavigateRequest.bind(this, this.props.windowPath + '/learn/songs-stories')}
+                            onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/learn/songs-stories')}
                             key='songs-stories'
                             title={<span style={tileTitleStyle}>Songs and Stories</span>}
                             style={tileStyle}
@@ -100,7 +101,7 @@ export default class Kids extends Component {
                       </GridTile>
 
                       <GridTile
-                            onTouchTap={this._onNavigateRequest.bind(this, this.props.windowPath + '/play')}
+                            onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/play')}
                             key='games'
                             title={<span style={tileTitleStyle}>Games</span>}
                             style={tileStyle}

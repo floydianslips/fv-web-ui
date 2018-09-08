@@ -13,17 +13,18 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import Immutable, {List, Map} from 'immutable';
 
-import RaisedButton from 'material-ui/lib/raised-button';
-import TextField from 'material-ui/lib/text-field';
-import Colors from 'material-ui/lib/styles/colors';
-import FontIcon from 'material-ui/lib/font-icon';
-import IconButton from 'material-ui/lib/icon-button';
-import AVPlayArrow from 'material-ui/lib/svg-icons/av/play-arrow';
-import AVStop from 'material-ui/lib/svg-icons/av/stop';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
+import * as Colors from 'material-ui/styles/colors';
+import FontIcon from 'material-ui/FontIcon';
+import IconButton from 'material-ui/IconButton';
+import AVPlayArrow from '@material-ui/icons/PlayArrow';
+import AVStop from '@material-ui/icons/Stop';
 
 import classNames from 'classnames';
 
@@ -240,7 +241,7 @@ export class Scramble extends Component {
                     color: '#3f8b53'
                 }}><img style={{marginRight: '10px'}}
                         src={UIHelpers.getThumbnail(this.props.sentence.picture, 'Thumbnail')}/> {this.props.sentence.translation} {(this.state.complete) ?
-                    <IconButton onTouchTap={audioCallback}>{audioIcon}</IconButton> : ''}</div>
+                    <IconButton onClick={audioCallback}>{audioIcon}</IconButton> : ''}</div>
                 <div style={{minHeight: '50px', borderBottom: '1px solid #CCC', marginBottom: '16px'}}>
                     {this.state.selected.map((word, index) => {
                         return <RaisedButton key={index} style={{backgroundColor: '#a7fba5'}} label={word}

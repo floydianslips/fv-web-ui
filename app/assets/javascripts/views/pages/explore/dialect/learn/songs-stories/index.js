@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List, Map} from 'immutable';
 
 import classNames from 'classnames';
@@ -29,12 +30,12 @@ import NavigationHelpers from 'common/NavigationHelpers';
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 import PageDialectLearnBase from 'views/pages/explore/dialect/learn/base';
 
-import RaisedButton from 'material-ui/lib/raised-button';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
-import DropDownMenu from 'material-ui/lib/DropDownMenu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
 
 import GeneralList from 'views/components/Browsing/general-list';
 import {CardView} from './list-view';
@@ -164,7 +165,7 @@ export default class PageDialectLearnStoriesAndSongs extends Component {
                     }}>
                         <RaisedButton
                             label={intl.trans('views.pages.explore.dialect.learn.songs_stories.create_x_book', "Create " + this.props.typeFilter + " Book", 'words', [this.props.typeFilter])}
-                            onTouchTap={this._onNavigateRequest.bind(this, this.props.windowPath + '/create')}
+                            onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/create')}
                             primary={true}/>
                     </AuthorizationFilter>
                 </div>

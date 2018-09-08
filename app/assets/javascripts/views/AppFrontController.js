@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 
 import provide from 'react-redux-provide';
@@ -15,7 +16,7 @@ import AnalyticsHelpers from 'common/AnalyticsHelpers';
 
 import {Link} from 'provide-page';
 
-import FlatButton from 'material-ui/lib/flat-button';
+import FlatButton from 'material-ui/FlatButton';
 import Navigation from 'views/components/Navigation';
 import KidsNavigation from 'views/components/Kids/Navigation';
 import Footer from 'views/components/Navigation/Footer';
@@ -1591,7 +1592,7 @@ export default class AppFrontController extends Component {
                             key: 'dismiss',
                             default: 'Dismiss',
                             case: 'words'
-                        })} onTouchTap={() => this.setState({warningsDismissed: true})}/>
+                        })} onClick={() => this.setState({warningsDismissed: true})}/>
                     </div>;
                 }
             }.bind(this))}

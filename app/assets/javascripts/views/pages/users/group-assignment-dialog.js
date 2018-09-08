@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {Map} from 'immutable';
 import classNames from 'classnames';
 import selectn from 'selectn';
@@ -23,8 +24,8 @@ import StringHelpers from 'common/StringHelpers';
 
 import t from 'tcomb-form';
 
-import FlatButton from 'material-ui/lib/flat-button';
-import Dialog from 'material-ui/lib/dialog';
+import FlatButton from 'material-ui/FlatButton';
+import Dialog from 'material-ui/Dialog';
 import IntlService from "views/services/intl";
 
 const intl = IntlService.instance;
@@ -175,13 +176,13 @@ export default class GroupAssignmentDialog extends Component {
                 <FlatButton
                     label={intl.trans('cancel', 'Cancel', 'first')}
                     secondary={true}
-                    onTouchTap={this.props.closeMethod}
+                    onClick={this.props.closeMethod}
                 />,
                 <FlatButton
                     label={intl.trans('submit', 'Submit', 'first')}
                     primary={true}
                     keyboardFocused={true}
-                    onTouchTap={this._onRequestSaveForm}
+                    onClick={this._onRequestSaveForm}
                 />,
             ]}
             onRequestClose={this.props.closeMethod}

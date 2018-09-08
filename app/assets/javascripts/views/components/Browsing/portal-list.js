@@ -13,15 +13,16 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List, Map} from 'immutable';
 import selectn from 'selectn';
 
-import Colors from 'material-ui/lib/styles/colors';
+import * as Colors from 'material-ui/styles/colors';
 
-import GridList from 'material-ui/lib/grid-list/grid-list';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
-import ActionGrade from 'material-ui/lib/svg-icons/action/grade';
+import GridList from 'material-ui/GridList/GridList';
+import GridTile from 'material-ui/GridList/GridTile';
+import ActionGrade from '@material-ui/icons/Grade';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 import UIHelpers from 'common/UIHelpers';
@@ -83,7 +84,7 @@ export default class PortalList extends Component {
                     let logo = selectn(this.props.fieldMapping.logo, tile);
 
                     return <GridTile
-                        onTouchTap={this.props.action.bind(this, tile.path.replace('/Portal', ''))}
+                        onClick={this.props.action.bind(this, tile.path.replace('/Portal', ''))}
                         key={tile.uid}
                         title={IntlService.instance.searchAndReplace(title)}
                         actionPosition="right"

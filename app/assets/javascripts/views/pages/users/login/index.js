@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List, Map} from 'immutable';
 import classNames from 'classnames';
 import provide from 'react-redux-provide';
@@ -24,11 +25,10 @@ import {User} from 'nuxeo';
 import ProviderHelpers from 'common/ProviderHelpers';
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
-// Components
-import FlatButton from 'material-ui/lib/flat-button';
-import IconButton from 'material-ui/lib/icon-button';
-import RaisedButton from 'material-ui/lib/raised-button';
-import TextField from 'material-ui/lib/text-field';
+import FlatButton from 'material-ui/FlatButton';
+import IconButton from 'material-ui/IconButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';
@@ -153,7 +153,7 @@ export default class PageUserLogin extends Component {
             <div style={{"width": "100%"}}>
                 <h6>{loginStatusMessage}</h6>
                 <div><a style={{"cursor": "pointer", "fontWeight": "100", "fontSize": "14px", "fontWeight": "bold"}}
-                        onTouchTap={this._onNavigateRequest.bind(this, "forgotpassword")}>{intl.trans('forgot_password', 'Forgot Password', 'words')}?</a>
+                        onClick={this._onNavigateRequest.bind(this, "forgotpassword")}>{intl.trans('forgot_password', 'Forgot Password', 'words')}?</a>
                 </div>
                 <div><TextField style={Object.assign({}, TextFieldStyle, {"margin": "15px 0"})} underlineShow={false}
                                 ref="username"
@@ -167,14 +167,14 @@ export default class PageUserLogin extends Component {
                     "backgroundColor": themePalette.primary4ColorLightest,
                     "padding": "0 3px"
                 }}>{loginFeedbackMessage}</p>
-                <RaisedButton style={{"width": "100%"}} secondary={true} onTouchTap={this._handleLogin}
+                <RaisedButton style={{"width": "100%"}} secondary={true} onClick={this._handleLogin}
                               label={intl.trans('views.pages.users.login.sign_in', 'Sign In', 'words')}/>
                 <h6 style={{
                     "fontWeight": "500",
                     "paddingTop": "10px"
                 }}>{intl.trans('views.components.navigation.new_to_firstvoices', 'New to FirstVoices?', 'words')}</h6>
                 <RaisedButton style={{"width": "100%"}} primary={true}
-                              onTouchTap={this._onNavigateRequest.bind(this, "register")}
+                              onClick={this._onNavigateRequest.bind(this, "register")}
                               label={intl.trans('register', 'Register')}/>
             </div>
         </div>);
@@ -208,7 +208,7 @@ export default class PageUserLogin extends Component {
                     <p>{intl.trans('views.pages.users.login.you_are_signed_in', 'Your are signed in', 'first')}</p>
                     <p>{intl.trans('welcome', 'Welcome', 'first')}, <a
                         style={{'textTransform': 'uppercase', 'cursor': 'pointer'}}
-                        onTouchTap={this._onNavigateRequest.bind(this, 'profile')}>{userName}</a>.</p>
+                        onClick={this._onNavigateRequest.bind(this, 'profile')}>{userName}</a>.</p>
                 </div>
             </div>);
         }
