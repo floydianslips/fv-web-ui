@@ -23,7 +23,6 @@ import selectn from 'selectn';
 // Components
 import Popover from 'material-ui/Popover';
 import FlatButton from 'material-ui/FlatButton';
-import IconButton from 'material-ui/IconButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
