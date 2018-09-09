@@ -30,7 +30,7 @@ import MetadataList from 'views/components/Browsing/metadata-list';
 import Avatar from 'material-ui/Avatar';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-import Divider from 'material-ui/Divider';
+import Divider from '@material-ui/core/Divider';
 
 import CircularProgress from 'material-ui/CircularProgress';
 import IntlService from "views/services/intl";

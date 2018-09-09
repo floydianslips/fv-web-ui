@@ -50,7 +50,7 @@ import CardMedia from 'material-ui/Card/CardMedia';
 import CardTitle from 'material-ui/Card/CardTitle';
 import FlatButton from 'material-ui/FlatButton';
 import CardText from 'material-ui/Card/CardText';
-import Divider from 'material-ui/Divider';
+import Divider from '@material-ui/core/Divider';
 
 import ListUI from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';

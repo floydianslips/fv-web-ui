@@ -17,7 +17,7 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import Divider from 'material-ui/Divider';
+import Divider from '@material-ui/core/Divider';
 import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
 import LeftNav from 'material-ui/Drawer';

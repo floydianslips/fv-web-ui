@@ -21,7 +21,7 @@ import provide from 'react-redux-provide';
 import selectn from 'selectn';
 
 // import {Divider, List, ListItem, LeftNav, AppBar} from 'material-ui';
-import Divider from 'material-ui/Divider'
+import Divider from '@material-ui/core/Divider'
 import { List, ListItem } from 'material-ui/List'
 import Drawer from 'material-ui/Drawer'
 import AppBar from 'material-ui/AppBar'
