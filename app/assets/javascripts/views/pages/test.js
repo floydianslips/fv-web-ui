@@ -201,7 +201,7 @@ export default class Test extends Component {
     
 
     if (!portalOperation || portalOperation.isFetching) {
-      return <div><CircularProgress mode="indeterminate" size={5} /> {selectn('message', portalOperation)}</div>;
+      return <div><CircularProgress style={{ color: "#b40000" }} variant="indeterminate" size={5} /> {selectn('message', portalOperation)}</div>;
     }
 
     if (portalOperation.isError) {

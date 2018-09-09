@@ -161,7 +161,7 @@ export default class PageDialectContributorsCreate extends Component {
         let contributor = ProviderHelpers.getEntry(computeContributor, this.state.contributorPath);
 
         if (computeDialect.isFetching || !computeDialect.success) {
-            return <CircularProgress mode="indeterminate" size={59.5}/>;
+            return <CircularProgress style={{ color: "#b40000" }} variant="indeterminate" size={59.5}/>;
         }
 
         return <div>

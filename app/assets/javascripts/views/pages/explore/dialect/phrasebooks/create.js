@@ -161,7 +161,7 @@ export default class PageDialectPhraseBooksCreate extends Component {
         let phrasebook = ProviderHelpers.getEntry(computeCategory, this.state.phrasebookPath);
 
         if (computeDialect.isFetching || !computeDialect.success) {
-            return <CircularProgress mode="indeterminate" size={119}/>;
+            return <CircularProgress style={{ color: "#b40000" }} variant="indeterminate" size={119}/>;
         }
 
         return <div>

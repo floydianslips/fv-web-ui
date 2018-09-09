@@ -253,7 +253,7 @@ export default class Preview extends Component {
             padding: '10px 0'
         }, this.props.styles);
 
-        let body = <CircularProgress mode="indeterminate" size={59.5}/>;
+        let body = <CircularProgress style={{ color: "#b40000" }} variant="indeterminate" size={59.5}/>;
 
         switch (this.props.type) {
             case 'FVWord':

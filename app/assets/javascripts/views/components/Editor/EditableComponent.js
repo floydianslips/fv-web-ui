@@ -93,7 +93,7 @@ export default class EditableComponent extends Component {
 
         // If still computing, return spinner
         if (entity.isFetching)
-            return <CircularProgress mode="indeterminate" size={119}/>;
+            return <CircularProgress style={{ color: "#b40000" }} variant="indeterminate" size={119}/>;
 
         // Get current value for field from properties
         let currentValue = selectn(property, this.state.savedValue) || selectn("properties." + property, entity);
