@@ -191,7 +191,7 @@ export default class AddMediaComponent extends Component {
         let fileTypeLabel = intl.trans('file', 'File', 'first');
 
         const actions = [
-            <FlatButton
+            <Button variant='flat'
                 label={intl.trans('cancel', 'Cancel', 'first')}
                 secondary={true}
                 onClick={this.handleClose}/>
@@ -236,7 +236,7 @@ export default class AddMediaComponent extends Component {
 
         if (computeCreate && computeCreate.success) {
             uploadText = <div className={classNames('alert', 'alert-success')} role="success">Upload successful!</div>
-            actions.push(<FlatButton
+            actions.push(<Button variant='flat'
                 label={intl.trans('insert_into_entry', 'Insert into Entry', 'first')}
                 primary={true}
                 onClick={this._handleSelectElement.bind(this, computeCreate.response)}/>);

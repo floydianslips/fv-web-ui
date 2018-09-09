@@ -36,7 +36,6 @@ import TextHeader from 'views/components/Document/Typography/text-header';
 
 import {Link} from 'provide-page';
 
-import FlatButton from 'material-ui/FlatButton';
 import Divider from 'material-ui/Divider';
 
 import ListUI from 'material-ui/List/List';

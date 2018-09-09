@@ -27,7 +27,7 @@ import EditorInsertChart from '@material-ui/icons/InsertChart';
 import Toolbar from 'material-ui/Toolbar/Toolbar';
 import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
 import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
-import FlatButton from 'material-ui/FlatButton';
+import Button from '@material-ui/core/Button';
 
 import AuthenticationFilter from 'views/components/Document/AuthenticationFilter';
 import IntlService from 'views/services/intl';
@@ -108,15 +108,15 @@ export default class ToolbarNavigation extends Component {
         return <Toolbar className="dialect-navigation">
 
             <ToolbarGroup firstChild={true} float="left">
-                <FlatButton onClick={this._onNavigateRequest.bind(this, 'words')}
+                <Button variant='flat' onClick={this._onNavigateRequest.bind(this, 'words')}
                             label={intl.trans('words', 'Words', 'first') + " (" + wordCount + ")"}/>
-                <FlatButton onClick={this._onNavigateRequest.bind(this, 'phrases')}
+                <Button variant='flat' onClick={this._onNavigateRequest.bind(this, 'phrases')}
                             label={intl.trans('phrases', 'Phrases', 'first') + " (" + phraseCount + ")"}/>
-                <FlatButton onClick={this._onNavigateRequest.bind(this, 'songs')}
+                <Button variant='flat' onClick={this._onNavigateRequest.bind(this, 'songs')}
                             label={intl.trans('songs', 'Songs', 'first') + " (" + songCount + ")"}/>
-                <FlatButton onClick={this._onNavigateRequest.bind(this, 'stories')}
+                <Button variant='flat' onClick={this._onNavigateRequest.bind(this, 'stories')}
                             label={intl.trans('stories', 'Stories', 'first') + " (" + storyCount + ")"}/>
-                <FlatButton onClick={this._onNavigateRequest.bind(this, 'alphabet')}
+                <Button variant='flat' onClick={this._onNavigateRequest.bind(this, 'alphabet')}
                             label={intl.trans('alphabet', 'Alphabet', 'first')}/>
             </ToolbarGroup>
 
@@ -124,7 +124,7 @@ export default class ToolbarNavigation extends Component {
                                   routeParams={this.props.routeParams}>
                 <ToolbarGroup className={classNames('hidden-xs', {'hidden': !this.props.showStats})} firstChild={false}
                               float="right">
-                    <FlatButton icon={<EditorInsertChart/>} style={{color: '#fff'}} onClick={this.props.showStats}
+                    <Button variant='flat' icon={<EditorInsertChart/>} style={{color: '#fff'}} onClick={this.props.showStats}
                                 label={intl.trans('language_statistics', 'Language Statistics')}/>
                 </ToolbarGroup>
             </AuthenticationFilter>

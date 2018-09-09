@@ -34,7 +34,6 @@ import SearchBar from 'views/pages/explore/dialect/search-bar';
 import Paper from 'material-ui/Paper';
 import Button from '@material-ui/core/Button';
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
-import FlatButton from 'material-ui/FlatButton';
 import CircularProgress from 'material-ui/CircularProgress';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';

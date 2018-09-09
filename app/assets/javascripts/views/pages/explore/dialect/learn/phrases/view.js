@@ -42,7 +42,6 @@ import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 import Dialog from 'material-ui/Dialog';
 
 import Avatar from 'material-ui/Avatar';
-import FlatButton from 'material-ui/FlatButton';
 import Divider from 'material-ui/Divider';
 
 import { List as ListUI, ListItem } from 'material-ui/List';

@@ -25,9 +25,8 @@ import {User} from 'nuxeo';
 import ProviderHelpers from 'common/ProviderHelpers';
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
-import FlatButton from 'material-ui/FlatButton';
-import IconButton from 'material-ui/IconButton';
 import Button from '@material-ui/core/Button';
+import IconButton from 'material-ui/IconButton';
 import TextField from 'material-ui/TextField';
 
 import fields from 'models/schemas/fields';

@@ -22,9 +22,8 @@ import selectn from 'selectn';
 
 // Components
 import Popover from 'material-ui/Popover';
-import FlatButton from 'material-ui/FlatButton';
-import IconButton from 'material-ui/IconButton';
 import Button from '@material-ui/core/Button';
+import IconButton from 'material-ui/IconButton';
 import TextField from 'material-ui/TextField';
 
 import ActionExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -171,7 +170,7 @@ export default class Login extends Component {
 
         return (
             <div style={{display: "inline-block", paddingTop: '15px', maxWidth: '205px'}}>
-                <FlatButton ref={(el) => {
+                <Button variant='flat' ref={(el) => {
                     this.anchorEl = el
                 }} label={this.props.label} style={{"color": themePalette.alternateTextColor}}
                             onClick={this._handleOpen}/>

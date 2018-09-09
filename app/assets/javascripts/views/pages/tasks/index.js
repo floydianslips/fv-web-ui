@@ -31,7 +31,6 @@ import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
 
 import Button from '@material-ui/core/Button';
-import FlatButton from 'material-ui/FlatButton';
 
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 

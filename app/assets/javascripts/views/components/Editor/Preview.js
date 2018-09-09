@@ -29,7 +29,7 @@ import MetadataList from 'views/components/Browsing/metadata-list';
 
 import Avatar from 'material-ui/Avatar';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import Button from '@material-ui/core/Button';
 import Divider from 'material-ui/Divider';
 
 import CircularProgress from 'material-ui/CircularProgress';

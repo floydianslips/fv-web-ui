@@ -174,7 +174,7 @@ export default class BrowseComponent extends React.Component {
         const dialectPath = selectn('path', dialect);
 
         const actions = [
-            <FlatButton
+            <Button variant='flat'
                 label={intl.trans('cancel', 'Cancel', 'first')}
                 secondary={true}
                 onClick={this._handleClose}/>

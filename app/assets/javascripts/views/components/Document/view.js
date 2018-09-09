@@ -44,14 +44,13 @@ import Dialog from 'material-ui/Dialog';
 
 import Avatar from 'material-ui/Avatar';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import Button from '@material-ui/core/Button';
 import Divider from 'material-ui/Divider';
 
 import { List as ListUI, ListItem } from 'material-ui/List';
 
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
 import FontIcon from 'material-ui/FontIcon';
-import Button from '@material-ui/core/Button';
 
 import { Tabs, Tab } from 'material-ui/Tabs';
 

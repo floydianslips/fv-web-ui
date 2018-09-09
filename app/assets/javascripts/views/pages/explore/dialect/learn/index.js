@@ -30,7 +30,6 @@ import PageToolbar from 'views/pages/explore/dialect/page-toolbar';
 import SearchBar from 'views/pages/explore/dialect/search-bar';
 
 import Button from '@material-ui/core/Button';
-import FlatButton from 'material-ui/FlatButton';
 
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';

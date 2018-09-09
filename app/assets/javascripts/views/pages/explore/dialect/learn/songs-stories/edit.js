@@ -34,7 +34,6 @@ import {Document} from 'nuxeo';
 
 // Views
 import Button from '@material-ui/core/Button';
-import FlatButton from 'material-ui/FlatButton';
 
 import Paper from 'material-ui/Paper';
 import CircularProgress from 'material-ui/CircularProgress';

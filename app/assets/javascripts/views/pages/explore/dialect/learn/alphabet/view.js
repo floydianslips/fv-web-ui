@@ -48,7 +48,6 @@ import CardActions from 'material-ui/Card/CardActions';
 import CardHeader from 'material-ui/Card/CardHeader';
 import CardMedia from 'material-ui/Card/CardMedia';
 import CardTitle from 'material-ui/Card/CardTitle';
-import FlatButton from 'material-ui/FlatButton';
 import CardText from 'material-ui/Card/CardText';
 import Divider from 'material-ui/Divider';
 

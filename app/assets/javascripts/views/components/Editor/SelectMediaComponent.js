@@ -172,7 +172,7 @@ export default class SelectMediaComponent extends React.Component {
     render() {
 
         const actions = [
-            <FlatButton
+            <Button variant='flat'
                 label={intl.trans('cancel', 'Cancel', 'first')}
                 secondary={true}
                 onClick={this._handleClose}/>
