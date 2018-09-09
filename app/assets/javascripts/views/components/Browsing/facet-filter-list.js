@@ -99,7 +99,7 @@ export default class FacetFilterList extends Component {
                                 nestedItems.push(<ListItem
                                     key={facetChild.uid}
                                     leftCheckbox={<Checkbox checked={checked}
-                                                            onCheck={this._toggleCheckbox.bind(this, facetChild.uid, null)}/>}
+                                                            onChange={this._toggleCheckbox.bind(this, facetChild.uid, null)}/>}
                                     style={listItemStyle}
                                     primaryText={this.intl.searchAndReplace(facetChild.title)}/>);
                             }.bind(this));
@@ -109,7 +109,7 @@ export default class FacetFilterList extends Component {
                             style={listItemStyle}
                             key={facet.uid}
                             leftCheckbox={<Checkbox checked={parentFacetChecked}
-                                                    onCheck={this._toggleCheckbox.bind(this, facet.uid, childrenIds)}/>}
+                                                    onChange={this._toggleCheckbox.bind(this, facet.uid, childrenIds)}/>}
                             primaryText={facet.title}
                             open={parentFacetChecked}
                             initiallyOpen={true}
