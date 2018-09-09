@@ -16,7 +16,7 @@ import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';
 
 import IconButton from '@material-ui/core/IconButton';
-import Icon from '@material-ui/core/Icon';
+import EditIcon from '@material-ui/icons/Edit';
 import CircularProgress from 'material-ui/CircularProgress';
 import IntlService from "views/services/intl";
 
@@ -157,7 +157,7 @@ export default class EditableComponent extends Component {
                 width: '22px',
                 display: (this.props.accessDenied) ? 'none' : 'inline-block'
             }} onClick={this._onEditRequest.bind(this, property)}
-            tooltip={intl.trans('edit', 'Edit', 'first')}><Icon>mode_edit</Icon></IconButton>
+            tooltip={intl.trans('edit', 'Edit', 'first')}><EditIcon /></IconButton>
         </div>;
     }
 

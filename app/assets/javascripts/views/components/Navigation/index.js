@@ -49,7 +49,8 @@ import FlatButton from 'material-ui/FlatButton';
 import Toolbar from 'material-ui/Toolbar/Toolbar';
 import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
 import IconButton from '@material-ui/core/IconButton';
-import Icon from '@material-ui/core/Icon';
+import SearchIcon from '@material-ui/icons/Search';
+import SettingsIcon from '@material-ui/icons/Settings';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ActionHelp from '@material-ui/icons/Help';
@@ -412,7 +413,7 @@ export default class Navigation extends Component {
                 iconClassName="material-icons"
                 style={{position:'relative', top: '7px', padding: '0', left: 0}}
                 iconStyle={{fontSize: '24px', padding: '3px', borderRadius: '20px', color: '#FFFFFF'}}>
-                <Icon>search</Icon>
+                <SearchIcon />
             </IconButton>
 
             <Popover
@@ -503,7 +504,7 @@ export default class Navigation extends Component {
               iconClassName="material-icons"
               style={{position:'relative', top: '7px', padding: '0', left: 0}}
               iconStyle={{fontSize: '24px', padding: '3px', borderRadius: '20px', color: '#FFFFFF'}}>
-              <Icon>settings</Icon>
+              <SettingsIcon />
           </IconButton>
 
           </ToolbarGroup>
