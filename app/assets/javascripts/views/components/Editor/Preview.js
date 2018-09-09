@@ -32,7 +32,7 @@ import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'm
 import FlatButton from 'material-ui/FlatButton';
 import Divider from 'material-ui/Divider';
 
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import IntlService from "views/services/intl";
 
 const intl = IntlService.instance;

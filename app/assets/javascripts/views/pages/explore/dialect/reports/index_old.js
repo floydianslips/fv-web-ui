@@ -23,7 +23,7 @@ import { List, ListItem } from 'material-ui/List';
 import DocumentOperations from 'operations/DocumentOperations';
 import DocumentListView from 'views/components/Document/DocumentListView';
 
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Doughnut from 'react-chartjs/lib/doughnut';
 import IntlService from 'views/services/intl';
 

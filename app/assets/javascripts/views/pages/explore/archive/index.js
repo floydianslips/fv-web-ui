@@ -28,7 +28,7 @@ import ProviderHelpers from 'common/ProviderHelpers';
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
 import { GridList, GridTile } from 'material-ui/GridList';
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;

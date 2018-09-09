@@ -38,7 +38,7 @@ import FlatButton from 'material-ui/FlatButton';
 
 import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Paper from 'material-ui/Paper';
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Snackbar from 'material-ui/Snackbar';
 
 import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';

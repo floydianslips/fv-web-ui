@@ -55,7 +55,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 import { Tabs, Tab } from 'material-ui/Tabs';
 
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import WordListView from 'views/pages/explore/dialect/learn/words/list-view';
 import PhraseListView from 'views/pages/explore/dialect/learn/phrases/list-view';
