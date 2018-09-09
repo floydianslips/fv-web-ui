@@ -53,7 +53,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 import { Tab } from 'material-ui/Tabs';
 
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import '!style-loader!css-loader!react-image-gallery/build/image-gallery.css';
 

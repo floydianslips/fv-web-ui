@@ -17,7 +17,7 @@ import options from 'models/schemas/options';
 
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import IntlService from "views/services/intl";
 
 const intl = IntlService.instance;
@@ -94,7 +94,7 @@ export default class EditableComponent extends Component {
 
         // If still computing, return spinner
         if (entity.isFetching)
-            return <CircularProgress mode="indeterminate" size={119}/>;
+            return <CircularProgress style={{ color: "#b40000" }} variant="indeterminate" size={119}/>;
 
         // Get current value for field from properties
         let currentValue = selectn(property, this.state.savedValue) || selectn("properties." + property, entity);

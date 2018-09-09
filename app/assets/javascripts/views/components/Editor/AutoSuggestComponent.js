@@ -7,7 +7,7 @@ import selectn from 'selectn';
 import Autosuggest from 'react-autosuggest';
 
 import RefreshIndicator from 'material-ui/RefreshIndicator';
-import LinearProgress from 'material-ui/LinearProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import IntlService from "views/services/intl";
 
 const theme = {
@@ -228,7 +228,7 @@ export default class AutoSuggestComponent extends Component {
                 </div>
 
                 <div className="col-xs-12">
-                    <LinearProgress mode="indeterminate"
+                    <LinearProgress variant="indeterminate"
                                     className={classNames({'hidden': !this.getComputeType().isFetching})}/>
                 </div>
 

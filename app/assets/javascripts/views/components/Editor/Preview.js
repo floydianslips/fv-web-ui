@@ -32,7 +32,7 @@ import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'm
 import FlatButton from 'material-ui/FlatButton';
 import Divider from 'material-ui/Divider';
 
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import IntlService from "views/services/intl";
 
 const intl = IntlService.instance;
@@ -253,7 +253,7 @@ export default class Preview extends Component {
             padding: '10px 0'
         }, this.props.styles);
 
-        let body = <CircularProgress mode="indeterminate" size={59.5}/>;
+        let body = <CircularProgress style={{ color: "#b40000" }} variant="indeterminate" size={59.5}/>;
 
         switch (this.props.type) {
             case 'FVWord':

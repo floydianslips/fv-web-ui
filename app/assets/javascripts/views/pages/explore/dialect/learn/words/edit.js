@@ -34,7 +34,7 @@ import {Document} from 'nuxeo';
 // Views
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';

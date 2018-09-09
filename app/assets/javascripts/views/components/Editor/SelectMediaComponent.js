@@ -31,7 +31,7 @@ import GridTile from 'material-ui/GridList/GridTile';
 import MediaList from 'views/components/Browsing/media-list';
 import withPagination from 'views/hoc/grid-list/with-pagination';
 import withFilter from 'views/hoc/grid-list/with-filter';
-import LinearProgress from 'material-ui/LinearProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 import IconButton from '@material-ui/core/IconButton';
 import ActionInfo from '@material-ui/icons/Info';
@@ -218,7 +218,7 @@ export default class SelectMediaComponent extends React.Component {
                     <div
                         className={classNames('alert', 'alert-info', {'hidden': !selectn('isFetching', computeResources)})}>
                         {intl.trans('loading_results_please_wait', 'Loading results, please wait.', 'first')}<br/>
-                        <LinearProgress mode="indeterminate"/>
+                        <LinearProgress variant="indeterminate"/>
                     </div>
 
                     <FilteredPaginatedMediaList

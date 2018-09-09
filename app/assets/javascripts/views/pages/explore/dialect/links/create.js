@@ -23,7 +23,7 @@ import t from 'tcomb-form';
 // Views
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import StatusBar from 'views/components/StatusBar';
 
@@ -164,7 +164,7 @@ export default class PageDialectLinksCreate extends Component {
         let link = ProviderHelpers.getEntry(computeLink, this.state.linkPath);
 
         if (computeDialect.isFetching || !computeDialect.success) {
-            return <CircularProgress mode="indeterminate" size={119}/>;
+            return <CircularProgress style={{ color: "#b40000" }} variant="indeterminate" size={119}/>;
         }
 
         return <div>
