@@ -1,5 +1,5 @@
 import React from 'react';
-import Snackbar from 'material-ui/Snackbar';
+import Snackbar from '@material-ui/core/Snackbar';
 import RaisedButton from 'material-ui/RaisedButton';
 
 export default class StatusBar extends React.Component {

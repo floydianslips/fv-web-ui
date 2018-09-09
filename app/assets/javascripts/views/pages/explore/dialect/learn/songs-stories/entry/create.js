@@ -28,7 +28,7 @@ import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
-import Snackbar from 'material-ui/Snackbar';
+import Snackbar from '@material-ui/core/Snackbar';
 
 import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';
