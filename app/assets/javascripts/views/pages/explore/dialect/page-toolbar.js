@@ -31,7 +31,8 @@ import {RaisedButton, FlatButton, IconButton, FontIcon} from 'material-ui';
 import Toolbar from 'material-ui/Toolbar/Toolbar';
 import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
 import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
-import Toggle from 'material-ui/Toggle';
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import IconMenu from 'material-ui/IconMenu';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
@@ -262,14 +263,18 @@ export default class PageToolbar extends Component {
                                 margin: '17px 5px 10px 5px',
                                 position: 'relative'
                             }}>
-                                <Toggle
-                                    toggled={documentEnabled || documentPublished}
-                                    onToggle={this._documentActionsToggleEnabled}
-                                    ref="enabled"
-                                    disabled={documentPublished}
-                                    name="enabled"
-                                    value="enabled"
-                                    label={intl.trans('enabled', 'Enabled', 'first')}/>
+                                <FormControlLabel
+                                    control={
+                                        <Switch
+                                            checked={documentEnabled || documentPublished}
+                                            onChange={this._documentActionsToggleEnabled}
+                                            ref="enabled"
+                                            disabled={documentPublished}
+                                            name="enabled"
+                                            value="enabled"/>
+                                    }
+                                    label={<span style={{ fontSize: '18px', fontWeight: 400 }}>{intl.trans('enabled', 'Enabled', 'first')}</span>}
+                                />
                             </div>
                         </AuthorizationFilter>;
                     }
@@ -289,13 +294,17 @@ export default class PageToolbar extends Component {
                                     margin: '17px 5px 10px 5px',
                                     position: 'relative'
                                 }}>
-                                    <Toggle
-                                        toggled={documentPublished}
-                                        onToggle={this._documentActionsTogglePublished}
-                                        disabled={!documentEnabled && !documentPublished}
-                                        name="published"
-                                        value="published"
-                                        label={intl.trans('published', 'Published', 'first')}/>
+                                    <FormControlLabel
+                                        control={
+                                            <Switch
+                                                checked={documentPublished}
+                                                onChange={this._documentActionsTogglePublished}
+                                                disabled={!documentEnabled && !documentPublished}
+                                                name="published"
+                                                value="published"/>    
+                                        }
+                                        label={<span style={{ fontSize: '18px', fontWeight: 400 }}>{intl.trans('published', 'Published', 'first')}</span>}
+                                    />
                                 </div>
                             </AuthorizationFilter>;
                         }

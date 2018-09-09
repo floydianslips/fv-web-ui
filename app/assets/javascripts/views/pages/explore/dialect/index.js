@@ -29,7 +29,7 @@ import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 import Header from 'views/pages/explore/dialect/header';
 import PageToolbar from 'views/pages/explore/dialect/page-toolbar';
 
-import Toggle from 'material-ui/Toggle';
+import Switch from '@material-ui/core/Switch';
 import TextField from 'material-ui/TextField';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import IconMenu from 'material-ui/IconMenu';
