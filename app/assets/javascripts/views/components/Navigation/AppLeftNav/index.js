@@ -114,7 +114,9 @@ export default class AppLeftNav extends Component {
               key: 'views.components.navigation.view_work_in_progress',
               default: 'View work in progress or unpublished content'
             })}.</p>}
+            style={{ paddingLeft: '16px' }}
             primaryTypographyProps={{style: { fontSize: '16px' } }}
+            secondaryTypographyProps={{ style: { fontSize: '14px' } }}
           />
         </ListItem>,
 
@@ -128,7 +130,9 @@ export default class AppLeftNav extends Component {
               key: 'views.components.navigation.view_dialects_as_end_user',
               default: 'View dialects as an end user would view them'
             })}.</p>}
+            style={{ paddingLeft: '16px' }}
             primaryTypographyProps={{style: { fontSize: '16px' } }}
+            secondaryTypographyProps={{ style: { fontSize: '14px' } }}
           /> 
         </ListItem>
       ];
@@ -201,12 +205,19 @@ export default class AppLeftNav extends Component {
           <List value={location.pathname} onChange={this._onNavigateRequest}>
  
             {this.state.routes.map((d, i) => 
+              <React.Fragment>
                 <ListItem
                   button
                   onClick={this._onListItemClick(d.get('path'))}
                   key={d.get('id')}>
                   <ListItemText primary={d.get('label')} primaryTypographyProps={{style: { fontSize: '16px' } }} />
                 </ListItem>
+                {d.get('nestedItems') && (
+                  <List disablePadding>
+                    {d.get('nestedItems')}
+                  </List>
+                )}
+              </React.Fragment>
             )}
 
             {(selectn('response.entries', this.props.computeLoadNavigation) || []).map((d, i) => 
