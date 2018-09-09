@@ -8,7 +8,7 @@ import Paper from 'material-ui/Paper';
 import ListUI from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
 import ActionGrade from '@material-ui/icons/Grade';
-import Checkbox from 'material-ui/Checkbox';
+import Checkbox from '@material-ui/core/Checkbox';
 import withToggle from 'views/hoc/view/with-toggle';
 import IntlService from "views/services/intl";
 
