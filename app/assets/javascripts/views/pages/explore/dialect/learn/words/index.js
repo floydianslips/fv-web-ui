@@ -30,8 +30,8 @@ import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 import PageDialectLearnBase from 'views/pages/explore/dialect/learn/base';
 import WordListView from 'views/pages/explore/dialect/learn/words/list-view';
 
-import CircularProgress from 'material-ui/CircularProgress';
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import FacetFilterList from 'views/components/Browsing/facet-filter-list';
 

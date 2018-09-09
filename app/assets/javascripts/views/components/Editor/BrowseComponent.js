@@ -29,9 +29,9 @@ import {Dialog, FlatButton, RaisedButton} from 'material-ui';
 import GridTile from 'material-ui/GridList/GridTile';
 
 import MediaList from 'views/components/Browsing/media-list';
-import LinearProgress from 'material-ui/LinearProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
-import IconButton from 'material-ui/IconButton';
+import IconButton from '@material-ui/core/IconButton';
 import ActionInfo from '@material-ui/icons/Info';
 import ActionInfoOutline from '@material-ui/icons/InfoOutlined';
 

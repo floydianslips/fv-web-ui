@@ -41,8 +41,8 @@ import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 
 import Dialog from 'material-ui/Dialog';
 
-import Avatar from 'material-ui/Avatar';
-import Divider from 'material-ui/Divider';
+import Avatar from '@material-ui/core/Avatar';
+import Divider from '@material-ui/core/Divider';
 
 import { List as ListUI, ListItem } from 'material-ui/List';
 
@@ -52,7 +52,7 @@ import Button from '@material-ui/core/Button';
 
 import { Tab } from 'material-ui/Tabs';
 
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import '!style-loader!css-loader!react-image-gallery/build/image-gallery.css';
 

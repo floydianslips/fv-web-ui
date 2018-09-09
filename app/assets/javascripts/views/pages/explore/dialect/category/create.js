@@ -23,7 +23,7 @@ import t from 'tcomb-form';
 // Views
 import Button from '@material-ui/core/Button';
 import Paper from 'material-ui/Paper';
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import StatusBar from 'views/components/StatusBar';
 
@@ -169,7 +169,7 @@ export default class PageDialectCategoryCreate extends Component {
         let category = ProviderHelpers.getEntry(computeCategory, this.state.categoryPath);
 
         if (computeDialect.isFetching || !computeDialect.success) {
-            return <CircularProgress mode="indeterminate" size={119}/>;
+            return <CircularProgress style={{ color: "#b40000" }} variant="indeterminate" size={119}/>;
         }
 
         return <div>

@@ -32,9 +32,9 @@ import Button from '@material-ui/core/Button';
 import Toggle from 'material-ui/Toggle';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
-import IconButton from 'material-ui/IconButton';
+import IconButton from '@material-ui/core/IconButton';
 import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { Tabs, Tab } from 'material-ui/Tabs';
 import Statistics from 'views/components/Dashboard/Statistics';

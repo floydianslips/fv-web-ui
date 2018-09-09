@@ -39,7 +39,9 @@ import CardMedia from 'material-ui/Card/CardMedia';
 import CardText from 'material-ui/Card/CardText';
 
 import Button from '@material-ui/core/Button';
-import IconButton from 'material-ui/IconButton';
+import IconButton from '@material-ui/core/IconButton';
+import ClearIcon from '@material-ui/icons/Clear';
+import FlipToFrontIcon from '@material-ui/icons/FlipToFront';
 
 import Tabs from 'material-ui/Tabs/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
@@ -186,7 +188,7 @@ class CardView extends Component {
 
                         <IconButton iconClassName="material-icons"
                                     style={{position: 'absolute', right: 0, zIndex: 1000}}
-                                    onClick={() => this.setState({showIntro: false})}>clear</IconButton>
+                                    onClick={() => this.setState({showIntro: false})}><ClearIcon /></IconButton>
 
                         {(() => {
                             if (selectn('properties.fvbook:introduction', this.props.item)) {
@@ -218,7 +220,7 @@ class CardView extends Component {
                                 'float': 'right'
                             }} tooltipPosition="top-left"
                                                onClick={() => this.setState({showIntro: !this.state.showIntro})}
-                                               touch={true}>flip_to_front</IconButton>;
+                                               touch={true}><FlipToFrontIcon /></IconButton>;
                         }
                     })()}
 

@@ -32,7 +32,6 @@ import SearchBar from 'views/pages/explore/dialect/search-bar';
 import Button from '@material-ui/core/Button';
 
 import IconMenu from 'material-ui/IconMenu';
-import IconButton from 'material-ui/IconButton';
 import MenuItem from 'material-ui/MenuItem';
 import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
 

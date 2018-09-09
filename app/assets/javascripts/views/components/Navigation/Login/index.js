@@ -23,12 +23,11 @@ import selectn from 'selectn';
 // Components
 import Popover from 'material-ui/Popover';
 import Button from '@material-ui/core/Button';
-import IconButton from 'material-ui/IconButton';
 import TextField from 'material-ui/TextField';
 
 import ActionExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import {BrowserView, MobileView, isBrowser, isMobile} from 'react-device-detect';
 import IntlService from "views/services/intl";

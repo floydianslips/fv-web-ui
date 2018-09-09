@@ -42,14 +42,14 @@ import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 
 import Dialog from 'material-ui/Dialog';
 
-import Avatar from 'material-ui/Avatar';
+import Avatar from '@material-ui/core/Avatar';
 import Card from 'material-ui/Card/Card';
 import CardActions from 'material-ui/Card/CardActions';
 import CardHeader from 'material-ui/Card/CardHeader';
 import CardMedia from 'material-ui/Card/CardMedia';
 import CardTitle from 'material-ui/Card/CardTitle';
 import CardText from 'material-ui/Card/CardText';
-import Divider from 'material-ui/Divider';
+import Divider from '@material-ui/core/Divider';
 
 import ListUI from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';

@@ -30,8 +30,6 @@ import options from 'models/schemas/filter-options';
 import TextField from 'material-ui/TextField';
 import Button from '@material-ui/core/Button';
 
-import IconButton from 'material-ui/IconButton';
-
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 

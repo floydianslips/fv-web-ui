@@ -36,7 +36,7 @@ import TextHeader from 'views/components/Document/Typography/text-header';
 
 import {Link} from 'provide-page';
 
-import Divider from 'material-ui/Divider';
+import Divider from '@material-ui/core/Divider';
 
 import ListUI from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';

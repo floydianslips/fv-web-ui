@@ -41,18 +41,20 @@ import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
 import RadioButton from 'material-ui/RadioButton';
 import RadioButtonGroup from 'material-ui/RadioButton/RadioButtonGroup';
 
-import Badge from 'material-ui/Badge';
+import Badge from '@material-ui/core/Badge';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import Button from '@material-ui/core/Button';
 
 import Toolbar from 'material-ui/Toolbar/Toolbar';
 import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
-import IconButton from 'material-ui/IconButton';
+import IconButton from '@material-ui/core/IconButton';
+import SearchIcon from '@material-ui/icons/Search';
+import SettingsIcon from '@material-ui/icons/Settings';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ActionHelp from '@material-ui/icons/Help';
 import Popover from 'material-ui/Popover';
-import Avatar from 'material-ui/Avatar';
+import Avatar from '@material-ui/core/Avatar';
 
 import AuthenticationFilter from 'views/components/Document/AuthenticationFilter';
 
@@ -331,10 +333,12 @@ export default class Navigation extends Component {
             <AuthenticationFilter login={this.props.computeLogin} anon={false} routeParams={this.props.routeParams} containerStyle={{display: 'inline'}}>
               <span>
                 <Badge
-                  badgeContent={userTaskCount}
-                  style={{top: '8px', left: '-15px', padding: '0 0 12px 12px'}}
-                  badgeStyle={{top: '12px',left: '42px', width: '15px', height: '15px', borderRadius: '25%', visibility: (userTaskCount == 0) ? 'hidden' : 'visible'}}
-                  primary={true}
+                  style={{
+                    root: {top: '8px', left: '-15px', padding: '0 0 12px 12px'},
+                    badge: {top: '12px',left: '42px', width: '15px', height: '15px', borderRadius: '25%', visibility: (userTaskCount == 0) ? 'hidden' : 'visible'}
+                  }}
+                  badgeContent={userTaskCount || ''}
+                  variant="primary"
                 >
                   <IconButton iconStyle={{fill: '#fff'}} onClick={this._onNavigateRequest.bind(this, '/tasks/')} disabled={(userTaskCount == 0) ? true : false}>
                     <NotificationsIcon />
@@ -410,7 +414,7 @@ export default class Navigation extends Component {
                 iconClassName="material-icons"
                 style={{position:'relative', top: '7px', padding: '0', left: 0}}
                 iconStyle={{fontSize: '24px', padding: '3px', borderRadius: '20px', color: '#FFFFFF'}}>
-                search
+                <SearchIcon />
             </IconButton>
 
             <Popover
@@ -501,7 +505,7 @@ export default class Navigation extends Component {
               iconClassName="material-icons"
               style={{position:'relative', top: '7px', padding: '0', left: 0}}
               iconStyle={{fontSize: '24px', padding: '3px', borderRadius: '20px', color: '#FFFFFF'}}>
-              settings
+              <SettingsIcon />
           </IconButton>
 
           </ToolbarGroup>

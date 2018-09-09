@@ -22,7 +22,7 @@ import Button from '@material-ui/core/Button';
 import TextField from 'material-ui/TextField';
 import * as Colors from 'material-ui/styles/colors';
 import FontIcon from 'material-ui/FontIcon';
-import IconButton from 'material-ui/IconButton';
+import IconButton from '@material-ui/core/IconButton';
 import AVPlayArrow from '@material-ui/icons/PlayArrow';
 import AVStop from '@material-ui/icons/Stop';
 

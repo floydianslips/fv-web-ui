@@ -42,9 +42,9 @@ import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 
 import Dialog from 'material-ui/Dialog';
 
-import Avatar from 'material-ui/Avatar';
+import Avatar from '@material-ui/core/Avatar';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import Divider from 'material-ui/Divider';
+import Divider from '@material-ui/core/Divider';
 
 import { List as ListUI, ListItem } from 'material-ui/List';
 
@@ -54,7 +54,7 @@ import Button from '@material-ui/core/Button';
 
 import { Tabs, Tab } from 'material-ui/Tabs';
 
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import WordListView from 'views/pages/explore/dialect/learn/words/list-view';
 import PhraseListView from 'views/pages/explore/dialect/learn/phrases/list-view';

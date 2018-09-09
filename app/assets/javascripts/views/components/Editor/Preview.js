@@ -27,12 +27,12 @@ import UIHelpers from 'common/UIHelpers';
 
 import MetadataList from 'views/components/Browsing/metadata-list';
 
-import Avatar from 'material-ui/Avatar';
+import Avatar from '@material-ui/core/Avatar';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import Button from '@material-ui/core/Button';
-import Divider from 'material-ui/Divider';
+import Divider from '@material-ui/core/Divider';
 
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import IntlService from "views/services/intl";
 
 const intl = IntlService.instance;
@@ -253,7 +253,7 @@ export default class Preview extends Component {
             padding: '10px 0'
         }, this.props.styles);
 
-        let body = <CircularProgress mode="indeterminate" size={59.5}/>;
+        let body = <CircularProgress style={{ color: "#b40000" }} variant="indeterminate" size={59.5}/>;
 
         switch (this.props.type) {
             case 'FVWord':
