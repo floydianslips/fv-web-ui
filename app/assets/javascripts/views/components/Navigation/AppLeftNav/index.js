@@ -113,7 +113,8 @@ export default class AppLeftNav extends Component {
             secondary={<p>{this.intl.translate({
               key: 'views.components.navigation.view_work_in_progress',
               default: 'View work in progress or unpublished content'
-          })}.</p>}
+            })}.</p>}
+            primaryTypographyProps={{style: { fontSize: '16px' } }}
           />
         </ListItem>,
 
@@ -127,6 +128,7 @@ export default class AppLeftNav extends Component {
               key: 'views.components.navigation.view_dialects_as_end_user',
               default: 'View dialects as an end user would view them'
             })}.</p>}
+            primaryTypographyProps={{style: { fontSize: '16px' } }}
           /> 
         </ListItem>
       ];
@@ -203,7 +205,7 @@ export default class AppLeftNav extends Component {
                   button
                   onClick={this._onListItemClick(d.get('path'))}
                   key={d.get('id')}>
-                  <ListItemText primary={d.get('label')} />
+                  <ListItemText primary={d.get('label')} primaryTypographyProps={{style: { fontSize: '16px' } }} />
                 </ListItem>
             )}
 
@@ -212,7 +214,7 @@ export default class AppLeftNav extends Component {
                   button
                   onClick={this._onListItemClick('/content/' + selectn('properties.fvpage:url', d) + '/')}
                   key={selectn('uid', d)}>
-                  <ListItemText primary={selectn('properties.dc:title', d)} />
+                  <ListItemText primary={selectn('properties.dc:title', d)} primaryTypographyProps={{style: { fontSize: '16px' } }} />
                 </ListItem>
             )}
 
@@ -235,7 +237,8 @@ export default class AppLeftNav extends Component {
                       key: 'views.pages.users.profile.my_profile',
                       default: 'My Profile',
                       case: 'words'
-                  })} />
+                  })}
+                  primaryTypographyProps={{style: { fontSize: '16px' } }} />
               </ListItem>
 
               <ListItem
@@ -247,7 +250,8 @@ export default class AppLeftNav extends Component {
                       key: 'sign_out',
                       default: 'Sign Out',
                       case: 'words'
-                  })} />
+                  })}
+                  primaryTypographyProps={{style: { fontSize: '16px' } }} />
               </ListItem>
 
               </List>;
