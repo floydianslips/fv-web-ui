@@ -218,7 +218,7 @@ export default class SelectMediaComponent extends React.Component {
                     <div
                         className={classNames('alert', 'alert-info', {'hidden': !selectn('isFetching', computeResources)})}>
                         {intl.trans('loading_results_please_wait', 'Loading results, please wait.', 'first')}<br/>
-                        <LinearProgress mode="indeterminate"/>
+                        <LinearProgress variant="indeterminate"/>
                     </div>
 
                     <FilteredPaginatedMediaList

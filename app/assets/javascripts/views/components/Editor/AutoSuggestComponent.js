@@ -228,7 +228,7 @@ export default class AutoSuggestComponent extends Component {
                 </div>
 
                 <div className="col-xs-12">
-                    <LinearProgress mode="indeterminate"
+                    <LinearProgress variant="indeterminate"
                                     className={classNames({'hidden': !this.getComputeType().isFetching})}/>
                 </div>
 
