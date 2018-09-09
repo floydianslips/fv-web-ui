@@ -30,7 +30,7 @@ import AppBar from 'material-ui/AppBar';
 
 import TextField from 'material-ui/TextField';
 
-import Avatar from 'material-ui/Avatar';
+import Avatar from '@material-ui/core/Avatar';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
