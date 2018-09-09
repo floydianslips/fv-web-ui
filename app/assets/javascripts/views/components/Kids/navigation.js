@@ -35,7 +35,7 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
 
-import Badge from 'material-ui/Badge';
+import Badge from '@material-ui/core/Badge';
 import FlatButton from 'material-ui/FlatButton';
 import Toolbar from 'material-ui/Toolbar/Toolbar';
 import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
