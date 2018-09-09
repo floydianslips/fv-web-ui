@@ -31,7 +31,7 @@ import GridTile from 'material-ui/GridList/GridTile';
 import MediaList from 'views/components/Browsing/media-list';
 import withPagination from 'views/hoc/grid-list/with-pagination';
 import withFilter from 'views/hoc/grid-list/with-filter';
-import LinearProgress from 'material-ui/LinearProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 import IconButton from 'material-ui/IconButton';
 import ActionInfo from '@material-ui/icons/Info';

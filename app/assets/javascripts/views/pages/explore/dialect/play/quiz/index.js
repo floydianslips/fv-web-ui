@@ -19,7 +19,8 @@ import Immutable, {List, Map} from 'immutable';
 
 import classNames from 'classnames';
 
-import {IconButton, RaisedButton, LinearProgress} from 'material-ui';
+import {IconButton, RaisedButton} from 'material-ui';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 import ConfGlobal from 'conf/local.json';
 
