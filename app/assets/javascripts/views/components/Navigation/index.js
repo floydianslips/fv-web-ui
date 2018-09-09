@@ -38,8 +38,9 @@ import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
 
 import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
-import RadioButton from 'material-ui/RadioButton';
-import RadioButtonGroup from 'material-ui/RadioButton/RadioButtonGroup';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import Badge from '@material-ui/core/Badge';
 import DropDownMenu from 'material-ui/DropDownMenu';
@@ -436,10 +437,12 @@ export default class Navigation extends Component {
                         case: 'words'
                     })}</p>
                     <div>
-                        <RadioButtonGroup
+                        <RadioGroup
                             onChange={() => this.setState({searchLocal: !this.state.searchLocal})}
+                            value={this.state.searchLocal ? 'local' : 'all'}
                             name="searchTarget" defaultSelected="local">
-                            <RadioButton
+                            <FormControlLabel
+                                control={<Radio />}
                                 value={this.intl.translate({
                                     key: 'general.all',
                                     default: 'all',
@@ -457,7 +460,8 @@ export default class Navigation extends Component {
                                         append: '.'
                                     })}</span></span>)}
                             />
-                            <RadioButton
+                            <FormControlLabel
+                                control={<Radio />}
                                 value="local"
                                 label={(<span
                                     style={{fontWeight: '400'}}>{portalTitle || this.intl.translate({
@@ -483,7 +487,7 @@ export default class Navigation extends Component {
                                     append: '.'
                                 })}</span></span>)}
                             />
-                        </RadioButtonGroup>
+                        </RadioGroup>
                     </div>
                   </div>;
                 } else {
