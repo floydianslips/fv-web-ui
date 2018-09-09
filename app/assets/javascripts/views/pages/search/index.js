@@ -30,7 +30,7 @@ import options from 'models/schemas/filter-options';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import SelectField from 'material-ui/SelectField';
+import Select from '@material-ui/core/Select';
 import MenuItem from 'material-ui/MenuItem';
 
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
