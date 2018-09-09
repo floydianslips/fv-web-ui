@@ -20,8 +20,8 @@ import _ from 'underscore';
 
 import Tabs from 'material-ui/Tabs/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
-import List from 'material-ui/List/List';
-import ListItem from 'material-ui/List/ListItem';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;

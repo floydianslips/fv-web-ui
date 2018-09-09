@@ -18,7 +18,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import provide from 'react-redux-provide';
-import { List, ListItem } from 'material-ui/List';
+import { List, ListItem } from '@material-ui/core/List';
 
 import DocumentOperations from 'operations/DocumentOperations';
 import DocumentListView from 'views/components/Document/DocumentListView';

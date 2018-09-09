@@ -5,8 +5,8 @@ import Immutable, {List, Set, Map} from 'immutable';
 import selectn from 'selectn';
 
 import Paper from 'material-ui/Paper';
-import ListUI from 'material-ui/List/List';
-import ListItem from 'material-ui/List/ListItem';
+import ListUI from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 import ActionGrade from '@material-ui/icons/Grade';
 import Checkbox from 'material-ui/Checkbox';
 import withToggle from 'views/hoc/view/with-toggle';
