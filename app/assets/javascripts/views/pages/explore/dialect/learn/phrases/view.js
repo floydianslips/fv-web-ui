@@ -49,7 +49,7 @@ import { List as ListUI, ListItem } from 'material-ui/List';
 
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
 import FontIcon from 'material-ui/FontIcon';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 
 import { Tab } from 'material-ui/Tabs';
 

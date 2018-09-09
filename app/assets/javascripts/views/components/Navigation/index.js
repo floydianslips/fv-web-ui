@@ -43,7 +43,7 @@ import RadioButtonGroup from 'material-ui/RadioButton/RadioButtonGroup';
 
 import Badge from 'material-ui/Badge';
 import DropDownMenu from 'material-ui/DropDownMenu';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 import FlatButton from 'material-ui/FlatButton';
 
 import Toolbar from 'material-ui/Toolbar/Toolbar';
@@ -383,7 +383,7 @@ export default class Navigation extends Component {
                                     return <tr key={'guide' + i}>
                                         <td>{selectn('properties.dc:title', guide)}<br/>{selectn('properties.dc:description', guide)}
                                         </td>
-                                        <td><RaisedButton onClick={this._startTour.bind(this, guide)}
+                                        <td><Button variant='raised' onClick={this._startTour.bind(this, guide)}
                                                             primary={false} label={this.intl.translate({
                                             key: 'views.components.navigation.launch_guide',
                                             default: 'Launch Guide',

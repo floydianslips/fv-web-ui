@@ -29,7 +29,7 @@ import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 import {Document} from 'nuxeo';
 
 // Views
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 import Paper from 'material-ui/Paper';
 import CircularProgress from 'material-ui/CircularProgress';
 

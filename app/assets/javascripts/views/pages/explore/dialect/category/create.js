@@ -21,7 +21,7 @@ import selectn from 'selectn';
 import t from 'tcomb-form';
 
 // Views
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 import Paper from 'material-ui/Paper';
 import CircularProgress from 'material-ui/CircularProgress';
 

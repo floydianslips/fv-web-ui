@@ -33,7 +33,7 @@ import { Tabs, Tab } from 'material-ui/Tabs';
 import {Document} from 'nuxeo';
 
 // Views
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 import FlatButton from 'material-ui/FlatButton';
 
 import Paper from 'material-ui/Paper';

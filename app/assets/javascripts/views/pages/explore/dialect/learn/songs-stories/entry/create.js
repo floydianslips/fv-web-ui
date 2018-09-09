@@ -26,7 +26,7 @@ import NavigationHelpers from 'common/NavigationHelpers';
 
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 import Paper from 'material-ui/Paper';
 import Snackbar from 'material-ui/Snackbar';
 

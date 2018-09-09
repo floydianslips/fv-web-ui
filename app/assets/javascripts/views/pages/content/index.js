@@ -31,7 +31,7 @@ import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 import { GridList, GridTile } from 'material-ui/GridList';
 import CircularProgress from 'material-ui/CircularProgress';
 import Paper from 'material-ui/Paper';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 
 import TextField from 'material-ui/TextField';
 

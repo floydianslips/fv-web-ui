@@ -268,7 +268,7 @@ export default function withActions(ComposedFilter, publishWarningEnabled = fals
                         <div className="col-xs-12" style={{marginTop: '15px'}}>
                             <Toolbar className="toolbar">
                                 <ToolbarGroup key={0} float="right">
-                                    <RaisedButton icon={<FontIcon className="material-icons">delete</FontIcon>}
+                                    <Button variant='raised' icon={<FontIcon className="material-icons">delete</FontIcon>}
                                                   onClick={() => this.setState({deleteDialogOpen: true})}
                                                   secondary={true}
                                                   label={intl.trans('views.hoc.view.delete_x', "Delete " + StringHelpers.toTitleCase(this.props.labels.single), 'first', [StringHelpers.toTitleCase(this.props.labels.single)])}/>

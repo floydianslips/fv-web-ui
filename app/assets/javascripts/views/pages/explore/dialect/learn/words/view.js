@@ -43,7 +43,7 @@ import ListUI from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
 
 import FontIcon from 'material-ui/FontIcon';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 
 import Tab from 'material-ui/Tabs/Tab';
 

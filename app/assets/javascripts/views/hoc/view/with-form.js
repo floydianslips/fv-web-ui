@@ -147,7 +147,7 @@ export default function withForm(ComposedFilter, publishWarningEnabled = false) 
 
                                         <FlatButton onClick={this._onRequestCancelForm} style={{marginRight: '10px'}}
                                                 label={intl.trans('cancel', 'Cancel', 'first')}/>
-                                        <RaisedButton onClick={this._onRequestSaveForm.bind(this, computeItem)}
+                                        <Button variant='raised' onClick={this._onRequestSaveForm.bind(this, computeItem)}
                                                 primary={true} label={intl.trans('save', 'Save', 'first')}/>
 
                                     </div>
@@ -167,7 +167,7 @@ export default function withForm(ComposedFilter, publishWarningEnabled = false) 
 
                                         <FlatButton onClick={this._onRequestCancelForm} style={{marginRight: '10px'}}
                                                     label={intl.trans('cancel', 'Cancel', 'first')}/>
-                                        <RaisedButton onClick={this._onRequestSaveForm.bind(this, computeItem)}
+                                        <Button variant='raised' onClick={this._onRequestSaveForm.bind(this, computeItem)}
                                                       primary={true} label={intl.trans('save', 'Save', 'first')}/>
 
                                         <Popover

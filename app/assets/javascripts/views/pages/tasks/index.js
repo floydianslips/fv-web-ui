@@ -30,7 +30,7 @@ import Dialog from 'material-ui/Dialog';
 import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
 
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 import FlatButton from 'material-ui/FlatButton';
 
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
@@ -209,9 +209,9 @@ export default class Tasks extends React.Component {
                     <span>{intl.searchAndReplace(task.name)}</span>
                 </TableRowColumn>
                 <TableRowColumn>
-                    <RaisedButton label={intl.trans('approve', 'Approve', 'first')} secondary={true}
+                    <Button variant='raised' label={intl.trans('approve', 'Approve', 'first')} secondary={true}
                                   onClick={this._handleTaskActions.bind(this, task.id, 'approve')}/> &nbsp;
-                    <RaisedButton label={intl.trans('reject', 'Reject', 'first')} secondary={true}
+                    <Button variant='raised' label={intl.trans('reject', 'Reject', 'first')} secondary={true}
                                   onClick={this._handleTaskActions.bind(this, task.id, 'reject')}/>
                 </TableRowColumn>
                 <TableRowColumn>{task.dueDate}</TableRowColumn>
@@ -234,9 +234,9 @@ export default class Tasks extends React.Component {
                     <span>{intl.trans('views.pages.tasks.request_to_join', 'Request to join')} {selectn('properties.docinfo:documentTitle', task)}</span>
                 </TableRowColumn>
                 <TableRowColumn>
-                    <RaisedButton label={intl.trans('approve', 'Approve', 'first')} secondary={true}
+                    <Button variant='raised' label={intl.trans('approve', 'Approve', 'first')} secondary={true}
                                   onClick={this._handlePreApprovalOpen.bind(this, task, 'approve')}/> &nbsp;
-                    <RaisedButton label={intl.trans('reject', 'Reject', 'first')} secondary={true}
+                    <Button variant='raised' label={intl.trans('reject', 'Reject', 'first')} secondary={true}
                                   onClick={this._handleRegistrationActions.bind(this, uid, 'reject')}/>
                 </TableRowColumn>
                 <TableRowColumn>N/A</TableRowColumn>

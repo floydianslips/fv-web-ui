@@ -31,7 +31,7 @@ import AlphabetListView from 'views/pages/explore/dialect/learn/alphabet/list-vi
 
 import Paper from 'material-ui/Paper';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 import FontIcon from 'material-ui/FontIcon';
 import GridTile from 'material-ui/GridList/GridTile';
 
@@ -198,7 +198,7 @@ export default class PageDialectLearnAlphabet extends PageDialectLearnBase {
 
                     {(() => {
                         if (this.state.current_char !== null) {
-                            return <RaisedButton
+                            return <Button variant='raised'
                                 primary={true}
                                 label={"View Words and Phrases that start with " + this.state.current_char.title}
                                 onClick={this._onNavigateRequest.bind(this, this.state.current_char.path.split('/')[this.state.current_char.path.split('/').length - 1])}

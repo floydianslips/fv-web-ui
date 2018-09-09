@@ -67,7 +67,7 @@ class Answer extends React.Component {
         }
 
         return <div className="col-xs-6">
-            <RaisedButton style={{'width': '100%'}} labelColor={labelColor} disabled={disabled}
+            <Button variant='raised' style={{'width': '100%'}} labelColor={labelColor} disabled={disabled}
                           backgroundColor={backgroundColor} onClick={this.props.onSelect.bind(this, data, correct)}
                           label={(data) ? selectn('word', data) : 'Loading...'}/>
         </div>;
@@ -310,7 +310,7 @@ export default class Quiz extends Component {
                                 marginTop: '15px',
                                 padding: '0'
                             }}>{intl.trans('views.pages.explore.dialect.play.quiz.completed_this_quiz', 'Nice! You\'ve completed this quiz!')} {skillLevel}
-                                <RaisedButton onClick={this._restart}
+                                <Button variant='raised' onClick={this._restart}
                                               label={intl.trans('views.pages.explore.dialect.play.quiz.new_quiz', 'New Quiz', 'words')}
                                               style={{marginLeft: '10px'}}/></div> : ''}
 

@@ -30,7 +30,7 @@ import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 import { GridList, GridTile } from 'material-ui/GridList';
 import CircularProgress from 'material-ui/CircularProgress';
 import Paper from 'material-ui/Paper';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 
 //import Map from 'views/components/Geo/map';
 
@@ -165,7 +165,7 @@ export default class PageHome extends Component {
                                     )
                                 }}></p></div>
                             <div>
-                                <RaisedButton label={this.intl.translate({
+                                <Button variant='raised' label={this.intl.translate({
                                     key: 'get_started!',
                                     default: 'Get Started!',
                                     case: 'words'
@@ -173,7 +173,7 @@ export default class PageHome extends Component {
                                               onClick={this._onNavigateRequest.bind(this, '/explore/FV/sections/Data/')}
                                               style={{marginRight: '10px', height: '50px'}}
                                               labelColor={alternateTextColor} labelStyle={{fontSize: '1.34em'}}/>
-                                <div className="hidden" style={{display: 'inline-block'}}><RaisedButton primary={true}
+                                <div className="hidden" style={{display: 'inline-block'}}><Button variant='raised' primary={true}
                                                                                                         label={this.intl.translate({
                                                                                                             key: ['views', 'pages', 'home', 'language_map'],
                                                                                                             default: 'Language Map',
