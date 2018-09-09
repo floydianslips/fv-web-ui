@@ -33,7 +33,7 @@ import withPagination from 'views/hoc/grid-list/with-pagination';
 import withFilter from 'views/hoc/grid-list/with-filter';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-import IconButton from 'material-ui/IconButton';
+import IconButton from '@material-ui/core/IconButton';
 import ActionInfo from '@material-ui/icons/Info';
 import ActionInfoOutline from '@material-ui/icons/InfoOutlined';
 import IntlService from "views/services/intl";

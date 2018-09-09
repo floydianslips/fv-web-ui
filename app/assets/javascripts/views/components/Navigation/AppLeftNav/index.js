@@ -27,7 +27,8 @@ import Drawer from 'material-ui/Drawer'
 import AppBar from 'material-ui/AppBar'
 import { makeSelectable } from 'material-ui/List'
 
-import IconButton from 'material-ui/IconButton';
+import IconButton from '@material-ui/core/IconButton';
+
 import NavigationClose from '@material-ui/icons/Close';
 
 import IntlService from 'views/services/intl';
