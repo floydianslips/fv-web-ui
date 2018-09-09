@@ -22,6 +22,7 @@ import Tabs from 'material-ui/Tabs/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;
@@ -85,7 +86,7 @@ export default class SubViewTranslation extends Component {
                             <List>
 
                                 {group.map(function (groupValue, key) {
-                                    return (<ListItem key={key} primaryText={groupValue[_this.props.groupValue]}/>);
+                                    return (<ListItem key={key}><ListItemText primary={groupValue[_this.props.groupValue]} /></ListItem>);
                                 })}
 
                             </List>
