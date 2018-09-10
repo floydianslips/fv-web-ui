@@ -18,7 +18,7 @@ import PropTypes from 'prop-types';
 import provide from 'react-redux-provide';
 import selectn from 'selectn';
 
-import SelectField from 'material-ui/SelectField';
+import Select from '@material-ui/core/Select';
 import MenuItem from 'material-ui/MenuItem';
 
 import IntlService from 'views/services/intl';
@@ -82,13 +82,13 @@ export default class DirectoryList extends Component {
                 {
                     (this.props.fancy) ?
 
-                        <SelectField maxHeight={300} autoWidth={true} value={this.props.value}
+                        <Select maxHeight={300} autoWidth={true} value={this.props.value}
                                      onChange={this._handleChange}
                                      floatingLabelText={intl.trans('select_x', 'Select ' + this.props.label, 'first', [this.props.label]) + ':'}>
                             {entries.map((entry) =>
                                 <MenuItem key={entry.value} value={entry.value} primaryText={entry.text}/>
                             )}
-                        </SelectField>
+                        </Select>
 
                         :
 

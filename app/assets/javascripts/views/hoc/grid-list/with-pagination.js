@@ -6,7 +6,8 @@ import classNames from 'classnames';
 
 import Pagination from 'views/components/Navigation/Pagination';
 
-import {IconButton, MenuItem, SelectField} from "material-ui";
+import {IconButton, MenuItem} from "material-ui";
+import Select from '@material-ui/core/Select';
 
 import UIHelpers from 'common/UIHelpers';
 import IntlService from 'views/services/intl';
@@ -73,7 +74,7 @@ export default function withPagination(ComposedFilter, pageSize = 10, pageRange 
             const pageSizeControl = (!this.props.disablePageSize) ? <div>
                 <label style={{verticalAlign: '4px', marginRight: '10px'}}>Page:</label>
                 <span style={{verticalAlign: '4px'}}>{this.props.fetcherParams.currentPageIndex} / </span>
-                <SelectField style={{width: '45px', marginRight: '5px'}} value={this.state.currentPageSize}
+                <Select style={{width: '45px', marginRight: '5px'}} value={this.state.currentPageSize}
                              onChange={this._onPageSizeChange}>
                     <MenuItem value={Math.ceil(ips / 2)} primaryText={Math.ceil(ips / 2)}/>
                     <MenuItem value={Math.ceil(ips)} primaryText={Math.ceil(ips)}/>
@@ -81,7 +82,7 @@ export default function withPagination(ComposedFilter, pageSize = 10, pageRange 
                     <MenuItem value={Math.ceil(ips * 3)} primaryText={Math.ceil(ips * 3)}/>
                     <MenuItem value={Math.ceil(ips * 4)} primaryText={Math.ceil(ips * 4)}/>
                     <MenuItem value={Math.ceil(ips * 5)} primaryText={Math.ceil(ips * 5)}/>
-                </SelectField>
+                </Select>
                 <span
                     style={{verticalAlign: '4px'}}>{intl.trans('results', 'Results', 'first')}: {selectn('resultsCount', this.props.metadata)}</span>
             </div> : '';

@@ -35,7 +35,7 @@ import TextField from 'material-ui/TextField';
 
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
-import SelectField from 'material-ui/SelectField';
+import Select from '@material-ui/core/Select';
 
 import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
 import Radio from '@material-ui/core/Radio';
