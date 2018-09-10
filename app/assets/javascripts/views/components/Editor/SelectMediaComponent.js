@@ -25,7 +25,8 @@ import classNames from 'classnames';
 import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
 
-import {Dialog, FlatButton, RaisedButton} from 'material-ui';
+import {Dialog} from 'material-ui';
+import Button from '@material-ui/core/Button';
 import GridTile from 'material-ui/GridList/GridTile';
 
 import MediaList from 'views/components/Browsing/media-list';

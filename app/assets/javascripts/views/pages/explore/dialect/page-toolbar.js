@@ -26,7 +26,10 @@ import provide from 'react-redux-provide';
 import ProviderHelpers from 'common/ProviderHelpers';
 import UIHelpers from 'common/UIHelpers';
 
-import {RaisedButton, FlatButton, IconButton, FontIcon} from 'material-ui';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+
+import MenuIcon from '@material-ui/icons/Menu';
 
 import Toolbar from 'material-ui/Toolbar/Toolbar';
 import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
@@ -203,7 +206,7 @@ export default class PageToolbar extends Component {
                 <IconButton iconClassName="material-icons" onClick={(e) => {
                     this.setState({showActionsMobile: !this.state.showActionsMobile});
                     e.preventDefault();
-                }}>menu</IconButton>
+                }}><MenuIcon /></IconButton>
             </ToolbarGroup>
 
             <ToolbarGroup float="left" className={classNames({'hidden-xs': !this.state.showActionsMobile})}>

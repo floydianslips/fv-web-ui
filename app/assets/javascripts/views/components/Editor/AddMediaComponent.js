@@ -28,11 +28,12 @@ import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';
 
 import {
-    Card, CardHeader, CardMedia, CardTitle, CardActions, CardText, Avatar, FlatButton,
-    Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator, DropDownMenu, DropDownIcon, FontIcon, RaisedButton,
+    Card, CardHeader, CardMedia, CardTitle, CardActions, CardText, Avatar,
+    Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator, DropDownMenu, DropDownIcon, FontIcon,
     Tabs, Tab,
     Dialog
 } from 'material-ui';
+import Button from '@material-ui/core/Button';
 import IntlService from "views/services/intl";
 
 const intl = IntlService.instance;
