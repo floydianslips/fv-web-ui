@@ -221,11 +221,11 @@ export default function withFilter(ComposedFilter, DefaultFetcherParams) {
                                         context={this.props.initialValues}
                                         value={this.state.formValue}
                                         options={options.toJS()}/>
-                                    <RaisedButton
+                                    <Button variant='raised'
                                         onClick={this._onReset}
                                         label={intl.trans('reset', 'Reset', 'first')}
                                         primary={true}/> &nbsp;
-                                    <RaisedButton
+                                    <Button variant='raised'
                                         type="submit"
                                         label={intl.trans('filter', 'Filter', 'first')}
                                         primary={true}/>

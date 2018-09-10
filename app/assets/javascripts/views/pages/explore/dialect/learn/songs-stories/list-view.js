@@ -38,7 +38,7 @@ import CardHeader from 'material-ui/Card/CardHeader';
 import CardMedia from 'material-ui/Card/CardMedia';
 import CardText from 'material-ui/Card/CardText';
 
-import FlatButton from 'material-ui/FlatButton';
+import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import ClearIcon from '@material-ui/icons/Clear';
 import FlipToFrontIcon from '@material-ui/icons/FlipToFront';
@@ -204,7 +204,7 @@ class CardView extends Component {
 
                 <CardText style={{padding: '4px'}}>
 
-                    <FlatButton
+                    <Button variant='flat'
                         onClick={this.props.action.bind(this, this.props.item)}
                         primary={true}
                         label={translated_continue_label}/>

@@ -20,7 +20,7 @@ import classNames from 'classnames';
 
 import BookEntry from 'views/pages/explore/dialect/learn/songs-stories/entry/view';
 
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 import selectn from 'selectn';
 import IntlService from 'views/services/intl';
 
@@ -105,16 +105,16 @@ export default class ListView extends Component {
         return <div>
             {(this.state.reorderWarning) ? <div className={classNames('alert', 'alert-warning')}
                                                 role="alert">{intl.trans('views.pages.explore.dialect.learn.songs_stories.edit_x_pages', 'Note: This new sort order will be saved once the book is saved in the \'Book\' tab.', 'first')}
-                <RaisedButton style={{marginLeft: '15px'}} label={intl.trans('reset_order', 'Reset Order', 'words')}
+                <Button variant='raised' style={{marginLeft: '15px'}} label={intl.trans('reset_order', 'Reset Order', 'words')}
                               onClick={this._reset}/></div> : ''}
             {(this.state.items).map(function (entry, i) {
 
                 let entryControls = [];
 
                 if (this.props.reorder) {
-                    entryControls.push(<RaisedButton key="up" label={intl.trans('move_up', 'move up', 'words')}
+                    entryControls.push(<Button variant='raised' key="up" label={intl.trans('move_up', 'move up', 'words')}
                                                      disabled={(i == 0)} onClick={this._moveUp.bind(this, entry)}/>);
-                    entryControls.push(<RaisedButton key="down" label={intl.trans('move_down', 'move down', 'words')}
+                    entryControls.push(<Button variant='raised' key="down" label={intl.trans('move_down', 'move down', 'words')}
                                                      disabled={(i == this.state.items.size - 1)}
                                                      onClick={this._moveDown.bind(this, entry)}/>);
                 }

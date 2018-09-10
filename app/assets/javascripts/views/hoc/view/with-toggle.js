@@ -5,7 +5,8 @@ import classNames from 'classnames';
 import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;
-import {RaisedButton, FlatButton, FontIcon} from 'material-ui';
+import {FontIcon} from 'material-ui';
+import Button from '@material-ui/core/Button';
 
 export default function withToggle() {
     class ViewwithToggle extends Component {
@@ -34,7 +35,7 @@ export default function withToggle() {
 
             return <div className={classNames('panel', 'panel-default')}>
                 <div className="panel-heading">
-                    {label} <FlatButton className={classNames({'visible-xs': mobileOnly})}
+                    {label} <Button variant='flat' className={classNames({'visible-xs': mobileOnly})}
                                         label={(this.state.open) ? intl.trans('hide', 'Hide', 'first') : intl.trans('show', 'Show', 'first')}
                                         labelPosition="before" onClick={(e) => {
                     this.setState({open: !this.state.open});

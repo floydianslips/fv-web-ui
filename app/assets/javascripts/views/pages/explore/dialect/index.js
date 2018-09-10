@@ -29,12 +29,12 @@ import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 import Header from 'views/pages/explore/dialect/header';
 import PageToolbar from 'views/pages/explore/dialect/page-toolbar';
 
-import Toggle from 'material-ui/Toggle';
+import Switch from '@material-ui/core/Switch';
 import TextField from 'material-ui/TextField';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
-import FlatButton from 'material-ui/FlatButton';
+import Button from '@material-ui/core/Button';
 
 import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Paper from 'material-ui/Paper';
@@ -43,7 +43,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 
 import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
 
-import { List as ListUI, ListItem } from 'material-ui/List';
+import { List as ListUI, ListItem } from '@material-ui/core/List';
 
 import Preview from 'views/components/Editor/Preview';
 
@@ -273,13 +273,13 @@ export default class ExploreDialect extends Component {
                 <Toolbar className="dialect-navigation">
 
                     <ToolbarGroup firstChild={true}>
-                        <FlatButton onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/learn')}
+                        <Button variant='flat' onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/learn')}
                                     label={intl.trans('learn_our_lang', 'Learn Our Language', 'words')}/>
-                        <FlatButton onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/play')}
+                        <Button variant='flat' onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/play')}
                                     label={intl.trans('views.pages.explore.dialect.play_game', 'Play a Game', 'words')}/>
-                        <FlatButton onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/gallery')}
+                        <Button variant='flat' onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/gallery')}
                                     label={intl.trans('views.pages.explore.dialect.photo_gallery', 'Photo Gallery', 'words')}/>
-                        <FlatButton
+                        <Button variant='flat'
                             onClick={this._onNavigateRequest.bind(this, this.props.windowPath.replace('explore', 'kids'))}
                             label={intl.trans('views.pages.explore.dialect.kids_portal', 'Kids Portal', 'words')}/>
                     </ToolbarGroup>

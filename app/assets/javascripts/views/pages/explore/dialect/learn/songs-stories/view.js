@@ -29,7 +29,7 @@ import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
 import Paper from 'material-ui/Paper';
 
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 
 import PageToolbar from 'views/pages/explore/dialect/page-toolbar';
 import Preview from 'views/components/Editor/Preview';
@@ -194,7 +194,7 @@ export default class View extends Component {
                 fetcherParams={this.state.fetcherParams}
                 metadata={selectn('response', computeBookEntries) || {}}
                 items={selectn('response.entries', computeBookEntries) || []}
-                appendControls={[(this.state.bookOpen) ? <RaisedButton
+                appendControls={[(this.state.bookOpen) ? <Button variant='raised'
                     label={intl.trans('views.pages.explore.dialect.learn.songs_stories.close_book', 'Close Book', 'first')}
                     key="close" onClick={() => {
                     this.setState({bookOpen: false})

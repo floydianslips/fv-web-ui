@@ -31,7 +31,8 @@ import {RaisedButton, FlatButton, IconButton, FontIcon} from 'material-ui';
 import Toolbar from 'material-ui/Toolbar/Toolbar';
 import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
 import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
-import Toggle from 'material-ui/Toggle';
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import IconMenu from 'material-ui/IconMenu';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
@@ -222,22 +223,22 @@ export default class PageToolbar extends Component {
 
                                 <span style={{paddingRight: '15px'}}>{intl.trans('request', 'Request', 'first')}: </span>
 
-                                <RaisedButton
+                                <Button variant='raised'
                                     label={intl.trans('enable', 'Enable', 'first') + " (" + (enableTasks.length + this.state.enableActions) + ")"}
                                     disabled={selectn('response.state', computeEntity) != 'Disabled' && selectn('response.state', computeEntity) != 'New'}
                                     style={{marginRight: '5px', marginLeft: '0'}} secondary={true}
                                     onClick={this._documentActionsStartWorkflow.bind(this, 'enable')}/>
-                                <RaisedButton
+                                <Button variant='raised'
                                     label={intl.trans('disable', 'Disable', 'first') + " (" + (disableTasks.length + this.state.disableActions) + ")"}
                                     disabled={selectn('response.state', computeEntity) != 'Enabled' && selectn('response.state', computeEntity) != 'New'}
                                     style={{marginRight: '5px', marginLeft: '0'}} secondary={true}
                                     onClick={this._documentActionsStartWorkflow.bind(this, 'disable')}/>
-                                <RaisedButton
+                                <Button variant='raised'
                                     label={intl.trans('publish', 'Publish', 'first') + " (" + (publishTasks.length + this.state.publishActions) + ")"}
                                     disabled={selectn('response.state', computeEntity) != 'Enabled'}
                                     style={{marginRight: '5px', marginLeft: '0'}} secondary={true}
                                     onClick={this._documentActionsStartWorkflow.bind(this, 'publish')}/>
-                                <RaisedButton
+                                <Button variant='raised'
                                     label={intl.trans('unpublish', 'Unpublish', 'first') + " (" + (unpublishTasks.length + this.state.unpublishActions) + ")"}
                                     disabled={selectn('response.state', computeEntity) != 'Published'}
                                     style={{marginRight: '5px', marginLeft: '0'}} secondary={true}
@@ -262,14 +263,18 @@ export default class PageToolbar extends Component {
                                 margin: '17px 5px 10px 5px',
                                 position: 'relative'
                             }}>
-                                <Toggle
-                                    toggled={documentEnabled || documentPublished}
-                                    onToggle={this._documentActionsToggleEnabled}
-                                    ref="enabled"
-                                    disabled={documentPublished}
-                                    name="enabled"
-                                    value="enabled"
-                                    label={intl.trans('enabled', 'Enabled', 'first')}/>
+                                <FormControlLabel
+                                    control={
+                                        <Switch
+                                            checked={documentEnabled || documentPublished}
+                                            onChange={this._documentActionsToggleEnabled}
+                                            ref="enabled"
+                                            disabled={documentPublished}
+                                            name="enabled"
+                                            value="enabled"/>
+                                    }
+                                    label={<span style={{ fontSize: '18px', fontWeight: 400 }}>{intl.trans('enabled', 'Enabled', 'first')}</span>}
+                                />
                             </div>
                         </AuthorizationFilter>;
                     }
@@ -289,13 +294,17 @@ export default class PageToolbar extends Component {
                                     margin: '17px 5px 10px 5px',
                                     position: 'relative'
                                 }}>
-                                    <Toggle
-                                        toggled={documentPublished}
-                                        onToggle={this._documentActionsTogglePublished}
-                                        disabled={!documentEnabled && !documentPublished}
-                                        name="published"
-                                        value="published"
-                                        label={intl.trans('published', 'Published', 'first')}/>
+                                    <FormControlLabel
+                                        control={
+                                            <Switch
+                                                checked={documentPublished}
+                                                onChange={this._documentActionsTogglePublished}
+                                                disabled={!documentEnabled && !documentPublished}
+                                                name="published"
+                                                value="published"/>    
+                                        }
+                                        label={<span style={{ fontSize: '18px', fontWeight: 400 }}>{intl.trans('published', 'Published', 'first')}</span>}
+                                    />
                                 </div>
                             </AuthorizationFilter>;
                         }
@@ -319,7 +328,7 @@ export default class PageToolbar extends Component {
                         return <AuthorizationFilter
                             filter={{permission: 'Write', entity: selectn('response', permissionEntity)}}
                             style={toolbarGroupItem}>
-                            <RaisedButton data-guide-role="publish-changes" disabled={!documentPublished}
+                            <Button variant='raised' data-guide-role="publish-changes" disabled={!documentPublished}
                                           label={intl.trans('publish_changes', 'Publish Changes', 'words')}
                                           style={{marginRight: '5px', marginLeft: '0'}}
                                           secondary={true} onClick={this._publishChanges}/>
@@ -332,7 +341,7 @@ export default class PageToolbar extends Component {
                         return <AuthorizationFilter
                             filter={{permission: 'Write', entity: selectn('response', computeEntity)}}
                             style={toolbarGroupItem}>
-                            <RaisedButton label={intl.trans('edit', 'Edit', 'first') + " " + intl.searchAndReplace(this.props.label)}
+                            <Button variant='raised' label={intl.trans('edit', 'Edit', 'first') + " " + intl.searchAndReplace(this.props.label)}
                                           style={{marginRight: '5px', marginLeft: '0'}} primary={true}
                                           onClick={this.props.handleNavigateRequest.bind(this, this.props.windowPath.replace('sections', 'Workspaces') + '/edit')}/>
                         </AuthorizationFilter>;
@@ -344,7 +353,7 @@ export default class PageToolbar extends Component {
                         return <AuthorizationFilter
                             filter={{permission: 'Write', entity: selectn('response', computeEntity)}}
                             style={toolbarGroupItem}>
-                            <RaisedButton label={intl.trans('add_new_page', "Add New Page", 'words')}
+                            <Button variant='raised' label={intl.trans('add_new_page', "Add New Page", 'words')}
                                           style={{marginRight: '5px', marginLeft: '0'}}
                                           onClick={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/create')}
                                           primary={true}/>
