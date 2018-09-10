@@ -46,7 +46,7 @@ import Avatar from '@material-ui/core/Avatar';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import Divider from '@material-ui/core/Divider';
 
-import { List as ListUI, ListItem } from 'material-ui/List';
+import { List as ListUI, ListItem, ListItemText } from '@material-ui/core';
 
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
 import FontIcon from 'material-ui/FontIcon';
@@ -328,12 +328,17 @@ export default class View extends Component {
 
                                                                     return <ListItem
                                                                         onClick={() => this.setState({showThumbnailDialog: thumbnail})}
-                                                                        key={key}
-                                                                        primaryText={thumbnail.title}
-                                                                        secondaryText={<p><span
-                                                                            style={{color: '#000'}}>{thumbnail.description}</span> --
-                                                                            ({thumbnail.width + 'x' + thumbnail.height})
-                                                                        </p>}/>;
+                                                                        key={key}>
+                                                                            <ListItemText
+                                                                                primary={thumbnail.title}
+                                                                                secondary={
+                                                                                    <p>
+                                                                                        <span style={{color: '#000'}}>{thumbnail.description}</span>
+                                                                                        -- ({thumbnail.width + 'x' + thumbnail.height})
+                                                                                    </p>
+                                                                                } 
+                                                                            />
+                                                                        </ListItem>;
                                                                 }.bind(this))}
 
                                                             </ListUI>

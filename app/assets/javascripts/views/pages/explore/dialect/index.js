@@ -43,7 +43,7 @@ import Snackbar from 'material-ui/Snackbar';
 
 import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
 
-import { List as ListUI, ListItem } from 'material-ui/List';
+import { List as ListUI, ListItem } from '@material-ui/core/List';
 
 import Preview from 'views/components/Editor/Preview';
 

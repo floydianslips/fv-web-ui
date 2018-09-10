@@ -51,8 +51,8 @@ import CardTitle from 'material-ui/Card/CardTitle';
 import CardText from 'material-ui/Card/CardText';
 import Divider from '@material-ui/core/Divider';
 
-import ListUI from 'material-ui/List/List';
-import ListItem from 'material-ui/List/ListItem';
+import ListUI from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 
 import Toolbar from 'material-ui/Toolbar/Toolbar';
 import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
