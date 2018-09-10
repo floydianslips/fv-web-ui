@@ -29,7 +29,7 @@ import MediaPanel from 'views/pages/explore/dialect/learn/base/media-panel';
 
 import {Introduction} from '../list-view';
 
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 import Tabs from 'material-ui/Tabs/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
 
@@ -101,7 +101,7 @@ class Cover extends Component {
             <div className="col-xs-12">
                 <div className={classNames('col-xs-12', 'text-right')}>
                     {(this.props.openBookAction && this.props.pageCount > 0) ?
-                        <RaisedButton style={{marginRight: '10px'}} primary={true} label="Open Book"
+                        <Button variant='raised' style={{marginRight: '10px'}} primary={true} label="Open Book"
                                       onClick={this.props.openBookAction} icon={<ActionLaunch/>}/> : ''}
                 </div>
             </div>
@@ -161,7 +161,7 @@ class Page extends Component {
 
             <div className="row">
                 <div className={classNames('col-xs-12', 'text-right')}>
-                    {(this.props.editAction) ? <RaisedButton label={intl.trans('edit', 'Edit', 'first')}
+                    {(this.props.editAction) ? <Button variant='raised' label={intl.trans('edit', 'Edit', 'first')}
                                                              onClick={this.props.editAction.bind(this, this.props.entry)}/> : ''}
                     <div className="pull-right">{this.props.appendEntryControls}</div>
                 </div>

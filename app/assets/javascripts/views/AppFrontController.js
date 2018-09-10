@@ -16,7 +16,7 @@ import AnalyticsHelpers from 'common/AnalyticsHelpers';
 
 import {Link} from 'provide-page';
 
-import FlatButton from 'material-ui/FlatButton';
+import Button from '@material-ui/core/Button';
 import Navigation from 'views/components/Navigation';
 import KidsNavigation from 'views/components/Kids/Navigation';
 import Footer from 'views/components/Navigation/Footer';
@@ -1588,7 +1588,7 @@ export default class AppFrontController extends Component {
                 if (this.props.warnings.hasOwnProperty(warning) && !this.state.warningsDismissed) {
                     return <div style={{position: 'fixed', bottom: 0, zIndex: 99999}}
                                 className={classNames('alert', 'alert-warning')}>{selectn(warning, this.props.warnings)}
-                        <FlatButton label={intl.translate({
+                        <Button variant='flat' label={intl.translate({
                             key: 'dismiss',
                             default: 'Dismiss',
                             case: 'words'

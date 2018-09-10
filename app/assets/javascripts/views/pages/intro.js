@@ -26,7 +26,7 @@ import ProviderHelpers from 'common/ProviderHelpers';
 import { GridList, GridTile } from 'material-ui/GridList';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Paper from 'material-ui/Paper';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 
 import TextField from 'material-ui/TextField';
 
@@ -83,11 +83,11 @@ export default class PageHome extends Component {
                                                         alt="Language Legacies Celebrating Indigenous Cultures"
                                                         className="img-responsive"/></p>
                     <p><img src="/assets/images/logo.gif" alt="FirstVoices Logo" className="img-responsive"/></p>
-                    <a href="http://legacy.firstvoices.com/"><RaisedButton label="Legacy Site" style={{
+                    <a href="http://legacy.firstvoices.com/"><Button variant='raised' label="Legacy Site" style={{
                         textAlign: 'center',
                         marginRight: '14px'
                     }}/></a>
-                    <RaisedButton label={this.intl.translate({key: 'enter_firstvoices', default: "Enter FirstVoices"})}
+                    <Button variant='raised' label={this.intl.translate({key: 'enter_firstvoices', default: "Enter FirstVoices"})}
                                   onClick={(e, v) => this._onNavigateRequest('/')}
                                   style={{textAlign: 'center'}}/>
                     <p><img src="/assets/images/intro-french.gif"

@@ -172,7 +172,7 @@ export default class SelectMediaComponent extends React.Component {
     render() {
 
         const actions = [
-            <FlatButton
+            <Button variant='flat'
                 label={intl.trans('cancel', 'Cancel', 'first')}
                 secondary={true}
                 onClick={this._handleClose}/>
@@ -206,7 +206,7 @@ export default class SelectMediaComponent extends React.Component {
 
         return (
             <div style={{display: 'inline'}}>
-                <RaisedButton label={this.props.label} onClick={this._handleOpen}/>
+                <Button variant='raised' label={this.props.label} onClick={this._handleOpen}/>
                 <Dialog
                     title={intl.searchAndReplace("Select existing " + fileTypeLabel + " from " + selectn('properties.dc:title', dialect) + " dialect or shared resources") + ':'}
                     actions={actions}

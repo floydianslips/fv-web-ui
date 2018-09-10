@@ -30,7 +30,7 @@ import NavigationHelpers from 'common/NavigationHelpers';
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 import PageDialectLearnBase from 'views/pages/explore/dialect/learn/base';
 
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
@@ -163,7 +163,7 @@ export default class PageDialectLearnStoriesAndSongs extends Component {
                         entity: selectn('response', computeDialect2),
                         login: this.props.computeLogin
                     }}>
-                        <RaisedButton
+                        <Button variant='raised'
                             label={intl.trans('views.pages.explore.dialect.learn.songs_stories.create_x_book', "Create " + this.props.typeFilter + " Book", 'words', [this.props.typeFilter])}
                             onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/create')}
                             primary={true}/>

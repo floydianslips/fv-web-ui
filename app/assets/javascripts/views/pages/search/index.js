@@ -28,7 +28,7 @@ import fields from 'models/schemas/filter-fields';
 import options from 'models/schemas/filter-options';
 
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
@@ -245,11 +245,11 @@ export default class Search extends DataListView {
                                     type={t.struct(selectn('Search', fields))}
                                     options={selectn('Search', options)}
                                 />
-                                <RaisedButton
+                                <Button variant='raised'
                                     onClick={this._onReset}
                                     label={intl.trans('reset', 'Reset', 'first')}
                                     primary={true}/> &nbsp;
-                                <RaisedButton
+                                <Button variant='raised'
                                     type="submit"
                                     label={intl.trans('search', 'Search', 'first')}
                                     primary={true}/>

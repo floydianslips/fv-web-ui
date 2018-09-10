@@ -24,7 +24,7 @@ import StringHelpers from 'common/StringHelpers';
 
 import t from 'tcomb-form';
 
-import FlatButton from 'material-ui/FlatButton';
+import Button from '@material-ui/core/Button';
 import Dialog from 'material-ui/Dialog';
 import IntlService from "views/services/intl";
 
@@ -173,12 +173,12 @@ export default class GroupAssignmentDialog extends Component {
         return <Dialog
             open={this.props.open}
             actions={[
-                <FlatButton
+                <Button variant='flat'
                     label={intl.trans('cancel', 'Cancel', 'first')}
                     secondary={true}
                     onClick={this.props.closeMethod}
                 />,
-                <FlatButton
+                <Button variant='flat'
                     label={intl.trans('submit', 'Submit', 'first')}
                     primary={true}
                     keyboardFocused={true}

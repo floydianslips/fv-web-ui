@@ -28,7 +28,7 @@ import ProviderHelpers from 'common/ProviderHelpers';
 import Paper from 'material-ui/Paper';
 
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 import Toggle from 'material-ui/Toggle';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -113,10 +113,10 @@ export default class PageStats extends Component {
 
                                   <span style={{paddingRight: '15px'}}>REQUEST: </span>
 
-                                  <RaisedButton label={"Enable (" + (enableTasks.length + this.state.enableActions ) + ")"} disabled={selectn('response.state', computeEntity) != 'Disabled' && selectn('response.state', computeEntity) != 'New'} style={{marginRight: '5px', marginLeft: '0'}} secondary={true} onClick={this._documentActionsStartWorkflow.bind(this, 'enable')} />
-                                  <RaisedButton label={"Disable (" + (disableTasks.length + this.state.disableActions) + ")"} disabled={selectn('response.state', computeEntity) != 'Enabled' && selectn('response.state', computeEntity) != 'New'} style={{marginRight: '5px', marginLeft: '0'}} secondary={true} onClick={this._documentActionsStartWorkflow.bind(this, 'disable')} />
-                                  <RaisedButton label={"Publish (" + (publishTasks.length + this.state.publishActions) + ")"} disabled={selectn('response.state', computeEntity) != 'Enabled'} style={{marginRight: '5px', marginLeft: '0'}} secondary={true} onClick={this._documentActionsStartWorkflow.bind(this, 'publish')} />
-                                  <RaisedButton label={"Unpublish (" + (unpublishTasks.length + this.state.unpublishActions) + ")"} disabled={selectn('response.state', computeEntity) != 'Published'} style={{marginRight: '5px', marginLeft: '0'}} secondary={true} onClick={this._documentActionsStartWorkflow.bind(this, 'unpublish')} />
+                                  <Button variant='raised' label={"Enable (" + (enableTasks.length + this.state.enableActions ) + ")"} disabled={selectn('response.state', computeEntity) != 'Disabled' && selectn('response.state', computeEntity) != 'New'} style={{marginRight: '5px', marginLeft: '0'}} secondary={true} onClick={this._documentActionsStartWorkflow.bind(this, 'enable')} />
+                                  <Button variant='raised' label={"Disable (" + (disableTasks.length + this.state.disableActions) + ")"} disabled={selectn('response.state', computeEntity) != 'Enabled' && selectn('response.state', computeEntity) != 'New'} style={{marginRight: '5px', marginLeft: '0'}} secondary={true} onClick={this._documentActionsStartWorkflow.bind(this, 'disable')} />
+                                  <Button variant='raised' label={"Publish (" + (publishTasks.length + this.state.publishActions) + ")"} disabled={selectn('response.state', computeEntity) != 'Enabled'} style={{marginRight: '5px', marginLeft: '0'}} secondary={true} onClick={this._documentActionsStartWorkflow.bind(this, 'publish')} />
+                                  <Button variant='raised' label={"Unpublish (" + (unpublishTasks.length + this.state.unpublishActions) + ")"} disabled={selectn('response.state', computeEntity) != 'Published'} style={{marginRight: '5px', marginLeft: '0'}} secondary={true} onClick={this._documentActionsStartWorkflow.bind(this, 'unpublish')} />
 
                                 </div>
 
@@ -167,7 +167,7 @@ export default class PageStats extends Component {
                         {(() => {
                           if (this.props.actions.includes('publish')) {
                             return <AuthorizationFilter filter={{permission: 'Write', entity: selectn('response', permissionEntity)}} style={toolbarGroupItem}>
-                              <RaisedButton data-guide-role="publish-changes" disabled={!documentPublished} label="Publish Changes" style={{marginRight: '5px', marginLeft: '0'}} secondary={true} onClick={this._publishChanges} />
+                              <Button variant='raised' data-guide-role="publish-changes" disabled={!documentPublished} label="Publish Changes" style={{marginRight: '5px', marginLeft: '0'}} secondary={true} onClick={this._publishChanges} />
                             </AuthorizationFilter>;
                           }
                         })()}
@@ -175,7 +175,7 @@ export default class PageStats extends Component {
                         {(() => {
                           if (this.props.actions.includes('edit')) {
                             return <AuthorizationFilter filter={{permission: 'Write', entity: selectn('response', computeEntity)}} style={toolbarGroupItem}>
-                              <RaisedButton label={"Edit " + this.props.label} style={{marginRight: '5px', marginLeft: '0'}} primary={true} onClick={this.props.handleNavigateRequest.bind(this, this.props.windowPath.replace('sections', 'Workspaces') + '/edit')} />
+                              <Button variant='raised' label={"Edit " + this.props.label} style={{marginRight: '5px', marginLeft: '0'}} primary={true} onClick={this.props.handleNavigateRequest.bind(this, this.props.windowPath.replace('sections', 'Workspaces') + '/edit')} />
                             </AuthorizationFilter>;
                           }
                         })()}
@@ -183,7 +183,7 @@ export default class PageStats extends Component {
                         {(() => {
                           if (this.props.actions.includes('add-child')) {
                             return <AuthorizationFilter filter={{permission: 'Write', entity: selectn('response', computeEntity)}} style={toolbarGroupItem}>
-                                    <RaisedButton label="Add New Page" style={{marginRight: '5px', marginLeft: '0'}} onClick={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/create')} primary={true} />
+                                    <Button variant='raised' label="Add New Page" style={{marginRight: '5px', marginLeft: '0'}} onClick={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/create')} primary={true} />
                             </AuthorizationFilter>;
                           }
                         })()}

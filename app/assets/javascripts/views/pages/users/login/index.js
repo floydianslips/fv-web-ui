@@ -25,8 +25,7 @@ import {User} from 'nuxeo';
 import ProviderHelpers from 'common/ProviderHelpers';
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 import TextField from 'material-ui/TextField';
 
 import fields from 'models/schemas/fields';
@@ -166,13 +165,13 @@ export default class PageUserLogin extends Component {
                     "backgroundColor": themePalette.primary4ColorLightest,
                     "padding": "0 3px"
                 }}>{loginFeedbackMessage}</p>
-                <RaisedButton style={{"width": "100%"}} secondary={true} onClick={this._handleLogin}
+                <Button variant='raised' style={{"width": "100%"}} secondary={true} onClick={this._handleLogin}
                               label={intl.trans('views.pages.users.login.sign_in', 'Sign In', 'words')}/>
                 <h6 style={{
                     "fontWeight": "500",
                     "paddingTop": "10px"
                 }}>{intl.trans('views.components.navigation.new_to_firstvoices', 'New to FirstVoices?', 'words')}</h6>
-                <RaisedButton style={{"width": "100%"}} primary={true}
+                <Button variant='raised' style={{"width": "100%"}} primary={true}
                               onClick={this._onNavigateRequest.bind(this, "register")}
                               label={intl.trans('register', 'Register')}/>
             </div>

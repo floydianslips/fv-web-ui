@@ -10,7 +10,8 @@ import SelectSuggestFactory from 'views/components/Editor/fields/selectSuggest';
 import SelectFactory from 'views/components/Editor/fields/select';
 import MediaFactory from 'views/components/Editor/fields/media';
 
-import {FlatButton, IconButton} from 'material-ui';
+import {IconButton} from 'material-ui';
+import Button from '@material-ui/core/Button';
 import IntlService from "views/services/intl";
 
 const intl = IntlService.instance;
@@ -85,7 +86,7 @@ const RelatedMediaLayout = function (locals) {
     return (
         <div className="row" style={{margin: '15px 0'}}>
             <fieldset>
-                <legend>{locals.label} <FlatButton label={locals.add.label} onClick={locals.add.click}/></legend>
+                <legend>{locals.label} <Button variant='flat' label={locals.add.label} onClick={locals.add.click}/></legend>
                 {(locals.items || []).map(function (item, i) {
                     return <div key={i} className={classNames('col-xs-12', 'col-md-3')}>
                         {item.input}
