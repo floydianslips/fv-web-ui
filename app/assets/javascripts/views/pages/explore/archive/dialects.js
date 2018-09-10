@@ -31,7 +31,7 @@ import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 // Operations
 import DirectoryOperations from 'operations/DirectoryOperations';
 
-import Checkbox from 'material-ui/Checkbox';
+import Checkbox from '@material-ui/core/Checkbox';
 import TextField from 'material-ui/TextField';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
