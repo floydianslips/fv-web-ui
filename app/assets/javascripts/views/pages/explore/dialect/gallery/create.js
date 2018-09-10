@@ -22,10 +22,10 @@ import selectn from 'selectn';
 import t from 'tcomb-form';
 
 // Views
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 import Paper from 'material-ui/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Snackbar from 'material-ui/Snackbar';
+import Snackbar from '@material-ui/core/Snackbar';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';

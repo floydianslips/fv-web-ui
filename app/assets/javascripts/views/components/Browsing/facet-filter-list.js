@@ -5,8 +5,9 @@ import Immutable, {List, Set, Map} from 'immutable';
 import selectn from 'selectn';
 
 import Paper from 'material-ui/Paper';
-import ListUI from 'material-ui/List/List';
-import ListItem from 'material-ui/List/ListItem';
+import ListUI from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 import ActionGrade from '@material-ui/icons/Grade';
 import Checkbox from '@material-ui/core/Checkbox';
 import withToggle from 'views/hoc/view/with-toggle';
@@ -109,12 +110,16 @@ export default class FacetFilterList extends Component {
                             style={listItemStyle}
                             key={facet.uid}
                             leftCheckbox={<Checkbox checked={parentFacetChecked}
-                                                    onChange={this._toggleCheckbox.bind(this, facet.uid, childrenIds)}/>}
+                            onChange={this._toggleCheckbox.bind(this, facet.uid, childrenIds)}/>}
                             primaryText={facet.title}
                             open={parentFacetChecked}
                             initiallyOpen={true}
                             autoGenerateNestedIndicator={false}
-                            nestedItems={nestedItems}/>
+                            nestedItems={nestedItems}>
+                                <ListItemText
+                                    primary={facet.title}
+                                />
+                            </ListItem>
                     }.bind(this))}
 
                 </ListUI>

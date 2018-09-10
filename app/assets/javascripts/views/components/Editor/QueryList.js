@@ -20,7 +20,7 @@ import selectn from 'selectn';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 
-import SelectField from 'material-ui/SelectField';
+import Select from '@material-ui/core/Select';
 import MenuItem from 'material-ui/MenuItem';
 import IntlService from "views/services/intl";
 
@@ -89,14 +89,14 @@ export default class DirectoryList extends Component {
                 {
                     (this.props.fancy) ?
 
-                        <SelectField maxHeight={300} autoWidth={true} value={this.props.value}
+                        <Select maxHeight={300} autoWidth={true} value={this.props.value}
                                      onChange={this._handleChange}
                                      floatingLabelText={intl.trans('select', 'Select', 'first') + ' ' + intl.searchAndReplace(this.props.label) + ':'}>
                             {entries.map((entry) =>
                                 <MenuItem key={selectn('ecm:uuid', entry)} value={selectn('ecm:uuid', entry)}
                                           primaryText={selectn('dc:title', entry)}/>
                             )}
-                        </SelectField>
+                        </Select>
 
                         :
 

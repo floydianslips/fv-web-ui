@@ -22,18 +22,17 @@ import selectn from 'selectn';
 
 // import {Divider, List, ListItem, LeftNav, AppBar} from 'material-ui';
 import Divider from '@material-ui/core/Divider'
-import { List, ListItem } from 'material-ui/List'
+import { List, ListItem, ListItemText } from '@material-ui/core'
 import Drawer from 'material-ui/Drawer'
 import AppBar from 'material-ui/AppBar'
-import { makeSelectable } from 'material-ui/List'
 
 import IconButton from '@material-ui/core/IconButton';
 
 import NavigationClose from '@material-ui/icons/Close';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 
 import IntlService from 'views/services/intl';
-
-let SelectableList = makeSelectable(List);
 
 @provide
 export default class AppLeftNav extends Component {
@@ -93,7 +92,8 @@ export default class AppLeftNav extends Component {
     ]);
 
     return {
-      routes: routes
+      routes: routes,
+      nestedOpen: false
     };
   }
 
@@ -104,25 +104,37 @@ export default class AppLeftNav extends Component {
     if (selectn("isConnected", this.props.computeLogin)) {
 
       let nestedItems = [
-        <ListItem key="Workspaces" value="/explore/FV/Workspaces/Data/"
-        secondaryText={<p>{this.intl.translate({
-            key: 'views.components.navigation.view_work_in_progress',
-            default: 'View work in progress or unpublished content'
-        })}.</p>} secondaryTextLines={2}
-        primaryText={this.intl.translate({
-            key: 'views.components.navigation.workspace_dialects',
-            default: 'Workspace Dialects'
-        })}/>,
+        <ListItem button onClick={this._onListItemClick('/explore/FV/Workspaces/Data/')} key="Workspaces">
+          <ListItemText
+            primary={this.intl.translate({
+              key: 'views.components.navigation.workspace_dialects',
+              default: 'Workspace Dialects'
+            })}
+            secondary={<p>{this.intl.translate({
+              key: 'views.components.navigation.view_work_in_progress',
+              default: 'View work in progress or unpublished content'
+            })}.</p>}
+            style={{ paddingLeft: '16px' }}
+            primaryTypographyProps={{style: { fontSize: '16px' } }}
+            secondaryTypographyProps={{ style: { fontSize: '14px' } }}
+          />
+        </ListItem>,
 
-        <ListItem key="sections" value="/explore/FV/sections/Data/"
-        secondaryText={<p>{this.intl.translate({
-            key: 'views.components.navigation.view_dialects_as_end_user',
-            default: 'View dialects as an end user would view them'
-        })}.</p>} secondaryTextLines={2}
-        primaryText={this.intl.translate({
-            key: 'views.components.navigation.published_dialects',
-            default: 'Published Dialects'
-        })}/>
+        <ListItem button onClick={this._onListItemClick('/explore/FV/sections/Data/')} key="sections">
+          <ListItemText
+            primary={this.intl.translate({
+              key: 'views.components.navigation.published_dialects',
+              default: 'Published Dialects'
+            })}
+            secondary={<p>{this.intl.translate({
+              key: 'views.components.navigation.view_dialects_as_end_user',
+              default: 'View dialects as an end user would view them'
+            })}.</p>}
+            style={{ paddingLeft: '16px' }}
+            primaryTypographyProps={{style: { fontSize: '16px' } }}
+            secondaryTypographyProps={{ style: { fontSize: '14px' } }}
+          /> 
+        </ListItem>
       ];
 
       let exploreEntry = this.state.routes.findEntry(function(value, key) {
@@ -154,7 +166,6 @@ export default class AppLeftNav extends Component {
   }
 
   _onNavigateRequest(event, path) {
-
     if (path == '/logout/') {
       this.props.logout();
       this.props.pushWindowPath( '/' );
@@ -165,6 +176,12 @@ export default class AppLeftNav extends Component {
 
     // Close side-menu
     this.props.toggleMenuAction();
+  }
+
+  _onListItemClick(path) {
+    return event => {
+      this._onNavigateRequest(event, path)
+    }
   }
 
   _onRequestChange() {
@@ -185,24 +202,34 @@ export default class AppLeftNav extends Component {
             iconElementLeft={<IconButton onClick={this._onRequestChange}><NavigationClose /></IconButton>}
             title={<img src="/assets/images/logo.png" style={{padding: '0 0 5px 0'}} alt={this.props.properties.title} />} />
 
-          <SelectableList value={location.pathname} onChange={this._onNavigateRequest}>
-
+          <List value={location.pathname} onChange={this._onNavigateRequest}>
+ 
             {this.state.routes.map((d, i) => 
+              <React.Fragment>
                 <ListItem
-                  key={d.get('id')}
-                  value={d.get('path')}
-                  nestedItems={d.get('nestedItems')}
-                  primaryText={d.get('label')} />
+                  button
+                  onClick={this._onListItemClick(d.get('path'))}
+                  key={d.get('id')}>
+                  <ListItemText primary={d.get('label')} primaryTypographyProps={{style: { fontSize: '16px' } }} />
+                </ListItem>
+                {d.get('nestedItems') && (
+                  <List disablePadding>
+                    {d.get('nestedItems')}
+                  </List>
+                )}
+              </React.Fragment>
             )}
 
             {(selectn('response.entries', this.props.computeLoadNavigation) || []).map((d, i) => 
                 <ListItem
-                  key={selectn('uid', d)}
-                  value={'/content/' + selectn('properties.fvpage:url', d) + '/'}
-                  primaryText={selectn('properties.dc:title', d)} />
+                  button
+                  onClick={this._onListItemClick('/content/' + selectn('properties.fvpage:url', d) + '/')}
+                  key={selectn('uid', d)}>
+                  <ListItemText primary={selectn('properties.dc:title', d)} primaryTypographyProps={{style: { fontSize: '16px' } }} />
+                </ListItem>
             )}
 
-          </SelectableList>
+          </List>
 
           <Divider />
 
@@ -210,27 +237,35 @@ export default class AppLeftNav extends Component {
 
             if (selectn("isConnected", this.props.computeLogin)) {
               
-              return <SelectableList value={location.pathname} onChange={this._onNavigateRequest}>
+              return <List value={location.pathname} onChange={this._onNavigateRequest}>
 
               <ListItem
-                  key="profile"
-                  value="/profile/"
-                  primaryText={this.intl.translate({
+                  button
+                  onClick={this._onListItemClick('/profile/')}
+                  key="profile">
+                <ListItemText 
+                  primary={this.intl.translate({
                       key: 'views.pages.users.profile.my_profile',
                       default: 'My Profile',
                       case: 'words'
-                  })}/>
+                  })}
+                  primaryTypographyProps={{style: { fontSize: '16px' } }} />
+              </ListItem>
 
               <ListItem
-                  key="sign-out"
-                  value="/logout/"
-                  primaryText={this.intl.translate({
+                  button
+                  onClick={this._onListItemClick('/logout/')}
+                  key="sign-out">
+                <ListItemText 
+                  primary={this.intl.translate({
                       key: 'sign_out',
                       default: 'Sign Out',
                       case: 'words'
-                  })}/>
+                  })}
+                  primaryTypographyProps={{style: { fontSize: '16px' } }} />
+              </ListItem>
 
-              </SelectableList>;
+              </List>;
 
             }
 

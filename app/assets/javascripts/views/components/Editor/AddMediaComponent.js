@@ -28,11 +28,12 @@ import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';
 
 import {
-    Card, CardHeader, CardMedia, CardTitle, CardActions, CardText, Avatar, FlatButton,
-    Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator, DropDownMenu, DropDownIcon, FontIcon, RaisedButton,
+    Card, CardHeader, CardMedia, CardTitle, CardActions, CardText, Avatar,
+    Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator, DropDownMenu, DropDownIcon, FontIcon,
     Tabs, Tab,
     Dialog
 } from 'material-ui';
+import Button from '@material-ui/core/Button';
 import IntlService from "views/services/intl";
 
 const intl = IntlService.instance;
@@ -191,7 +192,7 @@ export default class AddMediaComponent extends Component {
         let fileTypeLabel = intl.trans('file', 'File', 'first');
 
         const actions = [
-            <FlatButton
+            <Button variant='flat'
                 label={intl.trans('cancel', 'Cancel', 'first')}
                 secondary={true}
                 onClick={this.handleClose}/>
@@ -236,7 +237,7 @@ export default class AddMediaComponent extends Component {
 
         if (computeCreate && computeCreate.success) {
             uploadText = <div className={classNames('alert', 'alert-success')} role="success">Upload successful!</div>
-            actions.push(<FlatButton
+            actions.push(<Button variant='flat'
                 label={intl.trans('insert_into_entry', 'Insert into Entry', 'first')}
                 primary={true}
                 onClick={this._handleSelectElement.bind(this, computeCreate.response)}/>);
@@ -245,7 +246,7 @@ export default class AddMediaComponent extends Component {
 
         return (
             <div style={{display: 'inline'}}>
-                <RaisedButton label={this.props.label} onClick={this.handleOpen}/>
+                <Button variant='raised' label={this.props.label} onClick={this.handleOpen}/>
                 <Dialog
                     title={intl.trans('views.components.editor.create_new_x_in_the_x_dialect',
                         "Create New " + fileTypeLabel + " in the " + selectn('properties.dc:title', this.props.dialect) + " dialect.",

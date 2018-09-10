@@ -32,9 +32,8 @@ import PageToolbar from 'views/pages/explore/dialect/page-toolbar';
 import SearchBar from 'views/pages/explore/dialect/search-bar';
 
 import Paper from 'material-ui/Paper';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
-import FlatButton from 'material-ui/FlatButton';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -118,7 +117,7 @@ export default class Index extends Component {
                         entity: selectn('response', computeDialect2),
                         login: this.props.computeLogin
                     }}>
-                        <RaisedButton
+                        <Button variant='raised'
                             label={intl.trans('views.pages.explore.dialect.users.create_new_user', 'Create New User', 'words')}
                             onClick={this._onNavigateRequest.bind(this, ['register'])} primary={true}/>
                     </AuthorizationFilter>
