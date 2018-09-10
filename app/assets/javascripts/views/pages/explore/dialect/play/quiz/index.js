@@ -19,8 +19,12 @@ import Immutable, {List, Map} from 'immutable';
 
 import classNames from 'classnames';
 
-import {IconButton, RaisedButton} from 'material-ui';
+import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import LinearProgress from '@material-ui/core/LinearProgress';
+
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 import ConfGlobal from 'conf/local.json';
 
@@ -341,7 +345,7 @@ export default class Quiz extends Component {
                                     onClick={this._handleNavigate.bind(this, 'previous')}
                                     iconClassName="material-icons"
                                     tooltip={intl.trans('views.pages.explore.dialect.play.quiz.previous_question', 'Previous Question', 'words')}>
-                        chevron_left
+                                    <ChevronLeftIcon />
                         </IconButton>
                     </div>
 
@@ -363,7 +367,7 @@ export default class Quiz extends Component {
                                     disabled={!isCorrect || isComplete}
                                     iconClassName="material-icons"
                                     tooltip={intl.trans('views.pages.explore.dialect.play.quiz.next_question', 'Next Question', 'words')}>
-                        chevron_right
+                                    <ChevronRightIcon />
                         </IconButton>
                     </div>
 

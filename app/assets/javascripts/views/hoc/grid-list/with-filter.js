@@ -14,7 +14,8 @@ import withToggle from 'views/hoc/view/with-toggle';
 import ProviderHelpers from 'common/ProviderHelpers';
 import FormHelpers from 'common/FormHelpers';
 
-import {RaisedButton, FlatButton, FontIcon} from 'material-ui';
+import {FontIcon} from 'material-ui';
+import Button from '@material-ui/core/Button';
 import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;

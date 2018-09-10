@@ -6,8 +6,9 @@ import ValuedCheckboxFactory from 'views/components/Editor/fields/valued-checkbo
 import RangeSelector from 'views/components/Editor/fields/range';
 import SelectFactory from 'views/components/Editor/fields/select';
 
-import {IconButton} from 'material-ui';
-import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
+import ClearIcon from '@material-ui/icons/Clear';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 import IntlService from "views/services/intl";
@@ -40,7 +41,7 @@ const SearchDocumentTypesTemplate = function (locals) {
                                     default: 'Remove Item',
                                     case: 'words'
                                 })} iconClassName="material-icons" key={i}
-                                                   onClick={button.click}>clear</IconButton>;
+                                onClick={button.click}><ClearIcon /></IconButton>;
                             }
                         })}</div>
                     </div>;

@@ -12,7 +12,8 @@ import options from 'models/schemas/filter-options';
 import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
 
-import {RaisedButton, FontIcon, FlatButton} from 'material-ui';
+import {FontIcon} from 'material-ui';
+import Button from '@material-ui/core/Button';
 
 import PageToolbar from 'views/pages/explore/dialect/page-toolbar';
 

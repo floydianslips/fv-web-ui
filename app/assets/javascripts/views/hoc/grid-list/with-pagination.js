@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 import Pagination from 'views/components/Navigation/Pagination';
 
-import {IconButton, MenuItem} from "material-ui";
+import {MenuItem} from "material-ui";
 import Select from '@material-ui/core/Select';
 
 import UIHelpers from 'common/UIHelpers';

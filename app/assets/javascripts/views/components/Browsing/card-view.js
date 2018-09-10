@@ -32,7 +32,6 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import FlipToFrontIcon from '@material-ui/icons/FlipToFront';
 import ClearIcon from '@material-ui/icons/Clear';
-import FlatButton from 'material-ui/FlatButton';
 import IntlService from "views/services/intl";
 
 const defaultStyle = {marginBottom: '20px'};
