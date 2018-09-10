@@ -36,14 +36,13 @@ import TextHeader from 'views/components/Document/Typography/text-header';
 
 import {Link} from 'provide-page';
 
-import FlatButton from 'material-ui/FlatButton';
 import Divider from '@material-ui/core/Divider';
 
-import ListUI from 'material-ui/List/List';
-import ListItem from 'material-ui/List/ListItem';
+import ListUI from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 
 import FontIcon from 'material-ui/FontIcon';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 
 import Tab from 'material-ui/Tabs/Tab';
 

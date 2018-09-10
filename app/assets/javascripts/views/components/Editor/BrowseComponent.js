@@ -174,7 +174,7 @@ export default class BrowseComponent extends React.Component {
         const dialectPath = selectn('path', dialect);
 
         const actions = [
-            <FlatButton
+            <Button variant='flat'
                 label={intl.trans('cancel', 'Cancel', 'first')}
                 secondary={true}
                 onClick={this._handleClose}/>
@@ -256,7 +256,7 @@ export default class BrowseComponent extends React.Component {
 
         return (
             <div style={{display: 'inline'}}>
-                <RaisedButton label={this.props.label} onClick={this._handleOpen}/>
+                <Button variant='raised' label={this.props.label} onClick={this._handleOpen}/>
                 <Dialog
                     title={title}
                     actions={actions}

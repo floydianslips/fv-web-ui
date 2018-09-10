@@ -44,14 +44,13 @@ import Dialog from 'material-ui/Dialog';
 
 import Avatar from '@material-ui/core/Avatar';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
 import Divider from '@material-ui/core/Divider';
 
-import { List as ListUI, ListItem } from 'material-ui/List';
+import { List as ListUI, ListItem, ListItemText } from '@material-ui/core';
 
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
 import FontIcon from 'material-ui/FontIcon';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 
 import { Tabs, Tab } from 'material-ui/Tabs';
 
@@ -329,12 +328,17 @@ export default class View extends Component {
 
                                                                     return <ListItem
                                                                         onClick={() => this.setState({showThumbnailDialog: thumbnail})}
-                                                                        key={key}
-                                                                        primaryText={thumbnail.title}
-                                                                        secondaryText={<p><span
-                                                                            style={{color: '#000'}}>{thumbnail.description}</span> --
-                                                                            ({thumbnail.width + 'x' + thumbnail.height})
-                                                                        </p>}/>;
+                                                                        key={key}>
+                                                                            <ListItemText
+                                                                                primary={thumbnail.title}
+                                                                                secondary={
+                                                                                    <p>
+                                                                                        <span style={{color: '#000'}}>{thumbnail.description}</span>
+                                                                                        -- ({thumbnail.width + 'x' + thumbnail.height})
+                                                                                    </p>
+                                                                                } 
+                                                                            />
+                                                                        </ListItem>;
                                                                 }.bind(this))}
 
                                                             </ListUI>
@@ -347,7 +351,7 @@ export default class View extends Component {
                                                                 }}
                                                                 autoScrollBodyContent={true}
                                                                 title={selectn('title', this.state.showThumbnailDialog)}
-                                                                actions={[<FlatButton
+                                                                actions={[<Button variant='flat'
                                                                     label={intl.trans('close', 'Close', 'first')}
                                                                     secondary={true}
                                                                     onClick={() => this.setState({showThumbnailDialog: null})}/>]}

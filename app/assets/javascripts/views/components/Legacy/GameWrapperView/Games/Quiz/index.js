@@ -230,7 +230,7 @@ class Quiz extends React.Component {
           <IconButton onClick={this.handleNavigate.bind(this, 'previous')} iconClassName={classNames('glyphicon', 'glyphicon-chevron-left')} tooltip="Previous Question"/>
         </div>
         <div className={classNames('col-xs-8', 'text-center')}>
-          <div><RaisedButton secondary={true} disabled={(this.state.currentAnswerIndex in this.state.selectedAnswers) ? false : true} onClick={this.checkAnswer.bind(this)} label="Check Answer" /></div>
+          <div><Button variant='raised' secondary={true} disabled={(this.state.currentAnswerIndex in this.state.selectedAnswers) ? false : true} onClick={this.checkAnswer.bind(this)} label="Check Answer" /></div>
           <Snackbar ref="feedback" style={(this.state.checkedAnswers[this.state.currentAnswerIndex] === true) ? {backgroundColor: 'green'} : {}} message={(this.state.checkedAnswers[this.state.currentAnswerIndex] === true) ? 'Great job!' : 'Try Again...'} action="close" autoHideDuration={1500} />
         </div>
         <div className={classNames('col-xs-2', 'text-right')}>

@@ -38,13 +38,13 @@ import MenuItem from 'material-ui/MenuItem';
 import Select from '@material-ui/core/Select';
 
 import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
-import RadioButton from 'material-ui/RadioButton';
-import RadioButtonGroup from 'material-ui/RadioButton/RadioButtonGroup';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import Badge from '@material-ui/core/Badge';
 import DropDownMenu from 'material-ui/DropDownMenu';
-import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
+import Button from '@material-ui/core/Button';
 
 import Toolbar from 'material-ui/Toolbar/Toolbar';
 import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
@@ -387,7 +387,7 @@ export default class Navigation extends Component {
                                     return <tr key={'guide' + i}>
                                         <td>{selectn('properties.dc:title', guide)}<br/>{selectn('properties.dc:description', guide)}
                                         </td>
-                                        <td><RaisedButton onClick={this._startTour.bind(this, guide)}
+                                        <td><Button variant='raised' onClick={this._startTour.bind(this, guide)}
                                                             primary={false} label={this.intl.translate({
                                             key: 'views.components.navigation.launch_guide',
                                             default: 'Launch Guide',
@@ -407,7 +407,7 @@ export default class Navigation extends Component {
 
             <div style={{background: themePalette.primary1Color, display: 'inline-block'}} className={classNames({'hidden-xs': !this.state.searchBarVisibleInMobile, 'search-bar-mobile': this.state.searchBarVisibleInMobile})}>
               <TextField underlineStyle={{width:'79%'}} style={{marginLeft: (this.state.searchBarVisibleInMobile) ? '15px' : '30px', fontSize: '15px', height: '38px', backgroundColor: '#fff', paddingLeft: '10px', lineHeight: '1', width: (this.state.searchBarVisibleInMobile) ? '214px' : 'inherit', paddingRight: (this.state.searchBarVisibleInMobile) ? '0' : '40px'}} ref="navigationSearchField" hintText={this.intl.translate({key: 'general.search', default: 'Search', case: 'first', append: ':'})} onBlur={() => this.setState({searchContextPopoverOpen: (isDialect) ? true : false })} onFocus={(e) => this.setState({searchContextPopoverOpen: true, searchContextPopoverAnchorEl: e.target})} onKeyDown={this._handleNavigationSearchChange} name="searchbox" />
-              <FlatButton className={classNames({'hidden': !this.state.searchBarVisibleInMobile})} style={{color: themePalette.alternateTextColor}} label={this.intl.translate({key: 'general.cancel',default: 'Cancel',case: 'first'})} onClick={(e) => {this.setState({searchBarVisibleInMobile: false}); e.preventDefault(); }} />
+              <Button variant='flat' className={classNames({'hidden': !this.state.searchBarVisibleInMobile})} style={{color: themePalette.alternateTextColor}} label={this.intl.translate({key: 'general.cancel',default: 'Cancel',case: 'first'})} onClick={(e) => {this.setState({searchBarVisibleInMobile: false}); e.preventDefault(); }} />
             </div>
 
             <IconButton
@@ -436,10 +436,12 @@ export default class Navigation extends Component {
                         case: 'words'
                     })}</p>
                     <div>
-                        <RadioButtonGroup
+                        <RadioGroup
                             onChange={() => this.setState({searchLocal: !this.state.searchLocal})}
+                            value={this.state.searchLocal ? 'local' : 'all'}
                             name="searchTarget" defaultSelected="local">
-                            <RadioButton
+                            <FormControlLabel
+                                control={<Radio />}
                                 value={this.intl.translate({
                                     key: 'general.all',
                                     default: 'all',
@@ -457,7 +459,8 @@ export default class Navigation extends Component {
                                         append: '.'
                                     })}</span></span>)}
                             />
-                            <RadioButton
+                            <FormControlLabel
+                                control={<Radio />}
                                 value="local"
                                 label={(<span
                                     style={{fontWeight: '400'}}>{portalTitle || this.intl.translate({
@@ -483,7 +486,7 @@ export default class Navigation extends Component {
                                     append: '.'
                                 })}</span></span>)}
                             />
-                        </RadioButtonGroup>
+                        </RadioGroup>
                     </div>
                   </div>;
                 } else {

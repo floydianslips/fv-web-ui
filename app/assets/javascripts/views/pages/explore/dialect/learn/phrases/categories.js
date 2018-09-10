@@ -31,8 +31,8 @@ import DirectoryOperations from 'operations/DirectoryOperations';
 
 import Checkbox from 'material-ui/Checkbox';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
 import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
 import MenuItem from 'material-ui/MenuItem';
 
 import withPagination from 'views/hoc/grid-list/with-pagination';

@@ -226,7 +226,7 @@ export default function withActions(ComposedFilter, publishWarningEnabled = fals
                                 'views.hoc.view.publish_x',
                                 'Publish ' + StringHelpers.toTitleCase(this.props.labels.single), 'first', [StringHelpers.toTitleCase(this.props.labels.single)])}
                             actions={[
-                                <FlatButton
+                                <Button variant='flat'
                                     label={intl.trans('cancel', 'Cancel', 'first')}
                                     secondary={true}
                                     onClick={() => this.setState({
@@ -234,7 +234,7 @@ export default function withActions(ComposedFilter, publishWarningEnabled = fals
                                         publishToggleCancelled: true,
                                         prePublishCompleteAction: null
                                     })}/>,
-                                <FlatButton
+                                <Button variant='flat'
                                     label={intl.trans('publish', 'Publish', 'first')}
                                     primary={true}
                                     keyboardFocused={true}
@@ -268,7 +268,7 @@ export default function withActions(ComposedFilter, publishWarningEnabled = fals
                         <div className="col-xs-12" style={{marginTop: '15px'}}>
                             <Toolbar className="toolbar">
                                 <ToolbarGroup key={0} float="right">
-                                    <RaisedButton icon={<FontIcon className="material-icons">delete</FontIcon>}
+                                    <Button variant='raised' icon={<FontIcon className="material-icons">delete</FontIcon>}
                                                   onClick={() => this.setState({deleteDialogOpen: true})}
                                                   secondary={true}
                                                   label={intl.trans('views.hoc.view.delete_x', "Delete " + StringHelpers.toTitleCase(this.props.labels.single), 'first', [StringHelpers.toTitleCase(this.props.labels.single)])}/>
@@ -278,11 +278,11 @@ export default function withActions(ComposedFilter, publishWarningEnabled = fals
                             <Dialog
                                 title={intl.trans('views.hoc.view.deleting_x', "Deleting " + StringHelpers.toTitleCase(this.props.labels.single), 'first', [StringHelpers.toTitleCase(this.props.labels.single)])}
                                 actions={[
-                                    <FlatButton
+                                    <Button variant='flat'
                                         label={intl.trans('cancel', 'Cancel', 'first')}
                                         secondary={true}
                                         onClick={() => this.setState({deleteDialogOpen: false})}/>,
-                                    <FlatButton
+                                    <Button variant='flat'
                                         label={intl.trans('delete', 'Delete', 'first')}
                                         primary={true}
                                         keyboardFocused={true}
@@ -302,11 +302,11 @@ export default function withActions(ComposedFilter, publishWarningEnabled = fals
                                 title={intl.trans('views.hoc.view.delete_x',
                                     "Delete " + StringHelpers.toTitleCase(this.props.labels.single) + " Success", 'words', [StringHelpers.toTitleCase(this.props.labels.single)])}
                                 actions={[
-                                    <FlatButton
+                                    <Button variant='flat'
                                         label={intl.trans('views.hoc.view.return_to_previous_page', "Return to Previous Page", 'words')}
                                         secondary={true}
                                         onClick={() => window.history.back()}/>,
-                                    <FlatButton
+                                    <Button variant='flat'
                                         label={intl.trans('views.hoc.view.go_to_dialect_language_home', "Go to Dialect Language Home", 'words')}
                                         primary={true}
                                         keyboardFocused={true}

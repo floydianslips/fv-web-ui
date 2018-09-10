@@ -20,7 +20,7 @@ import ConfGlobal from 'conf/local.json';
 import selectn from 'selectn';
 import classNames from 'classnames';
 
-import FlatButton from 'material-ui/FlatButton';
+import Button from '@material-ui/core/Button';
 import FontIcon from 'material-ui/FontIcon';
 
 import PageStats from 'views/pages/explore/dialect/page-stats';
@@ -113,7 +113,7 @@ export default class Header extends Component {
                 <div className={classNames('dialect-info-banner')}>
 
                     <div className={classNames('dib-header', 'visible-xs')}>
-                        <FlatButton
+                        <Button variant='flat'
                             label={(this.state.showArchiveInfoMobile) ? intl.trans('info', 'Info', 'first') : intl.trans('info', 'Info', 'first')}
                             labelPosition="before"
                             onClick={(e) => {

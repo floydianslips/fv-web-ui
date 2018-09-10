@@ -23,7 +23,7 @@ import selectn from 'selectn';
 
 import ConfGlobal from 'conf/local.json';
 
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';

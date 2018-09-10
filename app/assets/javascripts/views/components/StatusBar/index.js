@@ -1,6 +1,6 @@
 import React from 'react';
-import Snackbar from 'material-ui/Snackbar';
-import RaisedButton from 'material-ui/RaisedButton';
+import Snackbar from '@material-ui/core/Snackbar';
+import Button from '@material-ui/core/Button';
 
 export default class StatusBar extends React.Component {
 
@@ -32,7 +32,8 @@ export default class StatusBar extends React.Component {
                         open={this.state.open}
                         message={this.props.message}
                         autoHideDuration={5000}
-                        onRequestClose={this.handleRequestClose}
+                        onClose={this.handleRequestClose}
+                        ContentProps={{style: { fontSize: '14px' } }}
                     />
                 </div>
             );
