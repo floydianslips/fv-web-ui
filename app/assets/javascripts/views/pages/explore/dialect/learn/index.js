@@ -50,9 +50,9 @@ import AuthenticationFilter from 'views/components/Document/AuthenticationFilter
 import ToolbarNavigation from 'views/pages/explore/dialect/learn/base/toolbar-navigation';
 import LearningSidebar from 'views/pages/explore/dialect/learn/base/learning-sidebar';
 
-import Card from 'material-ui/Card/Card';
-import CardHeader from 'material-ui/Card/CardHeader';
-import CardText from 'material-ui/Card/CardText';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardText from '@material-ui/core/CardText';
 import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;
