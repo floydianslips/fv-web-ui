@@ -24,12 +24,12 @@ import StringHelpers from 'common/StringHelpers';
 import Preview from 'views/components/Editor/Preview';
 import MetadataList from 'views/components/Browsing/metadata-list';
 
-import Card from 'material-ui/Card/Card';
-import CardActions from 'material-ui/Card/CardActions';
-import CardHeader from 'material-ui/Card/CardHeader';
-import CardMedia from 'material-ui/Card/CardMedia';
-import CardTitle from 'material-ui/Card/CardTitle';
-import CardText from 'material-ui/Card/CardText';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardTitle from '@material-ui/core/CardTitle';
+import CardText from '@material-ui/core/CardText';
 import IntlService from 'views/services/intl';
 const intl = IntlService.instance;
 /**
