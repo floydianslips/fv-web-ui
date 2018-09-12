@@ -27,7 +27,8 @@ import StringHelpers from 'common/StringHelpers';
 
 import {Dialog} from 'material-ui';
 import Button from '@material-ui/core/Button';
-import GridTile from 'material-ui/GridList/GridTile';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 
 import MediaList from 'views/components/Browsing/media-list';
 import withPagination from 'views/hoc/grid-list/with-pagination';
@@ -51,7 +52,7 @@ const FilteredPaginatedMediaList = withFilter(withPagination(MediaList, DefaultF
 
 const intl = IntlService.instance;
 
-class SharedResourceGridTile extends Component {
+class SharedResourceGridListTile extends Component {
 
     constructor(props, context) {
         super(props, context);
@@ -78,17 +79,19 @@ class SharedResourceGridTile extends Component {
                 <ActionInfoOutline color='white'/> : <ActionInfo color='white'/>}</IconButton>;
         }
 
-        return <GridTile
+        return <GridListTile
             onClick={(this.props.action) ? this.props.action.bind(this, this.props.tile) : null}
-            key={selectn('uid', tile)}
-            title={selectn('properties.dc:title', tile)}
-            actionPosition="right"
-            titlePosition={this.props.fileTypeTilePosition}
-            actionIcon={actionIcon}
-            subtitle={<span><strong>{Math.round(selectn('properties.common:size', tile) * 0.001)} KB</strong></span>}
+            key={selectn('uid', tile)}   
         >
             {this.props.preview}
-        </GridTile>;
+            <GridListTileBar
+                title={selectn('properties.dc:title', tile)}
+                actionPosition="right"
+                titlePosition={this.props.fileTypeTilePosition}
+                actionIcon={actionIcon}
+                subtitle={<span><strong>{Math.round(selectn('properties.common:size', tile) * 0.001)} KB</strong></span>}
+            />
+        </GridListTile>;
     }
 }
 
@@ -203,7 +206,7 @@ export default class SelectMediaComponent extends React.Component {
         const computeResources = ProviderHelpers.getEntry(this.props.computeResources, '/FV/Workspaces/');
         const dialect = this.props.dialect;
 
-        var SharedResourceGridTileWithDialect = props => React.createElement(SharedResourceGridTile, {...props, dialect: dialect});
+        var SharedResourceGridListTileWithDialect = props => React.createElement(SharedResourceGridListTile, {...props, dialect: dialect});
 
         return (
             <div style={{display: 'inline'}}>
@@ -229,7 +232,7 @@ export default class SelectMediaComponent extends React.Component {
                         filterOptionsKey={'ResourcesSelector'}
                         action={this._handleSelectElement}
                         fetcher={this.fetchData}
-                        gridListTile={SharedResourceGridTileWithDialect}
+                        gridListTile={SharedResourceGridListTileWithDialect}
                         fetcherParams={this.state.fetcherParams}
                         initialValues={{'dc:contributors': selectn("response.properties.username", this.props.computeLogin)}}
                         metadata={selectn('response', computeResources) || selectn('response_prev', computeResources)}

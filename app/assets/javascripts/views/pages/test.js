@@ -25,8 +25,8 @@ import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
 // Operations
 import DirectoryOperations from 'operations/DirectoryOperations';
-
-import { GridList, GridTile } from 'material-ui/GridList';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import ProviderHelpers from 'common/ProviderHelpers';

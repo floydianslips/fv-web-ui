@@ -22,8 +22,9 @@ import ConfGlobal from 'conf/local.json';
 
 import * as Colors from 'material-ui/styles/colors';
 
-import GridList from 'material-ui/GridList/GridList';
-import GridTile from 'material-ui/GridList/GridTile';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 
 import UIHelpers from 'common/UIHelpers';
 import IntlService from "views/services/intl";
@@ -90,14 +91,17 @@ export default class CategoryList extends Component {
             >
                 {(items).map(function (tile, i) {
 
-                    return <GridTile
+                    return <GridListTile
                         onClick={action.bind(this, tile)}
                         key={tile.uid}
-                        title={this.intl.searchAndReplace(tile.title)}
                         className="category-grid-tile"
-                        titlePosition='bottom'
                     ><img
-                        src={(selectn('properties.file:content.data', tile) || '/assets/images/cover.png')}/></GridTile>
+                        src={(selectn('properties.file:content.data', tile) || '/assets/images/cover.png')}/>
+                        <GridListTileBar
+                            title={this.intl.searchAndReplace(tile.title)}
+                            titlePosition='bottom'
+                        />    
+                    </GridListTile>
                 }.bind(this))}
             </GridList>
         </div>;

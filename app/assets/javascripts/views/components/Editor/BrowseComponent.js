@@ -27,7 +27,8 @@ import StringHelpers from 'common/StringHelpers';
 
 import {Dialog} from 'material-ui';
 import Button from '@material-ui/core/Button';
-import GridTile from 'material-ui/GridList/GridTile';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 
 import MediaList from 'views/components/Browsing/media-list';
 import LinearProgress from '@material-ui/core/LinearProgress';
@@ -51,7 +52,7 @@ const DefaultFetcherParams = {
     filters: {'properties.dc:title': {appliedFilter: ''}, 'dialect': {appliedFilter: ''}}
 };
 
-class SharedResourceGridTile extends Component {
+class SharedResourceGridListTile extends Component {
 
     constructor(props, context) {
         super(props, context);
@@ -78,17 +79,19 @@ class SharedResourceGridTile extends Component {
                 <ActionInfoOutline color='white'/> : <ActionInfo color='white'/>}</IconButton>;
         }
 
-        return <GridTile
+        return <GridListTile
             onClick={(this.props.action) ? this.props.action.bind(this, this.props.tile) : null}
             key={selectn('uid', tile)}
-            title={selectn('properties.dc:title', tile)}
-            actionPosition="right"
-            titlePosition={this.props.fileTypeTilePosition}
-            actionIcon={actionIcon}
-            subtitle={<span><strong>{Math.round(selectn('properties.common:size', tile) * 0.001)} KB</strong></span>}
         >
             {this.props.preview}
-        </GridTile>;
+            <GridListTileBar
+                title={selectn('properties.dc:title', tile)}
+                actionPosition="right"
+                titlePosition={this.props.fileTypeTilePosition}
+                actionIcon={actionIcon}
+                subtitle={<span><strong>{Math.round(selectn('properties.common:size', tile) * 0.001)} KB</strong></span>}
+            />
+        </GridListTile>;
     }
 }
 

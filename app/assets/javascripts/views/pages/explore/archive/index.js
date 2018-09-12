@@ -27,7 +27,9 @@ import ProviderHelpers from 'common/ProviderHelpers';
 
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
-import { GridList, GridTile } from 'material-ui/GridList';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import IntlService from 'views/services/intl';
 
@@ -99,12 +101,15 @@ export default class ExploreArchive extends Component {
                             style={{width: '100%', overflowY: 'auto', marginBottom: 24}}
                         >
                             {(selectn('response.entries', computeLanguageFamilies) || []).map((tile, i) =>
-                                <GridTile
+                                <GridListTile
                                     onClick={this._onNavigateRequest.bind(this, tile.path)}
-                                    key={tile.uid}
-                                    title={tile.title}
-                                    subtitle={tile.description}
-                                ><img src="/assets/images/cover.png"/></GridTile>
+                                    key={tile.uid}    
+                                ><img src="/assets/images/cover.png"/>
+                                    <GridListTileBar
+                                        title={tile.title}
+                                        subtitle={tile.description}
+                                    />
+                                </GridListTile>
                             )}
                         </GridList>
                     </div>
