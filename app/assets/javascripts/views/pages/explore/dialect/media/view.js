@@ -43,13 +43,16 @@ import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 import Dialog from 'material-ui/Dialog';
 
 import Avatar from '@material-ui/core/Avatar';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
 import Divider from '@material-ui/core/Divider';
 
 import { List as ListUI, ListItem, ListItemText } from '@material-ui/core';
 
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
-import FontIcon from 'material-ui/FontIcon';
 import Button from '@material-ui/core/Button';
 
 import { Tabs, Tab } from 'material-ui/Tabs';
@@ -302,7 +305,7 @@ export default class View extends Component {
                             <Tabs tabItemContainerStyle={tabItemStyles}>
                                 <Tab label={intl.trans('overview', 'Overview', 'first')}>
                                     <div>
-                                        <CardText>
+                                        <CardContent>
 
                                             <div className={classNames('col-md-8', 'col-xs-12')}>
 
@@ -372,14 +375,14 @@ export default class View extends Component {
 
                                             </div>
 
-                                        </CardText>
+                                        </CardContent>
                                     </div>
                                 </Tab>
                                 <Tab
                                     label={UIHelpers.isViewSize('xs') ? intl.trans('words', 'Words', 'first') : intl.trans('linked_words', 'Linked Words', 'words')}
                                     id="find_words">
                                     <div>
-                                        <CardText>
+                                        <CardContent>
                                             <h2>{intl.trans('views.pages.explore.dialect.media.words_featuring', 'Words Featuring')}
                                                 <strong>{selectn('response.title', computeResource)}</strong>
                                             </h2>
@@ -388,14 +391,14 @@ export default class View extends Component {
                                                     filter={currentAppliedFilter}
                                                     routeParams={this.props.routeParams}/>
                                             </div>
-                                        </CardText>
+                                        </CardContent>
                                     </div>
                                 </Tab>
                                 <Tab
                                     label={UIHelpers.isViewSize('xs') ? intl.trans('phrases', 'Phrases', 'first') : intl.trans('linked_phrases', 'Linked Phrases', 'words')}
                                     id="find_phrases">
                                     <div>
-                                        <CardText>
+                                        <CardContent>
                                             <h2>{intl.trans('views.pages.explore.dialect.media.words_featuring_with', 'Words Featuring with')}
                                                 <strong>{selectn('response.title', computeResource)}</strong></h2>
                                             <div className="row">
@@ -403,7 +406,7 @@ export default class View extends Component {
                                                     filter={currentAppliedFilter}
                                                     routeParams={this.props.routeParams}/>
                                             </div>
-                                        </CardText>
+                                        </CardContent>
                                     </div>
                                 </Tab>
                             </Tabs>

@@ -31,7 +31,7 @@ import PageHeader from 'views/pages/explore/dialect/page-header';
 import PageToolbar from 'views/pages/explore/dialect/page-toolbar';
 import SearchBar from 'views/pages/explore/dialect/search-bar';
 
-import Paper from 'material-ui/Paper';
+import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
 import CircularProgress from '@material-ui/core/CircularProgress';

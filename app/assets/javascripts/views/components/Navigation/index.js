@@ -64,7 +64,6 @@ import AppLeftNav from 'views/components/Navigation/AppLeftNav';
 
 import IntlService from 'views/services/intl';
 
-import FontIcon from 'material-ui/FontIcon';
 import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ToolbarTitle from 'material-ui/Toolbar/ToolbarTitle';
 

@@ -31,8 +31,7 @@ import AppFrontController from './AppFrontController';
 
 import Shepherd from 'tether-shepherd';
 
-import FontIcon from 'material-ui/FontIcon';
-import Paper from 'material-ui/Paper';
+import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
 import IntlService from 'views/services/intl';

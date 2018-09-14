@@ -21,9 +21,10 @@ import Immutable, {List, Map} from 'immutable';
 import Button from '@material-ui/core/Button';
 import TextField from 'material-ui/TextField';
 import * as Colors from 'material-ui/styles/colors';
-import FontIcon from 'material-ui/FontIcon';
 import IconButton from '@material-ui/core/IconButton';
 import AVPlayArrow from '@material-ui/icons/PlayArrow';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox';
 import AVStop from '@material-ui/icons/Stop';
 
 import classNames from 'classnames';
@@ -249,20 +250,20 @@ export class Scramble extends Component {
                                     {word}
                                 </Button>
                     })}
-                    {this.state.complete ? <FontIcon className="material-icons" style={{
+                    {this.state.complete ? <CheckBoxIcon className="material-icons" style={{
                         color: Colors.greenA200,
                         fontSize: '50px',
                         position: 'absolute',
                         top: '5px',
                         right: '5px'
-                    }}>check_box</FontIcon> : false}
-                    {this.state.incorrect ? <FontIcon className="material-icons" style={{
+                    }} /> : false}
+                    {this.state.incorrect ? <IndeterminateCheckBoxIcon className="material-icons" style={{
                         color: Colors.red600,
                         fontSize: '50px',
                         position: 'absolute',
                         top: '5px',
                         right: '5px'
-                    }}>indeterminate_check_box</FontIcon> : false}
+                    }} /> : false}
                 </div>
                 {this.state.scrambledSentence.map((word, index) => {
                     let disabled = false;
