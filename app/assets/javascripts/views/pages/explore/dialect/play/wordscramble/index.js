@@ -274,14 +274,14 @@ export class Scramble extends Component {
                     return <Button variant='raised' disabled={disabled} key={index}
                                          onMouseUp={this.selectWord.bind(this, word)}>{word}</Button>
                 })}
-                {this.state.complete ? <Button variant='raised' primary={true}
+                {this.state.complete ? <Button variant='raised' color="primary"
                                                      onMouseUp={this.reset.bind(this)}>{intl.trans('reset', 'Reset', 'first')}</Button> : false}
                 <Button variant='raised'
                               className={classNames({'invisible': this.state.complete})} style={{margin: '0 5px'}}
-                              disabled={this.state.complete ? true : false} secondary={true}
+                              disabled={this.state.complete ? true : false} color="secondary"
                               onMouseUp={this.checkAnswer.bind(this)}>{intl.trans('check', 'Check', 'first')}</Button>
                 {this.state.complete ? false :
-                    <Button variant='raised' primary={true}
+                    <Button variant='raised' color="primary"
                                   onMouseUp={this.reset.bind(this)}>{intl.trans('reset', 'Reset', 'first')}</Button>}
             </div>
         </div>

@@ -349,7 +349,7 @@ export default class Navigation extends Component {
                   badgeContent={guideCount}
                   style={{top: '8px', left: '-15px', padding: '0 0 12px 12px'}}
                   badgeStyle={{top: '12px',left: '42px', width: '15px', height: '15px', borderRadius: '25%', visibility: (guideCount == 0) ? 'hidden' : 'visible'}}
-                  primary={true}
+                  color="primary"
                 >
                   <IconButton >
                     <ActionHelp />
@@ -413,8 +413,7 @@ export default class Navigation extends Component {
 
             <IconButton
                 onClick={this._handleNavigationSearchSubmit}
-                
-                style={{position:'relative', top: '7px', padding: '0', left: 0}}
+                color="inherit"
                 >
                 <SearchIcon />
             </IconButton>
@@ -506,11 +505,10 @@ export default class Navigation extends Component {
           <ToolbarSeparator className="locale-seperator" style={{float: 'none', marginRight: 0, marginLeft: 0}} />
 
           <IconButton
-              onClick={this._handleDisplayLocaleOptions}
-              
-              style={{position:'relative', top: '7px', padding: '0', left: 0}}
-              >
-              <SettingsIcon />
+            onClick={this._handleDisplayLocaleOptions}
+            color="inherit"
+          >
+            <SettingsIcon />
           </IconButton>
 
           </ToolbarGroup>

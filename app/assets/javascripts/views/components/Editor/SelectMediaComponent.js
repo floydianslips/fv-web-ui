@@ -177,9 +177,10 @@ export default class SelectMediaComponent extends React.Component {
 
         const actions = [
             <Button variant='flat'
-                label={intl.trans('cancel', 'Cancel', 'first')}
-                secondary={true}
-                onClick={this._handleClose}/>
+                color="secondary"
+                onClick={this._handleClose}>
+                {intl.trans('cancel', 'Cancel', 'first')}    
+            </Button>
         ];
 
         let fileTypeLabel = intl.trans('file', 'file', 'lower');

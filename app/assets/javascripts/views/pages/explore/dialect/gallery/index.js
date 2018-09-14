@@ -158,7 +158,7 @@ export default class PageDialectGalleries extends Component {
                     }}>
                         <Button variant='raised'
                                       onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/create')}
-                                      primary={true}>
+                                      color="primary">
                             Create Gallery
                         </Button>
                     </AuthorizationFilter>

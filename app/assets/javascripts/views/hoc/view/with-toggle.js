@@ -40,13 +40,13 @@ export default function withToggle() {
 
             return <div className={classNames('panel', 'panel-default')}>
                 <div className="panel-heading">
-                    {label} <Button variant='flat' className={classNames({'visible-xs': mobileOnly})}
-                                        label={(this.state.open) ? intl.trans('hide', 'Hide', 'first') : intl.trans('show', 'Show', 'first')}
-                                        labelPosition="before" onClick={(e) => {
+                    {label} <Button variant='flat' className={classNames({'visible-xs': mobileOnly})} onClick={(e) => {
                     this.setState({open: !this.state.open});
                     e.preventDefault();
                 }} icon={icon}
-                                        style={{float: 'right', lineHeight: 1}}/>
+                                        style={{float: 'right', lineHeight: 1}}>
+                    {(this.state.open) ? intl.trans('hide', 'Hide', 'first') : intl.trans('show', 'Show', 'first')}                        
+                </Button>
                 </div>
 
                 <div className={classNames('panel-body', {'hidden-xs': !this.state.open && mobileOnly})}>

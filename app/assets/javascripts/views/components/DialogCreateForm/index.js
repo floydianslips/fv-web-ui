@@ -121,9 +121,10 @@ export default class DialogCreateForm extends React.Component {
 
         const actions = [
             <Button variant='flat'
-                label={intl.trans('cancel', 'Cancel', 'first')}
-                secondary={true}
-                onClick={this.handleClose}/>
+                color="secondary"
+                onClick={this.handleClose}>
+                {intl.trans('cancel', 'Cancel', 'first')}    
+            </Button>
         ];
 
         return (

@@ -118,8 +118,9 @@ export default class Index extends Component {
                         login: this.props.computeLogin
                     }}>
                         <Button variant='raised'
-                            label={intl.trans('views.pages.explore.dialect.users.create_new_user', 'Create New User', 'words')}
-                            onClick={this._onNavigateRequest.bind(this, ['register'])} primary={true}/>
+                            onClick={this._onNavigateRequest.bind(this, ['register'])} color="primary">
+                            {intl.trans('views.pages.explore.dialect.users.create_new_user', 'Create New User', 'words')}    
+                        </Button>
                     </AuthorizationFilter>
                 </div>
             </div>

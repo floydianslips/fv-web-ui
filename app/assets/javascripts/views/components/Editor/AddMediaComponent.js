@@ -193,9 +193,10 @@ export default class AddMediaComponent extends Component {
 
         const actions = [
             <Button variant='flat'
-                label={intl.trans('cancel', 'Cancel', 'first')}
-                secondary={true}
-                onClick={this.handleClose}/>
+                color="secondary"
+                onClick={this.handleClose}>
+                {intl.trans('cancel', 'Cancel', 'first')}    
+            </Button>
         ];
 
         switch (this.props.type) {
@@ -238,9 +239,8 @@ export default class AddMediaComponent extends Component {
         if (computeCreate && computeCreate.success) {
             uploadText = <div className={classNames('alert', 'alert-success')} role="success">Upload successful!</div>
             actions.push(<Button variant='flat'
-                label={intl.trans('insert_into_entry', 'Insert into Entry', 'first')}
-                primary={true}
-                onClick={this._handleSelectElement.bind(this, computeCreate.response)}/>);
+                color="primary"
+                onClick={this._handleSelectElement.bind(this, computeCreate.response)}>{intl.trans('insert_into_entry', 'Insert into Entry', 'first')}</Button>);
             form = "";
         }
 

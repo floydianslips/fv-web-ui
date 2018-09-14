@@ -123,11 +123,11 @@ export default class CardView extends Component {
 
                     <Button variant='flat'
                         onClick={this.props.action.bind(this, this.props.item)}
-                        primary={true} label={this.intl.translate({
-                        key: 'views.pages.dialect.learn.songs_stories.continue_to_entry',
-                        default: 'Continue to Entry',
-                        case: 'words'
-                    })}/>
+                        color="primary">{this.intl.translate({
+                            key: 'views.pages.dialect.learn.songs_stories.continue_to_entry',
+                            default: 'Continue to Entry',
+                            case: 'words'
+                        })}</Button>
 
                     {(() => {
                         if (introduction) {

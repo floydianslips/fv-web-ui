@@ -146,10 +146,12 @@ export default function withForm(ComposedFilter, publishWarningEnabled = false) 
 
                                     <div className="form-group" style={{textAlign: 'right'}}>
 
-                                        <Button variant='flat' onClick={this._onRequestCancelForm} style={{marginRight: '10px'}}
-                                                label={intl.trans('cancel', 'Cancel', 'first')}/>
-                                        <Button variant='raised' onClick={this._onRequestSaveForm.bind(this, computeItem)}
-                                                primary={true} label={intl.trans('save', 'Save', 'first')}/>
+                                        <Button variant='flat' onClick={this._onRequestCancelForm} style={{marginRight: '10px'}}>
+                                            {intl.trans('cancel', 'Cancel', 'first')}
+                                        </Button>
+                                        <Button variant='raised' onClick={this._onRequestSaveForm.bind(this, computeItem)} color="primary">
+                                            {intl.trans('save', 'Save', 'first')}        
+                                        </Button>
 
                                     </div>
 
@@ -166,10 +168,12 @@ export default function withForm(ComposedFilter, publishWarningEnabled = false) 
 
                                     <div className="form-group" style={{textAlign: 'right'}}>
 
-                                        <Button variant='flat' onClick={this._onRequestCancelForm} style={{marginRight: '10px'}}
-                                                    label={intl.trans('cancel', 'Cancel', 'first')}/>
-                                        <Button variant='raised' onClick={this._onRequestSaveForm.bind(this, computeItem)}
-                                                      primary={true} label={intl.trans('save', 'Save', 'first')}/>
+                                        <Button variant='flat' onClick={this._onRequestCancelForm} style={{marginRight: '10px'}}>
+                                            {intl.trans('cancel', 'Cancel', 'first')}
+                                        </Button>
+                                        <Button variant='raised' onClick={this._onRequestSaveForm.bind(this, computeItem)}color="primary">
+                                            {intl.trans('save', 'Save', 'first')}
+                                        </Button>
 
                                         <Popover
                                             open={this.state.showCancelWarning}

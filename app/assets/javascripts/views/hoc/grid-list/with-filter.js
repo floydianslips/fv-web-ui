@@ -223,12 +223,12 @@ export default function withFilter(ComposedFilter, DefaultFetcherParams) {
                                         options={options.toJS()}/>
                                     <Button variant='raised'
                                         onClick={this._onReset}
-                                        primary={true}>
+                                        color="primary">
                                         {intl.trans('reset', 'Reset', 'first')}    
                                     </Button> &nbsp;
                                     <Button variant='raised'
                                         type="submit"
-                                        primary={true}>
+                                        color="primary">
                                         {intl.trans('filter', 'Filter', 'first')}    
                                     </Button>
                                 </FiltersWithToggle>

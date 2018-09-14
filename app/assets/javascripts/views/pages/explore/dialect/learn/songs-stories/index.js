@@ -164,9 +164,10 @@ export default class PageDialectLearnStoriesAndSongs extends Component {
                         login: this.props.computeLogin
                     }}>
                         <Button variant='raised'
-                            label={intl.trans('views.pages.explore.dialect.learn.songs_stories.create_x_book', "Create " + this.props.typeFilter + " Book", 'words', [this.props.typeFilter])}
                             onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/create')}
-                            primary={true}/>
+                            color="primary">
+                            {intl.trans('views.pages.explore.dialect.learn.songs_stories.create_x_book', "Create " + this.props.typeFilter + " Book", 'words', [this.props.typeFilter])}    
+                        </Button>
                     </AuthorizationFilter>
                 </div>
 

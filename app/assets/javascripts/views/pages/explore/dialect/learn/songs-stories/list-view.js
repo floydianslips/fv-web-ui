@@ -213,8 +213,9 @@ class CardView extends Component {
 
                     <Button variant='flat'
                         onClick={this.props.action.bind(this, this.props.item)}
-                        primary={true}
-                        label={translated_continue_label}/>
+                        color="primary">
+                        {translated_continue_label}    
+                    </Button>
 
                     {(() => {
                         if (selectn('properties.fvbook:introduction', this.props.item)) {
