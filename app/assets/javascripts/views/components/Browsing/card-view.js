@@ -21,12 +21,12 @@ import selectn from 'selectn';
 
 import DOMPurify from 'dompurify';
 
-import Card from 'material-ui/Card/Card';
-import CardTitle from 'material-ui/Card/CardTitle';
-import CardActions from 'material-ui/Card/CardActions';
-import CardHeader from 'material-ui/Card/CardHeader';
-import CardMedia from 'material-ui/Card/CardMedia';
-import CardText from 'material-ui/Card/CardText';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -74,8 +74,17 @@ export default class CardView extends Component {
                     className={classNames('col-xs-12', 'col-md-' + Math.ceil(12 / this.props.cols))}>
             <Card style={{minHeight: '260px'}}>
 
-                <CardMedia overlay={<CardTitle title={<span>{this.intl.searchAndReplace(this.props.item.title)}</span>}
-                                               subtitle={this.intl.searchAndReplace(selectn('properties.dc:description', this.props.item))}/>}>
+                <CardMedia overlay={
+                    <div>
+                        <Typography variant="headline" component="h2">
+                            <span>{this.intl.searchAndReplace(this.props.item.title)}</span>
+                        </Typography>
+                        <Typography variant="subheading" component="h3">
+                            {this.intl.searchAndReplace(selectn('properties.dc:description', this.props.item))}
+                        </Typography>
+                    </div>
+                    }>
+                    
 
                     <div style={{
                         backgroundSize: (selectn('width', coverImage) > 200) ? '100%' : 'cover',
@@ -110,7 +119,7 @@ export default class CardView extends Component {
                     </div>
                 </CardMedia>
 
-                <CardText style={{padding: '4px'}}>
+                <CardContent style={{padding: '4px'}}>
 
                     <Button variant='flat'
                         onClick={this.props.action.bind(this, this.props.item)}
@@ -135,7 +144,7 @@ export default class CardView extends Component {
                         }
                     })()}
 
-                </CardText>
+                </CardContent>
 
             </Card>
         </div>;

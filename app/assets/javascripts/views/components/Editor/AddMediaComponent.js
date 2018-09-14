@@ -28,7 +28,7 @@ import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';
 
 import {
-    Card, CardHeader, CardMedia, CardTitle, CardActions, CardText, Avatar,
+    Card, CardHeader, CardMedia, CardTitle, CardActions, CardContent, Avatar,
     Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator, DropDownMenu, DropDownIcon,
     Tabs, Tab,
     Dialog

@@ -43,12 +43,11 @@ import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 import Dialog from 'material-ui/Dialog';
 
 import Avatar from '@material-ui/core/Avatar';
-import Card from 'material-ui/Card/Card';
-import CardActions from 'material-ui/Card/CardActions';
-import CardHeader from 'material-ui/Card/CardHeader';
-import CardMedia from 'material-ui/Card/CardMedia';
-import CardTitle from 'material-ui/Card/CardTitle';
-import CardText from 'material-ui/Card/CardText';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
 import Divider from '@material-ui/core/Divider';
 
 import ListUI from '@material-ui/core/List';
@@ -230,7 +229,7 @@ export default class View extends Component {
                             <Tabs tabItemContainerStyle={tabItemStyles}>
                                 <Tab label={intl.trans('definition', 'Definition', 'first')}>
                                     <div>
-                                        <CardText>
+                                        <CardContent>
 
                                             <div className="col-xs-8">
 
@@ -293,7 +292,7 @@ export default class View extends Component {
 
                                             </div>
 
-                                        </CardText>
+                                        </CardContent>
                                     </div>
                                 </Tab>
                                 <Tab
@@ -302,7 +301,7 @@ export default class View extends Component {
                                             'Words Starting with ' + selectn('response.title', computeCharacter), 'words', [selectn('response.title', computeCharacter)])}
                                     id="find_words">
                                     <div>
-                                        <CardText>
+                                        <CardContent>
                                             <h2>{intl.trans('views.pages.explore.dialect.learn.alphabet.words_starting_with_x',
                                                 'Words Starting with ' + selectn('response.title', computeCharacter), 'words', [selectn('response.title', computeCharacter)])}</h2>
                                             <div className="row">
@@ -311,7 +310,7 @@ export default class View extends Component {
                                                     filter={currentAppliedFilter}
                                                     routeParams={this.props.routeParams}/>
                                             </div>
-                                        </CardText>
+                                        </CardContent>
                                     </div>
                                 </Tab>
                                 <Tab
@@ -322,7 +321,7 @@ export default class View extends Component {
                                             [selectn('response.title', computeCharacter)])}
                                     id="find_phrases">
                                     <div>
-                                        <CardText>
+                                        <CardContent>
                                             <h2>{intl.trans('views.pages.explore.dialect.learn.alphabet.phrases_starting_with_x',
                                                 'Phrases Starting with ' + selectn('response.title', computeCharacter),
                                                 'words',
@@ -333,7 +332,7 @@ export default class View extends Component {
                                                     filter={currentAppliedFilter}
                                                     routeParams={this.props.routeParams}/>
                                             </div>
-                                        </CardText>
+                                        </CardContent>
                                     </div>
                                 </Tab>
                             </Tabs>
