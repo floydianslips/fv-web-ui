@@ -344,9 +344,11 @@ export default class PageToolbar extends Component {
                         return <AuthorizationFilter
                             filter={{permission: 'Write', entity: selectn('response', computeEntity)}}
                             style={toolbarGroupItem}>
-                            <Button variant='raised' label={intl.trans('edit', 'Edit', 'first') + " " + intl.searchAndReplace(this.props.label)}
+                            <Button variant='raised'
                                           style={{marginRight: '5px', marginLeft: '0'}} primary={true}
-                                          onClick={this.props.handleNavigateRequest.bind(this, this.props.windowPath.replace('sections', 'Workspaces') + '/edit')}/>
+                                          onClick={this.props.handleNavigateRequest.bind(this, this.props.windowPath.replace('sections', 'Workspaces') + '/edit')}>
+                                {intl.trans('edit', 'Edit', 'first') + " " + intl.searchAndReplace(this.props.label)}              
+                            </Button>
                         </AuthorizationFilter>;
                     }
                 })()}
@@ -356,10 +358,12 @@ export default class PageToolbar extends Component {
                         return <AuthorizationFilter
                             filter={{permission: 'Write', entity: selectn('response', computeEntity)}}
                             style={toolbarGroupItem}>
-                            <Button variant='raised' label={intl.trans('add_new_page', "Add New Page", 'words')}
+                            <Button variant='raised'
                                           style={{marginRight: '5px', marginLeft: '0'}}
                                           onClick={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/create')}
-                                          primary={true}/>
+                                          primary={true}>
+                                {intl.trans('add_new_page', "Add New Page", 'words')}              
+                            </Button>
                         </AuthorizationFilter>;
                     }
                 })()}

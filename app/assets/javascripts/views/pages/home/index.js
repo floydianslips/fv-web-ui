@@ -165,14 +165,16 @@ export default class PageHome extends Component {
                                     )
                                 }}></p></div>
                             <div>
-                                <Button variant='raised' label={this.intl.translate({
-                                    key: 'get_started!',
-                                    default: 'Get Started!',
-                                    case: 'words'
-                                }) + '!'} primary={true}
+                                <Button variant='raised' primary={true}
                                               onClick={this._onNavigateRequest.bind(this, '/explore/FV/sections/Data/')}
                                               style={{marginRight: '10px', height: '50px'}}
-                                              labelColor={alternateTextColor} labelStyle={{fontSize: '1.34em'}}/>
+                                              labelColor={alternateTextColor} labelStyle={{fontSize: '1.34em'}}>
+                                    {this.intl.translate({
+                                        key: 'get_started!',
+                                        default: 'Get Started!',
+                                        case: 'words'
+                                    }) + '!'}
+                                </Button>
                                 <div className="hidden" style={{display: 'inline-block'}}><Button variant='raised' primary={true}
                                                                                                         label={this.intl.translate({
                                                                                                             key: ['views', 'pages', 'home', 'language_map'],

@@ -244,8 +244,10 @@ export class Scramble extends Component {
                     <IconButton onClick={audioCallback}>{audioIcon}</IconButton> : ''}</div>
                 <div style={{minHeight: '50px', borderBottom: '1px solid #CCC', marginBottom: '16px'}}>
                     {this.state.selected.map((word, index) => {
-                        return <Button variant='raised' key={index} style={{backgroundColor: '#a7fba5'}} label={word}
-                                             onMouseUp={this.unSelectWord.bind(this, word, index)}/>
+                        return <Button variant='raised' key={index} style={{backgroundColor: '#a7fba5'}}
+                                             onMouseUp={this.unSelectWord.bind(this, word, index)}>
+                                    {word}
+                                </Button>
                     })}
                     {this.state.complete ? <FontIcon className="material-icons" style={{
                         color: Colors.greenA200,
@@ -268,18 +270,18 @@ export class Scramble extends Component {
                     if (this.state.selected.includes(word)) {
                         disabled = true;
                     }
-                    return <Button variant='raised' disabled={disabled} label={word} key={index}
-                                         onMouseUp={this.selectWord.bind(this, word)}/>
+                    return <Button variant='raised' disabled={disabled} key={index}
+                                         onMouseUp={this.selectWord.bind(this, word)}>{word}</Button>
                 })}
-                {this.state.complete ? <Button variant='raised' label={intl.trans('reset', 'Reset', 'first')} primary={true}
-                                                     onMouseUp={this.reset.bind(this)}/> : false}
-                <Button variant='raised' label={intl.trans('check', 'Check', 'first')}
+                {this.state.complete ? <Button variant='raised' primary={true}
+                                                     onMouseUp={this.reset.bind(this)}>{intl.trans('reset', 'Reset', 'first')}</Button> : false}
+                <Button variant='raised'
                               className={classNames({'invisible': this.state.complete})} style={{margin: '0 5px'}}
                               disabled={this.state.complete ? true : false} secondary={true}
-                              onMouseUp={this.checkAnswer.bind(this)}/>
+                              onMouseUp={this.checkAnswer.bind(this)}>{intl.trans('check', 'Check', 'first')}</Button>
                 {this.state.complete ? false :
-                    <Button variant='raised' label={intl.trans('reset', 'Reset', 'first')} primary={true}
-                                  onMouseUp={this.reset.bind(this)}/>}
+                    <Button variant='raised' primary={true}
+                                  onMouseUp={this.reset.bind(this)}>{intl.trans('reset', 'Reset', 'first')}</Button>}
             </div>
         </div>
     }

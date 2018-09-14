@@ -246,7 +246,13 @@ export default class AddMediaComponent extends Component {
 
         return (
             <div style={{display: 'inline'}}>
-                <Button variant='raised' label={this.props.label} onClick={this.handleOpen}/>
+                <Button variant='raised' onClick={this.handleOpen}>
+                    {intl.translate({
+                        key: 'dismiss',
+                        default: 'Dismiss',
+                        case: 'words'
+                    })}
+                </Button>
                 <Dialog
                     title={intl.trans('views.components.editor.create_new_x_in_the_x_dialect',
                         "Create New " + fileTypeLabel + " in the " + selectn('properties.dc:title', this.props.dialect) + " dialect.",

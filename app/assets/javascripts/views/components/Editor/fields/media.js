@@ -63,7 +63,7 @@ function renderInput(locals) {
                                   onComplete={onComplete}
                                   dialect={locals.context}/>
             {(selectn('context.initialValues.' + locals.attrs.name, locals)) ?
-                <Button variant='flat' onClick={onCancel} label={intl.trans('cancel', 'Cancel', 'first')}/> : ''}
+                <Button variant='flat' onClick={onCancel}>{intl.trans('cancel', 'Cancel', 'first')}</Button> : ''}
         </div>;
     }
 

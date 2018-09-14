@@ -156,9 +156,11 @@ export default class PageDialectGalleries extends Component {
                         entity: selectn('response', computeDialect2),
                         login: this.props.computeLogin
                     }}>
-                        <Button variant='raised' label={"Create Gallery"}
+                        <Button variant='raised'
                                       onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/create')}
-                                      primary={true}/>
+                                      primary={true}>
+                            Create Gallery
+                        </Button>
                     </AuthorizationFilter>
                 </div>
 

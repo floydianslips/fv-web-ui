@@ -257,7 +257,7 @@ export default class BrowseComponent extends React.Component {
 
         return (
             <div style={{display: 'inline'}}>
-                <Button variant='raised' label={this.props.label} onClick={this._handleOpen}/>
+                <Button variant='raised' onClick={this._handleOpen}>{this.props.label}</Button>
                 <Dialog
                     title={title}
                     actions={actions}

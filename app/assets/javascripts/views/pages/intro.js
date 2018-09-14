@@ -83,13 +83,15 @@ export default class PageHome extends Component {
                                                         alt="Language Legacies Celebrating Indigenous Cultures"
                                                         className="img-responsive"/></p>
                     <p><img src="/assets/images/logo.gif" alt="FirstVoices Logo" className="img-responsive"/></p>
-                    <a href="http://legacy.firstvoices.com/"><Button variant='raised' label="Legacy Site" style={{
+                    <a href="http://legacy.firstvoices.com/"><Button variant='raised' style={{
                         textAlign: 'center',
                         marginRight: '14px'
-                    }}/></a>
-                    <Button variant='raised' label={this.intl.translate({key: 'enter_firstvoices', default: "Enter FirstVoices"})}
+                    }}>Legacy Site</Button></a>
+                    <Button variant='raised'
                                   onClick={(e, v) => this._onNavigateRequest('/')}
-                                  style={{textAlign: 'center'}}/>
+                                  style={{textAlign: 'center'}}>
+                        {this.intl.translate({key: 'enter_firstvoices', default: "Enter FirstVoices"})}
+                    </Button>
                     <p><img src="/assets/images/intro-french.gif"
                             alt="Des patrimoines linguistiques célébrant des cultures indigènes"
                             className="img-responsive"/></p>

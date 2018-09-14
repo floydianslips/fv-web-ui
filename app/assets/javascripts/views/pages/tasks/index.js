@@ -208,10 +208,10 @@ export default class Tasks extends React.Component {
                     <span>{intl.searchAndReplace(task.name)}</span>
                 </TableRowColumn>
                 <TableRowColumn>
-                    <Button variant='raised' label={intl.trans('approve', 'Approve', 'first')} secondary={true}
-                                  onClick={this._handleTaskActions.bind(this, task.id, 'approve')}/> &nbsp;
-                    <Button variant='raised' label={intl.trans('reject', 'Reject', 'first')} secondary={true}
-                                  onClick={this._handleTaskActions.bind(this, task.id, 'reject')}/>
+                    <Button variant='raised' secondary={true}
+                                  onClick={this._handleTaskActions.bind(this, task.id, 'approve')}>{intl.trans('approve', 'Approve', 'first')}</Button> &nbsp;
+                    <Button variant='raised' secondary={true}
+                                  onClick={this._handleTaskActions.bind(this, task.id, 'reject')}>{intl.trans('reject', 'Reject', 'first')}</Button>
                 </TableRowColumn>
                 <TableRowColumn>{task.dueDate}</TableRowColumn>
             </TableRow>;
@@ -233,10 +233,10 @@ export default class Tasks extends React.Component {
                     <span>{intl.trans('views.pages.tasks.request_to_join', 'Request to join')} {selectn('properties.docinfo:documentTitle', task)}</span>
                 </TableRowColumn>
                 <TableRowColumn>
-                    <Button variant='raised' label={intl.trans('approve', 'Approve', 'first')} secondary={true}
-                                  onClick={this._handlePreApprovalOpen.bind(this, task, 'approve')}/> &nbsp;
-                    <Button variant='raised' label={intl.trans('reject', 'Reject', 'first')} secondary={true}
-                                  onClick={this._handleRegistrationActions.bind(this, uid, 'reject')}/>
+                    <Button variant='raised' secondary={true}
+                                  onClick={this._handlePreApprovalOpen.bind(this, task, 'approve')}>{intl.trans('approve', 'Approve', 'first')}</Button> &nbsp;
+                    <Button variant='raised' secondary={true}
+                                  onClick={this._handleRegistrationActions.bind(this, uid, 'reject')}>{intl.trans('reject', 'Reject', 'first')}</Button>
                 </TableRowColumn>
                 <TableRowColumn>N/A</TableRowColumn>
             </TableRow>;

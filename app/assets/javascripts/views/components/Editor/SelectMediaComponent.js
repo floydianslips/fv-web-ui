@@ -207,7 +207,7 @@ export default class SelectMediaComponent extends React.Component {
 
         return (
             <div style={{display: 'inline'}}>
-                <Button variant='raised' label={this.props.label} onClick={this._handleOpen}/>
+                <Button variant='raised' onClick={this._handleOpen}>{this.props.label}</Button>
                 <Dialog
                     title={intl.searchAndReplace("Select existing " + fileTypeLabel + " from " + selectn('properties.dc:title', dialect) + " dialect or shared resources") + ':'}
                     actions={actions}

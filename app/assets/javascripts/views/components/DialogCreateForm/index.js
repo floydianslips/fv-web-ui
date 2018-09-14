@@ -116,7 +116,7 @@ export default class DialogCreateForm extends React.Component {
         // Show Create New button, unless otherwise specified
         let createNewButton = "";
         if (!this.props.fieldAttributes.disableCreateNewButton || this.props.fieldAttributes.disableCreateNewButton === false) {
-            createNewButton = <Button variant='raised' label={createNewButtonLabel} onClick={this.handleOpen}/>;
+            createNewButton = <Button variant='raised' onClick={this.handleOpen}>{createNewButtonLabel}</Button>;
         }
 
         const actions = [
