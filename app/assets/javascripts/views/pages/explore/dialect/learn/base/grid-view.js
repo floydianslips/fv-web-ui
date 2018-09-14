@@ -23,8 +23,9 @@ import ConfGlobal from 'conf/local.json';
 
 import * as Colors from 'material-ui/styles/colors';
 
-import GridList from 'material-ui/GridList/GridList';
-import GridTile from 'material-ui/GridList/GridTile';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 
 import IconButton from '@material-ui/core/IconButton';
 
@@ -149,15 +150,18 @@ export default class GridView extends Component {
                                                       iconStyle={{width: '40px', height: '40px'}}
                                                       onClick={audioCallback}>{audioIcon}</IconButton>;
 
-                    return <GridTile
+                    return <GridListTile
                         onClick={(this.props.action) ? this.props.action.bind(this, tile.uid, tile) : audioCallback}
                         key={i}
-                        title={title}
-                        titleBackground='rgba(180, 0, 0, 0.75)'
-                        actionPosition="right"
-                        actionIcon={(this.props.action) ? audioIconAction : audioIcon}
-                        subtitle={definitionsHTML || literal_translationsHTML}
-                    ><img src={UIHelpers.getThumbnail(imageObj, 'Small')} alt={title}/></GridTile>
+                    ><img src={UIHelpers.getThumbnail(imageObj, 'Small')} alt={title}/>
+                        <GridListTileBar
+                            title={title}
+                            titleBackground='rgba(180, 0, 0, 0.75)'
+                            actionPosition="right"
+                            actionIcon={(this.props.action) ? audioIconAction : audioIcon}
+                            subtitle={definitionsHTML || literal_translationsHTML}
+                        />  
+                    </GridListTile>
                 }.bind(this))}
             </GridList>
         </div>;

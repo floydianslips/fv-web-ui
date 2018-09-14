@@ -22,11 +22,12 @@ import provide from 'react-redux-provide';
 
 import selectn from 'selectn';
 
-import GridList from 'material-ui/GridList/GridList';
-import GridTile from 'material-ui/GridList/GridTile';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
 
 import UIHelpers from 'common/UIHelpers';
 import IntlService from 'views/services/intl';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 
 const intl = IntlService.instance;
 
@@ -73,41 +74,49 @@ export default class Kids extends Component {
                       cellHeight={200}
                       style={{width: '100%', overflowY: 'auto', marginBottom: 0}}
                       >
-                      <GridTile
+                      <GridListTile
                             onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/learn/words/categories')}
                             key='words'
-                            title={<span style={tileTitleStyle}>Words</span>}
                             style={tileStyle}
                             >
                           <div className={classNames('kids-image-grid-container', 'words-main')} />
-                      </GridTile>
+                          <GridListTileBar
+                            title={<span style={tileTitleStyle}>Words</span>}
+                          />
+                      </GridListTile>
 
-                      <GridTile
+                      <GridListTile
                             onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/learn/phrases/categories')}
                             key='phrases'
-                            title={<span style={tileTitleStyle}>Phrases</span>}
                             style={tileStyle}
                             >
                           <div className={classNames('kids-image-grid-container', 'phrases-main')} />
-                      </GridTile>
+                          <GridListTileBar
+                            title={<span style={tileTitleStyle}>Phrases</span>}
+                          />
+                      </GridListTile>
 
-                      <GridTile
+                      <GridListTile
                             onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/learn/songs-stories')}
                             key='songs-stories'
-                            title={<span style={tileTitleStyle}>Songs and Stories</span>}
                             style={tileStyle}
                             >
                           <div className={classNames('kids-image-grid-container', 'songs-stories-main')} />
-                      </GridTile>
+                          <GridListTileBar
+                            title={<span style={tileTitleStyle}>Songs and Stories</span>}
+                          />
+                      </GridListTile>
 
-                      <GridTile
+                      <GridListTile
                             onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/play')}
                             key='games'
-                            title={<span style={tileTitleStyle}>Games</span>}
                             style={tileStyle}
                             >
                           <div className={classNames('kids-image-grid-container', 'games-main')} />
-                      </GridTile>
+                          <GridListTileBar
+                            title={<span style={tileTitleStyle}>Games</span>}
+                          />
+                      </GridListTile>
 
                     </GridList>
                   </div>

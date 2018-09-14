@@ -28,7 +28,8 @@ import StringHelpers from 'common/StringHelpers';
 
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
-import { GridList, GridTile } from 'material-ui/GridList';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Paper from 'material-ui/Paper';
 import Button from '@material-ui/core/Button';

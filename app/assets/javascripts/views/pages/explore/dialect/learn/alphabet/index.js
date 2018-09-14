@@ -32,7 +32,7 @@ import AlphabetListView from 'views/pages/explore/dialect/learn/alphabet/list-vi
 import Paper from 'material-ui/Paper';
 import Button from '@material-ui/core/Button';
 import FontIcon from 'material-ui/FontIcon';
-import GridTile from 'material-ui/GridList/GridTile';
+import GridListTile from '@material-ui/core/GridListTile';
 
 import Header from 'views/pages/explore/dialect/header';
 import ToolbarNavigation from 'views/pages/explore/dialect/learn/base/toolbar-navigation';
@@ -41,14 +41,14 @@ import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;
 
-class AlphabetGridTile extends Component {
+class AlphabetGridListTile extends Component {
 
     constructor(props) {
         super(props)
     }
 
     render() {
-        return <GridTile key={selectn('uid', this.props.tile)} style={{
+        return <GridListTile key={selectn('uid', this.props.tile)} style={{
             border: '3px solid #e0e0e0',
             borderRadius: '5px',
             textAlign: 'center',
@@ -59,7 +59,7 @@ class AlphabetGridTile extends Component {
             <strong
                 style={{fontSize: '1.3em'}}>{selectn('contextParameters.character.related_words[0].dc:title', this.props.tile)}</strong><br/>
             {selectn('contextParameters.character.related_words[0].fv:definitions[0].translation', this.props.tile) || selectn('contextParameters.character.related_words[0].fv:literal_translation[0].translation', this.props.tile)}
-        </GridTile>;
+        </GridListTile>;
     }
 }
 
@@ -165,7 +165,7 @@ export default class PageDialectLearnAlphabet extends PageDialectLearnBase {
                         {React.cloneElement(alphabetListView, {
                             gridListView: true,
                             gridViewProps: {style: {overflowY: 'auto', maxHeight: '100%'}},
-                            gridListTile: AlphabetGridTile,
+                            gridListTile: AlphabetGridListTile,
                             dialect: selectn('response', computeDialect2)
                         })}
                     </div>
