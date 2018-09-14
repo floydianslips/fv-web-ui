@@ -68,6 +68,13 @@ const theme = createMuiTheme({
     typography: {
         fontSize: 22,
     },
+    overrides: {
+        MuiButton: {
+            root: {
+                borderRadius: 2,
+            },
+        },
+    },
 })
 
 render(
