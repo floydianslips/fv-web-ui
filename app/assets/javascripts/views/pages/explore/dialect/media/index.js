@@ -36,7 +36,7 @@ import Button from '@material-ui/core/Button';
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
+import MenuItem from '@material-ui/core/MenuItem';
 import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Tabs, Tab } from 'material-ui/Tabs';
 

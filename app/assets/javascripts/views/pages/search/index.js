@@ -31,7 +31,7 @@ import TextField from 'material-ui/TextField';
 import Button from '@material-ui/core/Button';
 
 import Select from '@material-ui/core/Select';
-import MenuItem from 'material-ui/MenuItem';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 

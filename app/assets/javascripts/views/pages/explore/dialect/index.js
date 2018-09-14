@@ -33,7 +33,7 @@ import Switch from '@material-ui/core/Switch';
 import TextField from 'material-ui/TextField';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
+import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 
 import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';

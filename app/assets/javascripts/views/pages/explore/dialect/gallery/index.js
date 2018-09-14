@@ -35,7 +35,7 @@ import Button from '@material-ui/core/Button';
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
 import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import GeneralList from 'views/components/Browsing/general-list';
 

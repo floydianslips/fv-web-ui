@@ -32,7 +32,7 @@ import TextField from 'material-ui/TextField';
 
 import Avatar from '@material-ui/core/Avatar';
 import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
+import MenuItem from '@material-ui/core/MenuItem';
 import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
 
 import Button from '@material-ui/core/Button';
