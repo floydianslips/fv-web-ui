@@ -105,18 +105,18 @@ export default class ListView extends Component {
         return <div>
             {(this.state.reorderWarning) ? <div className={classNames('alert', 'alert-warning')}
                                                 role="alert">{intl.trans('views.pages.explore.dialect.learn.songs_stories.edit_x_pages', 'Note: This new sort order will be saved once the book is saved in the \'Book\' tab.', 'first')}
-                <Button variant='raised' style={{marginLeft: '15px'}} label={intl.trans('reset_order', 'Reset Order', 'words')}
-                              onClick={this._reset}/></div> : ''}
+                <Button variant='raised' style={{marginLeft: '15px'}}
+                              onClick={this._reset}>{intl.trans('reset_order', 'Reset Order', 'words')}</Button></div> : ''}
             {(this.state.items).map(function (entry, i) {
 
                 let entryControls = [];
 
                 if (this.props.reorder) {
-                    entryControls.push(<Button variant='raised' key="up" label={intl.trans('move_up', 'move up', 'words')}
-                                                     disabled={(i == 0)} onClick={this._moveUp.bind(this, entry)}/>);
-                    entryControls.push(<Button variant='raised' key="down" label={intl.trans('move_down', 'move down', 'words')}
+                    entryControls.push(<Button variant='raised' key="up"
+                                                     disabled={(i == 0)} onClick={this._moveUp.bind(this, entry)}>{intl.trans('move_up', 'move up', 'words')}</Button>);
+                    entryControls.push(<Button variant='raised' key="down"
                                                      disabled={(i == this.state.items.size - 1)}
-                                                     onClick={this._moveDown.bind(this, entry)}/>);
+                                                     onClick={this._moveDown.bind(this, entry)}>{intl.trans('move_down', 'move down', 'words')}</Button>);
                 }
 
                 return <BookEntry

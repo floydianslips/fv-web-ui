@@ -101,7 +101,7 @@ export default class CardView extends Component {
                         borderRadius: '0 0 10px 10px'
                     }}>
 
-                        <IconButton iconClassName="material-icons"
+                        <IconButton 
                                     style={{position: 'absolute', right: 0, zIndex: 1000}}
                                     onClick={() => this.setState({showIntro: false})}><ClearIcon /></IconButton>
 
@@ -123,7 +123,7 @@ export default class CardView extends Component {
                     {(() => {
                         if (introduction) {
 
-                            return <IconButton iconClassName="material-icons" style={{
+                            return <IconButton style={{
                                 verticalAlign: '-5px',
                                 padding: '5px',
                                 width: 'auto',

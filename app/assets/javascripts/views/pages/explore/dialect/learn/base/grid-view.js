@@ -147,7 +147,7 @@ export default class GridView extends Component {
                     }
 
                     let audioIconAction = <IconButton style={{marginRight: '10px'}}
-                                                      iconStyle={{width: '40px', height: '40px'}}
+                                                      
                                                       onClick={audioCallback}>{audioIcon}</IconButton>;
 
                     return <GridListTile

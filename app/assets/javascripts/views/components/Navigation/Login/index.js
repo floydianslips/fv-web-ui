@@ -171,8 +171,8 @@ export default class Login extends Component {
             <div style={{display: "inline-block", paddingTop: '15px', maxWidth: '205px'}}>
                 <Button variant='flat' ref={(el) => {
                     this.anchorEl = el
-                }} label={this.props.label} style={{"color": themePalette.alternateTextColor}}
-                            onClick={this._handleOpen}/>
+                }} style={{"color": themePalette.alternateTextColor}}
+                            onClick={this._handleOpen}>{this.props.label}</Button>
                 <Popover open={this.state.open}
                          anchorEl={ReactDOM.findDOMNode(this.anchorEl)}
                          useLayerForClickAway={false}
@@ -214,23 +214,25 @@ export default class Login extends Component {
                                 "backgroundColor": themePalette.primary4ColorLightest,
                                 "padding": "0 3px"
                             }}>{loginFeedbackMessage}</p>
-                            <Button variant='raised' style={{"width": "100%"}} secondary={true} onClick={this._handleLogin}
-                                          label={this.intl.translate({
-                                            key: 'views.pages.users.login.sign_in',
-                                            default: 'Sign In',
-                                            case: 'first'
-                                        })}/>
+                            <Button variant='raised' style={{"width": "100%"}} secondary={true} onClick={this._handleLogin}>
+                                {this.intl.translate({
+                                    key: 'views.pages.users.login.sign_in',
+                                    default: 'Sign In',
+                                    case: 'first'
+                                })}
+                            </Button>
                             <h6 style={{"fontWeight": "500", "paddingTop": "10px"}}>{this.intl.translate({
                                 key: 'views.components.navigation.new_to_firstvoices',
                                 default: 'New to FirstVoices?'
                             })}</h6>
                             <Button variant='raised' style={{"width": "100%"}} primary={true}
-                                          onClick={this._onNavigateRequest.bind(this, "register")}
-                                          label={this.intl.translate({
-                                              key: 'general.register',
-                                              default: 'Register',
-                                              case: 'first'
-                                          })}/>
+                                          onClick={this._onNavigateRequest.bind(this, "register")}>
+                                {this.intl.translate({
+                                    key: 'general.register',
+                                    default: 'Register',
+                                    case: 'first'
+                                })}              
+                            </Button>
                         </div>
                     </div>
                 </Popover>

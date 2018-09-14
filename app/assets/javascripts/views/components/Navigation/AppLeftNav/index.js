@@ -205,7 +205,7 @@ export default class AppLeftNav extends Component {
           <List value={location.pathname} onChange={this._onNavigateRequest}>
  
             {this.state.routes.map((d, i) => 
-              <React.Fragment>
+              <div key={i}>
                 <ListItem
                   button
                   onClick={this._onListItemClick(d.get('path'))}
@@ -217,7 +217,7 @@ export default class AppLeftNav extends Component {
                     {d.get('nestedItems')}
                   </List>
                 )}
-              </React.Fragment>
+              </div>
             )}
 
             {(selectn('response.entries', this.props.computeLoadNavigation) || []).map((d, i) => 

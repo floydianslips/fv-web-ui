@@ -101,8 +101,8 @@ class Cover extends Component {
             <div className="col-xs-12">
                 <div className={classNames('col-xs-12', 'text-right')}>
                     {(this.props.openBookAction && this.props.pageCount > 0) ?
-                        <Button variant='raised' style={{marginRight: '10px'}} primary={true} label="Open Book"
-                                      onClick={this.props.openBookAction} icon={<ActionLaunch/>}/> : ''}
+                        <Button variant='raised' style={{marginRight: '10px'}} primary={true}
+                                      onClick={this.props.openBookAction} icon={<ActionLaunch/>}>Open Book</Button> : ''}
                 </div>
             </div>
 
@@ -161,8 +161,8 @@ class Page extends Component {
 
             <div className="row">
                 <div className={classNames('col-xs-12', 'text-right')}>
-                    {(this.props.editAction) ? <Button variant='raised' label={intl.trans('edit', 'Edit', 'first')}
-                                                             onClick={this.props.editAction.bind(this, this.props.entry)}/> : ''}
+                    {(this.props.editAction) ? <Button variant='raised'
+                                                             onClick={this.props.editAction.bind(this, this.props.entry)}>{intl.trans('edit', 'Edit', 'first')}</Button> : ''}
                     <div className="pull-right">{this.props.appendEntryControls}</div>
                 </div>
             </div>

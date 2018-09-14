@@ -90,7 +90,7 @@ const RelatedMediaLayout = function (locals) {
     return (
         <div className="row" style={{margin: '15px 0'}}>
             <fieldset>
-                <legend>{locals.label} <Button variant='flat' label={locals.add.label} onClick={locals.add.click}/></legend>
+                <legend>{locals.label} <Button variant='flat' onClick={locals.add.click}>{locals.add.label}</Button></legend>
                 {(locals.items || []).map(function (item, i) {
                     return <div key={i} className={classNames('col-xs-12', 'col-md-3')}>
                         {item.input}
@@ -123,7 +123,7 @@ const RelatedMediaLayout = function (locals) {
                                 }
 
                                 return <IconButton tooltip={label}
-                                                   iconClassName="material-icons" key={i}
+                                                   key={i}
                                                    onClick={button.click}
                                                    style={{verticalAlign: '-8px'}}>{icon}</IconButton>;
                             })}

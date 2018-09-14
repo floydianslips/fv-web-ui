@@ -53,7 +53,7 @@ class Answer extends React.Component {
 
   render() {
     return <div className="col-xs-6">
-      <Button variant='raised' style={this._getStyles()} primary={this.props.selected} onClick={this._handleClick} label={(this.props.data) ? this.props.data['dc:title'] : 'Loading...'} />
+      <Button variant='raised' style={this._getStyles()} primary={this.props.selected} onClick={this._handleClick}>{(this.props.data) ? this.props.data['dc:title'] : 'Loading...'}</Button>
     </div>;
   }
 }
