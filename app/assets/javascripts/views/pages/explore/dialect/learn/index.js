@@ -369,7 +369,7 @@ export default class DialectLearn extends Component {
                         </div>
 
                         <div className={classNames('col-xs-12', 'col-md-6')}>
-                            <Card initiallyExpanded={false} style={{marginBottom: '15px'}} onExpandChange={this._loadRecentActivity.bind(this, 'phrases')}>>
+                            <Card initiallyExpanded={false} style={{marginBottom: '15px'}} onExpandChange={this._loadRecentActivity.bind(this, 'phrases')}>
                                 <CardHeader
                                     className="card-header-custom"
                                     title={intl.trans('phrases', 'PHRASES', 'upper')}
@@ -413,7 +413,7 @@ export default class DialectLearn extends Component {
                         </div>
 
                         <div className={classNames('col-xs-12', 'col-md-6')}>
-                            <Card initiallyExpanded={false} style={{marginBottom: '15px'}} onExpandChange={this._loadRecentActivity.bind(this, 'songs')}>>
+                            <Card initiallyExpanded={false} style={{marginBottom: '15px'}} onExpandChange={this._loadRecentActivity.bind(this, 'songs')}>
                                 <CardHeader
                                     className="card-header-custom"
                                     title={intl.trans('songs', 'SONGS', 'upper')}
@@ -457,7 +457,7 @@ export default class DialectLearn extends Component {
                         </div>
 
                         <div className={classNames('col-xs-12', 'col-md-6')}>
-                            <Card initiallyExpanded={false} style={{marginBottom: '15px'}} onExpandChange={this._loadRecentActivity.bind(this, 'stories')}>>
+                            <Card initiallyExpanded={false} style={{marginBottom: '15px'}} onExpandChange={this._loadRecentActivity.bind(this, 'stories')}>
                                 <CardHeader
                                     className="card-header-custom"
                                     title={intl.trans('stories', 'STORIES', 'upper')}
