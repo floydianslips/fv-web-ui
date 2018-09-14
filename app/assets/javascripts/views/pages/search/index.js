@@ -247,10 +247,10 @@ export default class Search extends DataListView {
                                 />
                                 <Button variant='raised'
                                     onClick={this._onReset}
-                                    primary={true}>{intl.trans('reset', 'Reset', 'first')}</Button> &nbsp;
+                                    color="primary">{intl.trans('reset', 'Reset', 'first')}</Button> &nbsp;
                                 <Button variant='raised'
                                     type="submit"
-                                    primary={true}>{intl.trans('search', 'Search', 'first')}</Button>
+                                    color="primary">{intl.trans('search', 'Search', 'first')}</Button>
                             </FiltersWithToggle>
                         </form>
                     </div>

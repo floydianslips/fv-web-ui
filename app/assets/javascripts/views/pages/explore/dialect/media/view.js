@@ -352,9 +352,8 @@ export default class View extends Component {
                                                                 autoScrollBodyContent={true}
                                                                 title={selectn('title', this.state.showThumbnailDialog)}
                                                                 actions={[<Button variant='flat'
-                                                                    label={intl.trans('close', 'Close', 'first')}
-                                                                    secondary={true}
-                                                                    onClick={() => this.setState({showThumbnailDialog: null})}/>]}
+                                                                    color="secondary"
+                                                                    onClick={() => this.setState({showThumbnailDialog: null})}>{intl.trans('close', 'Close', 'first')}</Button>]}
                                                                 modal={false}
                                                                 open={(this.state.showThumbnailDialog === null) ? false : true}
                                                                 onRequestClose={() => this.setState({showThumbnailDialog: null})}>

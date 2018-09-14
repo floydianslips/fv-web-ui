@@ -59,8 +59,11 @@ const context = {
 const theme = createMuiTheme({
     palette: {
         primary: {
-            main: '#b40000'
-        }
+            main: '#b40000',
+        },
+        secondary: {
+            main: '#b40000',
+        },
     },
     typography: {
         fontSize: 22,

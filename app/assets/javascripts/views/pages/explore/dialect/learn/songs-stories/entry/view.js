@@ -101,7 +101,7 @@ class Cover extends Component {
             <div className="col-xs-12">
                 <div className={classNames('col-xs-12', 'text-right')}>
                     {(this.props.openBookAction && this.props.pageCount > 0) ?
-                        <Button variant='raised' style={{marginRight: '10px'}} primary={true}
+                        <Button variant='raised' style={{marginRight: '10px'}} color="primary"
                                       onClick={this.props.openBookAction} icon={<ActionLaunch/>}>Open Book</Button> : ''}
                 </div>
             </div>

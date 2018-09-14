@@ -165,15 +165,15 @@ export default class PageUserLogin extends Component {
                     "backgroundColor": themePalette.primary4ColorLightest,
                     "padding": "0 3px"
                 }}>{loginFeedbackMessage}</p>
-                <Button variant='raised' style={{"width": "100%"}} secondary={true} onClick={this._handleLogin}
-                              label={intl.trans('views.pages.users.login.sign_in', 'Sign In', 'words')}/>
+                <Button variant='raised' style={{"width": "100%"}} color="secondary" onClick={this._handleLogin}>{intl.trans('views.pages.users.login.sign_in', 'Sign In', 'words')}</Button>
                 <h6 style={{
                     "fontWeight": "500",
                     "paddingTop": "10px"
                 }}>{intl.trans('views.components.navigation.new_to_firstvoices', 'New to FirstVoices?', 'words')}</h6>
-                <Button variant='raised' style={{"width": "100%"}} primary={true}
-                              onClick={this._onNavigateRequest.bind(this, "register")}
-                              label={intl.trans('register', 'Register')}/>
+                <Button variant='raised' style={{"width": "100%"}} color="primary"
+                              onClick={this._onNavigateRequest.bind(this, "register")}>
+                    {intl.trans('register', 'Register')}              
+                </Button>
             </div>
         </div>);
     }

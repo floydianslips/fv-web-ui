@@ -214,7 +214,7 @@ export default class Login extends Component {
                                 "backgroundColor": themePalette.primary4ColorLightest,
                                 "padding": "0 3px"
                             }}>{loginFeedbackMessage}</p>
-                            <Button variant='raised' style={{"width": "100%"}} secondary={true} onClick={this._handleLogin}>
+                            <Button variant='raised' style={{"width": "100%"}} color="secondary" onClick={this._handleLogin}>
                                 {this.intl.translate({
                                     key: 'views.pages.users.login.sign_in',
                                     default: 'Sign In',
@@ -225,7 +225,7 @@ export default class Login extends Component {
                                 key: 'views.components.navigation.new_to_firstvoices',
                                 default: 'New to FirstVoices?'
                             })}</h6>
-                            <Button variant='raised' style={{"width": "100%"}} primary={true}
+                            <Button variant='raised' style={{"width": "100%"}} color="primary"
                                           onClick={this._onNavigateRequest.bind(this, "register")}>
                                 {this.intl.translate({
                                     key: 'general.register',

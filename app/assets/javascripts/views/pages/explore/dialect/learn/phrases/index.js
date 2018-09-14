@@ -159,8 +159,9 @@ export default class PageDialectLearnPhrases extends PageDialectLearnBase {
                         login: this.props.computeLogin
                     }}>
                         <Button variant='raised'
-                            label={intl.trans('views.pages.explore.dialect.phrases.create_new_phrase', 'Create New Phrase', 'words')}
-                            onClick={this._onNavigateRequest.bind(this, 'create')} primary={true}/>
+                            onClick={this._onNavigateRequest.bind(this, 'create')} color="primary">
+                            {intl.trans('views.pages.explore.dialect.phrases.create_new_phrase', 'Create New Phrase', 'words')}    
+                        </Button>
                     </AuthorizationFilter>
                 </div>
             </div>

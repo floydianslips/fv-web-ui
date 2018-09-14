@@ -208,9 +208,9 @@ export default class Tasks extends React.Component {
                     <span>{intl.searchAndReplace(task.name)}</span>
                 </TableRowColumn>
                 <TableRowColumn>
-                    <Button variant='raised' secondary={true}
+                    <Button variant='raised' color="secondary"
                                   onClick={this._handleTaskActions.bind(this, task.id, 'approve')}>{intl.trans('approve', 'Approve', 'first')}</Button> &nbsp;
-                    <Button variant='raised' secondary={true}
+                    <Button variant='raised' color="secondary"
                                   onClick={this._handleTaskActions.bind(this, task.id, 'reject')}>{intl.trans('reject', 'Reject', 'first')}</Button>
                 </TableRowColumn>
                 <TableRowColumn>{task.dueDate}</TableRowColumn>
@@ -233,9 +233,9 @@ export default class Tasks extends React.Component {
                     <span>{intl.trans('views.pages.tasks.request_to_join', 'Request to join')} {selectn('properties.docinfo:documentTitle', task)}</span>
                 </TableRowColumn>
                 <TableRowColumn>
-                    <Button variant='raised' secondary={true}
+                    <Button variant='raised' color="secondary"
                                   onClick={this._handlePreApprovalOpen.bind(this, task, 'approve')}>{intl.trans('approve', 'Approve', 'first')}</Button> &nbsp;
-                    <Button variant='raised' secondary={true}
+                    <Button variant='raised' color="secondary"
                                   onClick={this._handleRegistrationActions.bind(this, uid, 'reject')}>{intl.trans('reject', 'Reject', 'first')}</Button>
                 </TableRowColumn>
                 <TableRowColumn>N/A</TableRowColumn>
