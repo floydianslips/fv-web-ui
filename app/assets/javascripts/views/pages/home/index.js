@@ -165,23 +165,20 @@ export default class PageHome extends Component {
                                     )
                                 }}></p></div>
                             <div>
-                                <Button variant='raised' primary={true}
+                                <Button variant='raised' color="primary"
                                               onClick={this._onNavigateRequest.bind(this, '/explore/FV/sections/Data/')}
-                                              style={{marginRight: '10px', height: '50px'}}
-                                              labelColor={alternateTextColor} labelStyle={{fontSize: '1.34em'}}>
+                                              style={{marginRight: '10px', height: '50px'}}>
                                     {this.intl.translate({
                                         key: 'get_started!',
                                         default: 'Get Started!',
                                         case: 'words'
                                     }) + '!'}
                                 </Button>
-                                <div className="hidden" style={{display: 'inline-block'}}><Button variant='raised' primary={true}
-                                                                                                        label={this.intl.translate({
+                                <div className="hidden" style={{display: 'inline-block'}}><Button variant='raised' color="primary" onClick={() => this.setState({mapVisible: !this.state.mapVisible})}>{this.intl.translate({
                                                                                                             key: ['views', 'pages', 'home', 'language_map'],
                                                                                                             default: 'Language Map',
                                                                                                             case: 'words'
-                                                                                                        })}
-                                                                                                        onClick={() => this.setState({mapVisible: !this.state.mapVisible})}/>
+                                                                                                        })}</Button>
                                 </div>
                             </div>
                         </div>

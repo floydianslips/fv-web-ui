@@ -185,24 +185,24 @@ export default class Navigation extends Component {
 
                     <IconButton className={classNames({'hidden': this.props.frontpage})}
                                 onClick={(e) => NavigationHelpers.navigateBack()}
-                                style={{paddingTop: 0, top: '8px', left: '-10px'}} iconClassName="material-icons"
+                                style={{paddingTop: 0, top: '8px', left: '-10px'}} 
                                 tooltipPosition="bottom-left"
                                 tooltip={intl.trans('back', 'Back', 'first')}><KeyboardBackspaceIcon /></IconButton>
 
                     <IconButton
                         onClick={this._onNavigateRequest.bind(this, '/kids' + (this.props.routeParams.dialect_path ? this.props.routeParams.dialect_path : ''))}
-                        style={{paddingTop: 0, top: '8px', left: '-10px'}} iconClassName="material-icons"
+                        style={{paddingTop: 0, top: '8px', left: '-10px'}} 
                         tooltipPosition="bottom-left" tooltip={intl.trans('home', 'Home', 'first')}><HomeIcon /></IconButton>
 
                     <IconButton onClick={this._onNavigateRequest.bind(this, '/kids/FV/Workspaces/Data')}
-                                style={{paddingTop: 0, top: '8px', left: '-10px'}} iconClassName="material-icons"
+                                style={{paddingTop: 0, top: '8px', left: '-10px'}} 
                                 tooltipPosition="bottom-left"
                                 tooltip={intl.trans('choose_lang', 'Choose a Language', 'first')}><AppsIcon /></IconButton>
 
                     <ToolbarSeparator style={{float: 'none', marginLeft: '0', marginRight: '15px'}}/>
 
                     <IconButton style={{paddingTop: 0, paddingRight: 0, top: '8px', left: '-10px'}}
-                                iconClassName="material-icons" onClick={this._onNavigateRequest.bind(this, '/')}
+                                onClick={this._onNavigateRequest.bind(this, '/')}
                                 tooltipPosition="bottom-left"
                                 tooltip={intl.trans('back_to_main_site', 'Back to Main Site', 'words')}><ClearIcon /></IconButton>
 

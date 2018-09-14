@@ -203,7 +203,7 @@ export default class PageToolbar extends Component {
         return <Toolbar className="page-toolbar">
 
             <ToolbarGroup className="visible-xs" style={{textAlign: 'right'}}>
-                <IconButton iconClassName="material-icons" onClick={(e) => {
+                <IconButton onClick={(e) => {
                     this.setState({showActionsMobile: !this.state.showActionsMobile});
                     e.preventDefault();
                 }}><MenuIcon /></IconButton>

@@ -341,7 +341,7 @@ export default class Navigation extends Component {
                   badgeContent={userTaskCount || ''}
                   variant="primary"
                 >
-                  <IconButton iconStyle={{fill: '#fff'}} onClick={this._onNavigateRequest.bind(this, '/tasks/')} disabled={(userTaskCount == 0) ? true : false}>
+                  <IconButton >
                     <NotificationsIcon />
                   </IconButton>
                 </Badge>
@@ -352,7 +352,7 @@ export default class Navigation extends Component {
                   badgeStyle={{top: '12px',left: '42px', width: '15px', height: '15px', borderRadius: '25%', visibility: (guideCount == 0) ? 'hidden' : 'visible'}}
                   primary={true}
                 >
-                  <IconButton iconStyle={{fill: '#fff'}} onClick={(e) => this.setState({guidePopoverOpen: !this.state.guidePopoverOpen, guidePopoverAnchorEl: e.target})} disabled={(guideCount == 0) ? true : false}>
+                  <IconButton >
                     <ActionHelp />
                   </IconButton>
                 </Badge>*/}
@@ -414,9 +414,9 @@ export default class Navigation extends Component {
 
             <IconButton
                 onClick={this._handleNavigationSearchSubmit}
-                iconClassName="material-icons"
+                
                 style={{position:'relative', top: '7px', padding: '0', left: 0}}
-                iconStyle={{fontSize: '24px', padding: '3px', borderRadius: '20px', color: '#FFFFFF'}}>
+                >
                 <SearchIcon />
             </IconButton>
 
@@ -508,9 +508,9 @@ export default class Navigation extends Component {
 
           <IconButton
               onClick={this._handleDisplayLocaleOptions}
-              iconClassName="material-icons"
+              
               style={{position:'relative', top: '7px', padding: '0', left: 0}}
-              iconStyle={{fontSize: '24px', padding: '3px', borderRadius: '20px', color: '#FFFFFF'}}>
+              >
               <SettingsIcon />
           </IconButton>
 

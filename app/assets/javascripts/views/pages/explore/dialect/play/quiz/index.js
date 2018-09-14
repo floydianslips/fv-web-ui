@@ -343,7 +343,7 @@ export default class Quiz extends Component {
                     <div className={classNames('col-xs-2', 'text-left')}>
                         <IconButton style={{backgroundColor: '#ffffff'}}
                                     onClick={this._handleNavigate.bind(this, 'previous')}
-                                    iconClassName="material-icons"
+                                    
                                     tooltip={intl.trans('views.pages.explore.dialect.play.quiz.previous_question', 'Previous Question', 'words')}>
                                     <ChevronLeftIcon />
                         </IconButton>
@@ -365,7 +365,7 @@ export default class Quiz extends Component {
                         <IconButton style={{backgroundColor: '#ffffff'}}
                                     onClick={this._handleNavigate.bind(this, 'next')}
                                     disabled={!isCorrect || isComplete}
-                                    iconClassName="material-icons"
+                                    
                                     tooltip={intl.trans('views.pages.explore.dialect.play.quiz.next_question', 'Next Question', 'words')}>
                                     <ChevronRightIcon />
                         </IconButton>
