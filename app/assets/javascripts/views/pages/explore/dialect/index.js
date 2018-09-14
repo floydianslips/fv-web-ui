@@ -275,7 +275,7 @@ export default class ExploreDialect extends Component {
                     <ToolbarGroup firstChild={true}>
                         <Button variant='flat' onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/learn')}>{intl.trans('learn_our_lang', 'Learn Our Language', 'words')}</Button>
                         <Button variant='flat' onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/play')}>{intl.trans('views.pages.explore.dialect.play_game', 'Play a Game', 'words')}</Button>
-                        <Button variant='flat' onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/gallery')}>{intl.trans('views.pages.explore.dialect.photo_gallery', 'Photo Gallery', 'words')}</Button>
+                        <Button variant='flat' onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/gallery')}>{intl.trans('views.pages.explore.dialect.photo_gallery', 'Photo Gallery', 'words')} </Button>
                         <Button variant='flat'
                             onClick={this._onNavigateRequest.bind(this, this.props.windowPath.replace('explore', 'kids'))}>{intl.trans('views.pages.explore.dialect.kids_portal', 'Kids Portal', 'words')}</Button>
                     </ToolbarGroup>

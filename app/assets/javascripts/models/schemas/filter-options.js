@@ -40,7 +40,7 @@ const SearchDocumentTypesTemplate = function (locals) {
                                     key: 'remove_item',
                                     default: 'Remove Item',
                                     case: 'words'
-                                })} iconClassName="material-icons" key={i}
+                                })} key={i}
                                 onClick={button.click}><ClearIcon /></IconButton>;
                             }
                         })}</div>
