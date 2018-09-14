@@ -32,11 +32,11 @@ import AVPlayArrow from '@material-ui/icons/PlayArrow';
 import AVStop from '@material-ui/icons/Stop';
 
 import Card from '@material-ui/core/Card';
-import CardTitle from '@material-ui/core/CardTitle';
 import CardActions from '@material-ui/core/CardActions';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
-import CardText from '@material-ui/core/CardText';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -153,13 +153,20 @@ class CardView extends Component {
             <Card style={{minHeight: '260px'}}>
 
                 <CardMedia
-                    overlay={<CardTitle titleStyle={{fontSize: '19px'}} title={<span
-                        dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.props.item.title)}}/>}
-                                        subtitle={(selectn('properties.fvbook:title_literal_translation', this.props.item) || []).map(function (translation, i) {
-                                            if (translation.language == DEFAULT_LANGUAGE) {
-                                                return <span key={i}>{translation.translation}</span>;
-                                            }
-                                        })}/>}>
+                    overlay={
+                        <div>
+                            <Typography variant="headline" component="h2">
+                                <span dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.props.item.title)}}/>
+                            </Typography>
+                            <Typography variant="subheading" component="h3">
+                                {(selectn('properties.fvbook:title_literal_translation', this.props.item) || []).map(function (translation, i) {
+                                                    if (translation.language == DEFAULT_LANGUAGE) {
+                                                        return <span key={i}>{translation.translation}</span>;
+                                                    }
+                                })}
+                            </Typography>
+                        </div>
+                    }>
 
                     <div style={{
                         backgroundSize: (selectn('width', mediumImage) > 200) ? '100%' : 'cover',
@@ -202,7 +209,7 @@ class CardView extends Component {
                     </div>
                 </CardMedia>
 
-                <CardText style={{padding: '4px'}}>
+                <CardContent style={{padding: '4px'}}>
 
                     <Button variant='flat'
                         onClick={this.props.action.bind(this, this.props.item)}
@@ -224,7 +231,7 @@ class CardView extends Component {
                         }
                     })()}
 
-                </CardText>
+                </CardContent>
 
             </Card>
         </div>;

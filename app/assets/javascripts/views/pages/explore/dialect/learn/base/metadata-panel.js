@@ -28,8 +28,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
-import CardTitle from '@material-ui/core/CardTitle';
-import CardText from '@material-ui/core/CardText';
+import CardContent from '@material-ui/core/CardContent';
 import IntlService from 'views/services/intl';
 const intl = IntlService.instance;
 /**
@@ -152,9 +151,9 @@ export default class MetadataPanel extends Component {
                 }}
                 showExpandableButton={true}
             />
-            <CardText expandable={true} style={{backgroundColor: themePalette.accent4Color}}>
+            <CardContent expandable={true} style={{backgroundColor: themePalette.accent4Color}}>
                 <MetadataList metadata={metadata} style={{overflow: 'auto', maxHeight: '100%'}}/>
-            </CardText>
+            </CardContent>
         </Card>;
     }
 }

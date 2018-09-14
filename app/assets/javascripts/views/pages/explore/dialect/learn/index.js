@@ -52,7 +52,7 @@ import LearningSidebar from 'views/pages/explore/dialect/learn/base/learning-sid
 
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import CardText from '@material-ui/core/CardText';
+import CardContent from '@material-ui/core/CardContent';
 import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;
@@ -332,7 +332,7 @@ export default class DialectLearn extends Component {
                                     style={{backgroundColor: themePalette.primary2Color, height: 'initial'}}
                                     showExpandableButton={true}
                                 />
-                                <CardText expandable={true}>
+                                <CardContent expandable={true}>
                                     <div className="row" style={{paddingTop: '20px'}}>
                                         <div className={classNames('col-xs-6')}>
                                             <RecentActivityList theme={this.props.routeParams.theme}
@@ -364,7 +364,7 @@ export default class DialectLearn extends Component {
                                             </div>
                                         </AuthenticationFilter>
                                     </div>
-                                </CardText>
+                                </CardContent>
                             </Card>
                         </div>
 
@@ -379,7 +379,7 @@ export default class DialectLearn extends Component {
                                     style={{backgroundColor: themePalette.primary2Color, height: 'initial'}}
                                     showExpandableButton={true}
                                 />
-                                <CardText expandable={true}>
+                                <CardContent expandable={true}>
                                     <div className="row" style={{paddingTop: '20px'}}>
                                         <div className={classNames('col-xs-6')}>
                                             <RecentActivityList theme={this.props.routeParams.theme}
@@ -408,7 +408,7 @@ export default class DialectLearn extends Component {
                                             </div>
                                         </AuthenticationFilter>
                                     </div>
-                                </CardText>
+                                </CardContent>
                             </Card>
                         </div>
 
@@ -423,7 +423,7 @@ export default class DialectLearn extends Component {
                                     style={{backgroundColor: themePalette.primary2Color, height: 'initial'}}
                                     showExpandableButton={true}
                                 />
-                                <CardText expandable={true}>
+                                <CardContent expandable={true}>
                                     <div className="row" style={{paddingTop: '20px'}}>
                                         <div className={classNames('col-xs-6')}>
                                             <RecentActivityList theme={this.props.routeParams.theme}
@@ -452,7 +452,7 @@ export default class DialectLearn extends Component {
                                             </div>
                                         </AuthenticationFilter>
                                     </div>
-                                </CardText>
+                                </CardContent>
                             </Card>
                         </div>
 
@@ -467,7 +467,7 @@ export default class DialectLearn extends Component {
                                     style={{backgroundColor: themePalette.primary2Color, height: 'initial'}}
                                     showExpandableButton={true}
                                 />
-                                <CardText expandable={true}>
+                                <CardContent expandable={true}>
                                     <div className="row" style={{paddingTop: '20px'}}>
                                         <div className={classNames('col-xs-6')}>
                                             <RecentActivityList theme={this.props.routeParams.theme}
@@ -496,7 +496,7 @@ export default class DialectLearn extends Component {
                                         </div>
                                         </AuthenticationFilter>
                                     </div>
-                                </CardText>
+                                </CardContent>
                             </Card>
                         </div>
 
