@@ -31,8 +31,8 @@ import AlphabetListView from 'views/pages/explore/dialect/learn/alphabet/list-vi
 
 import Paper from 'material-ui/Paper';
 import Button from '@material-ui/core/Button';
-import FontIcon from '@material-ui/core/Icon';
 import GridListTile from '@material-ui/core/GridListTile';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
 import Header from 'views/pages/explore/dialect/header';
 import ToolbarNavigation from 'views/pages/explore/dialect/learn/base/toolbar-navigation';
@@ -220,8 +220,8 @@ export default class PageDialectLearnAlphabet extends PageDialectLearnBase {
                                             display: 'inline-block'
                                         }}>
                                             <Button variant='flat'
-                                             icon={<FontIcon
-                                                className="material-icons">play_arrow</FontIcon>}
+                                             icon={<PlayArrowIcon
+                                                className="material-icons" />}
                                                 onClick={this._onCharAudioTouchTap.bind(this, char)}
                                                 //onClick={this._onNavigateRequest.bind(this, char.path.split('/')[char.path.split('/').length - 1])}
                                                 label={char.title} style={{minWidth: 'inherit', textTransform: 'initial'}}/>
