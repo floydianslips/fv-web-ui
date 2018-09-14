@@ -31,11 +31,10 @@ import AVPlayArrow from '@material-ui/icons/PlayArrow';
 import AVStop from '@material-ui/icons/Stop';
 
 import Card from '@material-ui/core/Card';
-import CardTitle from '@material-ui/core/CardTitle';
 import CardActions from '@material-ui/core/CardActions';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
-import CardText from '@material-ui/core/CardText';
+import CardContent from '@material-ui/core/CardContent';
 
 import Button from '@material-ui/core/Button';
 
