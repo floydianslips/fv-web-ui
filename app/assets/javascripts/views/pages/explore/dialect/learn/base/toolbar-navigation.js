@@ -108,16 +108,11 @@ export default class ToolbarNavigation extends Component {
         return <Toolbar className="dialect-navigation">
 
             <ToolbarGroup firstChild={true} float="left">
-                <Button variant='flat' onClick={this._onNavigateRequest.bind(this, 'words')}
-                            label={intl.trans('words', 'Words', 'first') + " (" + wordCount + ")"}/>
-                <Button variant='flat' onClick={this._onNavigateRequest.bind(this, 'phrases')}
-                            label={intl.trans('phrases', 'Phrases', 'first') + " (" + phraseCount + ")"}/>
-                <Button variant='flat' onClick={this._onNavigateRequest.bind(this, 'songs')}
-                            label={intl.trans('songs', 'Songs', 'first') + " (" + songCount + ")"}/>
-                <Button variant='flat' onClick={this._onNavigateRequest.bind(this, 'stories')}
-                            label={intl.trans('stories', 'Stories', 'first') + " (" + storyCount + ")"}/>
-                <Button variant='flat' onClick={this._onNavigateRequest.bind(this, 'alphabet')}
-                            label={intl.trans('alphabet', 'Alphabet', 'first')}/>
+                <Button variant='flat' onClick={this._onNavigateRequest.bind(this, 'words')}>{intl.trans('words', 'Words', 'first') + " (" + wordCount + ")"}</Button>
+                <Button variant='flat' onClick={this._onNavigateRequest.bind(this, 'phrases')}>{intl.trans('phrases', 'Phrases', 'first') + " (" + phraseCount + ")"}</Button>
+                <Button variant='flat' onClick={this._onNavigateRequest.bind(this, 'songs')}>{intl.trans('songs', 'Songs', 'first') + " (" + songCount + ")"}</Button>
+                <Button variant='flat' onClick={this._onNavigateRequest.bind(this, 'stories')}>{intl.trans('stories', 'Stories', 'first') + " (" + storyCount + ")"}</Button>
+                <Button variant='flat' onClick={this._onNavigateRequest.bind(this, 'alphabet')}>{intl.trans('alphabet', 'Alphabet', 'first')}</Button>
             </ToolbarGroup>
 
             <AuthenticationFilter login={this.props.computeLogin} hideFromSections={true}
