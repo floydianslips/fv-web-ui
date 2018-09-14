@@ -41,7 +41,6 @@ import Divider from '@material-ui/core/Divider';
 import ListUI from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 
-import FontIcon from 'material-ui/FontIcon';
 import Button from '@material-ui/core/Button';
 
 import Tab from 'material-ui/Tabs/Tab';

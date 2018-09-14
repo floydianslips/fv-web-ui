@@ -57,7 +57,6 @@ import ListItem from '@material-ui/core/ListItem';
 import Toolbar from 'material-ui/Toolbar/Toolbar';
 import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
 import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
-import FontIcon from 'material-ui/FontIcon';
 import Button from '@material-ui/core/Button';
 
 import Tabs from 'material-ui/Tabs/Tabs';

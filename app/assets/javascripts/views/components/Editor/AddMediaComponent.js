@@ -29,7 +29,7 @@ import options from 'models/schemas/options';
 
 import {
     Card, CardHeader, CardMedia, CardTitle, CardActions, CardText, Avatar,
-    Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator, DropDownMenu, DropDownIcon, FontIcon,
+    Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator, DropDownMenu, DropDownIcon,
     Tabs, Tab,
     Dialog
 } from 'material-ui';

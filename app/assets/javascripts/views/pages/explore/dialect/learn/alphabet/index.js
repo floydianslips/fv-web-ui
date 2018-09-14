@@ -31,7 +31,7 @@ import AlphabetListView from 'views/pages/explore/dialect/learn/alphabet/list-vi
 
 import Paper from 'material-ui/Paper';
 import Button from '@material-ui/core/Button';
-import FontIcon from 'material-ui/FontIcon';
+import FontIcon from '@material-ui/core/Icon';
 import GridListTile from '@material-ui/core/GridListTile';
 
 import Header from 'views/pages/explore/dialect/header';
