@@ -21,7 +21,7 @@ import DataGrid from 'react-datagrid2';
 
 import GridView from 'views/pages/explore/dialect/learn/base/grid-view';
 
-import Paper from 'material-ui/Paper';
+import Paper from '@material-ui/core/Paper';
 
 import withPagination from 'views/hoc/grid-list/with-pagination';
 

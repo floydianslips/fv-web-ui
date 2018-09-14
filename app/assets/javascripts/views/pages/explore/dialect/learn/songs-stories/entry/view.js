@@ -22,7 +22,7 @@ import DOMPurify from 'dompurify';
 
 import ConfGlobal from 'conf/local.json';
 
-import Paper from 'material-ui/Paper';
+import Paper from '@material-ui/core/Paper';
 
 import Preview from 'views/components/Editor/Preview';
 import MediaPanel from 'views/pages/explore/dialect/learn/base/media-panel';

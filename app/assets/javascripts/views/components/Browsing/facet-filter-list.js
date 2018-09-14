@@ -4,7 +4,7 @@ import Immutable, {List, Set, Map} from 'immutable';
 
 import selectn from 'selectn';
 
-import Paper from 'material-ui/Paper';
+import Paper from '@material-ui/core/Paper';
 import ListUI from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';

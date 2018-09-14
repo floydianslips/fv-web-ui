@@ -29,7 +29,7 @@ import {Document} from 'nuxeo';
 
 // Views
 import Button from '@material-ui/core/Button';
-import Paper from 'material-ui/Paper';
+import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import fields from 'models/schemas/fields';
