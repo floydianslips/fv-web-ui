@@ -29,7 +29,7 @@ import ProviderHelpers from 'common/ProviderHelpers';
 import PageDialectLearnBase from 'views/pages/explore/dialect/learn/base';
 import AlphabetListView from 'views/pages/explore/dialect/learn/alphabet/list-view';
 
-import Paper from 'material-ui/Paper';
+import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import GridListTile from '@material-ui/core/GridListTile';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';

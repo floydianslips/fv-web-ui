@@ -27,7 +27,7 @@ import NavigationHelpers from 'common/NavigationHelpers';
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
 import Button from '@material-ui/core/Button';
-import Paper from 'material-ui/Paper';
+import Paper from '@material-ui/core/Paper';
 import Snackbar from '@material-ui/core/Snackbar';
 
 import fields from 'models/schemas/fields';

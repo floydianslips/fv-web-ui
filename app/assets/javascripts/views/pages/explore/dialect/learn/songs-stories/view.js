@@ -27,7 +27,7 @@ import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
-import Paper from 'material-ui/Paper';
+import Paper from '@material-ui/core/Paper';
 
 import Button from '@material-ui/core/Button';
 

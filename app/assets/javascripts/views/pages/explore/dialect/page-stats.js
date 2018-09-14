@@ -25,7 +25,7 @@ import provide from 'react-redux-provide';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 
-import Paper from 'material-ui/Paper';
+import Paper from '@material-ui/core/Paper';
 
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
 import Button from '@material-ui/core/Button';
