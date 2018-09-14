@@ -414,8 +414,7 @@ export default class Navigation extends Component {
 
             <IconButton
                 onClick={this._handleNavigationSearchSubmit}
-                
-                style={{position:'relative', top: '7px', padding: '0', left: 0}}
+                color="inherit"
                 >
                 <SearchIcon />
             </IconButton>
@@ -507,11 +506,10 @@ export default class Navigation extends Component {
           <ToolbarSeparator className="locale-seperator" style={{float: 'none', marginRight: 0, marginLeft: 0}} />
 
           <IconButton
-              onClick={this._handleDisplayLocaleOptions}
-              
-              style={{position:'relative', top: '7px', padding: '0', left: 0}}
-              >
-              <SettingsIcon />
+            onClick={this._handleDisplayLocaleOptions}
+            color="inherit"
+          >
+            <SettingsIcon />
           </IconButton>
 
           </ToolbarGroup>
