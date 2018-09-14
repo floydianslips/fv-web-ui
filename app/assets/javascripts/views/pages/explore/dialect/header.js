@@ -21,7 +21,7 @@ import selectn from 'selectn';
 import classNames from 'classnames';
 
 import Button from '@material-ui/core/Button';
-import FontIcon from 'material-ui/FontIcon';
+import Icon from '@material-ui/core/Icon';
 
 import PageStats from 'views/pages/explore/dialect/page-stats';
 
@@ -119,8 +119,8 @@ export default class Header extends Component {
                             onClick={(e) => {
                                 this.setState({showArchiveInfoMobile: !this.state.showArchiveInfoMobile});
                                 e.preventDefault();
-                            }} icon={<FontIcon
-                            className="material-icons">{(this.state.showArchiveInfoMobile) ? 'info_outline' : 'info'}</FontIcon>}
+                            }} icon={<Icon
+                            className="material-icons">{(this.state.showArchiveInfoMobile) ? 'info_outline' : 'info'}</Icon>}
                             style={{float: 'right', lineHeight: 1}}/>
                     </div>
 

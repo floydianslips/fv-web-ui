@@ -12,7 +12,7 @@ import options from 'models/schemas/filter-options';
 import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
 
-import {FontIcon} from 'material-ui';
+import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
 
 import PageToolbar from 'views/pages/explore/dialect/page-toolbar';
@@ -269,7 +269,7 @@ export default function withActions(ComposedFilter, publishWarningEnabled = fals
                         <div className="col-xs-12" style={{marginTop: '15px'}}>
                             <Toolbar className="toolbar">
                                 <ToolbarGroup key={0} float="right">
-                                    <Button variant='raised' icon={<FontIcon className="material-icons">delete</FontIcon>}
+                                    <Button variant='raised' icon={<DeleteIcon className="material-icons" />}
                                                   onClick={() => this.setState({deleteDialogOpen: true})}
                                                   secondary={true}
                                                   label={intl.trans('views.hoc.view.delete_x', "Delete " + StringHelpers.toTitleCase(this.props.labels.single), 'first', [StringHelpers.toTitleCase(this.props.labels.single)])}/>

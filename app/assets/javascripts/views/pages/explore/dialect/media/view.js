@@ -53,7 +53,6 @@ import Divider from '@material-ui/core/Divider';
 import { List as ListUI, ListItem, ListItemText } from '@material-ui/core';
 
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
-import FontIcon from 'material-ui/FontIcon';
 import Button from '@material-ui/core/Button';
 
 import { Tabs, Tab } from 'material-ui/Tabs';

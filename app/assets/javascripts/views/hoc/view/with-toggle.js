@@ -5,7 +5,8 @@ import classNames from 'classnames';
 import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;
-import {FontIcon} from 'material-ui';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 
 export default function withToggle() {
@@ -32,6 +33,10 @@ export default function withToggle() {
         render() {
 
             let {mobileOnly, label} = this.props;
+            const fontStyle = {float: 'right', lineHeight: 1}
+            const icon = this.state.open ? 
+                <ExpandLessIcon className="material-icons" style={style}/> : 
+                <ExpandMoreIcon className="material-icons" style={style}/>;
 
             return <div className={classNames('panel', 'panel-default')}>
                 <div className="panel-heading">
@@ -40,8 +45,7 @@ export default function withToggle() {
                                         labelPosition="before" onClick={(e) => {
                     this.setState({open: !this.state.open});
                     e.preventDefault();
-                }} icon={<FontIcon
-                    className="material-icons">{(this.state.open) ? 'expand_less' : 'expand_more'}</FontIcon>}
+                }} icon={icon}
                                         style={{float: 'right', lineHeight: 1}}/>
                 </div>
 
