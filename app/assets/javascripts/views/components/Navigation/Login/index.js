@@ -88,9 +88,9 @@ export default class Login extends Component {
     }
 
     _handleLogin() {
-
-        let username = this.refs.username.getValue();
-        let password = this.refs.password.getValue();
+        // This should be handled with state, not refs
+        let username = this.usernameRef.value;
+        let password = this.passwordRef.value;
 
         if (username !== null && password !== null) {
             if (username.length > 0 && password.length > 0) {
@@ -197,13 +197,13 @@ export default class Login extends Component {
                                 case: 'first'
                             })}</a></h6>
                             <div><TextField style={Object.assign({}, TextFieldStyle, {"margin": "15px 0"})}
-                                            underlineShow={false} ref="username" hintText={this.intl.translate({
+                                            InputProps={{disableUnderline:true}} inputRef={el => this.usernameRef = el} placeholder={this.intl.translate({
                                 key: 'views.pages.explore.dialect.users.username',
                                 default: 'Username',
                                 case: 'first'
                             })}/></div>
-                            <div><TextField style={TextFieldStyle} underlineShow={false} ref="password" type="password"
-                                            hintText={this.intl.translate({
+                            <div><TextField style={TextFieldStyle} InputProps={{disableUnderline:true}} inputRef={el => this.passwordRef = el} type="password"
+                                            placeholder={this.intl.translate({
                                                 key: 'general.password',
                                                 default: 'Password',
                                                 case: 'first'
