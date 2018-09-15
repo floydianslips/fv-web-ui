@@ -20,11 +20,11 @@ import Immutable, { Map } from 'immutable';
 import provide from 'react-redux-provide';
 import selectn from 'selectn';
 
-// import {Divider, List, ListItem, LeftNav, AppBar} from 'material-ui';
 import Divider from '@material-ui/core/Divider'
 import { List, ListItem, ListItemText } from '@material-ui/core'
-import Drawer from 'material-ui/Drawer'
-import AppBar from 'material-ui/AppBar'
+import Drawer from '@material-ui/core/Drawer';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 
 import IconButton from '@material-ui/core/IconButton';
 
@@ -198,9 +198,12 @@ export default class AppLeftNav extends Component {
         open={this.props.computeToggleMenuAction.menuVisible}
         onRequestChange={this._onRequestChange}
         >
-          <AppBar
-            iconElementLeft={<IconButton onClick={this._onRequestChange} color="inherit"><NavigationClose /></IconButton>}
-            title={<img src="/assets/images/logo.png" style={{padding: '0 0 5px 0'}} alt={this.props.properties.title} />} />
+          <AppBar position="static">
+            <Toolbar variant="dense">
+              <IconButton onClick={this._onRequestChange} color="inherit"><NavigationClose /></IconButton>
+              <img src="/assets/images/logo.png" style={{padding: '0 0 5px 0'}} alt={this.props.properties.title} />
+            </Toolbar>
+          </AppBar>
 
           <List value={location.pathname} onChange={this._onNavigateRequest}>
  
