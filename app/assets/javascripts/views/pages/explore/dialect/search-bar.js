@@ -54,7 +54,7 @@ export default class SearchBar extends Component {
     }
 
     _handleDialectSearchSubmit() {
-        let queryParam = this.refs.dialectSearchField.getValue();
+        let queryParam = this.dialectSearchFieldRef.value;
         let dialectPath = ProviderHelpers.getDialectPathFromURLArray(this.props.splitWindowPath);
         this.props.pushWindowPath("/explore/" + dialectPath + '/search/' + queryParam);
     }
@@ -66,8 +66,8 @@ export default class SearchBar extends Component {
         }
 
         return <div style={searchBarStyles}>
-            <TextField ref="dialectSearchField"
-                       hintText={intl.trans('views.pages.explore.dialect.search_dialect', 'Search Dialect...', 'words')}
+            <TextField inputRef={el => this.dialectSearchFieldRef = el}
+                       placeholder={intl.trans('views.pages.explore.dialect.search_dialect', 'Search Dialect...', 'words')}
                        onEnterKeyDown={this._handleDialectSearchSubmit}/>
             <IconButton onClick={this._handleDialectSearchSubmit} 
                         // style={{fontSize: '24px'}}
