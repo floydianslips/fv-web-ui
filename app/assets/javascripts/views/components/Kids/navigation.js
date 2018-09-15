@@ -28,7 +28,6 @@ import NavigationHelpers from 'common/NavigationHelpers';
 
 import AppBar from 'material-ui/AppBar';
 
-import TextField from 'material-ui/TextField';
 
 import Avatar from '@material-ui/core/Avatar';
 import IconMenu from '@material-ui/core/Menu';

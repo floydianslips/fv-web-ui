@@ -31,7 +31,7 @@ import {Link} from 'provide-page';
 
 import AppBar from 'material-ui/AppBar';
 
-import TextField from 'material-ui/TextField';
+import TextField from '@material-ui/core/TextField';
 
 import IconMenu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -224,7 +224,7 @@ export default class Navigation extends Component {
   _handleNavigationSearchSubmit(e) {
 
     // If search bar is not visible, this button should show it
-    if (this.refs.navigationSearchField.input.offsetParent === null) {
+    if (this.navigationSearchFieldRef.offsetParent === null) {
       this.setState({
         searchBarVisibleInMobile: true,
         searchContextPopoverOpen: false
@@ -238,7 +238,7 @@ export default class Navigation extends Component {
         searchContextPopoverOpen: false
       });
 
-      let searchQueryParam = this.refs.navigationSearchField.getValue();
+      let searchQueryParam = this.navigationSearchFieldRef.value;
       let path = "/" + this.props.splitWindowPath.join("/");
       let queryPath = "";
 
@@ -259,7 +259,7 @@ export default class Navigation extends Component {
       }
 
       // Clear out the input field
-      this.refs.navigationSearchField.input.value = '';
+      this.navigationSearchFieldRef.value = '';
 
       if (searchQueryParam && searchQueryParam != '') {
         this.props.replaceWindowPath(queryPath + '/search/' + searchQueryParam);
@@ -405,7 +405,13 @@ export default class Navigation extends Component {
             <ToolbarSeparator className="search-bar-seperator" style={{float: 'none', marginRight: 0, marginLeft: 0}} />
 
             <div style={{background: themePalette.primary1Color, display: 'inline-block'}} className={classNames({'hidden-xs': !this.state.searchBarVisibleInMobile, 'search-bar-mobile': this.state.searchBarVisibleInMobile})}>
-              <TextField underlineStyle={{width:'79%'}} style={{marginLeft: (this.state.searchBarVisibleInMobile) ? '15px' : '30px', fontSize: '15px', height: '38px', backgroundColor: '#fff', paddingLeft: '10px', lineHeight: '1', width: (this.state.searchBarVisibleInMobile) ? '214px' : 'inherit', paddingRight: (this.state.searchBarVisibleInMobile) ? '0' : '40px'}} ref="navigationSearchField" hintText={this.intl.translate({key: 'general.search', default: 'Search', case: 'first', append: ':'})} onBlur={() => this.setState({searchContextPopoverOpen: (isDialect) ? true : false })} onFocus={(e) => this.setState({searchContextPopoverOpen: true, searchContextPopoverAnchorEl: e.target})} onKeyDown={this._handleNavigationSearchChange} name="searchbox" />
+              <TextField style={{marginLeft: (this.state.searchBarVisibleInMobile) ? '15px' : '30px', fontSize: '15px', height: '38px', backgroundColor: '#fff', paddingLeft: '10px', lineHeight: '1', width: (this.state.searchBarVisibleInMobile) ? '214px' : 'inherit', paddingRight: (this.state.searchBarVisibleInMobile) ? '0' : '40px'}} 
+                inputRef={el => this.navigationSearchFieldRef = el}
+                hintText={this.intl.translate({key: 'general.search', default: 'Search', case: 'first', append: ':'})} 
+                onBlur={() => this.setState({searchContextPopoverOpen: (isDialect) ? true : false })} 
+                onFocus={(e) => this.setState({searchContextPopoverOpen: true, searchContextPopoverAnchorEl: e.target})} 
+                onKeyDown={this._handleNavigationSearchChange} 
+                name="searchbox" />
               <Button variant='flat' className={classNames({'hidden': !this.state.searchBarVisibleInMobile})} style={{color: themePalette.alternateTextColor}} onClick={(e) => {this.setState({searchBarVisibleInMobile: false}); e.preventDefault(); }}>
                 {this.intl.translate({key: 'general.cancel',default: 'Cancel',case: 'first'})}
               </Button>
