@@ -38,14 +38,18 @@ import CardContent from '@material-ui/core/CardContent';
 
 import Button from '@material-ui/core/Button';
 
-import Tabs from 'material-ui/Tabs/Tabs';
-import Tab from 'material-ui/Tabs/Tab';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;
 const defaultStyle = {marginBottom: '20px'};
 
 class Introduction extends Component {
+  state = {
+    tabValue: 0,
+  }
+
   render() {
 
     const DEFAULT_LANGUAGE = this.props.defaultLanguage;
@@ -63,20 +67,29 @@ class Introduction extends Component {
       return <div style={{padding: '10px'}}><div><h1 style={{fontSize: '1.2em', marginTop: 0}}>{intl.trans('introduction','Introduction','first')} {this.props.audio}</h1></div>{introductionDiv}</div>;
     }
 
-    return <Tabs> 
-            <Tab label={intl.trans('introduction','Introduction','first')}>
-              {introductionDiv}
-            </Tab> 
-            <Tab label={DEFAULT_LANGUAGE}> 
-              <div style={Object.assign(introTabStyle, this.props.style)}> 
-                  {introductionTranslations.map(function(translation, i) {
-                      if (translation.language == DEFAULT_LANGUAGE) {
-                        return <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(translation.translation)}} key={i}></div>;
-                      }
-                    })}
-              </div> 
-            </Tab> 
-          </Tabs>;
+    return <div>
+        <Tabs value={this.state.tabValue} onChange={(e, tabValue) => this.setState({ tabValue })}> 
+          <Tab label={intl.trans('introduction','Introduction','first')} />
+          <Tab label={DEFAULT_LANGUAGE} />
+        </Tabs>
+        {this.state.tabValue === 0 && (
+          <Typography component="div" style={{ padding: 8 * 3 }}>
+            {introductionDiv}
+          </Typography>
+        )}
+
+        {this.state.tabValue === 1 && (
+          <Typography component="div" style={{ padding: 8 * 3 }}>
+            <div style={Object.assign(introTabStyle, this.props.style)}> 
+              {introductionTranslations.map(function(translation, i) {
+                  if (translation.language == DEFAULT_LANGUAGE) {
+                    return <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(translation.translation)}} key={i}></div>;
+                  }
+                })}
+            </div> 
+          </Typography>
+        )}
+      </div>;
   }
 }
 

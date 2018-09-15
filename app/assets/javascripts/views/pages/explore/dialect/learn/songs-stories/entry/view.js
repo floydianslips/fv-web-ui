@@ -30,8 +30,8 @@ import MediaPanel from 'views/pages/explore/dialect/learn/base/media-panel';
 import {Introduction} from '../list-view';
 
 import Button from '@material-ui/core/Button';
-import Tabs from 'material-ui/Tabs/Tabs';
-import Tab from 'material-ui/Tabs/Tab';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
 import ActionLaunch from '@material-ui/icons/Launch';
 import IntlService from 'views/services/intl';

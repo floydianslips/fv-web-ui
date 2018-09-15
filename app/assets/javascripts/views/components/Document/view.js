@@ -55,7 +55,8 @@ import { List as ListUI, ListItem } from '@material-ui/core/List';
 
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
 
-import { Tabs, Tab } from 'material-ui/Tabs';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab'; 
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 

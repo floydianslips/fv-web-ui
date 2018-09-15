@@ -38,7 +38,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import IconMenu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { Tabs, Tab } from 'material-ui/Tabs';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab'; 
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 
 import EditableComponent, {EditableComponentHelper} from 'views/components/Editor/EditableComponent';

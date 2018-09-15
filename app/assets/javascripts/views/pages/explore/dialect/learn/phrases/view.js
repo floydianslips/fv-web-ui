@@ -49,7 +49,7 @@ import { List as ListUI, ListItem } from '@material-ui/core/List';
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
 import Button from '@material-ui/core/Button';
 
-import { Tab } from 'material-ui/Tabs';
+import Tabs from '@material-ui/core/Tabs';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 

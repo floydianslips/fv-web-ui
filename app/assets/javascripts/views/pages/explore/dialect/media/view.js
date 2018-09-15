@@ -55,7 +55,8 @@ import { List as ListUI, ListItem, ListItemText } from '@material-ui/core';
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
 import Button from '@material-ui/core/Button';
 
-import { Tabs, Tab } from 'material-ui/Tabs';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab'; 
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -99,7 +100,8 @@ export default class View extends Component {
         super(props, context);
 
         this.state = {
-            showThumbnailDialog: null
+            showThumbnailDialog: null,
+            tabValue: 0,
         };
 
         // Bind methods to 'this'
@@ -302,8 +304,17 @@ export default class View extends Component {
 
                         <Card>
 
-                            <Tabs tabItemContainerStyle={tabItemStyles}>
-                                <Tab label={intl.trans('overview', 'Overview', 'first')}>
+                            <Tabs value={this.state.tabValue} onChange={(e, tabValue) => this.setState({ tabValue })} tabItemContainerStyle={tabItemStyles}>
+                                <Tab label={intl.trans('overview', 'Overview', 'first')} />
+                                <Tab
+                                    label={UIHelpers.isViewSize('xs') ? intl.trans('words', 'Words', 'first') : intl.trans('linked_words', 'Linked Words', 'words')}
+                                    id="find_words" />
+                                <Tab
+                                    label={UIHelpers.isViewSize('xs') ? intl.trans('phrases', 'Phrases', 'first') : intl.trans('linked_phrases', 'Linked Phrases', 'words')}
+                                    id="find_phrases" />
+                            </Tabs>
+                            {this.state.tabValue === 0 && (
+                                <Typography component="div" style={{ padding: 8 * 3 }}>
                                     <div>
                                         <CardContent>
 
@@ -377,10 +388,10 @@ export default class View extends Component {
 
                                         </CardContent>
                                     </div>
-                                </Tab>
-                                <Tab
-                                    label={UIHelpers.isViewSize('xs') ? intl.trans('words', 'Words', 'first') : intl.trans('linked_words', 'Linked Words', 'words')}
-                                    id="find_words">
+                                </Typography>
+                            )}
+                            {this.state.tabValue === 1 && (
+                                <Typography component="div" style={{ padding: 8 * 3 }}>
                                     <div>
                                         <CardContent>
                                             <h2>{intl.trans('views.pages.explore.dialect.media.words_featuring', 'Words Featuring')}
@@ -393,10 +404,10 @@ export default class View extends Component {
                                             </div>
                                         </CardContent>
                                     </div>
-                                </Tab>
-                                <Tab
-                                    label={UIHelpers.isViewSize('xs') ? intl.trans('phrases', 'Phrases', 'first') : intl.trans('linked_phrases', 'Linked Phrases', 'words')}
-                                    id="find_phrases">
+                                </Typography>
+                            )}
+                            {this.state.tabValue === 2 && (
+                                <Typography component="div" style={{ padding: 8 * 3 }}>
                                     <div>
                                         <CardContent>
                                             <h2>{intl.trans('views.pages.explore.dialect.media.words_featuring_with', 'Words Featuring with')}
@@ -408,9 +419,8 @@ export default class View extends Component {
                                             </div>
                                         </CardContent>
                                     </div>
-                                </Tab>
-                            </Tabs>
-
+                                </Typography>
+                            )}
                         </Card>
 
                     </div>

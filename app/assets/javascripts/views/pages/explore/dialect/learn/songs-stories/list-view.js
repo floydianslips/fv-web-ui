@@ -43,8 +43,8 @@ import IconButton from '@material-ui/core/IconButton';
 import ClearIcon from '@material-ui/icons/Clear';
 import FlipToFrontIcon from '@material-ui/icons/FlipToFront';
 
-import Tabs from 'material-ui/Tabs/Tabs';
-import Tab from 'material-ui/Tabs/Tab';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;

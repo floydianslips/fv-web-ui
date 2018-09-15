@@ -36,7 +36,8 @@ import IconButton from '@material-ui/core/IconButton';
 import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import { Tabs, Tab } from 'material-ui/Tabs';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab'; 
 import Statistics from 'views/components/Dashboard/Statistics';
 
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
@@ -57,6 +58,9 @@ export default class PageStats extends Component {
 
     constructor(props, context) {
         super(props, context);
+        this.state = {
+          tabValue: 0
+        }
 
         [].forEach((method => this[method] = this[method].bind(this)));
     }
@@ -68,35 +72,48 @@ export default class PageStats extends Component {
             return <div>Loading...</div>;
         }
 
-        return <Tabs>
-            <Tab label="Words" id="statisticsWords">
-                <Paper style={{padding: '15px'}} zDepth={2}>
-                    <Statistics data={selectn('response', computeDialectStats)} docType="words"
-                                headerText={intl.trans('words', 'Words', 'first')}/>
-                </Paper>
-            </Tab>
-
-            <Tab label="Phrases" id="statisticsPhrases">
-                <Paper style={{padding: '15px'}} zDepth={2}>
-                    <Statistics data={selectn('response', computeDialectStats)} docType="phrases"
-                                headerText={intl.trans('phrases', 'Phrases', 'first')}/>
-                </Paper>
-            </Tab>
-
-            <Tab label="Songs" id="statisticsSongs">
-                <Paper style={{padding: '15px'}} zDepth={2}>
-                    <Statistics data={selectn('response', computeDialectStats)} docType="songs"
-                                headerText={intl.trans('songs', 'Songs', 'first')}/>
-                </Paper>
-            </Tab>
-
-            <Tab label="Stories" id="statisticsStories">
-                <Paper style={{padding: '15px'}} zDepth={2}>
-                    <Statistics data={selectn('response', computeDialectStats)} docType="stories"
-                                headerText={intl.trans('stories', 'Stories', 'first')}/>
-                </Paper>
-            </Tab>
-        </Tabs>;
+        return <div>
+          <Tabs value={this.state.tabValue} onChange={(e, tabValue) => this.setState({ tabValue })}>
+            <Tab label="Words" id="statisticsWords" />
+            <Tab label="Phrases" id="statisticsPhrases" />
+            <Tab label="Songs" id="statisticsSongs" />
+            <Tab label="Stories" id="statisticsStories" />
+          </Tabs>
+          {this.state.tabValue === 0 && (
+            <Typography component="div" style={{ padding: 8 * 3 }}>
+              <Paper style={{padding: '15px'}} zDepth={2}>
+                <Statistics data={selectn('response', computeDialectStats)} docType="words"
+                            headerText={intl.trans('words', 'Words', 'first')}/>
+              </Paper>
+            </Typography>
+          )}
+          {this.state.tabValue === 1 && (
+            <Typography component="div" style={{ padding: 8 * 3 }}>
+              <Paper style={{padding: '15px'}} zDepth={2}>
+                <Statistics data={selectn('response', computeDialectStats)} docType="phrases"
+                            headerText={intl.trans('phrases', 'Phrases', 'first')}/>
+              </Paper>
+            </Typography>
+          )}
+          {this.state.tabValue === 2 && (
+            <Typography component="div" style={{ padding: 8 * 3 }}>
+              <Paper style={{padding: '15px'}} zDepth={2}>
+                <Statistics data={selectn('response', computeDialectStats)} docType="songs"
+                            headerText={intl.trans('songs', 'Songs', 'first')}/>
+              </Paper>
+            </Typography>
+          )}
+          {this.state.tabValue === 3 && (
+            <Typography component="div" style={{ padding: 8 * 3 }}>
+              <Paper style={{padding: '15px'}} zDepth={2}>
+                <Statistics data={selectn('response', computeDialectStats)} docType="stories"
+                            headerText={intl.trans('stories', 'Stories', 'first')}/>
+              </Paper>
+            </Typography>
+          )}
+        </div>;
+        
+          
 
         /*return <Toolbar>
 
