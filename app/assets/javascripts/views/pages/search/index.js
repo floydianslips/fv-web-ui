@@ -27,7 +27,6 @@ import t from 'tcomb-form';
 import fields from 'models/schemas/filter-fields';
 import options from 'models/schemas/filter-options';
 
-import TextField from 'material-ui/TextField';
 import Button from '@material-ui/core/Button';
 
 import Select from '@material-ui/core/Select';

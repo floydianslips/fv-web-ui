@@ -31,7 +31,7 @@ import {Link} from 'provide-page';
 
 import AppBar from 'material-ui/AppBar';
 
-import TextField from 'material-ui/TextField';
+import TextField from '@material-ui/core/TextField';
 
 import IconMenu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';

@@ -30,7 +30,6 @@ import Header from 'views/pages/explore/dialect/header';
 import PageToolbar from 'views/pages/explore/dialect/page-toolbar';
 
 import Switch from '@material-ui/core/Switch';
-import TextField from 'material-ui/TextField';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import IconMenu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';

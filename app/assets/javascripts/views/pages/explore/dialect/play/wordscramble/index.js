@@ -19,7 +19,6 @@ import ReactDOM from 'react-dom';
 import Immutable, {List, Map} from 'immutable';
 
 import Button from '@material-ui/core/Button';
-import TextField from 'material-ui/TextField';
 import * as Colors from 'material-ui/styles/colors';
 import IconButton from '@material-ui/core/IconButton';
 import AVPlayArrow from '@material-ui/icons/PlayArrow';

@@ -21,7 +21,7 @@ import selectn from 'selectn';
 
 import provide from 'react-redux-provide';
 
-import TextField from 'material-ui/TextField';
+import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 

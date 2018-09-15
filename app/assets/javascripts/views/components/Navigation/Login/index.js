@@ -23,7 +23,7 @@ import selectn from 'selectn';
 // Components
 import Popover from 'material-ui/Popover';
 import Button from '@material-ui/core/Button';
-import TextField from 'material-ui/TextField';
+import TextField from '@material-ui/core/TextField';
 
 import ActionExitToAppIcon from '@material-ui/icons/ExitToApp';
 
