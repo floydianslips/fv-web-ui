@@ -43,7 +43,7 @@ import ListItem from '@material-ui/core/ListItem';
 
 import Button from '@material-ui/core/Button';
 
-import Tab from 'material-ui/Tabs/Tab';
+import Tab from '@material-ui/core/Tab';
 
 import '!style-loader!css-loader!react-image-gallery/build/image-gallery.css';
 

@@ -18,8 +18,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import _ from 'underscore';
 
-import Tabs from 'material-ui/Tabs/Tabs';
-import Tab from 'material-ui/Tabs/Tab';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';

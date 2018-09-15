@@ -43,14 +43,18 @@ import IconButton from '@material-ui/core/IconButton';
 import ClearIcon from '@material-ui/icons/Clear';
 import FlipToFrontIcon from '@material-ui/icons/FlipToFront';
 
-import Tabs from 'material-ui/Tabs/Tabs';
-import Tab from 'material-ui/Tabs/Tab';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;
 const defaultStyle = {marginBottom: '20px'};
 
 class Introduction extends Component {
+    state = {
+        tabValue: 0,
+    }
+
     render() {
 
         const DEFAULT_LANGUAGE = this.props.defaultLanguage;
@@ -80,21 +84,29 @@ class Introduction extends Component {
                 {introductionDiv}</div>;
         }
 
-        return <Tabs>
-            <Tab label={intl.trans('introduction', 'Introduction', 'first')}>
-                {introductionDiv}
-            </Tab>
-            <Tab label={intl.searchAndReplace(DEFAULT_LANGUAGE)}>
-                <div style={Object.assign(introTabStyle, this.props.style)}>
-                    {introductionTranslations.map(function (translation, i) {
-                        if (translation.language == DEFAULT_LANGUAGE) {
-                            return <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(translation.translation)}}
-                                        key={i}></div>;
-                        }
-                    })}
-                </div>
-            </Tab>
-        </Tabs>;
+        return <div>
+            <Tabs value={this.state.tabValue} onChange={(e, tabValue) => this.setState({ tabValue })}>
+                <Tab label={intl.trans('introduction', 'Introduction', 'first')} />
+                <Tab label={intl.searchAndReplace(DEFAULT_LANGUAGE)} />
+            </Tabs>
+            {this.state.tabValue === 0 && (
+                <Typography component="div" style={{ padding: 8 * 3 }}>
+                    {introductionDiv}
+                </Typography>
+            )}
+            {this.state.tabValue == 1 && (
+                <Typography component="div" style={{ padding: 8 * 3 }}>
+                    <div style={Object.assign(introTabStyle, this.props.style)}>
+                        {introductionTranslations.map(function (translation, i) {
+                            if (translation.language == DEFAULT_LANGUAGE) {
+                                return <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(translation.translation)}}
+                                            key={i}></div>;
+                            }
+                        })}
+                    </div>
+                </Typography>
+            )}
+        </div>;
     }
 }
 
