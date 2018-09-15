@@ -59,8 +59,8 @@ export default class PageStats extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-          tabValue: 0
-        }
+          tabValue: 0,
+        };
 
         [].forEach((method => this[method] = this[method].bind(this)));
     }

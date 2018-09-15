@@ -41,15 +41,23 @@ const defaultInnerStyle = {padding: '15px', margin: '15px 0', minHeight: '420px'
 const defaultCoverStyle = {padding: '15px', margin: '15px 0'};
 
 class MediaThumbnail extends Component {
+    state = {
+        tabValue: 0,
+    };
+
     render() {
         const photoMediaPanel = <MediaPanel minimal={true} label="" type="FVPicture" items={this.props.photos}/>;
         const videoMediaPanel = <MediaPanel minimal={true} label="" type="FVVideo" items={this.props.videos}/>;
 
         if (this.props.photos.length > 0 && this.props.videos.length > 0) {
-            return <Tabs style={{marginTop: '15px'}}>
-                <Tab label="Photo(s)">{photoMediaPanel}</Tab>
-                <Tab label="Video(s)">{videoMediaPanel}</Tab>
-            </Tabs>;
+            return <div>
+                <Tabs value={this.state.tabValue} onChange={(e, tabValue) => this.setState({ tabValue })} style={{marginTop: '15px'}}>
+                    <Tab label="Photo(s)" />
+                    <Tab label="Video(s)" />
+                </Tabs>
+                {this.state.tabValue === 0 && photoMediaPanel}
+                {this.state.tabValue === 1 && videoMediaPanel}
+            </div>;
         } else if (this.props.photos.length > 0) {
             return photoMediaPanel;
         } else if (this.props.videos.length > 0) {

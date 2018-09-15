@@ -83,7 +83,8 @@ export default class PageDialectBookEdit extends Component {
             editPageDialogOpen: false,
             editPageItem: null,
             formValue: null,
-            sortedItems: List()
+            sortedItems: List(),
+            tabValue: 0,
         };
 
         // Bind methods to 'this'
@@ -211,35 +212,41 @@ export default class PageDialectBookEdit extends Component {
 
         return <div>
 
-                <Tabs>
-                    <Tab label={intl.trans('book', 'Book', 'first')}>
+                <Tabs value={this.state.tabValue} onChange={(e, tabValue) => this.setState({ tabValue })}>
+                    <Tab label={intl.trans('book', 'Book', 'first')} />
+                    <Tab label={intl.trans('pages', 'Pages', 'first')} />
+                </Tabs>
+                {this.state.tabValue === 0 && (
+                    <Typography component="div" style={{ padding: 8 * 3 }}>
                         <h1>{intl.trans('views.pages.explore.dialect.learn.songs_stories.edit_x_book',
                             'Edit ' + selectn("response.properties.dc:title", computeBook) + ' Book', 'words', [selectn("response.properties.dc:title", computeBook)])}</h1>
-                    <EditViewWithForm
-                        computeEntities={computeEntities}
-                        initialValues={context}
-                        itemId={this._getBookPath()}
-                        fields={fields}
-                        options={options}
-                        saveMethod={this._handleSave}
-                        cancelMethod={this._handleCancel}
-                        currentPath={this.props.splitWindowPath}
-                        navigationMethod={this.props.pushWindowPath}
-                        type="FVBook"
-                        routeParams={this.props.routeParams}/>
-                    </Tab>
-                            <Tab label={intl.trans('pages', 'Pages', 'first')}>
-                                <h1>{intl.trans('', 'Edit ' + selectn("response.properties.dc:title", computeBook) + ' pages', 'first', [selectn("response.properties.dc:title", computeBook)])}</h1>
-                                <BookEntryList
-                                    reorder={true}
-                                    sortOrderChanged={this._storeSortOrder}
-                                    defaultLanguage={DEFAULT_LANGUAGE}
-                                    editAction={this._editPage}
-                                    innerStyle={{minHeight: 'inherit'}}
-                                    metadata={selectn('response', computeBookEntries) || {}}
-                                    items={selectn('response.entries', computeBookEntries) || []}/>
-                            </Tab>
-                        </Tabs>
+                        <EditViewWithForm
+                            computeEntities={computeEntities}
+                            initialValues={context}
+                            itemId={this._getBookPath()}
+                            fields={fields}
+                            options={options}
+                            saveMethod={this._handleSave}
+                            cancelMethod={this._handleCancel}
+                            currentPath={this.props.splitWindowPath}
+                            navigationMethod={this.props.pushWindowPath}
+                            type="FVBook"
+                            routeParams={this.props.routeParams}/>
+                    </Typography>
+                )}
+                {this.state.tabValue === 1 && (
+                    <Typography component="div" style={{ padding: 8 * 3 }}>
+                        <h1>{intl.trans('', 'Edit ' + selectn("response.properties.dc:title", computeBook) + ' pages', 'first', [selectn("response.properties.dc:title", computeBook)])}</h1>
+                        <BookEntryList
+                            reorder={true}
+                            sortOrderChanged={this._storeSortOrder}
+                            defaultLanguage={DEFAULT_LANGUAGE}
+                            editAction={this._editPage}
+                            innerStyle={{minHeight: 'inherit'}}
+                            metadata={selectn('response', computeBookEntries) || {}}
+                            items={selectn('response.entries', computeBookEntries) || []}/>
+                    </Typography>
+                )}
 
                 <Dialog
                     autoScrollBodyContent={true}
