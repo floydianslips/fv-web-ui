@@ -30,7 +30,7 @@ import Paper from '@material-ui/core/Paper';
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
 import Button from '@material-ui/core/Button';
 import Toggle from 'material-ui/Toggle';
-import IconMenu from 'material-ui/IconMenu';
+import IconMenu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
 import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';

@@ -33,7 +33,7 @@ import AppBar from 'material-ui/AppBar';
 
 import TextField from 'material-ui/TextField';
 
-import IconMenu from 'material-ui/IconMenu';
+import IconMenu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 

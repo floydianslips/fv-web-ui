@@ -36,7 +36,7 @@ import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
 import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import IconMenu from 'material-ui/IconMenu';
+import IconMenu from '@material-ui/core/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';

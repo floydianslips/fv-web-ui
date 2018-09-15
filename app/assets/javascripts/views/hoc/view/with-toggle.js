@@ -35,8 +35,8 @@ export default function withToggle() {
             let {mobileOnly, label} = this.props;
             const fontStyle = {float: 'right', lineHeight: 1}
             const icon = this.state.open ? 
-                <ExpandLessIcon className="material-icons" style={style}/> : 
-                <ExpandMoreIcon className="material-icons" style={style}/>;
+                <ExpandLessIcon className="material-icons" style={fontStyle}/> : 
+                <ExpandMoreIcon className="material-icons" style={fontStyle}/>;
 
             return <div className={classNames('panel', 'panel-default')}>
                 <div className="panel-heading">
