@@ -34,7 +34,7 @@ import Button from '@material-ui/core/Button';
 
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
-import MenuItem from 'material-ui/MenuItem';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import ReportBrowser from './browse-view';
 import IntlService from 'views/services/intl';

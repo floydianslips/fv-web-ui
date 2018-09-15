@@ -31,8 +31,8 @@ import Button from '@material-ui/core/Button';
 
 import TextField from 'material-ui/TextField';
 
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
+import IconMenu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import IntlService from "views/services/intl";
 
 /**

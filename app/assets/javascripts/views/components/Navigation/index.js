@@ -33,8 +33,8 @@ import AppBar from 'material-ui/AppBar';
 
 import TextField from 'material-ui/TextField';
 
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
+import IconMenu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
 import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
@@ -43,7 +43,6 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import Badge from '@material-ui/core/Badge';
-import DropDownMenu from 'material-ui/DropDownMenu';
 import Button from '@material-ui/core/Button';
 
 import Toolbar from 'material-ui/Toolbar/Toolbar';
@@ -274,7 +273,8 @@ export default class Navigation extends Component {
     });
   }
 
-  _handleChangeLocale(e, n, v) {
+  _handleChangeLocale(e) {
+    const v = e.target.value
     if (v !== this.intl.locale) {
         this.intl.locale = v;
         setTimeout(function () {
@@ -518,11 +518,11 @@ export default class Navigation extends Component {
         <Toolbar style={{display: (this.state.localePopoverOpen) ? 'block' : 'none' }}>
           <ToolbarGroup firstChild={true} float="right">
             <ToolbarTitle style={{'color': '#fff', 'padding': '0 0 0 15px', 'fontSize':'15px'}} text={intl.trans('choose_lang', 'Choose a Language', 'first')} />
-            <DropDownMenu value={this.intl.locale} onChange={this._handleChangeLocale} labelStyle={{'color': '#fff'}}>
-              <MenuItem value="en" primaryText="English" />
-              <MenuItem value="fr" primaryText="Français" />
+            <Select value={this.intl.locale} onChange={this._handleChangeLocale} style={{'color': '#fff' }}>
+              <MenuItem value="en">English</MenuItem>
+              <MenuItem value="fr">Français</MenuItem>
               {/*<MenuItem value="sp" primaryText="Español" />*/}
-            </DropDownMenu>
+            </Select>
           </ToolbarGroup>
         </Toolbar>
 

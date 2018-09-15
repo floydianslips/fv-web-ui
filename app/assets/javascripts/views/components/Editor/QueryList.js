@@ -21,7 +21,7 @@ import selectn from 'selectn';
 import ProviderHelpers from 'common/ProviderHelpers';
 
 import Select from '@material-ui/core/Select';
-import MenuItem from 'material-ui/MenuItem';
+import MenuItem from '@material-ui/core/MenuItem';
 import IntlService from "views/services/intl";
 
 const intl = IntlService.instance;
