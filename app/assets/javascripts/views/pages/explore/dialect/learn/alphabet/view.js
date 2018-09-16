@@ -40,7 +40,7 @@ import {Link} from 'provide-page';
 
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 
-import Dialog from 'material-ui/Dialog';
+import Dialog from '@material-ui/core/Dialog';
 
 import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';

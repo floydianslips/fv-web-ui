@@ -42,7 +42,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import BookEntryEdit from 'views/pages/explore/dialect/learn/songs-stories/entry/edit';
 import BookEntryList from 'views/pages/explore/dialect/learn/songs-stories/entry/list-view';
 
-import Dialog from 'material-ui/Dialog';
+import Dialog from '@material-ui/core/Dialog';
 
 import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';

@@ -24,7 +24,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 
-import Dialog from 'material-ui/Dialog';
+import Dialog from '@material-ui/core/Dialog';
 import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;
