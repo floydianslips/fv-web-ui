@@ -265,7 +265,11 @@ export default class Tasks extends React.Component {
                     <TableBody>
                         {userTasks}
                         {userRegistrationTasks}
-                        {(!userTasks && !userRegistrationTasks) ? intl.trans('views.pages.tasks.no_tasks', 'There are currently No tasks.') : ''}
+                        {!userTasks.length > 0 && !userRegistrationTasks.length > 0 && (
+                            <TableRow>
+                                <TableCell colSpan={4}>{intl.trans('views.pages.tasks.no_tasks', 'There are currently No tasks.')}</TableCell>
+                            </TableRow>
+                        )}
                     </TableBody>
                 </Table>
 
