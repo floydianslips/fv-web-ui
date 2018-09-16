@@ -37,6 +37,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import IconMenu from '@material-ui/core/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
+import Paper from '@material-ui/core/Paper';
 import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
@@ -84,7 +86,8 @@ export default class PageToolbar extends Component {
             disableActions: 0,
             publishActions: 0,
             unpublishActions: 0,
-            showActionsMobile: false
+            showActionsMobile: false,
+            anchorEl: null,
         };
 
         // Bind methods to 'this'
@@ -372,35 +375,53 @@ export default class PageToolbar extends Component {
 
                 {(() => {
                     if (this.props.actions.includes('more-options')) {
-
                         let children = [
                             <MenuItem
                                 onClick={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/reports')}
-                                key="reports" primaryText={intl.trans('reports', 'Reports', 'first')}/>,
+                                key="reports">
+                                {intl.trans('reports', 'Reports', 'first')}    
+                            </MenuItem>,
                             <MenuItem
                                 onClick={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/media')}
-                                key="media"
-                                primaryText={intl.trans('views.pages.explore.dialect.media_browser', 'Media Browser', 'words')}/>,
+                                key="media">
+                                {intl.trans('views.pages.explore.dialect.media_browser', 'Media Browser', 'words')}    
+                            </MenuItem>,
                             <AuthorizationFilter key="users" filter={{
                                 permission: 'Write',
                                 entity: selectn('response', computeEntity)
                             }}>
                                 <MenuItem
-                                    onClick={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/users')}
-                                    primaryText={intl.trans('users', "Users", 'first')}/>
-                            </AuthorizationFilter>];
+                                    onClick={this.props.handleNavigateRequest.bind(this, this.props.windowPath + '/users')}>
+                                    {intl.trans('users', "Users", 'first')}    
+                                </MenuItem>
+                            </AuthorizationFilter> 
+                        ]
 
-                        return React.createElement(UIHelpers.isViewSize('xs') ? Menu : IconMenu, {
-                            anchorOrigin: {horizontal: 'right', vertical: 'top'},
-                            targetOrigin: {horizontal: 'right', vertical: 'top'},
-                            iconButtonElement:
+                        if (UIHelpers.isViewSize('xs')) {
+                            return <Paper>
+                                <MenuList>
+                                    {children}
+                                </MenuList>
+                            </Paper>
+                        } else {
+                            return <div>
                                 <IconButton
                                     tooltip={intl.trans('views.pages.explore.dialect.more_options', "More Options", 'words')}
                                     tooltipPosition="top-center" touch={true}
-                                    className={classNames({'hidden-xs': !this.state.showActionsMobile})}>
+                                    className={classNames({'hidden-xs': !this.state.showActionsMobile})}
+                                    onClick={e => this.setState({ anchorEl: e.currentTarget })}
+                                >
                                     <NavigationExpandMoreIcon/>
                                 </IconButton>
-                        }, children);
+                                <Menu
+                                    open={this.state.anchorEl}
+                                    onClose={() => this.setState({ anchorEl: null })}
+                                    anchorEl={this.state.anchorEl}
+                                >
+                                    {children}
+                                </Menu>
+                            </div>
+                        }
                     }
                 })()}
 
