@@ -25,7 +25,7 @@ import classNames from 'classnames';
 import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
 
-import {Dialog} from 'material-ui';
+import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';

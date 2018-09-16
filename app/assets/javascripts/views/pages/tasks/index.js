@@ -25,7 +25,7 @@ import ConfGlobal from 'conf/local.json';
 
 import t from 'tcomb-form';
 
-import Dialog from 'material-ui/Dialog';
+import Dialog from '@material-ui/core/Dialog';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
