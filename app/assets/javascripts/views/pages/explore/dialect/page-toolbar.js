@@ -31,9 +31,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 import MenuIcon from '@material-ui/icons/Menu';
 
-import Toolbar from 'material-ui/Toolbar/Toolbar';
-import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
-import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
+import Toolbar from '@material-ui/core/Toolbar';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import IconMenu from '@material-ui/core/Menu';
@@ -200,16 +198,16 @@ export default class PageToolbar extends Component {
             });
         }
 
-        return <Toolbar className="page-toolbar">
+        return <Toolbar className="page-toolbar" style={{justifyContent:'space-between'}}>
 
-            <ToolbarGroup className="visible-xs" style={{textAlign: 'right'}}>
+            <div className="visible-xs" style={{textAlign: 'right'}}>
                 <IconButton onClick={(e) => {
                     this.setState({showActionsMobile: !this.state.showActionsMobile});
                     e.preventDefault();
                 }}><MenuIcon /></IconButton>
-            </ToolbarGroup>
+            </div>
 
-            <ToolbarGroup float="left" className={classNames({'hidden-xs': !this.state.showActionsMobile})}>
+            <div className={classNames({'hidden-xs': !this.state.showActionsMobile})}>
 
                 {this.props.children}
 
@@ -326,9 +324,9 @@ export default class PageToolbar extends Component {
                     }
                 })()}
 
-            </ToolbarGroup>
+            </div>
 
-            <ToolbarGroup float="right" className={classNames({'hidden-xs': !this.state.showActionsMobile})}>
+            <div className={classNames({'hidden-xs': !this.state.showActionsMobile})}>
 
                 {(() => {
                     if (this.props.actions.includes('publish')) {
@@ -372,8 +370,6 @@ export default class PageToolbar extends Component {
                     }
                 })()}
 
-                <ToolbarSeparator className="hidden-xs"/>
-
                 {(() => {
                     if (this.props.actions.includes('more-options')) {
 
@@ -409,7 +405,7 @@ export default class PageToolbar extends Component {
                 })()}
 
 
-            </ToolbarGroup>
+            </div>
 
         </Toolbar>;
     }
