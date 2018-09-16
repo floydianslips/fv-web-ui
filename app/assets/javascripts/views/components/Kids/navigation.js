@@ -31,7 +31,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Avatar from '@material-ui/core/Avatar';
 import IconMenu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
 
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';

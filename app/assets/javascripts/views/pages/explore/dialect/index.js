@@ -40,7 +40,8 @@ import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Snackbar from '@material-ui/core/Snackbar';
 
-import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 
 import { List as ListUI, ListItem } from '@material-ui/core/List';
 
@@ -271,13 +272,11 @@ export default class ExploreDialect extends Component {
 
                 <Toolbar className="dialect-navigation">
 
-                    <ToolbarGroup firstChild={true}>
                         <Button variant='flat' onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/learn')}>{intl.trans('learn_our_lang', 'Learn Our Language', 'words')}</Button>
                         <Button variant='flat' onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/play')}>{intl.trans('views.pages.explore.dialect.play_game', 'Play a Game', 'words')}</Button>
                         <Button variant='flat' onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/gallery')}>{intl.trans('views.pages.explore.dialect.photo_gallery', 'Photo Gallery', 'words')} </Button>
                         <Button variant='flat'
                             onClick={this._onNavigateRequest.bind(this, this.props.windowPath.replace('explore', 'kids'))}>{intl.trans('views.pages.explore.dialect.kids_portal', 'Kids Portal', 'words')}</Button>
-                    </ToolbarGroup>
 
                 </Toolbar>
 

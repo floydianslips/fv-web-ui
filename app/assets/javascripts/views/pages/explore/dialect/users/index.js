@@ -33,7 +33,6 @@ import SearchBar from 'views/pages/explore/dialect/search-bar';
 
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import IconMenu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';

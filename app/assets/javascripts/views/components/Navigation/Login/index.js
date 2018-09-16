@@ -168,7 +168,7 @@ export default class Login extends Component {
         }
 
         return (
-            <div style={{display: "inline-block", paddingTop: '15px', maxWidth: '205px'}}>
+            <div style={{display: "inline-block", maxWidth: '205px'}}>
                 <Button variant='flat' ref={(el) => {
                     this.anchorEl = el
                 }} style={{"color": themePalette.alternateTextColor}}

@@ -29,7 +29,8 @@ import Shepherd from 'tether-shepherd';
 
 import {Link} from 'provide-page';
 
-import AppBar from 'material-ui/AppBar';
+import AppBar from '@material-ui/core/AppBar';
+import Typography from '@material-ui/core/Typography';
 
 import TextField from '@material-ui/core/TextField';
 
@@ -37,7 +38,6 @@ import IconMenu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
-import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -45,9 +45,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Badge from '@material-ui/core/Badge';
 import Button from '@material-ui/core/Button';
 
-import Toolbar from 'material-ui/Toolbar/Toolbar';
-import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
+import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import SettingsIcon from '@material-ui/icons/Settings';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -64,7 +64,6 @@ import AppLeftNav from 'views/components/Navigation/AppLeftNav';
 import IntlService from 'views/services/intl';
 
 import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ToolbarTitle from 'material-ui/Toolbar/ToolbarTitle';
 
 @provide
 export default class Navigation extends Component {
@@ -311,16 +310,22 @@ export default class Navigation extends Component {
     let portalTitle = selectn('response.contextParameters.ancestry.dialect.dc:title', computePortal) || selectn('response.properties.dc:title', computeDialect);
 
     return <div>
-        <AppBar
-          title={<span className="hidden-xs"><img src="/assets/images/logo.png" style={{padding: "0 0 5px 0"}} alt={this.props.properties.title} /></span>}
-          showMenuIconButton={isDialect ? true : true}
-          onLeftIconButtonClick={this._handleOpenMenuRequest}>
+        <AppBar position="static" style={{background: themePalette.primary1Color }}>
 
-          <ToolbarGroup style={{position: 'relative', color: '#fff'}}>
+          <Toolbar style={{position: 'relative', color: '#fff'}}>
+            <IconButton onClick={this._handleOpenMenuRequest} color="inherit">
+              <MenuIcon />
+            </IconButton>
 
-            <div style={{display: "inline-block", paddingRight: "10px", paddingTop: '15px', textTransform: 'uppercase'}}>
+            <Typography variant="title" style={{flexGrow: 1}}>
+              <span className="hidden-xs">
+              <img src="/assets/images/logo.png" style={{padding: "0 0 5px 0"}} alt={this.props.properties.title} />
+              </span>
+            </Typography>
+
+            <Typography variant="title" style={{textTransform: 'uppercase'}}>
               <Link className="nav_link" href={"/explore" + this.state.pathOrId + '/Data'}>{intl.trans('choose_lang', 'Choose a Language', 'first')}</Link>
-            </div>
+            </Typography>
 
             <Login routeParams={this.props.routeParams} label={this.intl.translate({
                 key: 'views.pages.users.login.sign_in',
@@ -328,9 +333,7 @@ export default class Navigation extends Component {
                 case: 'words'
             })}/>
 
-            <ToolbarSeparator className={classNames({'hidden-xs': this.props.computeLogin.isConnected})} style={{float: 'none', marginLeft: 0, marginRight: 0}} />
-
-            <AuthenticationFilter login={this.props.computeLogin} anon={false} routeParams={this.props.routeParams} containerStyle={{display: 'inline'}}>
+            <AuthenticationFilter login={this.props.computeLogin} anon={false} routeParams={this.props.routeParams} >
               <span>
                 <Badge
                   style={{
@@ -401,8 +404,6 @@ export default class Navigation extends Component {
                     </div>
                 </div>
             </Popover>*/}
-
-            <ToolbarSeparator className="search-bar-seperator" style={{float: 'none', marginRight: 0, marginLeft: 0}} />
 
             <div style={{background: themePalette.primary1Color, display: 'inline-block'}} className={classNames({'hidden-xs': !this.state.searchBarVisibleInMobile, 'search-bar-mobile': this.state.searchBarVisibleInMobile})}>
               <TextField style={{marginLeft: (this.state.searchBarVisibleInMobile) ? '15px' : '30px', fontSize: '15px', height: '38px', backgroundColor: '#fff', paddingLeft: '10px', lineHeight: '1', width: (this.state.searchBarVisibleInMobile) ? '214px' : 'inherit', paddingRight: (this.state.searchBarVisibleInMobile) ? '0' : '40px'}} 
@@ -508,8 +509,6 @@ export default class Navigation extends Component {
               </div>
           </Popover>
 
-          <ToolbarSeparator className="locale-seperator" style={{float: 'none', marginRight: 0, marginLeft: 0}} />
-
           <IconButton
             onClick={this._handleDisplayLocaleOptions}
             color="inherit"
@@ -517,20 +516,20 @@ export default class Navigation extends Component {
             <SettingsIcon />
           </IconButton>
 
-          </ToolbarGroup>
+          </Toolbar>
 
+          <Toolbar color="inherit" style={{display: (this.state.localePopoverOpen) ? 'flex' : 'none', justifyContent: "flex-end" }}>
+              <Typography style={{'color': '#fff', 'padding': '0 15px', 'fontSize':'15px'}}>
+                {intl.trans('choose_lang', 'Choose a Language', 'first')}
+              </Typography>
+              <Select value={this.intl.locale} onChange={this._handleChangeLocale} style={{'color': '#fff' }}>
+                <MenuItem value="en">English</MenuItem>
+                <MenuItem value="fr">Français</MenuItem>
+                {/*<MenuItem value="sp" primaryText="Español" />*/}
+              </Select>
+          </Toolbar>
         </AppBar>
 
-        <Toolbar style={{display: (this.state.localePopoverOpen) ? 'block' : 'none' }}>
-          <ToolbarGroup firstChild={true} float="right">
-            <ToolbarTitle style={{'color': '#fff', 'padding': '0 0 0 15px', 'fontSize':'15px'}} text={intl.trans('choose_lang', 'Choose a Language', 'first')} />
-            <Select value={this.intl.locale} onChange={this._handleChangeLocale} style={{'color': '#fff' }}>
-              <MenuItem value="en">English</MenuItem>
-              <MenuItem value="fr">Français</MenuItem>
-              {/*<MenuItem value="sp" primaryText="Español" />*/}
-            </Select>
-          </ToolbarGroup>
-        </Toolbar>
 
         <AppLeftNav
           menu={{main: true}}

@@ -23,7 +23,7 @@ var classNames = require('classnames');
 var Mui = require('material-ui');
 var {
       Card, CardHeader, CardMedia, CardTitle, CardActions, CardContent, Avatar, FlatButton,
-      Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator, DropDownMenu, DropDownIcon, RaisedButton,
+      DropDownMenu, DropDownIcon, RaisedButton,
       Tabs, Tab,
       Dialog
     } = Mui;

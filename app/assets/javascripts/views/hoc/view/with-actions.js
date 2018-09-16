@@ -20,9 +20,7 @@ import PageToolbar from 'views/pages/explore/dialect/page-toolbar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-import Toolbar from 'material-ui/Toolbar/Toolbar';
-import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
-import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
+import Toolbar from '@material-ui/core/Toolbar';
 
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 
@@ -265,12 +263,10 @@ export default function withActions(ComposedFilter, publishWarningEnabled = fals
                     <AuthorizationFilter
                         filter={{permission: 'Write', entity: selectn('response', this.props.computeItem)}}>
                         <div className="col-xs-12" style={{marginTop: '15px'}}>
-                            <Toolbar className="toolbar">
-                                <ToolbarGroup key={0} float="right">
+                            <Toolbar className="toolbar" style={{justifyContent:'flex-end'}}>
                                     <Button variant='raised' icon={<DeleteIcon className="material-icons" />}
                                                   onClick={() => this.setState({deleteDialogOpen: true})}
                                                   color="secondary">{intl.trans('views.hoc.view.delete_x', "Delete " + StringHelpers.toTitleCase(this.props.labels.single), 'first', [StringHelpers.toTitleCase(this.props.labels.single)])}</Button>
-                                </ToolbarGroup>
                             </Toolbar>
 
                             <Dialog
