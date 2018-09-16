@@ -53,7 +53,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ActionHelp from '@material-ui/icons/Help';
-import Popover from 'material-ui/Popover';
+import Popover from '@material-ui/core/Popover';
 import Avatar from '@material-ui/core/Avatar';
 
 import AuthenticationFilter from 'views/components/Document/AuthenticationFilter';

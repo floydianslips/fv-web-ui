@@ -13,7 +13,7 @@ import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
 import NavigationHelpers from 'common/NavigationHelpers';
 
-import {Popover} from 'material-ui';
+import Popover from '@material-ui/core/Popover';
 import Button from '@material-ui/core/Button';
 import IntlService from 'views/services/intl';
 
