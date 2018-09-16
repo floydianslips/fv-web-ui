@@ -21,8 +21,6 @@ import provide from 'react-redux-provide';
 import selectn from 'selectn';
 import classNames from 'classnames';
 
-import * as Colors from 'material-ui/styles/colors';
-
 import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
 

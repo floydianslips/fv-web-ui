@@ -53,7 +53,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ActionHelp from '@material-ui/icons/Help';
-import Popover from 'material-ui/Popover';
+import Popover from '@material-ui/core/Popover';
 import Avatar from '@material-ui/core/Avatar';
 
 import AuthenticationFilter from 'views/components/Document/AuthenticationFilter';
@@ -426,12 +426,11 @@ export default class Navigation extends Component {
             </IconButton>
 
             <Popover
-            useLayerForClickAway={false}
-            open={this.state.searchContextPopoverOpen}
-            anchorEl={this.state.searchContextPopoverAnchorEl}
-            style={{maxWidth: (isDialect) ? '320px' : '220px', marginTop: '-14px', backgroundColor: 'transparent', boxShadow: 'none'}}
-            anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-            targetOrigin={{horizontal: 'middle', vertical: 'top'}}>
+              open={this.state.searchContextPopoverOpen}
+              anchorEl={this.state.searchContextPopoverAnchorEl}
+              style={{maxWidth: (isDialect) ? '320px' : '220px', marginTop: '-14px', backgroundColor: 'transparent', boxShadow: 'none'}}
+              anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+              transformOrigin={{horizontal: 'center', vertical: 'top'}}>
               <div>
                 <img style={{position: 'relative', top: '14px', zIndex: 999999, paddingTop: '14px', left: '80%'}} src="/assets/images/popover-arrow.png" alt="" />
                 {(() => {

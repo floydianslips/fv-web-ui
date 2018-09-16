@@ -27,11 +27,6 @@ import ProviderHelpers from 'common/ProviderHelpers';
 import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';
 
-import {
-    Card, CardHeader, CardMedia, CardTitle, CardActions, CardContent, Avatar,
-    DropDownMenu, DropDownIcon,
-    Tabs, Tab
-} from 'material-ui';
 import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
 import IntlService from "views/services/intl";

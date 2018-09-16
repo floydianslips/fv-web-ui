@@ -20,8 +20,6 @@ import selectn from 'selectn';
 
 import ConfGlobal from 'conf/local.json';
 
-import * as Colors from 'material-ui/styles/colors';
-
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
