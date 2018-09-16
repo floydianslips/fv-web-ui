@@ -28,7 +28,7 @@ import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';
 
 import {
-    Card, CardHeader, CardMedia, CardTitle, CardActions, CardContent, Avatar,
+    Avatar,
     DropDownMenu, DropDownIcon,
     Tabs, Tab
 } from 'material-ui';

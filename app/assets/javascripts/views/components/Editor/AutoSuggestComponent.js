@@ -6,7 +6,6 @@ import provide from 'react-redux-provide';
 import selectn from 'selectn';
 import Autosuggest from 'react-autosuggest';
 
-import RefreshIndicator from 'material-ui/RefreshIndicator';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import IntlService from "views/services/intl";
 
