@@ -32,7 +32,11 @@ import StringHelpers from 'common/StringHelpers';
 
 import Button from '@material-ui/core/Button';
 
-import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
 
 import SelectFactory from 'views/components/Editor/fields/select';
 import DocumentView from 'views/components/Document/view';
@@ -201,19 +205,19 @@ export default class Tasks extends React.Component {
         (selectn('response', computeUserTasks) || []).map(function (task, i) {
 
             let tableRow = <TableRow key={i}>
-                <TableRowColumn>
+                <TableCell>
                     <a onClick={this._handleOpen.bind(this, task.docref)}>{task.documentTitle}</a>
-                </TableRowColumn>
-                <TableRowColumn>
+                </TableCell>
+                <TableCell>
                     <span>{intl.searchAndReplace(task.name)}</span>
-                </TableRowColumn>
-                <TableRowColumn>
+                </TableCell>
+                <TableCell>
                     <Button variant='raised' color="secondary"
                                   onClick={this._handleTaskActions.bind(this, task.id, 'approve')}>{intl.trans('approve', 'Approve', 'first')}</Button> &nbsp;
                     <Button variant='raised' color="secondary"
                                   onClick={this._handleTaskActions.bind(this, task.id, 'reject')}>{intl.trans('reject', 'Reject', 'first')}</Button>
-                </TableRowColumn>
-                <TableRowColumn>{task.dueDate}</TableRowColumn>
+                </TableCell>
+                <TableCell>{task.dueDate}</TableCell>
             </TableRow>;
 
             userTasks.push(tableRow);
@@ -226,19 +230,19 @@ export default class Tasks extends React.Component {
             let uid = selectn('uid', task);
 
             let tableRow = <TableRow key={i}>
-                <TableRowColumn>
+                <TableCell>
                     <a onClick={this._handleOpen.bind(this, uid)}>{selectn('properties.dc:title', task)}</a>
-                </TableRowColumn>
-                <TableRowColumn>
+                </TableCell>
+                <TableCell>
                     <span>{intl.trans('views.pages.tasks.request_to_join', 'Request to join')} {selectn('properties.docinfo:documentTitle', task)}</span>
-                </TableRowColumn>
-                <TableRowColumn>
+                </TableCell>
+                <TableCell>
                     <Button variant='raised' color="secondary"
                                   onClick={this._handlePreApprovalOpen.bind(this, task, 'approve')}>{intl.trans('approve', 'Approve', 'first')}</Button> &nbsp;
                     <Button variant='raised' color="secondary"
                                   onClick={this._handleRegistrationActions.bind(this, uid, 'reject')}>{intl.trans('reject', 'Reject', 'first')}</Button>
-                </TableRowColumn>
-                <TableRowColumn>N/A</TableRowColumn>
+                </TableCell>
+                <TableCell>N/A</TableCell>
             </TableRow>;
 
             userRegistrationTasks.push(tableRow);
@@ -250,15 +254,15 @@ export default class Tasks extends React.Component {
             <div>
                 <h1>{intl.trans('tasks', 'Tasks', 'first')}</h1>
                 <Table>
-                    <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
+                    <TableHead>
                         <TableRow>
-                            <TableHeaderColumn>{intl.trans('document_title', 'Document Title', 'words')}</TableHeaderColumn>
-                            <TableHeaderColumn>{intl.trans('task_type', 'Task Type', 'words')}</TableHeaderColumn>
-                            <TableHeaderColumn>{intl.trans('actions', 'Actions', 'words')}</TableHeaderColumn>
-                            <TableHeaderColumn>{intl.trans('task_due_date', 'Task Due Date', 'words')}</TableHeaderColumn>
+                            <TableCell>{intl.trans('document_title', 'Document Title', 'words')}</TableCell>
+                            <TableCell>{intl.trans('task_type', 'Task Type', 'words')}</TableCell>
+                            <TableCell>{intl.trans('actions', 'Actions', 'words')}</TableCell>
+                            <TableCell>{intl.trans('task_due_date', 'Task Due Date', 'words')}</TableCell>
                         </TableRow>
-                    </TableHeader>
-                    <TableBody displayRowCheckbox={false}>
+                    </TableHead>
+                    <TableBody>
                         {userTasks}
                         {userRegistrationTasks}
                         {(!userTasks && !userRegistrationTasks) ? intl.trans('views.pages.tasks.no_tasks', 'There are currently No tasks.') : ''}
