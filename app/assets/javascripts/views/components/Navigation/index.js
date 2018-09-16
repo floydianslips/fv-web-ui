@@ -37,6 +37,8 @@ import TextField from '@material-ui/core/TextField';
 import IconMenu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -521,11 +523,22 @@ export default class Navigation extends Component {
               <Typography style={{'color': '#fff', 'padding': '0 15px', 'fontSize':'15px'}}>
                 {intl.trans('choose_lang', 'Choose a Language', 'first')}
               </Typography>
-              <Select value={this.intl.locale} onChange={this._handleChangeLocale} style={{'color': '#fff' }}>
-                <MenuItem value="en">English</MenuItem>
-                <MenuItem value="fr">Français</MenuItem>
-                {/*<MenuItem value="sp" primaryText="Español" />*/}
-              </Select>
+              <FormControl>
+                <InputLabel htmlFor="locale-select">Language</InputLabel>
+                <Select 
+                  value={this.intl.locale || ''}
+                  onChange={this._handleChangeLocale}
+                  style={{'color': '#fff', minWidth: 200 }}
+                  inputProps={{
+                    name: 'locale',
+                    id: 'locale-select',
+                  }}
+                >
+                  <MenuItem value="en">English</MenuItem>
+                  <MenuItem value="fr">Français</MenuItem>
+                  {/*<MenuItem value="sp" primaryText="Español" />*/}
+                </Select>
+              </FormControl>
           </Toolbar>
         </AppBar>
 
