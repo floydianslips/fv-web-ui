@@ -179,8 +179,8 @@ export default function withForm(ComposedFilter, publishWarningEnabled = false) 
                                             open={this.state.showCancelWarning}
                                             anchorEl={this.state.cancelButtonEl}
                                             anchorOrigin={{horizontal: 'left', vertical: 'center'}}
-                                            targetOrigin={{horizontal: 'right', vertical: 'center'}}
-                                            onRequestClose={() => this.setState({showCancelWarning: false})}>
+                                            transformOrigin={{horizontal: 'right', vertical: 'center'}}
+                                            onClose={() => this.setState({showCancelWarning: false})}>
                                             <div style={{padding: '10px', margin: '0 15px', borderRadius: '5px'}}>
                                                 <span dangerouslySetInnerHTML={{__html: intl.trans('views.hoc.view.discard_warning', 'Are you sure you want to <strong>discard your changes</strong>?', 'first')}}></span>
                                                 <Button variant='flat' style={confirmationButtonsStyle}

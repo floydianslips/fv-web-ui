@@ -175,12 +175,10 @@ export default class Login extends Component {
                             onClick={this._handleOpen}>{this.props.label}</Button>
                 <Popover open={this.state.open}
                          anchorEl={ReactDOM.findDOMNode(this.anchorEl)}
-                         useLayerForClickAway={false}
                          style={{marginTop: "-14px", "backgroundColor": "transparent", "boxShadow": "none"}}
                          anchorOrigin={{"horizontal": "left", "vertical": "bottom"}}
-                         targetOrigin={{"horizontal": "middle", "vertical": "top"}}
-                         onRequestClose={this._handleClose}>
-
+                         transformOrigin={{"horizontal": "center", "vertical": "top"}}
+                         onClose={this._handleClose}>
                     <div style={{"width": "205px"}}>
                         <img style={{"position": "relative", "top": "14px", "zIndex": "999999", "left": "65%"}}
                              src="/assets/images/popover-arrow.png" alt=""/>
