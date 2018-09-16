@@ -18,7 +18,7 @@ import PropTypes from 'prop-types';
 import Immutable, {List, Map} from 'immutable';
 import selectn from 'selectn';
 
-import * as Colors from 'material-ui/styles/colors';
+import * as Colors from '@material-ui/core/colors';
 
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
