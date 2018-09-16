@@ -37,6 +37,8 @@ import TextField from '@material-ui/core/TextField';
 import IconMenu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -408,7 +410,7 @@ export default class Navigation extends Component {
             <div style={{background: themePalette.primary1Color, display: 'inline-block'}} className={classNames({'hidden-xs': !this.state.searchBarVisibleInMobile, 'search-bar-mobile': this.state.searchBarVisibleInMobile})}>
               <TextField style={{marginLeft: (this.state.searchBarVisibleInMobile) ? '15px' : '30px', fontSize: '15px', height: '38px', backgroundColor: '#fff', paddingLeft: '10px', lineHeight: '1', width: (this.state.searchBarVisibleInMobile) ? '214px' : 'inherit', paddingRight: (this.state.searchBarVisibleInMobile) ? '0' : '40px'}} 
                 inputRef={el => this.navigationSearchFieldRef = el}
-                hintText={this.intl.translate({key: 'general.search', default: 'Search', case: 'first', append: ':'})} 
+                placeholder={this.intl.translate({key: 'general.search', default: 'Search', case: 'first', append: ':'})} 
                 onBlur={() => this.setState({searchContextPopoverOpen: (isDialect) ? true : false })} 
                 onFocus={(e) => this.setState({searchContextPopoverOpen: true, searchContextPopoverAnchorEl: e.target})} 
                 onKeyDown={this._handleNavigationSearchChange} 
@@ -521,11 +523,22 @@ export default class Navigation extends Component {
               <Typography style={{'color': '#fff', 'padding': '0 15px', 'fontSize':'15px'}}>
                 {intl.trans('choose_lang', 'Choose a Language', 'first')}
               </Typography>
-              <Select value={this.intl.locale} onChange={this._handleChangeLocale} style={{'color': '#fff' }}>
-                <MenuItem value="en">English</MenuItem>
-                <MenuItem value="fr">Français</MenuItem>
-                {/*<MenuItem value="sp" primaryText="Español" />*/}
-              </Select>
+              <FormControl>
+                <InputLabel htmlFor="locale-select">Language</InputLabel>
+                <Select 
+                  value={this.intl.locale || ''}
+                  onChange={this._handleChangeLocale}
+                  style={{'color': '#fff', minWidth: 200 }}
+                  inputProps={{
+                    name: 'locale',
+                    id: 'locale-select',
+                  }}
+                >
+                  <MenuItem value="en">English</MenuItem>
+                  <MenuItem value="fr">Français</MenuItem>
+                  {/*<MenuItem value="sp" primaryText="Español" />*/}
+                </Select>
+              </FormControl>
           </Toolbar>
         </AppBar>
 
