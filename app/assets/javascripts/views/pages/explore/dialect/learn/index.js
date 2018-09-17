@@ -29,16 +29,14 @@ import PageHeader from 'views/pages/explore/dialect/page-header';
 import PageToolbar from 'views/pages/explore/dialect/page-toolbar';
 import SearchBar from 'views/pages/explore/dialect/search-bar';
 
-import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
+import Button from '@material-ui/core/Button';
 
-import IconMenu from 'material-ui/IconMenu';
-import IconButton from 'material-ui/IconButton';
-import MenuItem from 'material-ui/MenuItem';
+import IconMenu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import Tabs from 'material-ui/Tabs/Tabs';
-import Tab from 'material-ui/Tabs/Tab';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
 import EditableComponent, {EditableComponentHelper} from 'views/components/Editor/EditableComponent';
 
@@ -52,9 +50,9 @@ import AuthenticationFilter from 'views/components/Document/AuthenticationFilter
 import ToolbarNavigation from 'views/pages/explore/dialect/learn/base/toolbar-navigation';
 import LearningSidebar from 'views/pages/explore/dialect/learn/base/learning-sidebar';
 
-import Card from 'material-ui/Card/Card';
-import CardHeader from 'material-ui/Card/CardHeader';
-import CardText from 'material-ui/Card/CardText';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
 import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;
@@ -334,7 +332,7 @@ export default class DialectLearn extends Component {
                                     style={{backgroundColor: themePalette.primary2Color, height: 'initial'}}
                                     showExpandableButton={true}
                                 />
-                                <CardText expandable={true}>
+                                <CardContent expandable={true}>
                                     <div className="row" style={{paddingTop: '20px'}}>
                                         <div className={classNames('col-xs-6')}>
                                             <RecentActivityList theme={this.props.routeParams.theme}
@@ -366,12 +364,12 @@ export default class DialectLearn extends Component {
                                             </div>
                                         </AuthenticationFilter>
                                     </div>
-                                </CardText>
+                                </CardContent>
                             </Card>
                         </div>
 
                         <div className={classNames('col-xs-12', 'col-md-6')}>
-                            <Card initiallyExpanded={false} style={{marginBottom: '15px'}} onExpandChange={this._loadRecentActivity.bind(this, 'phrases')}>>
+                            <Card initiallyExpanded={false} style={{marginBottom: '15px'}} onExpandChange={this._loadRecentActivity.bind(this, 'phrases')}>
                                 <CardHeader
                                     className="card-header-custom"
                                     title={intl.trans('phrases', 'PHRASES', 'upper')}
@@ -381,7 +379,7 @@ export default class DialectLearn extends Component {
                                     style={{backgroundColor: themePalette.primary2Color, height: 'initial'}}
                                     showExpandableButton={true}
                                 />
-                                <CardText expandable={true}>
+                                <CardContent expandable={true}>
                                     <div className="row" style={{paddingTop: '20px'}}>
                                         <div className={classNames('col-xs-6')}>
                                             <RecentActivityList theme={this.props.routeParams.theme}
@@ -410,12 +408,12 @@ export default class DialectLearn extends Component {
                                             </div>
                                         </AuthenticationFilter>
                                     </div>
-                                </CardText>
+                                </CardContent>
                             </Card>
                         </div>
 
                         <div className={classNames('col-xs-12', 'col-md-6')}>
-                            <Card initiallyExpanded={false} style={{marginBottom: '15px'}} onExpandChange={this._loadRecentActivity.bind(this, 'songs')}>>
+                            <Card initiallyExpanded={false} style={{marginBottom: '15px'}} onExpandChange={this._loadRecentActivity.bind(this, 'songs')}>
                                 <CardHeader
                                     className="card-header-custom"
                                     title={intl.trans('songs', 'SONGS', 'upper')}
@@ -425,7 +423,7 @@ export default class DialectLearn extends Component {
                                     style={{backgroundColor: themePalette.primary2Color, height: 'initial'}}
                                     showExpandableButton={true}
                                 />
-                                <CardText expandable={true}>
+                                <CardContent expandable={true}>
                                     <div className="row" style={{paddingTop: '20px'}}>
                                         <div className={classNames('col-xs-6')}>
                                             <RecentActivityList theme={this.props.routeParams.theme}
@@ -454,12 +452,12 @@ export default class DialectLearn extends Component {
                                             </div>
                                         </AuthenticationFilter>
                                     </div>
-                                </CardText>
+                                </CardContent>
                             </Card>
                         </div>
 
                         <div className={classNames('col-xs-12', 'col-md-6')}>
-                            <Card initiallyExpanded={false} style={{marginBottom: '15px'}} onExpandChange={this._loadRecentActivity.bind(this, 'stories')}>>
+                            <Card initiallyExpanded={false} style={{marginBottom: '15px'}} onExpandChange={this._loadRecentActivity.bind(this, 'stories')}>
                                 <CardHeader
                                     className="card-header-custom"
                                     title={intl.trans('stories', 'STORIES', 'upper')}
@@ -469,7 +467,7 @@ export default class DialectLearn extends Component {
                                     style={{backgroundColor: themePalette.primary2Color, height: 'initial'}}
                                     showExpandableButton={true}
                                 />
-                                <CardText expandable={true}>
+                                <CardContent expandable={true}>
                                     <div className="row" style={{paddingTop: '20px'}}>
                                         <div className={classNames('col-xs-6')}>
                                             <RecentActivityList theme={this.props.routeParams.theme}
@@ -498,7 +496,7 @@ export default class DialectLearn extends Component {
                                         </div>
                                         </AuthenticationFilter>
                                     </div>
-                                </CardText>
+                                </CardContent>
                             </Card>
                         </div>
 

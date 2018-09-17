@@ -30,11 +30,11 @@ import StringHelpers from 'common/StringHelpers';
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 import PageDialectLearnBase from 'views/pages/explore/dialect/learn/base';
 
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
-import MenuItem from 'material-ui/MenuItem';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import ReportBrowser from './browse-view';
 import IntlService from 'views/services/intl';

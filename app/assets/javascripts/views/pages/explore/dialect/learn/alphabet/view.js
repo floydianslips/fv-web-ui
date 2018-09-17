@@ -40,29 +40,24 @@ import {Link} from 'provide-page';
 
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 
-import Dialog from 'material-ui/Dialog';
+import Dialog from '@material-ui/core/Dialog';
 
-import Avatar from 'material-ui/Avatar';
-import Card from 'material-ui/Card/Card';
-import CardActions from 'material-ui/Card/CardActions';
-import CardHeader from 'material-ui/Card/CardHeader';
-import CardMedia from 'material-ui/Card/CardMedia';
-import CardTitle from 'material-ui/Card/CardTitle';
-import FlatButton from 'material-ui/FlatButton';
-import CardText from 'material-ui/Card/CardText';
-import Divider from 'material-ui/Divider';
+import Avatar from '@material-ui/core/Avatar';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import Divider from '@material-ui/core/Divider';
 
-import ListUI from 'material-ui/List/List';
-import ListItem from 'material-ui/List/ListItem';
+import ListUI from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 
-import Toolbar from 'material-ui/Toolbar/Toolbar';
-import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
-import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
-import FontIcon from 'material-ui/FontIcon';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 
-import Tabs from 'material-ui/Tabs/Tabs';
-import Tab from 'material-ui/Tabs/Tab';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
 
 import WordListView from 'views/pages/explore/dialect/learn/words/list-view';
 import PhraseListView from 'views/pages/explore/dialect/learn/phrases/list-view';
@@ -95,7 +90,8 @@ export default class View extends Component {
         super(props, context);
 
         this.state = {
-            deleteDialogOpen: false
+            deleteDialogOpen: false,
+            tabValue: 0
         };
 
         // Bind methods to 'this'
@@ -229,10 +225,25 @@ export default class View extends Component {
                     <div>
 
                         <Card>
-                            <Tabs tabItemContainerStyle={tabItemStyles}>
-                                <Tab label={intl.trans('definition', 'Definition', 'first')}>
+                            <Tabs value={this.state.tabValue} tabItemContainerStyle={tabItemStyles} onChange={(e, tabValue) => this.setState({ tabValue })}>
+                                <Tab label={intl.trans('definition', 'Definition', 'first')} />
+                                <Tab
+                                    label={UIHelpers.isViewSize('xs') ? intl.trans('words', 'Words', 'first')
+                                        : intl.trans('views.pages.explore.dialect.learn.alphabet.words_starting_with_x',
+                                            'Words Starting with ' + selectn('response.title', computeCharacter), 'words', [selectn('response.title', computeCharacter)])}
+                                    id="find_words" />
+                                <Tab
+                                    label={UIHelpers.isViewSize('xs') ? intl.trans('phrases', 'Phrases', 'first') :
+                                        intl.trans('views.pages.explore.dialect.learn.alphabet.phrases_starting_with_x',
+                                            'Phrases Starting with ' + selectn('response.title', computeCharacter),
+                                            'words',
+                                            [selectn('response.title', computeCharacter)])}
+                                    id="find_phrases" />
+                            </Tabs>
+                            {this.state.tabValue === 0 && (
+                                <Typography component="div" style={{ padding: 8 * 3 }}>
                                     <div>
-                                        <CardText>
+                                        <CardContent>
 
                                             <div className="col-xs-8">
 
@@ -295,16 +306,14 @@ export default class View extends Component {
 
                                             </div>
 
-                                        </CardText>
+                                        </CardContent>
                                     </div>
-                                </Tab>
-                                <Tab
-                                    label={UIHelpers.isViewSize('xs') ? intl.trans('words', 'Words', 'first')
-                                        : intl.trans('views.pages.explore.dialect.learn.alphabet.words_starting_with_x',
-                                            'Words Starting with ' + selectn('response.title', computeCharacter), 'words', [selectn('response.title', computeCharacter)])}
-                                    id="find_words">
+                                </Typography>
+                            )}
+                            {this.state.tabValue === 1 && (
+                                <Typography component="div" style={{ padding: 8 * 3 }}>
                                     <div>
-                                        <CardText>
+                                        <CardContent>
                                             <h2>{intl.trans('views.pages.explore.dialect.learn.alphabet.words_starting_with_x',
                                                 'Words Starting with ' + selectn('response.title', computeCharacter), 'words', [selectn('response.title', computeCharacter)])}</h2>
                                             <div className="row">
@@ -313,18 +322,14 @@ export default class View extends Component {
                                                     filter={currentAppliedFilter}
                                                     routeParams={this.props.routeParams}/>
                                             </div>
-                                        </CardText>
+                                        </CardContent>
                                     </div>
-                                </Tab>
-                                <Tab
-                                    label={UIHelpers.isViewSize('xs') ? intl.trans('phrases', 'Phrases', 'first') :
-                                        intl.trans('views.pages.explore.dialect.learn.alphabet.phrases_starting_with_x',
-                                            'Phrases Starting with ' + selectn('response.title', computeCharacter),
-                                            'words',
-                                            [selectn('response.title', computeCharacter)])}
-                                    id="find_phrases">
+                                </Typography>
+                            )}
+                            {this.state.tabValue === 2 && (
+                                <Typography component="div" style={{ padding: 8 * 3 }}>
                                     <div>
-                                        <CardText>
+                                        <CardContent>
                                             <h2>{intl.trans('views.pages.explore.dialect.learn.alphabet.phrases_starting_with_x',
                                                 'Phrases Starting with ' + selectn('response.title', computeCharacter),
                                                 'words',
@@ -335,10 +340,10 @@ export default class View extends Component {
                                                     filter={currentAppliedFilter}
                                                     routeParams={this.props.routeParams}/>
                                             </div>
-                                        </CardText>
+                                        </CardContent>
                                     </div>
-                                </Tab>
-                            </Tabs>
+                                </Typography>
+                            )}
 
                         </Card>
 

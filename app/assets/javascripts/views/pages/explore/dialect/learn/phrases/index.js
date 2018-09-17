@@ -30,8 +30,8 @@ import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 import PageDialectLearnBase from 'views/pages/explore/dialect/learn/base';
 import PhraseListView from 'views/pages/explore/dialect/learn/phrases/list-view';
 
-import CircularProgress from 'material-ui/CircularProgress';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import FacetFilterList from 'views/components/Browsing/facet-filter-list';
 
@@ -158,9 +158,10 @@ export default class PageDialectLearnPhrases extends PageDialectLearnBase {
                         entity: selectn('response', computeDocument),
                         login: this.props.computeLogin
                     }}>
-                        <RaisedButton
-                            label={intl.trans('views.pages.explore.dialect.phrases.create_new_phrase', 'Create New Phrase', 'words')}
-                            onClick={this._onNavigateRequest.bind(this, 'create')} primary={true}/>
+                        <Button variant='raised'
+                            onClick={this._onNavigateRequest.bind(this, 'create')} color="primary">
+                            {intl.trans('views.pages.explore.dialect.phrases.create_new_phrase', 'Create New Phrase', 'words')}    
+                        </Button>
                     </AuthorizationFilter>
                 </div>
             </div>

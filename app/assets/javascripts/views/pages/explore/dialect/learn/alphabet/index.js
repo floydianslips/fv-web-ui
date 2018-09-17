@@ -29,11 +29,10 @@ import ProviderHelpers from 'common/ProviderHelpers';
 import PageDialectLearnBase from 'views/pages/explore/dialect/learn/base';
 import AlphabetListView from 'views/pages/explore/dialect/learn/alphabet/list-view';
 
-import Paper from 'material-ui/Paper';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import FontIcon from 'material-ui/FontIcon';
-import GridTile from 'material-ui/GridList/GridTile';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import GridListTile from '@material-ui/core/GridListTile';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
 import Header from 'views/pages/explore/dialect/header';
 import ToolbarNavigation from 'views/pages/explore/dialect/learn/base/toolbar-navigation';
@@ -42,14 +41,14 @@ import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;
 
-class AlphabetGridTile extends Component {
+class AlphabetGridListTile extends Component {
 
     constructor(props) {
         super(props)
     }
 
     render() {
-        return <GridTile key={selectn('uid', this.props.tile)} style={{
+        return <GridListTile key={selectn('uid', this.props.tile)} style={{
             border: '3px solid #e0e0e0',
             borderRadius: '5px',
             textAlign: 'center',
@@ -60,7 +59,7 @@ class AlphabetGridTile extends Component {
             <strong
                 style={{fontSize: '1.3em'}}>{selectn('contextParameters.character.related_words[0].dc:title', this.props.tile)}</strong><br/>
             {selectn('contextParameters.character.related_words[0].fv:definitions[0].translation', this.props.tile) || selectn('contextParameters.character.related_words[0].fv:literal_translation[0].translation', this.props.tile)}
-        </GridTile>;
+        </GridListTile>;
     }
 }
 
@@ -166,7 +165,7 @@ export default class PageDialectLearnAlphabet extends PageDialectLearnBase {
                         {React.cloneElement(alphabetListView, {
                             gridListView: true,
                             gridViewProps: {style: {overflowY: 'auto', maxHeight: '100%'}},
-                            gridListTile: AlphabetGridTile,
+                            gridListTile: AlphabetGridListTile,
                             dialect: selectn('response', computeDialect2)
                         })}
                     </div>
@@ -198,11 +197,10 @@ export default class PageDialectLearnAlphabet extends PageDialectLearnBase {
 
                     {(() => {
                         if (this.state.current_char !== null) {
-                            return <RaisedButton
-                                primary={true}
-                                label={"View Words and Phrases that start with " + this.state.current_char.title}
+                            return <Button variant='raised'
+                                color="primary"
                                 onClick={this._onNavigateRequest.bind(this, this.state.current_char.path.split('/')[this.state.current_char.path.split('/').length - 1])}
-                                style={{minWidth: 'inherit', textTransform: 'initial', margin: '10px 0'}}/>;
+                                style={{minWidth: 'inherit', textTransform: 'initial', margin: '10px 0'}}>{"View Words and Phrases that start with " + this.state.current_char.title}</Button>;
                         }
                     })()}
 
@@ -220,9 +218,9 @@ export default class PageDialectLearnAlphabet extends PageDialectLearnBase {
                                             width: '100px',
                                             display: 'inline-block'
                                         }}>
-                                            <FlatButton
-                                             icon={<FontIcon
-                                                className="material-icons">play_arrow</FontIcon>}
+                                            <Button variant='flat'
+                                             icon={<PlayArrowIcon
+                                                className="material-icons" />}
                                                 onClick={this._onCharAudioTouchTap.bind(this, char)}
                                                 //onClick={this._onNavigateRequest.bind(this, char.path.split('/')[char.path.split('/').length - 1])}
                                                 label={char.title} style={{minWidth: 'inherit', textTransform: 'initial'}}/>

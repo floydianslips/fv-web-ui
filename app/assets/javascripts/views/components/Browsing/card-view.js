@@ -21,15 +21,17 @@ import selectn from 'selectn';
 
 import DOMPurify from 'dompurify';
 
-import Card from 'material-ui/Card/Card';
-import CardTitle from 'material-ui/Card/CardTitle';
-import CardActions from 'material-ui/Card/CardActions';
-import CardHeader from 'material-ui/Card/CardHeader';
-import CardMedia from 'material-ui/Card/CardMedia';
-import CardText from 'material-ui/Card/CardText';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 
-import IconButton from 'material-ui/IconButton';
-import FlatButton from 'material-ui/FlatButton';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import FlipToFrontIcon from '@material-ui/icons/FlipToFront';
+import ClearIcon from '@material-ui/icons/Clear';
 import IntlService from "views/services/intl";
 
 const defaultStyle = {marginBottom: '20px'};
@@ -72,8 +74,17 @@ export default class CardView extends Component {
                     className={classNames('col-xs-12', 'col-md-' + Math.ceil(12 / this.props.cols))}>
             <Card style={{minHeight: '260px'}}>
 
-                <CardMedia overlay={<CardTitle title={<span>{this.intl.searchAndReplace(this.props.item.title)}</span>}
-                                               subtitle={this.intl.searchAndReplace(selectn('properties.dc:description', this.props.item))}/>}>
+                <CardMedia overlay={
+                    <div>
+                        <Typography variant="headline" component="h2">
+                            <span>{this.intl.searchAndReplace(this.props.item.title)}</span>
+                        </Typography>
+                        <Typography variant="subheading" component="h3">
+                            {this.intl.searchAndReplace(selectn('properties.dc:description', this.props.item))}
+                        </Typography>
+                    </div>
+                    }>
+                    
 
                     <div style={{
                         backgroundSize: (selectn('width', coverImage) > 200) ? '100%' : 'cover',
@@ -99,29 +110,29 @@ export default class CardView extends Component {
                         borderRadius: '0 0 10px 10px'
                     }}>
 
-                        <IconButton iconClassName="material-icons"
+                        <IconButton 
                                     style={{position: 'absolute', right: 0, zIndex: 1000}}
-                                    onClick={() => this.setState({showIntro: false})}>clear</IconButton>
+                                    onClick={() => this.setState({showIntro: false})}><ClearIcon /></IconButton>
 
                         {this.intl.searchAndReplace(introduction)}
 
                     </div>
                 </CardMedia>
 
-                <CardText style={{padding: '4px'}}>
+                <CardContent style={{padding: '4px'}}>
 
-                    <FlatButton
+                    <Button variant='flat'
                         onClick={this.props.action.bind(this, this.props.item)}
-                        primary={true} label={this.intl.translate({
-                        key: 'views.pages.dialect.learn.songs_stories.continue_to_entry',
-                        default: 'Continue to Entry',
-                        case: 'words'
-                    })}/>
+                        color="primary">{this.intl.translate({
+                            key: 'views.pages.dialect.learn.songs_stories.continue_to_entry',
+                            default: 'Continue to Entry',
+                            case: 'words'
+                        })}</Button>
 
                     {(() => {
                         if (introduction) {
 
-                            return <IconButton iconClassName="material-icons" style={{
+                            return <IconButton style={{
                                 verticalAlign: '-5px',
                                 padding: '5px',
                                 width: 'auto',
@@ -129,11 +140,11 @@ export default class CardView extends Component {
                                 'float': 'right'
                             }} tooltipPosition="top-left"
                                                onClick={() => this.setState({showIntro: !this.state.showIntro})}
-                                               touch={true}>flip_to_front</IconButton>;
+                                               touch={true}><FlipToFrontIcon /></IconButton>;
                         }
                     })()}
 
-                </CardText>
+                </CardContent>
 
             </Card>
         </div>;

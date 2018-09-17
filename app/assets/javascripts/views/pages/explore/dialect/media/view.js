@@ -40,22 +40,24 @@ import {Link} from 'provide-page';
 
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 
-import Dialog from 'material-ui/Dialog';
+import Dialog from '@material-ui/core/Dialog';
 
-import Avatar from 'material-ui/Avatar';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
-import Divider from 'material-ui/Divider';
+import Avatar from '@material-ui/core/Avatar';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import Divider from '@material-ui/core/Divider';
 
-import { List as ListUI, ListItem } from 'material-ui/List';
+import { List as ListUI, ListItem, ListItemText } from '@material-ui/core';
 
-import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
-import FontIcon from 'material-ui/FontIcon';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 
-import { Tabs, Tab } from 'material-ui/Tabs';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab'; 
 
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import WordListView from 'views/pages/explore/dialect/learn/words/list-view';
 import PhraseListView from 'views/pages/explore/dialect/learn/phrases/list-view';
@@ -97,7 +99,8 @@ export default class View extends Component {
         super(props, context);
 
         this.state = {
-            showThumbnailDialog: null
+            showThumbnailDialog: null,
+            tabValue: 0,
         };
 
         // Bind methods to 'this'
@@ -300,10 +303,19 @@ export default class View extends Component {
 
                         <Card>
 
-                            <Tabs tabItemContainerStyle={tabItemStyles}>
-                                <Tab label={intl.trans('overview', 'Overview', 'first')}>
+                            <Tabs value={this.state.tabValue} onChange={(e, tabValue) => this.setState({ tabValue })} tabItemContainerStyle={tabItemStyles}>
+                                <Tab label={intl.trans('overview', 'Overview', 'first')} />
+                                <Tab
+                                    label={UIHelpers.isViewSize('xs') ? intl.trans('words', 'Words', 'first') : intl.trans('linked_words', 'Linked Words', 'words')}
+                                    id="find_words" />
+                                <Tab
+                                    label={UIHelpers.isViewSize('xs') ? intl.trans('phrases', 'Phrases', 'first') : intl.trans('linked_phrases', 'Linked Phrases', 'words')}
+                                    id="find_phrases" />
+                            </Tabs>
+                            {this.state.tabValue === 0 && (
+                                <Typography component="div" style={{ padding: 8 * 3 }}>
                                     <div>
-                                        <CardText>
+                                        <CardContent>
 
                                             <div className={classNames('col-md-8', 'col-xs-12')}>
 
@@ -329,12 +341,17 @@ export default class View extends Component {
 
                                                                     return <ListItem
                                                                         onClick={() => this.setState({showThumbnailDialog: thumbnail})}
-                                                                        key={key}
-                                                                        primaryText={thumbnail.title}
-                                                                        secondaryText={<p><span
-                                                                            style={{color: '#000'}}>{thumbnail.description}</span> --
-                                                                            ({thumbnail.width + 'x' + thumbnail.height})
-                                                                        </p>}/>;
+                                                                        key={key}>
+                                                                            <ListItemText
+                                                                                primary={thumbnail.title}
+                                                                                secondary={
+                                                                                    <p>
+                                                                                        <span style={{color: '#000'}}>{thumbnail.description}</span>
+                                                                                        -- ({thumbnail.width + 'x' + thumbnail.height})
+                                                                                    </p>
+                                                                                } 
+                                                                            />
+                                                                        </ListItem>;
                                                                 }.bind(this))}
 
                                                             </ListUI>
@@ -347,10 +364,9 @@ export default class View extends Component {
                                                                 }}
                                                                 autoScrollBodyContent={true}
                                                                 title={selectn('title', this.state.showThumbnailDialog)}
-                                                                actions={[<FlatButton
-                                                                    label={intl.trans('close', 'Close', 'first')}
-                                                                    secondary={true}
-                                                                    onClick={() => this.setState({showThumbnailDialog: null})}/>]}
+                                                                actions={[<Button variant='flat'
+                                                                    color="secondary"
+                                                                    onClick={() => this.setState({showThumbnailDialog: null})}>{intl.trans('close', 'Close', 'first')}</Button>]}
                                                                 modal={false}
                                                                 open={(this.state.showThumbnailDialog === null) ? false : true}
                                                                 onRequestClose={() => this.setState({showThumbnailDialog: null})}>
@@ -369,14 +385,14 @@ export default class View extends Component {
 
                                             </div>
 
-                                        </CardText>
+                                        </CardContent>
                                     </div>
-                                </Tab>
-                                <Tab
-                                    label={UIHelpers.isViewSize('xs') ? intl.trans('words', 'Words', 'first') : intl.trans('linked_words', 'Linked Words', 'words')}
-                                    id="find_words">
+                                </Typography>
+                            )}
+                            {this.state.tabValue === 1 && (
+                                <Typography component="div" style={{ padding: 8 * 3 }}>
                                     <div>
-                                        <CardText>
+                                        <CardContent>
                                             <h2>{intl.trans('views.pages.explore.dialect.media.words_featuring', 'Words Featuring')}
                                                 <strong>{selectn('response.title', computeResource)}</strong>
                                             </h2>
@@ -385,14 +401,14 @@ export default class View extends Component {
                                                     filter={currentAppliedFilter}
                                                     routeParams={this.props.routeParams}/>
                                             </div>
-                                        </CardText>
+                                        </CardContent>
                                     </div>
-                                </Tab>
-                                <Tab
-                                    label={UIHelpers.isViewSize('xs') ? intl.trans('phrases', 'Phrases', 'first') : intl.trans('linked_phrases', 'Linked Phrases', 'words')}
-                                    id="find_phrases">
+                                </Typography>
+                            )}
+                            {this.state.tabValue === 2 && (
+                                <Typography component="div" style={{ padding: 8 * 3 }}>
                                     <div>
-                                        <CardText>
+                                        <CardContent>
                                             <h2>{intl.trans('views.pages.explore.dialect.media.words_featuring_with', 'Words Featuring with')}
                                                 <strong>{selectn('response.title', computeResource)}</strong></h2>
                                             <div className="row">
@@ -400,11 +416,10 @@ export default class View extends Component {
                                                     filter={currentAppliedFilter}
                                                     routeParams={this.props.routeParams}/>
                                             </div>
-                                        </CardText>
+                                        </CardContent>
                                     </div>
-                                </Tab>
-                            </Tabs>
-
+                                </Typography>
+                            )}
                         </Card>
 
                     </div>

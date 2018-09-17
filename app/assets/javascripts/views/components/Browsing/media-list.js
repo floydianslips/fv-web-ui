@@ -20,10 +20,9 @@ import selectn from 'selectn';
 
 import ConfGlobal from 'conf/local.json';
 
-import * as Colors from 'material-ui/styles/colors';
-
-import GridList from 'material-ui/GridList/GridList';
-import GridTile from 'material-ui/GridList/GridTile';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 
 import UIHelpers from 'common/UIHelpers';
 import NavigationHelpers from 'common/NavigationHelpers';
@@ -130,14 +129,17 @@ export default class MediaList extends Component {
                         });
                     }
 
-                    return <GridTile
+                    return <GridListTile
                         onClick={action.bind(this, tile)}
                         key={tile.uid}
-                        title={<a href={NavigationHelpers.generateUIDPath(this.props.theme, tile, 'media')}>{tile.title}</a>}
-                        titlePosition={fileTypeTilePosition}
-                        subtitle={
-                            <span><strong>{/*tile.properties['dc:description']*/}{Math.round(selectn('properties.common:size', tile) * 0.001)} KB</strong></span>}
-                    >{this._getMediaPreview(tile)}</GridTile>
+                    >{this._getMediaPreview(tile)}
+                        <GridListTileBar
+                            title={<a href={NavigationHelpers.generateUIDPath(this.props.theme, tile, 'media')}>{tile.title}</a>}
+                            titlePosition={fileTypeTilePosition}
+                            subtitle={
+                                <span><strong>{/*tile.properties['dc:description']*/}{Math.round(selectn('properties.common:size', tile) * 0.001)} KB</strong></span>}
+                        />
+                    </GridListTile>
                 }.bind(this))}
             </GridList>
         </div>;

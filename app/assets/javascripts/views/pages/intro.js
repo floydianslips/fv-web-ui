@@ -23,15 +23,14 @@ import classNames from 'classnames';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 
-import { GridList, GridTile } from 'material-ui/GridList';
-import CircularProgress from 'material-ui/CircularProgress';
-import Paper from 'material-ui/Paper';
-import RaisedButton from 'material-ui/RaisedButton';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
-import TextField from 'material-ui/TextField';
-
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
+import IconMenu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import IntlService from "views/services/intl";
 
 /**
@@ -83,13 +82,15 @@ export default class PageHome extends Component {
                                                         alt="Language Legacies Celebrating Indigenous Cultures"
                                                         className="img-responsive"/></p>
                     <p><img src="/assets/images/logo.gif" alt="FirstVoices Logo" className="img-responsive"/></p>
-                    <a href="http://legacy.firstvoices.com/"><RaisedButton label="Legacy Site" style={{
+                    <a href="http://legacy.firstvoices.com/"><Button variant='raised' style={{
                         textAlign: 'center',
                         marginRight: '14px'
-                    }}/></a>
-                    <RaisedButton label={this.intl.translate({key: 'enter_firstvoices', default: "Enter FirstVoices"})}
+                    }}>Legacy Site</Button></a>
+                    <Button variant='raised'
                                   onClick={(e, v) => this._onNavigateRequest('/')}
-                                  style={{textAlign: 'center'}}/>
+                                  style={{textAlign: 'center'}}>
+                        {this.intl.translate({key: 'enter_firstvoices', default: "Enter FirstVoices"})}
+                    </Button>
                     <p><img src="/assets/images/intro-french.gif"
                             alt="Des patrimoines linguistiques célébrant des cultures indigènes"
                             className="img-responsive"/></p>

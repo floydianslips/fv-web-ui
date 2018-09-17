@@ -20,8 +20,8 @@ import ConfGlobal from 'conf/local.json';
 import selectn from 'selectn';
 import classNames from 'classnames';
 
-import FlatButton from 'material-ui/FlatButton';
-import FontIcon from 'material-ui/FontIcon';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
 
 import PageStats from 'views/pages/explore/dialect/page-stats';
 
@@ -113,14 +113,14 @@ export default class Header extends Component {
                 <div className={classNames('dialect-info-banner')}>
 
                     <div className={classNames('dib-header', 'visible-xs')}>
-                        <FlatButton
+                        <Button variant='flat'
                             label={(this.state.showArchiveInfoMobile) ? intl.trans('info', 'Info', 'first') : intl.trans('info', 'Info', 'first')}
                             labelPosition="before"
                             onClick={(e) => {
                                 this.setState({showArchiveInfoMobile: !this.state.showArchiveInfoMobile});
                                 e.preventDefault();
-                            }} icon={<FontIcon
-                            className="material-icons">{(this.state.showArchiveInfoMobile) ? 'info_outline' : 'info'}</FontIcon>}
+                            }} icon={<Icon
+                            className="material-icons">{(this.state.showArchiveInfoMobile) ? 'info_outline' : 'info'}</Icon>}
                             style={{float: 'right', lineHeight: 1}}/>
                     </div>
 

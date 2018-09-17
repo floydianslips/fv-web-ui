@@ -10,8 +10,13 @@ import SelectSuggestFactory from 'views/components/Editor/fields/selectSuggest';
 import SelectFactory from 'views/components/Editor/fields/select';
 import MediaFactory from 'views/components/Editor/fields/media';
 
-import {FlatButton, IconButton} from 'material-ui';
+import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import IntlService from "views/services/intl";
+
+import ClearIcon from '@material-ui/icons/Clear';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 const intl = IntlService.instance;
 
@@ -85,7 +90,7 @@ const RelatedMediaLayout = function (locals) {
     return (
         <div className="row" style={{margin: '15px 0'}}>
             <fieldset>
-                <legend>{locals.label} <FlatButton label={locals.add.label} onClick={locals.add.click}/></legend>
+                <legend>{locals.label} <Button variant='flat' onClick={locals.add.click}>{locals.add.label}</Button></legend>
                 {(locals.items || []).map(function (item, i) {
                     return <div key={i} className={classNames('col-xs-12', 'col-md-3')}>
                         {item.input}
@@ -102,23 +107,23 @@ const RelatedMediaLayout = function (locals) {
 
                                 switch (button.type) {
                                     case 'remove':
-                                        icon = 'clear';
+                                        icon = <ClearIcon />;
                                         label = intl.trans('remove_item', 'Remove Item', 'first');
                                         break;
 
                                     case 'move-up':
-                                        icon = 'arrow_back';
+                                        icon = <ArrowBackIcon />;
                                         label = intl.trans('move_left', 'Move left (appears first)', 'first');
                                         break;
 
                                     case 'move-down':
-                                        icon = 'arrow_forward';
+                                        icon = <ArrowForwardIcon />;
                                         label = intl.trans('move_right', 'Move right', 'first');
                                         break;
                                 }
 
                                 return <IconButton tooltip={label}
-                                                   iconClassName="material-icons" key={i}
+                                                   key={i}
                                                    onClick={button.click}
                                                    style={{verticalAlign: '-8px'}}>{icon}</IconButton>;
                             })}

@@ -15,8 +15,9 @@ import {Document} from 'nuxeo';
 import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';
 
-import IconButton from 'material-ui/IconButton';
-import CircularProgress from 'material-ui/CircularProgress';
+import IconButton from '@material-ui/core/IconButton';
+import EditIcon from '@material-ui/icons/Edit';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import IntlService from "views/services/intl";
 
 const intl = IntlService.instance;
@@ -93,7 +94,7 @@ export default class EditableComponent extends Component {
 
         // If still computing, return spinner
         if (entity.isFetching)
-            return <CircularProgress mode="indeterminate" size={119}/>;
+            return <CircularProgress style={{ color: "#b40000" }} variant="indeterminate" size={119}/>;
 
         // Get current value for field from properties
         let currentValue = selectn(property, this.state.savedValue) || selectn("properties." + property, entity);
@@ -148,7 +149,7 @@ export default class EditableComponent extends Component {
         // Render regular field if not in edit mode
         return <div>
             {RenderRegular(currentValue, this.props.showPreview, this.props.previewType)}
-            <IconButton iconClassName="material-icons" iconStyle={{fontSize: '20px'}} style={{
+            <IconButton  style={{
                 verticalAlign: '-4px',
                 margin: '0 5px 0 -5px',
                 padding: '0px 5px',
@@ -156,7 +157,7 @@ export default class EditableComponent extends Component {
                 width: '22px',
                 display: (this.props.accessDenied) ? 'none' : 'inline-block'
             }} onClick={this._onEditRequest.bind(this, property)}
-                        tooltip={intl.trans('edit', 'Edit', 'first')}>mode_edit</IconButton>
+            tooltip={intl.trans('edit', 'Edit', 'first')}><EditIcon /></IconButton>
         </div>;
     }
 

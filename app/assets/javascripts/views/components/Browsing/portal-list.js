@@ -18,11 +18,13 @@ import PropTypes from 'prop-types';
 import Immutable, {List, Map} from 'immutable';
 import selectn from 'selectn';
 
-import * as Colors from 'material-ui/styles/colors';
+import * as Colors from '@material-ui/core/colors';
 
-import GridList from 'material-ui/GridList/GridList';
-import GridTile from 'material-ui/GridList/GridTile';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ActionGrade from '@material-ui/icons/Grade';
+import IconButton from '@material-ui/core/IconButton';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 import UIHelpers from 'common/UIHelpers';
@@ -83,15 +85,22 @@ export default class PortalList extends Component {
                     let title = selectn(this.props.fieldMapping.title, tile);
                     let logo = selectn(this.props.fieldMapping.logo, tile);
 
-                    return <GridTile
+                    return <GridListTile
                         onClick={this.props.action.bind(this, tile.path.replace('/Portal', ''))}
                         key={tile.uid}
-                        title={IntlService.instance.searchAndReplace(title)}
-                        actionPosition="right"
-                        actionIcon={actionIcon}
-                        subtitle={(IntlService.instance.searchAndReplace(tile.description) || '')}
-                    ><img src={UIHelpers.getThumbnail(logo, 'Medium')}
-                          alt={title + ' ' + intl.trans('logo', 'Logo', 'first')}/></GridTile>
+                    >
+                        <img src={UIHelpers.getThumbnail(logo, 'Medium')}
+                          alt={title + ' ' + intl.trans('logo', 'Logo', 'first')}/>
+                        <GridListTileBar
+                            title={IntlService.instance.searchAndReplace(title)}
+                            actionIcon={
+                                <IconButton>
+                                    {actionIcon}
+                                </IconButton>
+                            }
+                            subtitle={(IntlService.instance.searchAndReplace(tile.description) || '')}
+                        />
+                        </GridListTile>
                 }.bind(this))}
             </GridList>
         </div>;

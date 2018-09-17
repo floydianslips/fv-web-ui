@@ -13,7 +13,8 @@ import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
 import NavigationHelpers from 'common/NavigationHelpers';
 
-import {RaisedButton, FlatButton, Popover} from 'material-ui';
+import Popover from '@material-ui/core/Popover';
+import Button from '@material-ui/core/Button';
 import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;
@@ -145,10 +146,12 @@ export default function withForm(ComposedFilter, publishWarningEnabled = false) 
 
                                     <div className="form-group" style={{textAlign: 'right'}}>
 
-                                        <FlatButton onClick={this._onRequestCancelForm} style={{marginRight: '10px'}}
-                                                label={intl.trans('cancel', 'Cancel', 'first')}/>
-                                        <RaisedButton onClick={this._onRequestSaveForm.bind(this, computeItem)}
-                                                primary={true} label={intl.trans('save', 'Save', 'first')}/>
+                                        <Button variant='flat' onClick={this._onRequestCancelForm} style={{marginRight: '10px'}}>
+                                            {intl.trans('cancel', 'Cancel', 'first')}
+                                        </Button>
+                                        <Button variant='raised' onClick={this._onRequestSaveForm.bind(this, computeItem)} color="primary">
+                                            {intl.trans('save', 'Save', 'first')}        
+                                        </Button>
 
                                     </div>
 
@@ -165,23 +168,25 @@ export default function withForm(ComposedFilter, publishWarningEnabled = false) 
 
                                     <div className="form-group" style={{textAlign: 'right'}}>
 
-                                        <FlatButton onClick={this._onRequestCancelForm} style={{marginRight: '10px'}}
-                                                    label={intl.trans('cancel', 'Cancel', 'first')}/>
-                                        <RaisedButton onClick={this._onRequestSaveForm.bind(this, computeItem)}
-                                                      primary={true} label={intl.trans('save', 'Save', 'first')}/>
+                                        <Button variant='flat' onClick={this._onRequestCancelForm} style={{marginRight: '10px'}}>
+                                            {intl.trans('cancel', 'Cancel', 'first')}
+                                        </Button>
+                                        <Button variant='raised' onClick={this._onRequestSaveForm.bind(this, computeItem)}color="primary">
+                                            {intl.trans('save', 'Save', 'first')}
+                                        </Button>
 
                                         <Popover
                                             open={this.state.showCancelWarning}
                                             anchorEl={this.state.cancelButtonEl}
                                             anchorOrigin={{horizontal: 'left', vertical: 'center'}}
-                                            targetOrigin={{horizontal: 'right', vertical: 'center'}}
-                                            onRequestClose={() => this.setState({showCancelWarning: false})}>
+                                            transformOrigin={{horizontal: 'right', vertical: 'center'}}
+                                            onClose={() => this.setState({showCancelWarning: false})}>
                                             <div style={{padding: '10px', margin: '0 15px', borderRadius: '5px'}}>
                                                 <span dangerouslySetInnerHTML={{__html: intl.trans('views.hoc.view.discard_warning', 'Are you sure you want to <strong>discard your changes</strong>?', 'first')}}></span>
-                                                <FlatButton style={confirmationButtonsStyle}
+                                                <Button variant='flat' style={confirmationButtonsStyle}
                                                             onClick={this._onRequestCancelForm.bind(this, true)}
                                                             label={intl.trans('yes', 'Yes', 'first') + '!'}/>
-                                                <FlatButton style={confirmationButtonsStyle}
+                                                <Button variant='flat' style={confirmationButtonsStyle}
                                                             onClick={() => this.setState({showCancelWarning: false})}
                                                             label={intl.trans('no', 'No', 'first') + '!'}/>
                                             </div>

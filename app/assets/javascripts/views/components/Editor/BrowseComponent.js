@@ -25,13 +25,15 @@ import classNames from 'classnames';
 import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
 
-import {Dialog, FlatButton, RaisedButton} from 'material-ui';
-import GridTile from 'material-ui/GridList/GridTile';
+import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 
 import MediaList from 'views/components/Browsing/media-list';
-import LinearProgress from 'material-ui/LinearProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
-import IconButton from 'material-ui/IconButton';
+import IconButton from '@material-ui/core/IconButton';
 import ActionInfo from '@material-ui/icons/Info';
 import ActionInfoOutline from '@material-ui/icons/InfoOutlined';
 
@@ -50,7 +52,7 @@ const DefaultFetcherParams = {
     filters: {'properties.dc:title': {appliedFilter: ''}, 'dialect': {appliedFilter: ''}}
 };
 
-class SharedResourceGridTile extends Component {
+class SharedResourceGridListTile extends Component {
 
     constructor(props, context) {
         super(props, context);
@@ -77,17 +79,19 @@ class SharedResourceGridTile extends Component {
                 <ActionInfoOutline color='white'/> : <ActionInfo color='white'/>}</IconButton>;
         }
 
-        return <GridTile
+        return <GridListTile
             onClick={(this.props.action) ? this.props.action.bind(this, this.props.tile) : null}
             key={selectn('uid', tile)}
-            title={selectn('properties.dc:title', tile)}
-            actionPosition="right"
-            titlePosition={this.props.fileTypeTilePosition}
-            actionIcon={actionIcon}
-            subtitle={<span><strong>{Math.round(selectn('properties.common:size', tile) * 0.001)} KB</strong></span>}
         >
             {this.props.preview}
-        </GridTile>;
+            <GridListTileBar
+                title={selectn('properties.dc:title', tile)}
+                actionPosition="right"
+                titlePosition={this.props.fileTypeTilePosition}
+                actionIcon={actionIcon}
+                subtitle={<span><strong>{Math.round(selectn('properties.common:size', tile) * 0.001)} KB</strong></span>}
+            />
+        </GridListTile>;
     }
 }
 
@@ -174,10 +178,11 @@ export default class BrowseComponent extends React.Component {
         const dialectPath = selectn('path', dialect);
 
         const actions = [
-            <FlatButton
-                label={intl.trans('cancel', 'Cancel', 'first')}
-                secondary={true}
-                onClick={this._handleClose}/>
+            <Button variant='flat'
+                color="secondary"
+                onClick={this._handleClose}>
+                {intl.trans('cancel', 'Cancel', 'first')}    
+            </Button>
         ];
 
         let title = '';
@@ -256,7 +261,7 @@ export default class BrowseComponent extends React.Component {
 
         return (
             <div style={{display: 'inline'}}>
-                <RaisedButton label={this.props.label} onClick={this._handleOpen}/>
+                <Button variant='raised' onClick={this._handleOpen}>{this.props.label}</Button>
                 <Dialog
                     title={title}
                     actions={actions}

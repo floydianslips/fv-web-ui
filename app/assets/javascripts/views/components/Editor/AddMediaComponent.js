@@ -27,12 +27,8 @@ import ProviderHelpers from 'common/ProviderHelpers';
 import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';
 
-import {
-    Card, CardHeader, CardMedia, CardTitle, CardActions, CardText, Avatar, FlatButton,
-    Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator, DropDownMenu, DropDownIcon, FontIcon, RaisedButton,
-    Tabs, Tab,
-    Dialog
-} from 'material-ui';
+import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
 import IntlService from "views/services/intl";
 
 const intl = IntlService.instance;
@@ -191,10 +187,11 @@ export default class AddMediaComponent extends Component {
         let fileTypeLabel = intl.trans('file', 'File', 'first');
 
         const actions = [
-            <FlatButton
-                label={intl.trans('cancel', 'Cancel', 'first')}
-                secondary={true}
-                onClick={this.handleClose}/>
+            <Button variant='flat'
+                color="secondary"
+                onClick={this.handleClose}>
+                {intl.trans('cancel', 'Cancel', 'first')}    
+            </Button>
         ];
 
         switch (this.props.type) {
@@ -236,16 +233,21 @@ export default class AddMediaComponent extends Component {
 
         if (computeCreate && computeCreate.success) {
             uploadText = <div className={classNames('alert', 'alert-success')} role="success">Upload successful!</div>
-            actions.push(<FlatButton
-                label={intl.trans('insert_into_entry', 'Insert into Entry', 'first')}
-                primary={true}
-                onClick={this._handleSelectElement.bind(this, computeCreate.response)}/>);
+            actions.push(<Button variant='flat'
+                color="primary"
+                onClick={this._handleSelectElement.bind(this, computeCreate.response)}>{intl.trans('insert_into_entry', 'Insert into Entry', 'first')}</Button>);
             form = "";
         }
 
         return (
             <div style={{display: 'inline'}}>
-                <RaisedButton label={this.props.label} onClick={this.handleOpen}/>
+                <Button variant='raised' onClick={this.handleOpen}>
+                    {intl.translate({
+                        key: 'dismiss',
+                        default: 'Dismiss',
+                        case: 'words'
+                    })}
+                </Button>
                 <Dialog
                     title={intl.trans('views.components.editor.create_new_x_in_the_x_dialect',
                         "Create New " + fileTypeLabel + " in the " + selectn('properties.dc:title', this.props.dialect) + " dialect.",

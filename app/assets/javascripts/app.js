@@ -20,6 +20,7 @@ import PropTypes from 'prop-types';
 import { render } from 'react-dom'
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
 import FirstVoicesTheme from 'views/themes/FirstVoicesTheme.js';
 
@@ -35,6 +36,7 @@ require('!style-loader!css-loader!normalize.css');
 require('!style-loader!css-loader!alloyeditor/dist/alloy-editor/assets/alloy-editor-ocean-min.css');
 require('!style-loader!css-loader!tether-shepherd/dist/css/shepherd-theme-arrows.css');
 require('bootstrap/less/bootstrap');
+require('!style-loader!css-loader!react-quill/dist/quill.snow.css');
 require("styles/main");
 
 const context = {
@@ -55,7 +57,33 @@ const context = {
     }
 };
 
-render(<AppWrapper {...context} />, document.getElementById('app-wrapper'));
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: '#b40000',
+        },
+        secondary: {
+            main: '#b40000',
+        },
+    },
+    typography: {
+        fontSize: 22,
+    },
+    overrides: {
+        MuiButton: {
+            root: {
+                borderRadius: 2,
+            },
+        },
+    },
+})
+
+render(
+    <MuiThemeProvider theme={theme}>
+        <AppWrapper {...context} />
+    </MuiThemeProvider>,
+    document.getElementById('app-wrapper')
+);
 
 /*window.addEventListener("unhandledrejection", function(err, promise) {
 // handle error here, for example log

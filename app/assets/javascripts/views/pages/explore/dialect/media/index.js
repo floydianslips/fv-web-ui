@@ -31,16 +31,14 @@ import PageHeader from 'views/pages/explore/dialect/page-header';
 import PageToolbar from 'views/pages/explore/dialect/page-toolbar';
 import SearchBar from 'views/pages/explore/dialect/search-bar';
 
-import Paper from 'material-ui/Paper';
-import RaisedButton from 'material-ui/RaisedButton';
-import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
-import FlatButton from 'material-ui/FlatButton';
-import CircularProgress from 'material-ui/CircularProgress';
-import IconMenu from 'material-ui/IconMenu';
-import IconButton from 'material-ui/IconButton';
-import MenuItem from 'material-ui/MenuItem';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import IconMenu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { Tabs, Tab } from 'material-ui/Tabs';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab'; 
 
 import EditableComponent, {EditableComponentHelper} from 'views/components/Editor/EditableComponent';
 

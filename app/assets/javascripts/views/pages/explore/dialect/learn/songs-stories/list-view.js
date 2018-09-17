@@ -31,24 +31,30 @@ import Preview from 'views/components/Editor/Preview';
 import AVPlayArrow from '@material-ui/icons/PlayArrow';
 import AVStop from '@material-ui/icons/Stop';
 
-import Card from 'material-ui/Card/Card';
-import CardTitle from 'material-ui/Card/CardTitle';
-import CardActions from 'material-ui/Card/CardActions';
-import CardHeader from 'material-ui/Card/CardHeader';
-import CardMedia from 'material-ui/Card/CardMedia';
-import CardText from 'material-ui/Card/CardText';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 
-import FlatButton from 'material-ui/FlatButton';
-import IconButton from 'material-ui/IconButton';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import ClearIcon from '@material-ui/icons/Clear';
+import FlipToFrontIcon from '@material-ui/icons/FlipToFront';
 
-import Tabs from 'material-ui/Tabs/Tabs';
-import Tab from 'material-ui/Tabs/Tab';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;
 const defaultStyle = {marginBottom: '20px'};
 
 class Introduction extends Component {
+    state = {
+        tabValue: 0,
+    }
+
     render() {
 
         const DEFAULT_LANGUAGE = this.props.defaultLanguage;
@@ -78,21 +84,29 @@ class Introduction extends Component {
                 {introductionDiv}</div>;
         }
 
-        return <Tabs>
-            <Tab label={intl.trans('introduction', 'Introduction', 'first')}>
-                {introductionDiv}
-            </Tab>
-            <Tab label={intl.searchAndReplace(DEFAULT_LANGUAGE)}>
-                <div style={Object.assign(introTabStyle, this.props.style)}>
-                    {introductionTranslations.map(function (translation, i) {
-                        if (translation.language == DEFAULT_LANGUAGE) {
-                            return <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(translation.translation)}}
-                                        key={i}></div>;
-                        }
-                    })}
-                </div>
-            </Tab>
-        </Tabs>;
+        return <div>
+            <Tabs value={this.state.tabValue} onChange={(e, tabValue) => this.setState({ tabValue })}>
+                <Tab label={intl.trans('introduction', 'Introduction', 'first')} />
+                <Tab label={intl.searchAndReplace(DEFAULT_LANGUAGE)} />
+            </Tabs>
+            {this.state.tabValue === 0 && (
+                <Typography component="div" style={{ padding: 8 * 3 }}>
+                    {introductionDiv}
+                </Typography>
+            )}
+            {this.state.tabValue == 1 && (
+                <Typography component="div" style={{ padding: 8 * 3 }}>
+                    <div style={Object.assign(introTabStyle, this.props.style)}>
+                        {introductionTranslations.map(function (translation, i) {
+                            if (translation.language == DEFAULT_LANGUAGE) {
+                                return <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(translation.translation)}}
+                                            key={i}></div>;
+                            }
+                        })}
+                    </div>
+                </Typography>
+            )}
+        </div>;
     }
 }
 
@@ -151,13 +165,20 @@ class CardView extends Component {
             <Card style={{minHeight: '260px'}}>
 
                 <CardMedia
-                    overlay={<CardTitle titleStyle={{fontSize: '19px'}} title={<span
-                        dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.props.item.title)}}/>}
-                                        subtitle={(selectn('properties.fvbook:title_literal_translation', this.props.item) || []).map(function (translation, i) {
-                                            if (translation.language == DEFAULT_LANGUAGE) {
-                                                return <span key={i}>{translation.translation}</span>;
-                                            }
-                                        })}/>}>
+                    overlay={
+                        <div>
+                            <Typography variant="headline" component="h2">
+                                <span dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.props.item.title)}}/>
+                            </Typography>
+                            <Typography variant="subheading" component="h3">
+                                {(selectn('properties.fvbook:title_literal_translation', this.props.item) || []).map(function (translation, i) {
+                                                    if (translation.language == DEFAULT_LANGUAGE) {
+                                                        return <span key={i}>{translation.translation}</span>;
+                                                    }
+                                })}
+                            </Typography>
+                        </div>
+                    }>
 
                     <div style={{
                         backgroundSize: (selectn('width', mediumImage) > 200) ? '100%' : 'cover',
@@ -184,15 +205,15 @@ class CardView extends Component {
                         borderRadius: '0 0 10px 10px'
                     }}>
 
-                        <IconButton iconClassName="material-icons"
+                        <IconButton 
                                     style={{position: 'absolute', right: 0, zIndex: 1000}}
-                                    onClick={() => this.setState({showIntro: false})}>clear</IconButton>
+                                    onClick={() => this.setState({showIntro: false})}><ClearIcon /></IconButton>
 
                         {(() => {
                             if (selectn('properties.fvbook:introduction', this.props.item)) {
                                 return <Introduction {...this.props} audio={(audioIcon) ? <IconButton
                                     style={{verticalAlign: 'middle', padding: '0', width: '25px', height: '25px'}}
-                                    iconStyle={{width: '25px', height: '25px'}}
+                                    
                                     onClick={audioCallback}>{audioIcon}</IconButton> : null}/>
                             }
                         })()}
@@ -200,17 +221,18 @@ class CardView extends Component {
                     </div>
                 </CardMedia>
 
-                <CardText style={{padding: '4px'}}>
+                <CardContent style={{padding: '4px'}}>
 
-                    <FlatButton
+                    <Button variant='flat'
                         onClick={this.props.action.bind(this, this.props.item)}
-                        primary={true}
-                        label={translated_continue_label}/>
+                        color="primary">
+                        {translated_continue_label}    
+                    </Button>
 
                     {(() => {
                         if (selectn('properties.fvbook:introduction', this.props.item)) {
 
-                            return <IconButton iconClassName="material-icons" style={{
+                            return <IconButton style={{
                                 verticalAlign: '-5px',
                                 padding: '5px',
                                 width: 'auto',
@@ -218,11 +240,11 @@ class CardView extends Component {
                                 'float': 'right'
                             }} tooltipPosition="top-left"
                                                onClick={() => this.setState({showIntro: !this.state.showIntro})}
-                                               touch={true}>flip_to_front</IconButton>;
+                                               touch={true}><FlipToFrontIcon /></IconButton>;
                         }
                     })()}
 
-                </CardText>
+                </CardContent>
 
             </Card>
         </div>;

@@ -23,7 +23,7 @@ import ConfGlobal from 'conf/local.json';
 
 import StatusBar from 'views/components/StatusBar';
 
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 import IntlService from "views/services/intl";
@@ -112,7 +112,7 @@ export default class PromiseWrapper extends Component {
             if (reducedOperation.isFetching) {
                 // If response already exists, and instructed to hide future fetches, render null (e.g. for pagination, filtering)
                 render = (this.props.hideFetch && selectn('response_prev', reducedOperation)) ? null :
-                    <div><CircularProgress mode="indeterminate" style={{verticalAlign: 'middle'}}
+                    <div><CircularProgress style={{ color: '#b40000', verticalAlign: 'middle' }} variant="indeterminate"
                                            size={59.5}/> {selectn('message', reducedOperation)}</div>;
                 return false;
             }

@@ -17,11 +17,9 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import Divider from 'material-ui/Divider';
-import List from 'material-ui/List/List';
-import ListItem from 'material-ui/List/ListItem';
-import LeftNav from 'material-ui/Drawer';
-import AppBar from 'material-ui/AppBar';
+import Divider from '@material-ui/core/Divider';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 import IntlService from "views/services/intl";
 
 export default class Footer extends React.Component {

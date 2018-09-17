@@ -24,8 +24,8 @@ import StringHelpers from 'common/StringHelpers';
 
 import t from 'tcomb-form';
 
-import FlatButton from 'material-ui/FlatButton';
-import Dialog from 'material-ui/Dialog';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
 import IntlService from "views/services/intl";
 
 const intl = IntlService.instance;
@@ -173,17 +173,17 @@ export default class GroupAssignmentDialog extends Component {
         return <Dialog
             open={this.props.open}
             actions={[
-                <FlatButton
-                    label={intl.trans('cancel', 'Cancel', 'first')}
-                    secondary={true}
-                    onClick={this.props.closeMethod}
-                />,
-                <FlatButton
-                    label={intl.trans('submit', 'Submit', 'first')}
-                    primary={true}
+                <Button variant='flat'
+                    color="secondary"
+                    onClick={this.props.closeMethod}>
+                    {intl.trans('cancel', 'Cancel', 'first')}    
+                </Button>,
+                <Button variant='flat'
+                    color="primary"
                     keyboardFocused={true}
-                    onClick={this._onRequestSaveForm}
-                />,
+                    onClick={this._onRequestSaveForm}>
+                    {intl.trans('views.pages.explore.dialect.learn.words.create_new_word', 'Create New Word', 'words')}    
+                </Button>,
             ]}
             onRequestClose={this.props.closeMethod}
             autoScrollBodyContent={true}>

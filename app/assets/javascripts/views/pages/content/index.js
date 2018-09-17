@@ -21,22 +21,19 @@ import provide from 'react-redux-provide';
 import selectn from 'selectn';
 import classNames from 'classnames';
 
-import * as Colors from 'material-ui/styles/colors';
-
 import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
 
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
-import { GridList, GridTile } from 'material-ui/GridList';
-import CircularProgress from 'material-ui/CircularProgress';
-import Paper from 'material-ui/Paper';
-import RaisedButton from 'material-ui/RaisedButton';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
-import TextField from 'material-ui/TextField';
-
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
+import IconMenu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import IntroCardView from 'views/components/Browsing/intro-card-view';
 import IntlService from 'views/services/intl';

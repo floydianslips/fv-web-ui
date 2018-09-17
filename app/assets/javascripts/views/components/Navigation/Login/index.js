@@ -21,15 +21,13 @@ import provide from 'react-redux-provide';
 import selectn from 'selectn';
 
 // Components
-import Popover from 'material-ui/Popover';
-import FlatButton from 'material-ui/FlatButton';
-import IconButton from 'material-ui/IconButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+import Popover from '@material-ui/core/Popover';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 import ActionExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import {BrowserView, MobileView, isBrowser, isMobile} from 'react-device-detect';
 import IntlService from "views/services/intl";
@@ -90,9 +88,9 @@ export default class Login extends Component {
     }
 
     _handleLogin() {
-
-        let username = this.refs.username.getValue();
-        let password = this.refs.password.getValue();
+        // This should be handled with state, not refs
+        let username = this.usernameRef.value;
+        let password = this.passwordRef.value;
 
         if (username !== null && password !== null) {
             if (username.length > 0 && password.length > 0) {
@@ -170,19 +168,17 @@ export default class Login extends Component {
         }
 
         return (
-            <div style={{display: "inline-block", paddingTop: '15px', maxWidth: '205px'}}>
-                <FlatButton ref={(el) => {
+            <div style={{display: "inline-block", maxWidth: '205px'}}>
+                <Button variant='flat' ref={(el) => {
                     this.anchorEl = el
-                }} label={this.props.label} style={{"color": themePalette.alternateTextColor}}
-                            onClick={this._handleOpen}/>
+                }} style={{"color": themePalette.alternateTextColor}}
+                            onClick={this._handleOpen}>{this.props.label}</Button>
                 <Popover open={this.state.open}
                          anchorEl={ReactDOM.findDOMNode(this.anchorEl)}
-                         useLayerForClickAway={false}
                          style={{marginTop: "-14px", "backgroundColor": "transparent", "boxShadow": "none"}}
                          anchorOrigin={{"horizontal": "left", "vertical": "bottom"}}
-                         targetOrigin={{"horizontal": "middle", "vertical": "top"}}
-                         onRequestClose={this._handleClose}>
-
+                         transformOrigin={{"horizontal": "center", "vertical": "top"}}
+                         onClose={this._handleClose}>
                     <div style={{"width": "205px"}}>
                         <img style={{"position": "relative", "top": "14px", "zIndex": "999999", "left": "65%"}}
                              src="/assets/images/popover-arrow.png" alt=""/>
@@ -199,13 +195,13 @@ export default class Login extends Component {
                                 case: 'first'
                             })}</a></h6>
                             <div><TextField style={Object.assign({}, TextFieldStyle, {"margin": "15px 0"})}
-                                            underlineShow={false} ref="username" hintText={this.intl.translate({
+                                            InputProps={{disableUnderline:true}} inputRef={el => this.usernameRef = el} placeholder={this.intl.translate({
                                 key: 'views.pages.explore.dialect.users.username',
                                 default: 'Username',
                                 case: 'first'
                             })}/></div>
-                            <div><TextField style={TextFieldStyle} underlineShow={false} ref="password" type="password"
-                                            hintText={this.intl.translate({
+                            <div><TextField style={TextFieldStyle} InputProps={{disableUnderline:true}} inputRef={el => this.passwordRef = el} type="password"
+                                            placeholder={this.intl.translate({
                                                 key: 'general.password',
                                                 default: 'Password',
                                                 case: 'first'
@@ -216,23 +212,25 @@ export default class Login extends Component {
                                 "backgroundColor": themePalette.primary4ColorLightest,
                                 "padding": "0 3px"
                             }}>{loginFeedbackMessage}</p>
-                            <RaisedButton style={{"width": "100%"}} secondary={true} onClick={this._handleLogin}
-                                          label={this.intl.translate({
-                                            key: 'views.pages.users.login.sign_in',
-                                            default: 'Sign In',
-                                            case: 'first'
-                                        })}/>
+                            <Button variant='raised' style={{"width": "100%"}} color="secondary" onClick={this._handleLogin}>
+                                {this.intl.translate({
+                                    key: 'views.pages.users.login.sign_in',
+                                    default: 'Sign In',
+                                    case: 'first'
+                                })}
+                            </Button>
                             <h6 style={{"fontWeight": "500", "paddingTop": "10px"}}>{this.intl.translate({
                                 key: 'views.components.navigation.new_to_firstvoices',
                                 default: 'New to FirstVoices?'
                             })}</h6>
-                            <RaisedButton style={{"width": "100%"}} primary={true}
-                                          onClick={this._onNavigateRequest.bind(this, "register")}
-                                          label={this.intl.translate({
-                                              key: 'general.register',
-                                              default: 'Register',
-                                              case: 'first'
-                                          })}/>
+                            <Button variant='raised' style={{"width": "100%"}} color="primary"
+                                          onClick={this._onNavigateRequest.bind(this, "register")}>
+                                {this.intl.translate({
+                                    key: 'general.register',
+                                    default: 'Register',
+                                    case: 'first'
+                                })}              
+                            </Button>
                         </div>
                     </div>
                 </Popover>

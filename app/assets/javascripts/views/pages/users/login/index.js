@@ -25,10 +25,8 @@ import {User} from 'nuxeo';
 import ProviderHelpers from 'common/ProviderHelpers';
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
-import FlatButton from 'material-ui/FlatButton';
-import IconButton from 'material-ui/IconButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';
@@ -90,8 +88,8 @@ export default class PageUserLogin extends Component {
 
     _handleLogin() {
 
-        let username = this.refs.username.getValue();
-        let password = this.refs.password.getValue();
+        let username = this.usernameRef.value;
+        let password = this.passwordRef.value;
 
         if (username !== null && password !== null) {
             if (username.length > 0 && password.length > 0) {
@@ -155,27 +153,28 @@ export default class PageUserLogin extends Component {
                 <div><a style={{"cursor": "pointer", "fontWeight": "100", "fontSize": "14px", "fontWeight": "bold"}}
                         onClick={this._onNavigateRequest.bind(this, "forgotpassword")}>{intl.trans('forgot_password', 'Forgot Password', 'words')}?</a>
                 </div>
-                <div><TextField style={Object.assign({}, TextFieldStyle, {"margin": "15px 0"})} underlineShow={false}
-                                ref="username"
-                                hintText={intl.trans('views.pages.explore.dialect.users.username', 'Username', 'first')}/>
+                <div><TextField style={Object.assign({}, TextFieldStyle, {"margin": "15px 0"})} InputProps={{disableUnderline:true}}
+                                inputRef={el => this.usernameRef = el}
+                                placeholder={intl.trans('views.pages.explore.dialect.users.username', 'Username', 'first')}/>
                 </div>
-                <div><TextField style={TextFieldStyle} underlineShow={false} ref="password" type="password"
-                                hintText={intl.trans('password', 'Password', 'first')}/></div>
+                <div><TextField style={TextFieldStyle} InputProps={{disableUnderline:true}} 
+                                inputRef={el => this.passwordRef = el} type="password"
+                                placeholder={intl.trans('password', 'Password', 'first')}/></div>
                 <p style={{
                     "margin": "10px 0",
                     "fontSize": "12px",
                     "backgroundColor": themePalette.primary4ColorLightest,
                     "padding": "0 3px"
                 }}>{loginFeedbackMessage}</p>
-                <RaisedButton style={{"width": "100%"}} secondary={true} onClick={this._handleLogin}
-                              label={intl.trans('views.pages.users.login.sign_in', 'Sign In', 'words')}/>
+                <Button variant='raised' style={{"width": "100%"}} color="secondary" onClick={this._handleLogin}>{intl.trans('views.pages.users.login.sign_in', 'Sign In', 'words')}</Button>
                 <h6 style={{
                     "fontWeight": "500",
                     "paddingTop": "10px"
                 }}>{intl.trans('views.components.navigation.new_to_firstvoices', 'New to FirstVoices?', 'words')}</h6>
-                <RaisedButton style={{"width": "100%"}} primary={true}
-                              onClick={this._onNavigateRequest.bind(this, "register")}
-                              label={intl.trans('register', 'Register')}/>
+                <Button variant='raised' style={{"width": "100%"}} color="primary"
+                              onClick={this._onNavigateRequest.bind(this, "register")}>
+                    {intl.trans('register', 'Register')}              
+                </Button>
             </div>
         </div>);
     }

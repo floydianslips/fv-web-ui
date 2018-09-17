@@ -5,7 +5,8 @@ import Immutable, {List, Map} from 'immutable';
 import selectn from 'selectn';
 import DOMPurify from 'dompurify';
 
-import GridTile from 'material-ui/GridList/GridTile';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 
 import UIHelpers from 'common/UIHelpers';
 import NavigationHelpers from 'common/NavigationHelpers';
@@ -115,19 +116,9 @@ export default class SearchResultTile extends Component {
 
         title = DOMPurify.sanitize(title);
 
-        return <GridTile
+        return <GridListTile
             style={{borderBottom: '1px solid #e0e0e0', margin: '20px 0', paddingTop: '65px'}}
-            key={selectn('uid', tile)}
-            title={<a
-                href={targetPath}
-                //onClick={(typeof this.props.action === "function") ? this.props.action.bind(this, targetPath) : null}
-                style={{fontSize: '1.2em', cursor: 'pointer'}}>{title}<strong
-                style={{fontSize: '0.6em'}}> [{type.replace('FV', '')}]</strong></a>}
-            actionPosition="right"
-            titlePosition="top"
-            //actionIcon={actionIcon}
-            titleBackground="#ffffff"
-            subtitle={<span style={{color: 'gray', fontSize: '1.2em'}}>{subtitle}</span>}
+            key={selectn('uid', tile)}            
         >
             <div style={{marginLeft: '16px', width: '80%'}}>
                 <div>{(imgObj) ? <div className="pull-right" style={{
@@ -140,6 +131,19 @@ export default class SearchResultTile extends Component {
                 <p><span style={{color: 'gray'}} dangerouslySetInnerHTML={{__html: path.join(' &raquo; ')}}></span></p>
             </div>
 
-        </GridTile>;
+            <GridListTileBar
+                title={<a
+                    href={targetPath}
+                    //onClick={(typeof this.props.action === "function") ? this.props.action.bind(this, targetPath) : null}
+                    style={{fontSize: '1.2em', cursor: 'pointer'}}>{title}<strong
+                    style={{fontSize: '0.6em'}}> [{type.replace('FV', '')}]</strong></a>}
+                actionPosition="right"
+                titlePosition="top"
+                //actionIcon={actionIcon}
+                titleBackground="#ffffff"
+                subtitle={<span style={{color: 'gray', fontSize: '1.2em'}}>{subtitle}</span>}
+            />
+
+        </GridListTile>;
     }
 }

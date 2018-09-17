@@ -2,8 +2,8 @@ import React from 'react';
 import t from 'tcomb-form';
 import selectn from 'selectn';
 
-import FontIcon from 'material-ui/FontIcon';
-import FlatButton from 'material-ui/FlatButton';
+import SwapHorizIcon from '@material-ui/icons/SwapHoriz';
+import Button from '@material-ui/core/Button';
 
 import AddMediaComponent from 'views/components/Editor/AddMediaComponent';
 import SelectMediaComponent from 'views/components/Editor/SelectMediaComponent';
@@ -38,7 +38,7 @@ function renderInput(locals) {
     let content = <div>
         <Preview id={locals.value} expandedValue={selectn(locals.value, expandedValues)} type={locals.type} crop={true}
                  tagStyles={(locals.type == 'FVPicture') ? {height: '200px'} : null}/>
-        <FlatButton style={{
+        <Button variant='flat' style={{
             position: 'absolute',
             top: 0,
             right: 0,
@@ -50,8 +50,8 @@ function renderInput(locals) {
             borderTop: 0,
             borderRight: 0
         }} onClick={_onRequestEdit} label={intl.trans('replace', 'Replace', 'first')} labelPosition="after">
-            <FontIcon style={{verticalAlign: 'middle'}} className="material-icons">swap_horiz</FontIcon>
-        </FlatButton>
+            <SwapHorizIcon style={{verticalAlign: 'middle'}} className="material-icons" />
+        </Button>
     </div>;
 
     if (!locals.value) {
@@ -63,7 +63,7 @@ function renderInput(locals) {
                                   onComplete={onComplete}
                                   dialect={locals.context}/>
             {(selectn('context.initialValues.' + locals.attrs.name, locals)) ?
-                <FlatButton onClick={onCancel} label={intl.trans('cancel', 'Cancel', 'first')}/> : ''}
+                <Button variant='flat' onClick={onCancel}>{intl.trans('cancel', 'Cancel', 'first')}</Button> : ''}
         </div>;
     }
 

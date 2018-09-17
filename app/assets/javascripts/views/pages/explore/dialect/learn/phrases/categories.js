@@ -29,11 +29,10 @@ import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 // Operations
 import DirectoryOperations from 'operations/DirectoryOperations';
 
-import Checkbox from 'material-ui/Checkbox';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
+import Checkbox from '@material-ui/core/Checkbox';
+import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import withPagination from 'views/hoc/grid-list/with-pagination';
 import withFilter from 'views/hoc/grid-list/with-filter';

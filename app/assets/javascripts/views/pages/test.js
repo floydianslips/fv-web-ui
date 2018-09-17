@@ -25,13 +25,11 @@ import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
 // Operations
 import DirectoryOperations from 'operations/DirectoryOperations';
-
-import { GridList, GridTile } from 'material-ui/GridList';
-import CircularProgress from 'material-ui/CircularProgress';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import ProviderHelpers from 'common/ProviderHelpers';
-
-import {RaisedButton} from 'material-ui';
 
 import MediaList from 'views/components/Browsing/media-list';
 import withPagination from 'views/hoc/grid-list/with-pagination';
@@ -201,7 +199,7 @@ export default class Test extends Component {
     
 
     if (!portalOperation || portalOperation.isFetching) {
-      return <div><CircularProgress mode="indeterminate" size={5} /> {selectn('message', portalOperation)}</div>;
+      return <div><CircularProgress style={{ color: "#b40000" }} variant="indeterminate" size={5} /> {selectn('message', portalOperation)}</div>;
     }
 
     if (portalOperation.isError) {

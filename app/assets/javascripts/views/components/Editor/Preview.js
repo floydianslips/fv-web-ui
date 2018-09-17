@@ -27,12 +27,16 @@ import UIHelpers from 'common/UIHelpers';
 
 import MetadataList from 'views/components/Browsing/metadata-list';
 
-import Avatar from 'material-ui/Avatar';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
-import Divider from 'material-ui/Divider';
+import Avatar from '@material-ui/core/Avatar';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
 
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import IntlService from "views/services/intl";
 
 const intl = IntlService.instance;
@@ -253,7 +257,7 @@ export default class Preview extends Component {
             padding: '10px 0'
         }, this.props.styles);
 
-        let body = <CircularProgress mode="indeterminate" size={59.5}/>;
+        let body = <CircularProgress style={{ color: "#b40000" }} variant="indeterminate" size={59.5}/>;
 
         switch (this.props.type) {
             case 'FVWord':
@@ -422,13 +426,13 @@ export default class Preview extends Component {
                                     borderBottom: '4px solid ' + themePalette.primary1Color
                                 }}
                             />
-                            <CardText expandable={true} style={{backgroundColor: themePalette.accent4Color}}>
+                            <CardContent expandable={true} style={{backgroundColor: themePalette.accent4Color}}>
                                 <MetadataList style={{
                                     lineHeight: 'initial',
                                     maxHeight: '100%',
                                     overflow: 'hidden', ...this.props.metadataListStyles
                                 }} metadata={GetMetaData('picture', pictureResponse)}/>
-                            </CardText>
+                            </CardContent>
                         </Card>;
                     }
                 }
@@ -499,13 +503,13 @@ export default class Preview extends Component {
                                     borderBottom: '4px solid ' + themePalette.primary1Color
                                 }}
                             />
-                            <CardText expandable={true} style={{backgroundColor: themePalette.accent4Color}}>
+                            <CardContent expandable={true} style={{backgroundColor: themePalette.accent4Color}}>
                                 <MetadataList style={{
                                     lineHeight: 'initial',
                                     maxHeight: '100%',
                                     overflow: 'hidden', ...this.props.metadataListStyles
                                 }} metadata={GetMetaData('audio', audioResponse)}/>
-                            </CardText>
+                            </CardContent>
                         </Card>;
                     }
                 }
@@ -573,13 +577,13 @@ export default class Preview extends Component {
                                     borderBottom: '4px solid ' + themePalette.primary1Color
                                 }}
                             />
-                            <CardText expandable={true} style={{backgroundColor: themePalette.accent4Color}}>
+                            <CardContent expandable={true} style={{backgroundColor: themePalette.accent4Color}}>
                                 <MetadataList style={{
                                     lineHeight: 'initial',
                                     maxHeight: '100%',
                                     overflow: 'hidden', ...this.props.metadataListStyles
                                 }} metadata={GetMetaData('video', videoResponse)}/>
-                            </CardText>
+                            </CardContent>
                         </Card>;
                     }
                 }

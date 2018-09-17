@@ -27,13 +27,10 @@ import t from 'tcomb-form';
 import fields from 'models/schemas/filter-fields';
 import options from 'models/schemas/filter-options';
 
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 
-import IconButton from 'material-ui/IconButton';
-
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
@@ -247,14 +244,12 @@ export default class Search extends DataListView {
                                     type={t.struct(selectn('Search', fields))}
                                     options={selectn('Search', options)}
                                 />
-                                <RaisedButton
+                                <Button variant='raised'
                                     onClick={this._onReset}
-                                    label={intl.trans('reset', 'Reset', 'first')}
-                                    primary={true}/> &nbsp;
-                                <RaisedButton
+                                    color="primary">{intl.trans('reset', 'Reset', 'first')}</Button> &nbsp;
+                                <Button variant='raised'
                                     type="submit"
-                                    label={intl.trans('search', 'Search', 'first')}
-                                    primary={true}/>
+                                    color="primary">{intl.trans('search', 'Search', 'first')}</Button>
                             </FiltersWithToggle>
                         </form>
                     </div>

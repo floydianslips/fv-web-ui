@@ -39,21 +39,18 @@ import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 //import Header from 'views/pages/explore/dialect/header';
 //import PageHeader from 'views/pages/explore/dialect/page-header';
 
-import Dialog from 'material-ui/Dialog';
+import Dialog from '@material-ui/core/Dialog';
 
-import Avatar from 'material-ui/Avatar';
-import FlatButton from 'material-ui/FlatButton';
-import Divider from 'material-ui/Divider';
+import Avatar from '@material-ui/core/Avatar';
+import Divider from '@material-ui/core/Divider';
 
-import { List as ListUI, ListItem } from 'material-ui/List';
+import { List as ListUI, ListItem } from '@material-ui/core/List';
 
-import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
-import FontIcon from 'material-ui/FontIcon';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 
-import { Tab } from 'material-ui/Tabs';
+import Tabs from '@material-ui/core/Tabs';
 
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import '!style-loader!css-loader!react-image-gallery/build/image-gallery.css';
 

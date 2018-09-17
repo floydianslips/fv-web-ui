@@ -30,10 +30,9 @@ import StringHelpers from 'common/StringHelpers';
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 import PageDialectLearnBase from 'views/pages/explore/dialect/learn/base';
 
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import GeneralList from 'views/components/Browsing/general-list';
 import {CardView} from './list-view';

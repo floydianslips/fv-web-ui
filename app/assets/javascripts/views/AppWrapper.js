@@ -31,9 +31,8 @@ import AppFrontController from './AppFrontController';
 
 import Shepherd from 'tether-shepherd';
 
-import FontIcon from 'material-ui/FontIcon';
-import Paper from 'material-ui/Paper';
-import FlatButton from 'material-ui/FlatButton';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 import IntlService from 'views/services/intl';
 
@@ -305,7 +304,7 @@ export default class AppWrapper extends Component {
                         key: 'super_admin_tools',
                         default: 'Super Admin Tools',
                         case: 'words'
-                    })}: <FlatButton onClick={this._startAdminGuideAssist.bind(this.props.windowPath)}
+                    })}: <Button variant='flat' onClick={this._startAdminGuideAssist.bind(this.props.windowPath)}
                                      disabled={this.state.adminGuideStarted} label={this.intl.translate({
                     key: 'admin_guide_assist',
                     default: 'Admin Guide Assist', case: 'words'

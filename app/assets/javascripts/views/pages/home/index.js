@@ -21,23 +21,20 @@ import provide from 'react-redux-provide';
 import selectn from 'selectn';
 import classNames from 'classnames';
 
-import * as Colors from 'material-ui/styles/colors';
-
 import ProviderHelpers from 'common/ProviderHelpers';
 
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
-import { GridList, GridTile } from 'material-ui/GridList';
-import CircularProgress from 'material-ui/CircularProgress';
-import Paper from 'material-ui/Paper';
-import RaisedButton from 'material-ui/RaisedButton';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 //import Map from 'views/components/Geo/map';
 
-import TextField from 'material-ui/TextField';
-
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
+import IconMenu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import IntroCardView from 'views/components/Browsing/intro-card-view';
 import TextHeader from 'views/components/Document/Typography/text-header';
@@ -165,21 +162,20 @@ export default class PageHome extends Component {
                                     )
                                 }}></p></div>
                             <div>
-                                <RaisedButton label={this.intl.translate({
-                                    key: 'get_started!',
-                                    default: 'Get Started!',
-                                    case: 'words'
-                                }) + '!'} primary={true}
+                                <Button variant='raised' color="primary"
                                               onClick={this._onNavigateRequest.bind(this, '/explore/FV/sections/Data/')}
-                                              style={{marginRight: '10px', height: '50px'}}
-                                              labelColor={alternateTextColor} labelStyle={{fontSize: '1.34em'}}/>
-                                <div className="hidden" style={{display: 'inline-block'}}><RaisedButton primary={true}
-                                                                                                        label={this.intl.translate({
+                                              style={{marginRight: '10px', height: '50px'}}>
+                                    {this.intl.translate({
+                                        key: 'get_started!',
+                                        default: 'Get Started!',
+                                        case: 'words'
+                                    }) + '!'}
+                                </Button>
+                                <div className="hidden" style={{display: 'inline-block'}}><Button variant='raised' color="primary" onClick={() => this.setState({mapVisible: !this.state.mapVisible})}>{this.intl.translate({
                                                                                                             key: ['views', 'pages', 'home', 'language_map'],
                                                                                                             default: 'Language Map',
                                                                                                             case: 'words'
-                                                                                                        })}
-                                                                                                        onClick={() => this.setState({mapVisible: !this.state.mapVisible})}/>
+                                                                                                        })}</Button>
                                 </div>
                             </div>
                         </div>

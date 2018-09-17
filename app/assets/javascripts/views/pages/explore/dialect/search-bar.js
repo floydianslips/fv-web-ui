@@ -21,8 +21,9 @@ import selectn from 'selectn';
 
 import provide from 'react-redux-provide';
 
-import TextField from 'material-ui/TextField';
-import IconButton from 'material-ui/IconButton';
+import TextField from '@material-ui/core/TextField';
+import IconButton from '@material-ui/core/IconButton';
+import SearchIcon from '@material-ui/icons/Search';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 import IntlService from 'views/services/intl';
@@ -53,7 +54,7 @@ export default class SearchBar extends Component {
     }
 
     _handleDialectSearchSubmit() {
-        let queryParam = this.refs.dialectSearchField.getValue();
+        let queryParam = this.dialectSearchFieldRef.value;
         let dialectPath = ProviderHelpers.getDialectPathFromURLArray(this.props.splitWindowPath);
         this.props.pushWindowPath("/explore/" + dialectPath + '/search/' + queryParam);
     }
@@ -65,12 +66,12 @@ export default class SearchBar extends Component {
         }
 
         return <div style={searchBarStyles}>
-            <TextField ref="dialectSearchField"
-                       hintText={intl.trans('views.pages.explore.dialect.search_dialect', 'Search Dialect...', 'words')}
+            <TextField inputRef={el => this.dialectSearchFieldRef = el}
+                       placeholder={intl.trans('views.pages.explore.dialect.search_dialect', 'Search Dialect...', 'words')}
                        onEnterKeyDown={this._handleDialectSearchSubmit}/>
-            <IconButton onClick={this._handleDialectSearchSubmit} iconClassName="material-icons"
-                        iconStyle={{fontSize: '24px'}}
-                        tooltip={intl.trans('search', 'Search', 'first')}>search</IconButton>
+            <IconButton onClick={this._handleDialectSearchSubmit} 
+                        // style={{fontSize: '24px'}}
+                        tooltip={intl.trans('search', 'Search', 'first')}><SearchIcon /></IconButton>
         </div>;
     }
 }

@@ -27,22 +27,22 @@ import NavigationHelpers from 'common/NavigationHelpers';
 
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
-import { Tabs, Tab } from 'material-ui/Tabs';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab'; 
 
 // Models
 import {Document} from 'nuxeo';
 
 // Views
-import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
+import Button from '@material-ui/core/Button';
 
-import Paper from 'material-ui/Paper';
-import CircularProgress from 'material-ui/CircularProgress';
+import Paper from '@material-ui/core/Paper';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import BookEntryEdit from 'views/pages/explore/dialect/learn/songs-stories/entry/edit';
 import BookEntryList from 'views/pages/explore/dialect/learn/songs-stories/entry/list-view';
 
-import Dialog from 'material-ui/Dialog';
+import Dialog from '@material-ui/core/Dialog';
 
 import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';
@@ -83,7 +83,8 @@ export default class PageDialectBookEdit extends Component {
             editPageDialogOpen: false,
             editPageItem: null,
             formValue: null,
-            sortedItems: List()
+            sortedItems: List(),
+            tabValue: 0,
         };
 
         // Bind methods to 'this'
@@ -211,35 +212,41 @@ export default class PageDialectBookEdit extends Component {
 
         return <div>
 
-                <Tabs>
-                    <Tab label={intl.trans('book', 'Book', 'first')}>
+                <Tabs value={this.state.tabValue} onChange={(e, tabValue) => this.setState({ tabValue })}>
+                    <Tab label={intl.trans('book', 'Book', 'first')} />
+                    <Tab label={intl.trans('pages', 'Pages', 'first')} />
+                </Tabs>
+                {this.state.tabValue === 0 && (
+                    <Typography component="div" style={{ padding: 8 * 3 }}>
                         <h1>{intl.trans('views.pages.explore.dialect.learn.songs_stories.edit_x_book',
                             'Edit ' + selectn("response.properties.dc:title", computeBook) + ' Book', 'words', [selectn("response.properties.dc:title", computeBook)])}</h1>
-                    <EditViewWithForm
-                        computeEntities={computeEntities}
-                        initialValues={context}
-                        itemId={this._getBookPath()}
-                        fields={fields}
-                        options={options}
-                        saveMethod={this._handleSave}
-                        cancelMethod={this._handleCancel}
-                        currentPath={this.props.splitWindowPath}
-                        navigationMethod={this.props.pushWindowPath}
-                        type="FVBook"
-                        routeParams={this.props.routeParams}/>
-                    </Tab>
-                            <Tab label={intl.trans('pages', 'Pages', 'first')}>
-                                <h1>{intl.trans('', 'Edit ' + selectn("response.properties.dc:title", computeBook) + ' pages', 'first', [selectn("response.properties.dc:title", computeBook)])}</h1>
-                                <BookEntryList
-                                    reorder={true}
-                                    sortOrderChanged={this._storeSortOrder}
-                                    defaultLanguage={DEFAULT_LANGUAGE}
-                                    editAction={this._editPage}
-                                    innerStyle={{minHeight: 'inherit'}}
-                                    metadata={selectn('response', computeBookEntries) || {}}
-                                    items={selectn('response.entries', computeBookEntries) || []}/>
-                            </Tab>
-                        </Tabs>
+                        <EditViewWithForm
+                            computeEntities={computeEntities}
+                            initialValues={context}
+                            itemId={this._getBookPath()}
+                            fields={fields}
+                            options={options}
+                            saveMethod={this._handleSave}
+                            cancelMethod={this._handleCancel}
+                            currentPath={this.props.splitWindowPath}
+                            navigationMethod={this.props.pushWindowPath}
+                            type="FVBook"
+                            routeParams={this.props.routeParams}/>
+                    </Typography>
+                )}
+                {this.state.tabValue === 1 && (
+                    <Typography component="div" style={{ padding: 8 * 3 }}>
+                        <h1>{intl.trans('', 'Edit ' + selectn("response.properties.dc:title", computeBook) + ' pages', 'first', [selectn("response.properties.dc:title", computeBook)])}</h1>
+                        <BookEntryList
+                            reorder={true}
+                            sortOrderChanged={this._storeSortOrder}
+                            defaultLanguage={DEFAULT_LANGUAGE}
+                            editAction={this._editPage}
+                            innerStyle={{minHeight: 'inherit'}}
+                            metadata={selectn('response', computeBookEntries) || {}}
+                            items={selectn('response.entries', computeBookEntries) || []}/>
+                    </Typography>
+                )}
 
                 <Dialog
                     autoScrollBodyContent={true}

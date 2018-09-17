@@ -29,31 +29,32 @@ import Shepherd from 'tether-shepherd';
 
 import {Link} from 'provide-page';
 
-import AppBar from 'material-ui/AppBar';
+import AppBar from '@material-ui/core/AppBar';
+import Typography from '@material-ui/core/Typography';
 
-import TextField from 'material-ui/TextField';
+import TextField from '@material-ui/core/TextField';
 
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
-import SelectField from 'material-ui/SelectField';
+import IconMenu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 
-import ToolbarSeparator from 'material-ui/Toolbar/ToolbarSeparator';
-import RadioButton from 'material-ui/RadioButton';
-import RadioButtonGroup from 'material-ui/RadioButton/RadioButtonGroup';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-import Badge from 'material-ui/Badge';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
+import Badge from '@material-ui/core/Badge';
+import Button from '@material-ui/core/Button';
 
-import Toolbar from 'material-ui/Toolbar/Toolbar';
-import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
-import IconButton from 'material-ui/IconButton';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import SettingsIcon from '@material-ui/icons/Settings';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ActionHelp from '@material-ui/icons/Help';
-import Popover from 'material-ui/Popover';
-import Avatar from 'material-ui/Avatar';
+import Popover from '@material-ui/core/Popover';
+import Avatar from '@material-ui/core/Avatar';
 
 import AuthenticationFilter from 'views/components/Document/AuthenticationFilter';
 
@@ -62,9 +63,7 @@ import AppLeftNav from 'views/components/Navigation/AppLeftNav';
 
 import IntlService from 'views/services/intl';
 
-import FontIcon from 'material-ui/FontIcon';
 import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ToolbarTitle from 'material-ui/Toolbar/ToolbarTitle';
 
 @provide
 export default class Navigation extends Component {
@@ -224,7 +223,7 @@ export default class Navigation extends Component {
   _handleNavigationSearchSubmit(e) {
 
     // If search bar is not visible, this button should show it
-    if (this.refs.navigationSearchField.input.offsetParent === null) {
+    if (this.navigationSearchFieldRef.offsetParent === null) {
       this.setState({
         searchBarVisibleInMobile: true,
         searchContextPopoverOpen: false
@@ -238,7 +237,7 @@ export default class Navigation extends Component {
         searchContextPopoverOpen: false
       });
 
-      let searchQueryParam = this.refs.navigationSearchField.getValue();
+      let searchQueryParam = this.navigationSearchFieldRef.value;
       let path = "/" + this.props.splitWindowPath.join("/");
       let queryPath = "";
 
@@ -259,7 +258,7 @@ export default class Navigation extends Component {
       }
 
       // Clear out the input field
-      this.refs.navigationSearchField.input.value = '';
+      this.navigationSearchFieldRef.value = '';
 
       if (searchQueryParam && searchQueryParam != '') {
         this.props.replaceWindowPath(queryPath + '/search/' + searchQueryParam);
@@ -273,7 +272,8 @@ export default class Navigation extends Component {
     });
   }
 
-  _handleChangeLocale(e, n, v) {
+  _handleChangeLocale(e) {
+    const v = e.target.value
     if (v !== this.intl.locale) {
         this.intl.locale = v;
         setTimeout(function () {
@@ -310,16 +310,22 @@ export default class Navigation extends Component {
     let portalTitle = selectn('response.contextParameters.ancestry.dialect.dc:title', computePortal) || selectn('response.properties.dc:title', computeDialect);
 
     return <div>
-        <AppBar
-          title={<span className="hidden-xs"><img src="/assets/images/logo.png" style={{padding: "0 0 5px 0"}} alt={this.props.properties.title} /></span>}
-          showMenuIconButton={isDialect ? true : true}
-          onLeftIconButtonClick={this._handleOpenMenuRequest}>
+        <AppBar position="static" style={{background: themePalette.primary1Color }}>
 
-          <ToolbarGroup style={{position: 'relative', color: '#fff'}}>
+          <Toolbar style={{position: 'relative', color: '#fff'}}>
+            <IconButton onClick={this._handleOpenMenuRequest} color="inherit">
+              <MenuIcon />
+            </IconButton>
 
-            <div style={{display: "inline-block", paddingRight: "10px", paddingTop: '15px', textTransform: 'uppercase'}}>
+            <Typography variant="title" style={{flexGrow: 1}}>
+              <span className="hidden-xs">
+              <img src="/assets/images/logo.png" style={{padding: "0 0 5px 0"}} alt={this.props.properties.title} />
+              </span>
+            </Typography>
+
+            <Typography variant="title" style={{textTransform: 'uppercase'}}>
               <Link className="nav_link" href={"/explore" + this.state.pathOrId + '/Data'}>{intl.trans('choose_lang', 'Choose a Language', 'first')}</Link>
-            </div>
+            </Typography>
 
             <Login routeParams={this.props.routeParams} label={this.intl.translate({
                 key: 'views.pages.users.login.sign_in',
@@ -327,17 +333,17 @@ export default class Navigation extends Component {
                 case: 'words'
             })}/>
 
-            <ToolbarSeparator className={classNames({'hidden-xs': this.props.computeLogin.isConnected})} style={{float: 'none', marginLeft: 0, marginRight: 0}} />
-
-            <AuthenticationFilter login={this.props.computeLogin} anon={false} routeParams={this.props.routeParams} containerStyle={{display: 'inline'}}>
+            <AuthenticationFilter login={this.props.computeLogin} anon={false} routeParams={this.props.routeParams} >
               <span>
                 <Badge
-                  badgeContent={userTaskCount}
-                  style={{top: '8px', left: '-15px', padding: '0 0 12px 12px'}}
-                  badgeStyle={{top: '12px',left: '42px', width: '15px', height: '15px', borderRadius: '25%', visibility: (userTaskCount == 0) ? 'hidden' : 'visible'}}
-                  primary={true}
+                  style={{
+                    root: {top: '8px', left: '-15px', padding: '0 0 12px 12px'},
+                    badge: {top: '12px',left: '42px', width: '15px', height: '15px', borderRadius: '25%', visibility: (userTaskCount == 0) ? 'hidden' : 'visible'}
+                  }}
+                  badgeContent={userTaskCount || ''}
+                  variant="primary"
                 >
-                  <IconButton iconStyle={{fill: '#fff'}} onClick={this._onNavigateRequest.bind(this, '/tasks/')} disabled={(userTaskCount == 0) ? true : false}>
+                  <IconButton >
                     <NotificationsIcon />
                   </IconButton>
                 </Badge>
@@ -346,9 +352,9 @@ export default class Navigation extends Component {
                   badgeContent={guideCount}
                   style={{top: '8px', left: '-15px', padding: '0 0 12px 12px'}}
                   badgeStyle={{top: '12px',left: '42px', width: '15px', height: '15px', borderRadius: '25%', visibility: (guideCount == 0) ? 'hidden' : 'visible'}}
-                  primary={true}
+                  color="primary"
                 >
-                  <IconButton iconStyle={{fill: '#fff'}} onClick={(e) => this.setState({guidePopoverOpen: !this.state.guidePopoverOpen, guidePopoverAnchorEl: e.target})} disabled={(guideCount == 0) ? true : false}>
+                  <IconButton >
                     <ActionHelp />
                   </IconButton>
                 </Badge>*/}
@@ -383,7 +389,7 @@ export default class Navigation extends Component {
                                     return <tr key={'guide' + i}>
                                         <td>{selectn('properties.dc:title', guide)}<br/>{selectn('properties.dc:description', guide)}
                                         </td>
-                                        <td><RaisedButton onClick={this._startTour.bind(this, guide)}
+                                        <td><Button variant='raised' onClick={this._startTour.bind(this, guide)}
                                                             primary={false} label={this.intl.translate({
                                             key: 'views.components.navigation.launch_guide',
                                             default: 'Launch Guide',
@@ -399,28 +405,32 @@ export default class Navigation extends Component {
                 </div>
             </Popover>*/}
 
-            <ToolbarSeparator className="search-bar-seperator" style={{float: 'none', marginRight: 0, marginLeft: 0}} />
-
             <div style={{background: themePalette.primary1Color, display: 'inline-block'}} className={classNames({'hidden-xs': !this.state.searchBarVisibleInMobile, 'search-bar-mobile': this.state.searchBarVisibleInMobile})}>
-              <TextField underlineStyle={{width:'79%'}} style={{marginLeft: (this.state.searchBarVisibleInMobile) ? '15px' : '30px', fontSize: '15px', height: '38px', backgroundColor: '#fff', paddingLeft: '10px', lineHeight: '1', width: (this.state.searchBarVisibleInMobile) ? '214px' : 'inherit', paddingRight: (this.state.searchBarVisibleInMobile) ? '0' : '40px'}} ref="navigationSearchField" hintText={this.intl.translate({key: 'general.search', default: 'Search', case: 'first', append: ':'})} onBlur={() => this.setState({searchContextPopoverOpen: (isDialect) ? true : false })} onFocus={(e) => this.setState({searchContextPopoverOpen: true, searchContextPopoverAnchorEl: e.target})} onKeyDown={this._handleNavigationSearchChange} name="searchbox" />
-              <FlatButton className={classNames({'hidden': !this.state.searchBarVisibleInMobile})} style={{color: themePalette.alternateTextColor}} label={this.intl.translate({key: 'general.cancel',default: 'Cancel',case: 'first'})} onClick={(e) => {this.setState({searchBarVisibleInMobile: false}); e.preventDefault(); }} />
+              <TextField style={{marginLeft: (this.state.searchBarVisibleInMobile) ? '15px' : '30px', fontSize: '15px', height: '38px', backgroundColor: '#fff', paddingLeft: '10px', lineHeight: '1', width: (this.state.searchBarVisibleInMobile) ? '214px' : 'inherit', paddingRight: (this.state.searchBarVisibleInMobile) ? '0' : '40px'}} 
+                inputRef={el => this.navigationSearchFieldRef = el}
+                hintText={this.intl.translate({key: 'general.search', default: 'Search', case: 'first', append: ':'})} 
+                onBlur={() => this.setState({searchContextPopoverOpen: (isDialect) ? true : false })} 
+                onFocus={(e) => this.setState({searchContextPopoverOpen: true, searchContextPopoverAnchorEl: e.target})} 
+                onKeyDown={this._handleNavigationSearchChange} 
+                name="searchbox" />
+              <Button variant='flat' className={classNames({'hidden': !this.state.searchBarVisibleInMobile})} style={{color: themePalette.alternateTextColor}} onClick={(e) => {this.setState({searchBarVisibleInMobile: false}); e.preventDefault(); }}>
+                {this.intl.translate({key: 'general.cancel',default: 'Cancel',case: 'first'})}
+              </Button>
             </div>
 
             <IconButton
                 onClick={this._handleNavigationSearchSubmit}
-                iconClassName="material-icons"
-                style={{position:'relative', top: '7px', padding: '0', left: 0}}
-                iconStyle={{fontSize: '24px', padding: '3px', borderRadius: '20px', color: '#FFFFFF'}}>
-                search
+                color="inherit"
+                >
+                <SearchIcon />
             </IconButton>
 
             <Popover
-            useLayerForClickAway={false}
-            open={this.state.searchContextPopoverOpen}
-            anchorEl={this.state.searchContextPopoverAnchorEl}
-            style={{maxWidth: (isDialect) ? '320px' : '220px', marginTop: '-14px', backgroundColor: 'transparent', boxShadow: 'none'}}
-            anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-            targetOrigin={{horizontal: 'middle', vertical: 'top'}}>
+              open={this.state.searchContextPopoverOpen}
+              anchorEl={this.state.searchContextPopoverAnchorEl}
+              style={{maxWidth: (isDialect) ? '320px' : '220px', marginTop: '-14px', backgroundColor: 'transparent', boxShadow: 'none'}}
+              anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+              transformOrigin={{horizontal: 'center', vertical: 'top'}}>
               <div>
                 <img style={{position: 'relative', top: '14px', zIndex: 999999, paddingTop: '14px', left: '80%'}} src="/assets/images/popover-arrow.png" alt="" />
                 {(() => {
@@ -432,10 +442,12 @@ export default class Navigation extends Component {
                         case: 'words'
                     })}</p>
                     <div>
-                        <RadioButtonGroup
+                        <RadioGroup
                             onChange={() => this.setState({searchLocal: !this.state.searchLocal})}
+                            value={this.state.searchLocal ? 'local' : 'all'}
                             name="searchTarget" defaultSelected="local">
-                            <RadioButton
+                            <FormControlLabel
+                                control={<Radio />}
                                 value={this.intl.translate({
                                     key: 'general.all',
                                     default: 'all',
@@ -453,7 +465,8 @@ export default class Navigation extends Component {
                                         append: '.'
                                     })}</span></span>)}
                             />
-                            <RadioButton
+                            <FormControlLabel
+                                control={<Radio />}
                                 value="local"
                                 label={(<span
                                     style={{fontWeight: '400'}}>{portalTitle || this.intl.translate({
@@ -479,7 +492,7 @@ export default class Navigation extends Component {
                                     append: '.'
                                 })}</span></span>)}
                             />
-                        </RadioButtonGroup>
+                        </RadioGroup>
                     </div>
                   </div>;
                 } else {
@@ -495,30 +508,27 @@ export default class Navigation extends Component {
               </div>
           </Popover>
 
-          <ToolbarSeparator className="locale-seperator" style={{float: 'none', marginRight: 0, marginLeft: 0}} />
-
           <IconButton
-              onClick={this._handleDisplayLocaleOptions}
-              iconClassName="material-icons"
-              style={{position:'relative', top: '7px', padding: '0', left: 0}}
-              iconStyle={{fontSize: '24px', padding: '3px', borderRadius: '20px', color: '#FFFFFF'}}>
-              settings
+            onClick={this._handleDisplayLocaleOptions}
+            color="inherit"
+          >
+            <SettingsIcon />
           </IconButton>
 
-          </ToolbarGroup>
+          </Toolbar>
 
+          <Toolbar color="inherit" style={{display: (this.state.localePopoverOpen) ? 'flex' : 'none', justifyContent: "flex-end" }}>
+              <Typography style={{'color': '#fff', 'padding': '0 15px', 'fontSize':'15px'}}>
+                {intl.trans('choose_lang', 'Choose a Language', 'first')}
+              </Typography>
+              <Select value={this.intl.locale} onChange={this._handleChangeLocale} style={{'color': '#fff' }}>
+                <MenuItem value="en">English</MenuItem>
+                <MenuItem value="fr">Français</MenuItem>
+                {/*<MenuItem value="sp" primaryText="Español" />*/}
+              </Select>
+          </Toolbar>
         </AppBar>
 
-        <Toolbar style={{display: (this.state.localePopoverOpen) ? 'block' : 'none' }}>
-          <ToolbarGroup firstChild={true} float="right">
-            <ToolbarTitle style={{'color': '#fff', 'padding': '0 0 0 15px', 'fontSize':'15px'}} text={intl.trans('choose_lang', 'Choose a Language', 'first')} />
-            <DropDownMenu value={this.intl.locale} onChange={this._handleChangeLocale} labelStyle={{'color': '#fff'}}>
-              <MenuItem value="en" primaryText="English" />
-              <MenuItem value="fr" primaryText="Français" />
-              {/*<MenuItem value="sp" primaryText="Español" />*/}
-            </DropDownMenu>
-          </ToolbarGroup>
-        </Toolbar>
 
         <AppLeftNav
           menu={{main: true}}
