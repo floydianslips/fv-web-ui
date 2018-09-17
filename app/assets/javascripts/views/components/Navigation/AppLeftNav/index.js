@@ -193,10 +193,9 @@ export default class AppLeftNav extends Component {
 
     return (
       <Drawer 
-        docked={true}
         style={{height: 'auto'}}
         open={this.props.computeToggleMenuAction.menuVisible}
-        onRequestChange={this._onRequestChange}
+        onClose={this._onRequestChange}
         >
           <AppBar position="static">
             <Toolbar variant="dense">
