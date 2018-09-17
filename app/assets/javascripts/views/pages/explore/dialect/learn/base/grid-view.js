@@ -167,7 +167,7 @@ export default class GridView extends Component {
                     ><img src={UIHelpers.getThumbnail(imageObj, 'Small')} alt={title}/>
                         <GridListTileBar
                             title={title}
-                            titleBackground='rgba(180, 0, 0, 0.75)'
+                            style={{ backgroundColor: 'rgba(180, 0, 0, 0.75)' }}
                             actionPosition="right"
                             actionIcon={(this.props.action) ? audioIconAction : audioIcon}
                             subtitle={definitionsHTML || literal_translationsHTML}
