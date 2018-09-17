@@ -39,6 +39,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import Paper from '@material-ui/core/Paper';
+import Tooltip from '@material-ui/core/Tooltip';
 import NavigationExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
@@ -337,9 +338,10 @@ export default class PageToolbar extends Component {
                             filter={{permission: 'Write', entity: selectn('response', permissionEntity)}}
                             style={toolbarGroupItem}>
                             <Button variant='raised' data-guide-role="publish-changes" disabled={!documentPublished}
-                                          label={intl.trans('publish_changes', 'Publish Changes', 'words')}
                                           style={{marginRight: '5px', marginLeft: '0'}}
-                                          color="secondary" onClick={this._publishChanges}/>
+                                          color="secondary" onClick={this._publishChanges}>
+                                {intl.trans('publish_changes', 'Publish Changes', 'words')}              
+                            </Button>
                         </AuthorizationFilter>;
                     }
                 })()}
@@ -405,16 +407,19 @@ export default class PageToolbar extends Component {
                             </Paper>
                         } else {
                             return <div>
-                                <IconButton
-                                    tooltip={intl.trans('views.pages.explore.dialect.more_options', "More Options", 'words')}
-                                    tooltipPosition="top-center" touch={true}
-                                    className={classNames({'hidden-xs': !this.state.showActionsMobile})}
-                                    onClick={e => this.setState({ anchorEl: e.currentTarget })}
+                                <Tooltip
+                                    title={intl.trans('views.pages.explore.dialect.more_options', "More Options", 'words')}
+                                    placement="top"
                                 >
-                                    <NavigationExpandMoreIcon/>
-                                </IconButton>
+                                    <IconButton
+                                        className={classNames({'hidden-xs': !this.state.showActionsMobile})}
+                                        onClick={e => this.setState({ anchorEl: e.currentTarget })}
+                                    >
+                                        <NavigationExpandMoreIcon/>
+                                    </IconButton>
+                                </Tooltip>
                                 <Menu
-                                    open={this.state.anchorEl}
+                                    open={!!this.state.anchorEl}
                                     onClose={() => this.setState({ anchorEl: null })}
                                     anchorEl={this.state.anchorEl}
                                 >

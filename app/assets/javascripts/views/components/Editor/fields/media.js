@@ -49,8 +49,9 @@ function renderInput(locals) {
             textAlign: 'center',
             borderTop: 0,
             borderRight: 0
-        }} onClick={_onRequestEdit} label={intl.trans('replace', 'Replace', 'first')} labelPosition="after">
+        }} onClick={_onRequestEdit}>
             <SwapHorizIcon style={{verticalAlign: 'middle'}} className="material-icons" />
+            {intl.trans('replace', 'Replace', 'first')}
         </Button>
     </div>;
 
