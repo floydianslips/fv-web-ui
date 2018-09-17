@@ -51,6 +51,8 @@ export default class Login extends Component {
         //if (prevProps.userStore.currentUser !== this.props.userStore.currentUser) {
         //  this._handleClose();
         //}
+
+      this.anchorEl = ReactDOM.findDOMNode(this.anchorEl)
     }
 
     constructor(props, context) {
@@ -174,7 +176,7 @@ export default class Login extends Component {
                 }} style={{"color": themePalette.alternateTextColor}}
                             onClick={this._handleOpen}>{this.props.label}</Button>
                 <Popover open={this.state.open}
-                         anchorEl={ReactDOM.findDOMNode(this.anchorEl)}
+                         anchorEl={this.anchorEl}
                          style={{marginTop: "-14px", "backgroundColor": "transparent", "boxShadow": "none"}}
                          anchorOrigin={{"horizontal": "left", "vertical": "bottom"}}
                          transformOrigin={{"horizontal": "center", "vertical": "top"}}
