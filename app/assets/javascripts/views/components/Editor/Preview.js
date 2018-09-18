@@ -407,15 +407,15 @@ export default class Preview extends Component {
                             </CardMedia>
                             <CardHeader
                                 title={selectn('title', pictureResponse) || selectn('dc:title', pictureResponse)}
-                                titleStyle={{lineHeight: 'initial', fontSize: '18px'}}
+                                style={{lineHeight: 'initial', fontSize: '18px'}}
                                 subtitle={(description && description != "undefined") ? intl.trans('description', 'Description', 'first') + ": " + description : ""}
-                                subtitleStyle={{lineHeight: 'initial'}}
+                                
                                 style={{height: 'inherit', padding: '16px 0'}}
                             />
                             <CardHeader
                                 className="card-header-custom"
                                 title={intl.trans('more_image_info', "MORE IMAGE INFO", 'upper')}
-                                titleStyle={{lineHeight: 'initial'}}
+                                style={{lineHeight: 'initial'}}
                                 titleColor={themePalette.alternateTextColor}
                                 actAsExpander={true}
                                 showExpandableButton={true}
@@ -477,11 +477,11 @@ export default class Preview extends Component {
                                      onExpandChange={handleExpandChange}>
                             <CardHeader
                                 title={selectn('title', audioResponse) || selectn('dc:title', audioResponse)}
-                                titleStyle={{lineHeight: 'initial', fontSize: '18px'}}
+                                style={{lineHeight: 'initial', fontSize: '18px'}}
                                 titleColor={themePalette.textColor}
                                 subtitleColor={themePalette.textColorFaded}
                                 subtitle={(description && description != "undefined") ? "Description: " + description : ""}
-                                subtitleStyle={{lineHeight: 'initial'}}
+                                
                                 style={{height: 'initial', padding: 0}}
                             />
                             <CardMedia
@@ -491,7 +491,7 @@ export default class Preview extends Component {
                             <CardHeader
                                 className="card-header-custom"
                                 title={intl.trans('more_audio_info', 'MORE AUDIO INFO', 'upper')}
-                                titleStyle={{lineHeight: 'initial'}}
+                                style={{lineHeight: 'initial'}}
                                 titleColor={themePalette.alternateTextColor}
                                 actAsExpander={true}
                                 showExpandableButton={true}
@@ -558,15 +558,15 @@ export default class Preview extends Component {
                             </CardMedia>
                             <CardHeader
                                 title={selectn('title', videoResponse) || selectn('dc:title', videoResponse)}
-                                titleStyle={{lineHeight: 'initial', fontSize: '18px'}}
+                                style={{lineHeight: 'initial', fontSize: '18px'}}
                                 subtitle={selectn('properties.dc:description', videoResponse) || selectn('dc:description', videoResponse)}
-                                subtitleStyle={{lineHeight: 'initial'}}
+                                
                                 style={{height: 'inherit', padding: '16px 0'}}
                             />
                             <CardHeader
                                 className="card-header-custom"
                                 title={intl.trans('more_video_info', 'MORE VIDEO INFO', 'upper')}
-                                titleStyle={{lineHeight: 'initial'}}
+                                style={{lineHeight: 'initial'}}
                                 titleColor={themePalette.alternateTextColor}
                                 actAsExpander={true}
                                 showExpandableButton={true}

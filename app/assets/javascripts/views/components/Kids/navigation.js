@@ -170,12 +170,7 @@ export default class Navigation extends Component {
             <Avatar src={ConfGlobal.baseURL + portalLogo} size={50} style={{marginRight: '10px'}}/> : '';
 
         return <div>
-            <AppBar
-                position="static"
-                iconClassNameRight="muidocs-icon-navigation-expand-more"
-                showMenuIconButton={false}
-                onRightIconButtonClick={() => this.props.toggleMenuAction("AppLeftNav")}>
-
+            <AppBar position="static">
                 <Toolbar style={{alignItems: 'center', backgroundColor:'inherit'}}>
                     <Typography variant="title" noWrap style={{flexGrow: 1}}>
                         <a style={{textDecoration: 'none', color: '#fff'}}
@@ -185,10 +180,9 @@ export default class Navigation extends Component {
                         className="hidden-xs">{(selectn('response.contextParameters.ancestry.dialect.dc:title', computePortal) || this.props.properties.title) + ' ' + intl.trans('views.pages.explore.dialect.for_kids', 'for Kids')}
                         </span></a>
                     </Typography>
-                    <Tooltip title={intl.trans('back', 'Back', 'first')} placement="bottem-end">
+                    <Tooltip title={intl.trans('back', 'Back', 'first')} placement="bottom-end">
                         <IconButton className={classNames({'hidden': this.props.frontpage})}
                                     onClick={(e) => NavigationHelpers.navigateBack()}
-                                    tooltipPosition="bottom-left"
                                     >
                             <KeyboardBackspaceIcon />
                         </IconButton>
@@ -208,7 +202,7 @@ export default class Navigation extends Component {
                         </IconButton>
                     </Tooltip>
 
-                    <Tooltip title={intl.trans('back_to_main_site', 'Back to Main Site', 'words')} placment="bottom-end">
+                    <Tooltip title={intl.trans('back_to_main_site', 'Back to Main Site', 'words')} placement="bottom-end">
                         <IconButton onClick={this._onNavigateRequest.bind(this, '/')}
                                     >
                                 <ClearIcon />

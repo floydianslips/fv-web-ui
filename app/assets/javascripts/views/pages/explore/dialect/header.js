@@ -21,7 +21,8 @@ import selectn from 'selectn';
 import classNames from 'classnames';
 
 import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
+import InfoIcon from '@material-ui/icons/Info';
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 
 import PageStats from 'views/pages/explore/dialect/page-stats';
 
@@ -114,14 +115,14 @@ export default class Header extends Component {
 
                     <div className={classNames('dib-header', 'visible-xs')}>
                         <Button variant='flat'
-                            label={(this.state.showArchiveInfoMobile) ? intl.trans('info', 'Info', 'first') : intl.trans('info', 'Info', 'first')}
-                            labelPosition="before"
                             onClick={(e) => {
                                 this.setState({showArchiveInfoMobile: !this.state.showArchiveInfoMobile});
                                 e.preventDefault();
-                            }} icon={<Icon
-                            className="material-icons">{(this.state.showArchiveInfoMobile) ? 'info_outline' : 'info'}</Icon>}
-                            style={{float: 'right', lineHeight: 1}}/>
+                            }}
+                            style={{float: 'right', lineHeight: 1}}>
+                            {(this.state.showArchiveInfoMobile) ? intl.trans('info', 'Info', 'first') : intl.trans('info', 'Info', 'first')}    
+                            {this.state.showArchiveInfoMobile ? <InfoOutlinedIcon /> : <InfoIcon />}
+                        </Button>
                     </div>
 
                     <div className={classNames('dib-body', {'hidden-xs': !this.state.showArchiveInfoMobile})}

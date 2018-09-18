@@ -27,12 +27,25 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 
 import IconButton from '@material-ui/core/IconButton';
 
+import { withStyles } from '@material-ui/core/styles'
 import AVPlayArrow from '@material-ui/icons/PlayArrow';
 import AVStop from '@material-ui/icons/Stop';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 import UIHelpers from 'common/UIHelpers';
 import IntlService from 'views/services/intl';
+
+const WhiteAVPlayArrow = withStyles({
+  root: {
+    color: 'white'
+  }
+})(AVPlayArrow)
+
+const WhiteAVStop = withStyles({
+  root: {
+    color: 'white'
+  }
+})(AVStop)
 
 const intl = IntlService.instance;
 export default class GridView extends Component {
@@ -126,7 +139,7 @@ export default class GridView extends Component {
                         }.bind(this);
 
                         audioIcon = (decodeURIComponent(selectn('src', this.state.nowPlaying)) !== ConfGlobal.baseURL + audio) ?
-                            <AVPlayArrow color='white'/> : <AVStop color='white'/>;
+                            <WhiteAVPlayArrow /> : <WhiteAVStop />;
                         audioCallback = (decodeURIComponent(selectn('src', this.state.nowPlaying)) !== ConfGlobal.baseURL + audio) ? UIHelpers.playAudio.bind(this, this.state, stateFunc, ConfGlobal.baseURL + audio) : UIHelpers.stopAudio.bind(this, this.state, stateFunc);
                     }
 
@@ -154,7 +167,7 @@ export default class GridView extends Component {
                     ><img src={UIHelpers.getThumbnail(imageObj, 'Small')} alt={title}/>
                         <GridListTileBar
                             title={title}
-                            titleBackground='rgba(180, 0, 0, 0.75)'
+                            style={{ backgroundColor: 'rgba(180, 0, 0, 0.75)' }}
                             actionPosition="right"
                             actionIcon={(this.props.action) ? audioIconAction : audioIcon}
                             subtitle={definitionsHTML || literal_translationsHTML}

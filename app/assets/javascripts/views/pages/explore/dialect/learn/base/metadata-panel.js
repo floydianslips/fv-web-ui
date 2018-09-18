@@ -141,7 +141,7 @@ export default class MetadataPanel extends Component {
             <CardHeader
                 className="card-header-custom"
                 title={intl.trans('metadata', 'METADATA', 'upper')}
-                titleStyle={{lineHeight: 'initial'}}
+                style={{lineHeight: 'initial'}}
                 titleColor={themePalette.alternateTextColor}
                 actAsExpander={true}
                 style={{
