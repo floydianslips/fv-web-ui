@@ -7732,12 +7732,12 @@ proto-list@~1.2.1:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/proto-list/-/proto-list-1.2.4.tgz#212d5bfe1318306a420f6402b8e26ff39647a849"
 
-"provide-page@git+ssh://git@github.com/chadfawcett/provide-page.git#react16-patch":
+"provide-page@git+ssh://git@github.com/calebissharp/provide-page.git#react16-patch":
   version "0.2.2"
-  resolved "git+ssh://git@github.com/chadfawcett/provide-page.git#798e27eccf2db64091c85af8e360ef53b84e42a2"
+  resolved "git+ssh://git@github.com/calebissharp/provide-page.git#e9ac5cf974606e8910e6d4ef18f87a887bacfe5a"
   dependencies:
     exenv "^1.2.0"
-    react "^16.5.2"
+    react "^16.4.2"
     react-dom "^16.4.2"
     react-redux-provide "^7.0.0"
     redux-replicate "^0.3.0"
@@ -8200,7 +8200,7 @@ react-virtual-scroller2@^2.4.0:
     react-dom "^16.2.0"
     react-style-normalizer "^1.2.7"
 
-"react@^0.14.0 || ^15.0.0-0 || ^16.0.0-0", react@^16.5.2:
+"react@^0.14.0 || ^15.0.0-0 || ^16.0.0-0", react@^16.4.2, react@^16.5.2:
   version "16.5.2"
   resolved "https://registry.yarnpkg.com/react/-/react-16.5.2.tgz#19f6b444ed139baa45609eee6dc3d318b3895d42"
   dependencies:
