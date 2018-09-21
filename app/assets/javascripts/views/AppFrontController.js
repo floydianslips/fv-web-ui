@@ -1603,4 +1603,4 @@ export default class AppFrontController extends Component {
         </div>
         );
     }
-    }
+}
