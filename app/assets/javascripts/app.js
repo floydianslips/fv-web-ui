@@ -32,6 +32,20 @@ import providers from './providers/index';
 // Views
 import AppWrapper from 'views/AppWrapper';
 
+import { pushEnhancer } from 'react-redux-provide';
+
+if (process.env.NODE_ENV !== 'production' && window.devToolsExtension) {
+  for (let providerKey in providers) {
+    pushEnhancer(
+      { provider: providers[providerKey] },
+      window.devToolsExtension({
+        actionsBlacklist: ['@@INIT']
+      })
+    );
+  }
+}
+
+
 require('!style-loader!css-loader!normalize.css');
 require('!style-loader!css-loader!alloyeditor/dist/alloy-editor/assets/alloy-editor-ocean-min.css');
 require('!style-loader!css-loader!tether-shepherd/dist/css/shepherd-theme-arrows.css');
