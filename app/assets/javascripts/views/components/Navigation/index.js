@@ -296,7 +296,7 @@ export default class Navigation extends Component {
   }
 
   render() {
-    const themePalette = this.props.properties.theme.palette.rawTheme.palette;
+    const themePalette = this.props.properties.theme.palette.palette;
     const isDialect = this.props.routeParams.hasOwnProperty('dialect_path');
     const isFrontPage = this.props.frontpage;
 

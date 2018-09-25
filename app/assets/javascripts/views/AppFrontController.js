@@ -1437,8 +1437,7 @@ export default class AppFrontController extends Component {
     }
 
     _renderWithBreadcrumb(reactElement, matchedPage, props, theme) {
-
-        const themePalette = props.properties.theme.palette.rawTheme.palette;
+        const themePalette = props.properties.theme.palette.palette;
 
         return (
             <div>

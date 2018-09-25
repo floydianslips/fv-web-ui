@@ -126,7 +126,7 @@ export default class Login extends Component {
 
     render() {
 
-        const themePalette = this.props.properties.theme.palette.rawTheme.palette;
+        const themePalette = this.props.properties.theme.palette.palette;
         const TextFieldStyle = {
             border: '1px solid',
             borderColor: '#a2291d',

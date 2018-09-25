@@ -4,7 +4,7 @@ import expect from 'expect';
 import providers from '../providers/index';
 import ConfGlobal from 'conf/local.json';
 import AppWrapper from '../views/AppWrapper';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { createMuiTheme } from '@material-ui/core/styles';
 import FirstVoicesTheme from '../views/themes/FirstVoicesTheme.js';
 
 const context = {
@@ -15,7 +15,7 @@ const context = {
           pageTitleParams: null,
           domain: ConfGlobal.domain,
           theme: {
-              palette: getMuiTheme(FirstVoicesTheme),
+              palette: createMuiTheme(FirstVoicesTheme),
               id: 'default'
           }
       }

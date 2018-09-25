@@ -19,7 +19,6 @@ import React, { Component} from 'react';
 import PropTypes from 'prop-types';
 import { render } from 'react-dom'
 
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
 import FirstVoicesTheme from 'views/themes/FirstVoicesTheme.js';
@@ -65,7 +64,7 @@ const props = {
                     pageTitleParams: null,
                     domain: ConfGlobal.domain,
                     theme: {
-                        palette: getMuiTheme(FirstVoicesTheme),
+                        palette: createMuiTheme(FirstVoicesTheme),
                         id: 'default'
                     }
                 }
