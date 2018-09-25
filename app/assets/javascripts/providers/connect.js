@@ -90,7 +90,7 @@ const actions = {connect, login, logout, getCurrentUser};
  */
 const reducers = {
 
-    connect(state = {isConnected: false}, action) {
+    computeConnect(state = {isConnected: false}, action) {
         switch (action.type) {
             case CONNECT:
                 return Object.assign({}, state, {
@@ -99,7 +99,7 @@ const reducers = {
                 })
 
         }
-        return {state};
+        return state;
     },
 
     computeLogin(state = {

@@ -32,6 +32,20 @@ import providers from './providers/index';
 // Views
 import AppWrapper from 'views/AppWrapper';
 
+import { pushEnhancer } from 'react-redux-provide';
+
+if (process.env.NODE_ENV !== 'production' && window.devToolsExtension) {
+  for (let providerKey in providers) {
+    pushEnhancer(
+      { provider: providers[providerKey] },
+      window.devToolsExtension({
+        actionsBlacklist: ['@@INIT']
+      })
+    );
+  }
+}
+
+
 require('!style-loader!css-loader!normalize.css');
 require('!style-loader!css-loader!alloyeditor/dist/alloy-editor/assets/alloy-editor-ocean-min.css');
 require('!style-loader!css-loader!tether-shepherd/dist/css/shepherd-theme-arrows.css');
@@ -39,19 +53,22 @@ require('bootstrap/less/bootstrap');
 require('!style-loader!css-loader!react-quill/dist/quill.snow.css');
 require("styles/main");
 
-const context = {
-    providers,
-    /*combinedProviders: [
-      providers // OK for all providers to share the same store for now, make sure actions are unique
-    ],*/
-    providedState: {
-        properties: {
-            title: ConfGlobal.title,
-            pageTitleParams: null,
-            domain: ConfGlobal.domain,
-            theme: {
-                palette: getMuiTheme(FirstVoicesTheme),
-                id: 'default'
+const props = {
+    providers: {
+        ...providers,
+        navigation: {
+            ...providers.navigation,
+            state: {
+                ...providers.navigation.state,
+                properties: {
+                    title: ConfGlobal.title,
+                    pageTitleParams: null,
+                    domain: ConfGlobal.domain,
+                    theme: {
+                        palette: getMuiTheme(FirstVoicesTheme),
+                        id: 'default'
+                    }
+                }
             }
         }
     }
@@ -80,7 +97,7 @@ const theme = createMuiTheme({
 
 render(
     <MuiThemeProvider theme={theme}>
-        <AppWrapper {...context} />
+        <AppWrapper {...props} />
     </MuiThemeProvider>,
     document.getElementById('app-wrapper')
 );
