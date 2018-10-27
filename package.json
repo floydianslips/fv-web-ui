@@ -23,7 +23,6 @@
     "expose-loader": "^0.7.1",
     "immutable": "~3.8.2",
     "leaflet": "^1.0.3",
-    "material-ui": "0.20.1",
     "merge-stream": "~0.1.8",
     "normalize.css": "~3.0.3",
     "nuxeo": "~0.24.0",

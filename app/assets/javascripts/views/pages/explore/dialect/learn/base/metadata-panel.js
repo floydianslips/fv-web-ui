@@ -135,7 +135,7 @@ export default class MetadataPanel extends Component {
             value: selectn("response.properties.uid:major_version", computeEntity) + '.' + selectn("response.properties.uid:minor_version", computeEntity)
         });
 
-        const themePalette = this.props.properties.theme.palette.rawTheme.palette;
+        const themePalette = this.props.properties.theme.palette.palette;
 
         return <Card initiallyExpanded={false}>
             <CardHeader

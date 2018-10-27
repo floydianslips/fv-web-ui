@@ -281,7 +281,7 @@ export default class DialectLearn extends Component {
                 });
         }
 
-        const themePalette = this.props.properties.theme.palette.rawTheme.palette;
+        const themePalette = this.props.properties.theme.palette.palette;
 
         return <PromiseWrapper computeEntities={computeEntities}>
 

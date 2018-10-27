@@ -155,7 +155,6 @@ export default class PageToolbar extends Component {
     }
 
     render() {
-
         const {computeEntity, computePermissionEntity, computeLogin} = this.props;
 
         let enableTasks = [];
@@ -165,7 +164,6 @@ export default class PageToolbar extends Component {
 
         let toolbarGroupItem = {
             float: 'left',
-            margin: `${(this.context.muiTheme.toolbar.height - this.context.muiTheme.button.height) / 2}px ${this.context.muiTheme.baseTheme.spacing.desktopGutter}px`,
             position: 'relative'
         }
 
