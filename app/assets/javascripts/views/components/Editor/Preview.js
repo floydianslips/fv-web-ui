@@ -495,13 +495,10 @@ export default class Preview extends Component {
 
                         let description = (selectn('properties.dc:description', audioResponse) || selectn('dc:description', audioResponse));
 
-                        body = <Card style={{boxShadow: 'none'}} initiallyExpanded={this.props.initiallyExpanded}
-                                     onExpandChange={handleExpandChange}>
+                        body = <Card style={{boxShadow: 'none'}}>
                             <CardHeader
                                 title={selectn('title', audioResponse) || selectn('dc:title', audioResponse)}
                                 style={{lineHeight: 'initial', fontSize: '18px'}}
-                                titleColor={themePalette.textColor}
-                                subtitleColor={themePalette.textColorFaded}
                                 subtitle={(description && description != "undefined") ? "Description: " + description : ""}
                                 
                                 style={{height: 'initial', padding: 0}}
@@ -523,7 +520,6 @@ export default class Preview extends Component {
                                         </IconButton>                                    </Typography>
                                 }
                                 style={{lineHeight: 'initial'}}
-                                titleColor={themePalette.alternateTextColor}
                                 style={{
                                     height: 'initial',
                                     padding: 0,
@@ -581,8 +577,7 @@ export default class Preview extends Component {
 
                         let description = (selectn('properties.dc:description', videoResponse) || selectn('dc:description', videoResponse));
 
-                        body = <Card style={{boxShadow: 'none'}} initiallyExpanded={this.props.initiallyExpanded}
-                                     onExpandChange={handleExpandChange}>
+                        body = <Card style={{boxShadow: 'none'}}>
                             <CardMedia
                                 style={{backgroundColor: themePalette.primary2Color, margin: '5px 0', padding: '8px'}}>
                                 {(selectn('properties.file:content.data', videoResponse) || selectn('path', videoResponse) && selectn('path', videoResponse).indexOf('nxfile') != -1) ? videoTag : null}
@@ -608,7 +603,6 @@ export default class Preview extends Component {
                                     </Typography>
                                 }
                                 style={{lineHeight: 'initial'}}
-                                titleColor={themePalette.alternateTextColor}
                                 style={{
                                     height: 'initial',
                                     backgroundColor: themePalette.primary2Color,

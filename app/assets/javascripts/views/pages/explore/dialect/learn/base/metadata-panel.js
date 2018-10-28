@@ -163,13 +163,11 @@ export default class MetadataPanel extends Component {
                 }
                 style={{lineHeight: 'initial'}}
                 titleColor={themePalette.alternateTextColor}
-                actAsExpander={true}
                 style={{
                     backgroundColor: themePalette.primary2Color,
                     height: 'initial',
                     borderBottom: '4px solid ' + themePalette.primary1Color
                 }}
-                showExpandableButton={true}
             />
             <Collapse in={this.state.open}>
                 <CardContent style={{backgroundColor: themePalette.accent4Color}}>
