@@ -197,7 +197,7 @@ export default class Preview extends Component {
     };
 
     state = {
-        open: false
+        open: this.props.initiallyExpanded || false
     }
 
     constructor(props) {
