@@ -224,7 +224,7 @@ export default class PageDialectLearnAlphabet extends PageDialectLearnBase {
                                                 onClick={this._onCharAudioTouchTap.bind(this, char)}
                                                 //onClick={this._onNavigateRequest.bind(this, char.path.split('/')[char.path.split('/').length - 1])}
                                                 style={{minWidth: 'inherit', textTransform: 'initial'}}>
-                                                    {char.title} 
+                                                    {char.title}
                                                 </Button>
                                             {(char.contextParameters.character.related_audio[0]) ?
                                                 <span>
