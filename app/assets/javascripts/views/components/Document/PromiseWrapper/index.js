@@ -73,7 +73,7 @@ export default class PromiseWrapper extends Component {
 
             let reducedOperation = ProviderHelpers.getEntry(computeEntity.get('entity'), computeEntity.get('id'));
 
-            if (!reducedOperation || (reducedOperation.isError && selectn('message', reducedOperation))) {
+            if (reducedOperation && reducedOperation.isError && selectn('message', reducedOperation)) {
 
                 statusMessage = selectn('message', reducedOperation);
 
@@ -109,7 +109,7 @@ export default class PromiseWrapper extends Component {
                 return false;
             }
 
-            if (reducedOperation.isFetching) {
+            if (reducedOperation && reducedOperation.isFetching) {
                 // If response already exists, and instructed to hide future fetches, render null (e.g. for pagination, filtering)
                 render = (this.props.hideFetch && selectn('response_prev', reducedOperation)) ? null :
                     <div><CircularProgress style={{ color: '#b40000', verticalAlign: 'middle' }} variant="indeterminate"
@@ -117,7 +117,7 @@ export default class PromiseWrapper extends Component {
                 return false;
             }
 
-            if (reducedOperation.success) {
+            if (reducedOperation && reducedOperation.success) {
                 if (selectn('message', reducedOperation)) {
                     statusMessage = selectn('message', reducedOperation);
                 }
