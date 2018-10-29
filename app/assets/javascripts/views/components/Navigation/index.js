@@ -552,11 +552,30 @@ export default class Navigation extends Component {
 
         {(() => {
                 if (isDialect) {
-                  return <div className="row" style={{backgroundColor: themePalette.primary2Color, minHeight: '64px', margin: '0'}}>
+                  return <div style={{backgroundColor: themePalette.primary2Color, minHeight: '64px', margin: '0'}}>
 
-                      <div className="col-xs-12">
-                        <h2 style={{fontWeight: '500', margin: '0'}}><a style={{textDecoration: 'none', color: '#fff'}} onClick={this._onNavigateRequest.bind(this, '/explore' + this.props.routeParams.dialect_path)}><Avatar src={UIHelpers.getThumbnail(portalLogo, 'Thumbnail')} size={50} style={{marginRight: '10px', marginTop: '8px', marginLeft: '3px'}} /> <span style={{verticalAlign: '-5px'}}>{this.intl.searchAndReplace(portalTitle)}</span></a></h2>
-                      </div>
+                      <a 
+                        style={{
+                          textDecoration: 'none',
+                          color: '#fff',
+                          display: 'flex',
+                          flexDirection: 'row',
+                          justifyContent: 'flex-start',
+                          alignItems: 'center',
+                          minHeight: '64px',
+                          paddingLeft: '10px',
+                          fontWeight: 500,
+                          fontSize: '21px'
+                        }}
+                        onClick={this._onNavigateRequest.bind(this, '/explore' + this.props.routeParams.dialect_path)}>
+                        <Avatar
+                          src={UIHelpers.getThumbnail(portalLogo, 'Thumbnail')}
+                          size={50}
+                          style={{marginRight: '10px', marginLeft: '3px', display: 'inline-block'}} />
+                        <span>
+                          {this.intl.searchAndReplace(portalTitle)}
+                        </span>
+                      </a>
 
                     </div>;
                 }

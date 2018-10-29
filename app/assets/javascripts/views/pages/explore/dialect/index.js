@@ -269,7 +269,7 @@ export default class ExploreDialect extends Component {
                 login={computeLogin}
                 routeParams={this.props.routeParams}>
 
-                <Toolbar className="dialect-navigation">
+                <Toolbar className="dialect-navigation" style={{ position: 'absolute', bottom: 0, width: '100%' }}>
 
                         <Button variant='flat' onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/learn')}>{intl.trans('learn_our_lang', 'Learn Our Language', 'words')}</Button>
                         <Button variant='flat' onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/play')}>{intl.trans('views.pages.explore.dialect.play_game', 'Play a Game', 'words')}</Button>

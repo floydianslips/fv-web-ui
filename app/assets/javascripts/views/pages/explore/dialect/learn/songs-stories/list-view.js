@@ -36,6 +36,9 @@ import CardActions from '@material-ui/core/CardActions';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 import Typography from '@material-ui/core/Typography';
 
 import Button from '@material-ui/core/Button';
@@ -164,31 +167,22 @@ class CardView extends Component {
                     className={classNames('col-xs-12', 'col-md-' + Math.ceil(12 / this.props.cols))}>
             <Card style={{minHeight: '260px'}}>
 
-                <CardMedia
-                    overlay={
-                        <div>
-                            <Typography variant="headline" component="h2">
-                                <span dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.props.item.title)}}/>
-                            </Typography>
-                            <Typography variant="subheading" component="h3">
-                                {(selectn('properties.fvbook:title_literal_translation', this.props.item) || []).map(function (translation, i) {
-                                                    if (translation.language == DEFAULT_LANGUAGE) {
-                                                        return <span key={i}>{translation.translation}</span>;
-                                                    }
+                <CardMedia>
+                    <GridList cols={1}>
+                        <GridListTile>
+                            <img src={coverImage + '?inline=true'} />
+                            <GridListTileBar
+                                title={
+                                    <span dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.props.item.title)}}/>
+                                }
+                                subtitle={(selectn('properties.fvbook:title_literal_translation', this.props.item) || []).map(function (translation, i) {
+                                    if (translation.language == DEFAULT_LANGUAGE) {
+                                        return <span key={i}>{translation.translation}</span>;
+                                    }
                                 })}
-                            </Typography>
-                        </div>
-                    }>
-
-                    <div style={{
-                        backgroundSize: (selectn('width', mediumImage) > 200) ? '100%' : 'cover',
-                        minWidth: 'inherit',
-                        width: '100%',
-                        height: '180px',
-                        textAlign: 'center',
-                        backgroundImage: 'url(\'' + coverImage + '?inline=true\')'
-                    }}>
-                    </div>
+                            />
+                        </GridListTile>
+                    </GridList>
 
 
                     <div style={{

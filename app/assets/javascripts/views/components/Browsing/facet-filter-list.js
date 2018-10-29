@@ -8,6 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import ListUI from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListSubheader from '@material-ui/core/ListSubheader';
 import ActionGrade from '@material-ui/icons/Grade';
 import Checkbox from '@material-ui/core/Checkbox';
 import withToggle from 'views/hoc/view/with-toggle';
@@ -74,7 +75,8 @@ export default class FacetFilterList extends Component {
 
         return <FiltersWithToggle label={this.intl.searchAndReplace(this.props.title)} mobileOnly={true}>
             <Paper style={{maxHeight: '70vh', overflow: 'auto'}}>
-                <ListUI subheader={this.intl.searchAndReplace(this.props.title)}>
+                <ListUI>
+                    <ListSubheader>{this.intl.searchAndReplace(this.props.title)}</ListSubheader>
 
                     {(this.props.facets || []).map(function (facet, i) {
 
@@ -109,13 +111,12 @@ export default class FacetFilterList extends Component {
                         return <ListItem
                             style={listItemStyle}
                             key={facet.uid}
-                            leftCheckbox={<Checkbox checked={parentFacetChecked}
-                            onChange={this._toggleCheckbox.bind(this, facet.uid, childrenIds)}/>}
-                            primaryText={facet.title}
                             open={parentFacetChecked}
                             initiallyOpen={true}
                             autoGenerateNestedIndicator={false}
                             nestedItems={nestedItems}>
+                                <Checkbox checked={parentFacetChecked}
+                                    onChange={this._toggleCheckbox.bind(this, facet.uid, childrenIds)}/>
                                 <ListItemText
                                     primary={facet.title}
                                 />
