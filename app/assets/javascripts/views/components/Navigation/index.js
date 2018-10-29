@@ -430,7 +430,10 @@ export default class Navigation extends Component {
             <Popover
               open={this.state.searchContextPopoverOpen}
               anchorEl={this.state.searchContextPopoverAnchorEl}
-              style={{maxWidth: (isDialect) ? '320px' : '220px', marginTop: '-14px', backgroundColor: 'transparent', boxShadow: 'none'}}
+              disableEnforceFocus
+              disableAutoFocus
+              disableRestoreFocus
+              PaperProps={{style: {maxWidth: (isDialect) ? '320px' : '220px', marginTop: '-14px', backgroundColor: 'transparent', boxShadow: 'none'}}}
               anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
               transformOrigin={{horizontal: 'center', vertical: 'top'}}>
               <div>
