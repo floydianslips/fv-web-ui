@@ -103,7 +103,7 @@ export default class ToolbarNavigation extends Component {
         let storyCount = (selectn(COUNT_FIELD1, computeStoriesCount) == undefined) ? '...' : selectn(COUNT_FIELD1, computeStoriesCount) + selectn(COUNT_FIELD2, computeStoriesCount);
 
 
-        return <Toolbar className="dialect-navigation" style={{justifyContent: 'flex-end'}}>
+        return <Toolbar className="dialect-navigation" style={{ position: 'absolute', bottom: 0, width: '100%' }}>
 
                 <Button variant='flat' onClick={this._onNavigateRequest.bind(this, 'words')}>{intl.trans('words', 'Words', 'first') + " (" + wordCount + ")"}</Button>
                 <Button variant='flat' onClick={this._onNavigateRequest.bind(this, 'phrases')}>{intl.trans('phrases', 'Phrases', 'first') + " (" + phraseCount + ")"}</Button>
