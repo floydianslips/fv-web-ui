@@ -185,10 +185,14 @@ export default function withForm(ComposedFilter, publishWarningEnabled = false) 
                                                 <span dangerouslySetInnerHTML={{__html: intl.trans('views.hoc.view.discard_warning', 'Are you sure you want to <strong>discard your changes</strong>?', 'first')}}></span>
                                                 <Button variant='flat' style={confirmationButtonsStyle}
                                                             onClick={this._onRequestCancelForm.bind(this, true)}
-                                                            label={intl.trans('yes', 'Yes', 'first') + '!'}/>
+                                                            >
+                                                                {intl.trans('yes', 'Yes', 'first') + '!'}
+                                                            </Button>
                                                 <Button variant='flat' style={confirmationButtonsStyle}
                                                             onClick={() => this.setState({showCancelWarning: false})}
-                                                            label={intl.trans('no', 'No', 'first') + '!'}/>
+                                                            >
+                                                                {intl.trans('no', 'No', 'first') + '!'}
+                                                            </Button>
                                             </div>
                                         </Popover>
 
