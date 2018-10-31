@@ -26,6 +26,7 @@ import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
 
 import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -174,15 +175,6 @@ export default class SelectMediaComponent extends React.Component {
     }
 
     render() {
-
-        const actions = [
-            <Button variant='flat'
-                color="secondary"
-                onClick={this._handleClose}>
-                {intl.trans('cancel', 'Cancel', 'first')}    
-            </Button>
-        ];
-
         let fileTypeLabel = intl.trans('file', 'file', 'lower');
         let fileTypeCellHeight = 210;
         let fileTypeTilePosition = 'bottom';
@@ -214,7 +206,6 @@ export default class SelectMediaComponent extends React.Component {
                 <Button variant='raised' onClick={this._handleOpen}>{this.props.label}</Button>
                 <Dialog
                     title={intl.searchAndReplace("Select existing " + fileTypeLabel + " from " + selectn('properties.dc:title', dialect) + " dialect or shared resources") + ':'}
-                    actions={actions}
                     modal={true}
                     contentStyle={{width: '80%', height: '80vh', maxWidth: '100%'}}
                     autoScrollBodyContent={true}
@@ -238,6 +229,14 @@ export default class SelectMediaComponent extends React.Component {
                         initialValues={{'dc:contributors': selectn("response.properties.username", this.props.computeLogin)}}
                         metadata={selectn('response', computeResources) || selectn('response_prev', computeResources)}
                         items={selectn('response.entries', computeResources) || selectn('response_prev.entries', computeResources) || []}/>
+
+                    <DialogActions>
+                        <Button variant='flat'
+                            color="secondary"
+                            onClick={this._handleClose}>
+                            {intl.trans('cancel', 'Cancel', 'first')}    
+                        </Button>
+                    </DialogActions>
 
                 </Dialog>
             </div>

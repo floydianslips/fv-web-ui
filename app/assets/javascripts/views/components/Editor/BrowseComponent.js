@@ -26,6 +26,7 @@ import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
 
 import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -177,14 +178,6 @@ export default class BrowseComponent extends React.Component {
         const dialect = this.props.dialect;
         const dialectPath = selectn('path', dialect);
 
-        const actions = [
-            <Button variant='flat'
-                color="secondary"
-                onClick={this._handleClose}>
-                {intl.trans('cancel', 'Cancel', 'first')}    
-            </Button>
-        ];
-
         let title = '';
         let view = null;
 
@@ -264,7 +257,6 @@ export default class BrowseComponent extends React.Component {
                 <Button variant='raised' onClick={this._handleOpen}>{this.props.label}</Button>
                 <Dialog
                     title={title}
-                    actions={actions}
                     modal={true}
                     contentStyle={{width: '80%', height: '80vh', maxWidth: '100%'}}
                     autoScrollBodyContent={true}
@@ -275,6 +267,14 @@ export default class BrowseComponent extends React.Component {
                             return view;
                         }
                     })()}
+
+                    <DialogActions>
+                        <Button variant='flat'
+                            color="secondary"
+                            onClick={this._handleClose}>
+                            {intl.trans('cancel', 'Cancel', 'first')}    
+                        </Button>                    
+                    </DialogActions>
 
                 </Dialog>
             </div>

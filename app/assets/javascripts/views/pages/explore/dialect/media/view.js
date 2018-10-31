@@ -41,6 +41,7 @@ import {Link} from 'provide-page';
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 
 import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
 
 import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
@@ -364,9 +365,6 @@ export default class View extends Component {
                                                                 }}
                                                                 autoScrollBodyContent={true}
                                                                 title={selectn('title', this.state.showThumbnailDialog)}
-                                                                actions={[<Button variant='flat'
-                                                                    color="secondary"
-                                                                    onClick={() => this.setState({showThumbnailDialog: null})}>{intl.trans('close', 'Close', 'first')}</Button>]}
                                                                 modal={false}
                                                                 open={(this.state.showThumbnailDialog === null) ? false : true}
                                                                 onRequestClose={() => this.setState({showThumbnailDialog: null})}>
@@ -377,6 +375,11 @@ export default class View extends Component {
                                                                 <p><input readOnly type="text"
                                                                           value={selectn('content.data', this.state.showThumbnailDialog)}
                                                                           style={{width: '100%', padding: '5px'}}/></p>
+                                                                <DialogActions>
+                                                                    <Button variant='flat'
+                                                                        color="secondary"
+                                                                        onClick={() => this.setState({showThumbnailDialog: null})}>{intl.trans('close', 'Close', 'first')}</Button>
+                                                                </DialogActions>
                                                             </Dialog>
                                                         </div>;
                                                     }
