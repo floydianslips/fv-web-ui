@@ -436,7 +436,8 @@ export default class Preview extends Component {
                                             handleExpandChange()
                                         }}>
                                             {this.state.open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                                        </IconButton>                                    </Typography>
+                                        </IconButton>                                    
+                                    </Typography>
                                 )}
                                 style={{lineHeight: 'initial'}}
                                 style={{
