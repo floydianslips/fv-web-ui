@@ -51,7 +51,6 @@ class Introduction extends Component {
   }
 
   render() {
-
     const DEFAULT_LANGUAGE = this.props.defaultLanguage;
     const introTabStyle = {width: '99%', position: 'relative', overflowY: 'scroll', padding: '15px', height: '100px'};
 
@@ -131,7 +130,7 @@ class CardView extends Component {
       audioCallback = (decodeURIComponent(selectn('src', this.state.nowPlaying)) !== ConfGlobal.baseURL + audioObj) ? UIHelpers.playAudio.bind(this, this.state, stateFunc, ConfGlobal.baseURL + audioObj) : UIHelpers.stopAudio.bind(this, this.state, stateFunc);
     }
 
-    return <div style={Object.assign(defaultStyle, this.props.style)} key={this.props.item.uid} className={classNames('col-xs-12', 'col-md-12', {'col-md-4': !this.props.fullWidth})}>
+    return <div style={{ ...defaultStyle, ...this.props.style}} key={this.props.item.uid} className={classNames('col-xs-12', 'col-md-12', {'col-md-4': !this.props.fullWidth})}>
             &#8226; <a href={ConfGlobal.baseWebUIURL + 'explore' + this.props.dialectPath + '/reports/' + encodeURI(this.props.item.name)}>{this.props.item.name}</a>
            </div>;
   }
