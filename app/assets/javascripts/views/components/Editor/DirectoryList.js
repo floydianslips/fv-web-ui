@@ -19,6 +19,8 @@ import provide from 'react-redux-provide';
 import selectn from 'selectn';
 
 import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import IntlService from 'views/services/intl';
@@ -48,8 +50,8 @@ export default class DirectoryList extends Component {
         this._handleStandardSelectChange = this._handleStandardSelectChange.bind(this);
     }
 
-    _handleChange(event, index, value) {
-        this.props.onChange(value);
+    _handleChange(event) {
+        this.props.onChange(event.target.value);
     }
 
     _handleStandardSelectChange(event) {
@@ -81,14 +83,17 @@ export default class DirectoryList extends Component {
             <div>
                 {
                     (this.props.fancy) ?
-
-                        <Select maxHeight={300} autoWidth={true} value={this.props.value}
-                                     onChange={this._handleChange}
-                                     floatingLabelText={intl.trans('select_x', 'Select ' + this.props.label, 'first', [this.props.label]) + ':'}>
-                            {entries.map((entry) =>
-                                <MenuItem key={entry.value} value={entry.value} primaryText={entry.text}/>
-                            )}
-                        </Select>
+                        <FormControl style={{ minWidth: 200 }}>
+                            <InputLabel htmlFor={`${this.props.label}_select`}>
+                                {intl.trans('select_x', 'Select ' + this.props.label, 'first', [this.props.label]) + ':'}
+                            </InputLabel>
+                            <Select maxHeight={300} autoWidth={true} value={this.props.value}
+                                        onChange={this._handleChange} inputProps={{ name: `${this.props.label}_select` }}>
+                                {entries.map((entry) =>
+                                    <MenuItem key={entry.value} value={entry.value}>{entry.text}</MenuItem>
+                                )}
+                            </Select>
+                        </FormControl>
 
                         :
 
