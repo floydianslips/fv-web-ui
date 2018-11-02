@@ -49,6 +49,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
 
 import { List as ListUI, ListItem, ListItemText } from '@material-ui/core';
 
@@ -303,7 +304,7 @@ export default class View extends Component {
 
                         <Card>
 
-                            <Tabs value={this.state.tabValue} onChange={(e, tabValue) => this.setState({ tabValue })} tabItemContainerStyle={tabItemStyles}>
+                            <Tabs value={this.state.tabValue} onChange={(e, tabValue) => this.setState({ tabValue })}>
                                 <Tab label={intl.trans('overview', 'Overview', 'first')} />
                                 <Tab
                                     label={UIHelpers.isViewSize('xs') ? intl.trans('words', 'Words', 'first') : intl.trans('linked_words', 'Linked Words', 'words')}
