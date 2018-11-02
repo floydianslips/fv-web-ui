@@ -228,7 +228,8 @@ export default function withFilter(ComposedFilter, DefaultFetcherParams) {
                                     </Button> &nbsp;
                                     <Button variant='raised'
                                         type="submit"
-                                        color="primary">
+                                        color="primary"
+                                        onClick={this._onFilterSaveForm}>
                                         {intl.trans('filter', 'Filter', 'first')}    
                                     </Button>
                                 </FiltersWithToggle>
