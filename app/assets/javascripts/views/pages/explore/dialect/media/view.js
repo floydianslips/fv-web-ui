@@ -41,6 +41,7 @@ import {Link} from 'provide-page';
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 
 import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
 
 import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
@@ -49,6 +50,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
 
 import { List as ListUI, ListItem, ListItemText } from '@material-ui/core';
 
@@ -303,7 +305,7 @@ export default class View extends Component {
 
                         <Card>
 
-                            <Tabs value={this.state.tabValue} onChange={(e, tabValue) => this.setState({ tabValue })} tabItemContainerStyle={tabItemStyles}>
+                            <Tabs value={this.state.tabValue} onChange={(e, tabValue) => this.setState({ tabValue })}>
                                 <Tab label={intl.trans('overview', 'Overview', 'first')} />
                                 <Tab
                                     label={UIHelpers.isViewSize('xs') ? intl.trans('words', 'Words', 'first') : intl.trans('linked_words', 'Linked Words', 'words')}
@@ -364,9 +366,6 @@ export default class View extends Component {
                                                                 }}
                                                                 autoScrollBodyContent={true}
                                                                 title={selectn('title', this.state.showThumbnailDialog)}
-                                                                actions={[<Button variant='flat'
-                                                                    color="secondary"
-                                                                    onClick={() => this.setState({showThumbnailDialog: null})}>{intl.trans('close', 'Close', 'first')}</Button>]}
                                                                 modal={false}
                                                                 open={(this.state.showThumbnailDialog === null) ? false : true}
                                                                 onRequestClose={() => this.setState({showThumbnailDialog: null})}>
@@ -377,6 +376,11 @@ export default class View extends Component {
                                                                 <p><input readOnly type="text"
                                                                           value={selectn('content.data', this.state.showThumbnailDialog)}
                                                                           style={{width: '100%', padding: '5px'}}/></p>
+                                                                <DialogActions>
+                                                                    <Button variant='flat'
+                                                                        color="secondary"
+                                                                        onClick={() => this.setState({showThumbnailDialog: null})}>{intl.trans('close', 'Close', 'first')}</Button>
+                                                                </DialogActions>
                                                             </Dialog>
                                                         </div>;
                                                     }

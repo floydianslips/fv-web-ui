@@ -28,6 +28,7 @@ import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';
 
 import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import IntlService from "views/services/intl";
 
@@ -186,14 +187,6 @@ export default class AddMediaComponent extends Component {
         let form = "";
         let fileTypeLabel = intl.trans('file', 'File', 'first');
 
-        const actions = [
-            <Button variant='flat'
-                color="secondary"
-                onClick={this.handleClose}>
-                {intl.trans('cancel', 'Cancel', 'first')}    
-            </Button>
-        ];
-
         switch (this.props.type) {
             case 'FVAudio':
                 computeCreate = ProviderHelpers.getEntry(this.props.computeAudio, this.state.pathOrId);
@@ -248,7 +241,6 @@ export default class AddMediaComponent extends Component {
                     title={intl.trans('views.components.editor.create_new_x_in_the_x_dialect',
                         "Create New " + fileTypeLabel + " in the " + selectn('properties.dc:title', this.props.dialect) + " dialect.",
                         'first', [fileTypeLabel, selectn('properties.dc:title', this.props.dialect)])}
-                    actions={actions}
                     modal={true}
                     autoScrollBodyContent={true}
                     open={this.state.open}>
@@ -257,6 +249,13 @@ export default class AddMediaComponent extends Component {
                         {uploadText}
                         {form}
                     </div>
+                    <DialogActions>
+                        <Button variant='flat'
+                            color="secondary"
+                            onClick={this.handleClose}>
+                            {intl.trans('cancel', 'Cancel', 'first')}    
+                        </Button>
+                    </DialogActions>
                 </Dialog>
             </div>
         );
