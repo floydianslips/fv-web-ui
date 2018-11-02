@@ -27,8 +27,9 @@ import NavigationHelpers from "common/NavigationHelpers";
 
 import PromiseWrapper from "views/components/Document/PromiseWrapper";
 
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab'; 
+import Typography from '@material-ui/core/Typography'; 
 
 // Models
 import { Document } from "nuxeo";
