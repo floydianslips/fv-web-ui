@@ -337,18 +337,14 @@ export default class Navigation extends Component {
 
             <AuthenticationFilter login={this.props.computeLogin} anon={false} routeParams={this.props.routeParams} >
               <span>
-                <Badge
-                  style={{
-                    root: {top: '8px', left: '-15px', padding: '0 0 12px 12px'},
-                    badge: {top: '12px',left: '42px', width: '15px', height: '15px', borderRadius: '25%', visibility: (userTaskCount == 0) ? 'hidden' : 'visible'}
-                  }}
-                  badgeContent={userTaskCount || ''}
-                  variant="primary"
-                >
-                  <IconButton >
+                <IconButton >
+                  <Badge
+                    badgeContent={userTaskCount || ''}
+                    variant="primary"
+                  >
                     <NotificationsIcon />
-                  </IconButton>
-                </Badge>
+                  </Badge>
+                </IconButton>
 
                 {/*<Badge
                   badgeContent={guideCount}
