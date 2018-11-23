@@ -217,14 +217,14 @@ class MultiQuiz extends React.Component {
       </div>
       <div className={classNames('row', 'row-navigation')}>
         <div className={classNames('col-xs-2', 'text-left')}>
-          <IconButton onTouchTap={this.handleNavigate.bind(this, 'previous')} iconClassName={classNames('glyphicon', 'glyphicon-chevron-left')} tooltip="Previous Question"/>
+          <IconButton onClick={this.handleNavigate.bind(this, 'previous')}   tooltip="Previous Question"/>
         </div>
-        <div className={classNames('col-xs-8', 'text-center')}>
-          <div><RaisedButton secondary={true} disabled={(this.state.currentAnswerIndex in this.state.selectedAnswers) ? false : true} onTouchTap={this.checkAnswer.bind(this)} label="Check Answer" /></div>
+        <div className={classNames('col-xs-8', 'text-center')}>"
+          <div><Button variant='raised' color="secondary" disabled={(this.state.currentAnswerIndex in this.state.selectedAnswers) ? false : true} onClick={this.checkAnswer.bind(this)}>Check Answer</Button></div>
           <Snackbar ref="feedback" style={(this.state.checkedAnswers[this.state.currentAnswerIndex] === true) ? {backgroundColor: 'green'} : {}} message={(this.state.checkedAnswers[this.state.currentAnswerIndex] === true) ? 'Great job!' : 'Try Again...'} action="close" autoHideDuration={1500} />
         </div>
         <div className={classNames('col-xs-2', 'text-right')}>
-          <IconButton onTouchTap={this.handleNavigate.bind(this, 'next')} iconClassName={classNames('glyphicon', 'glyphicon-chevron-right')} tooltip="Next Question"/>
+          <IconButton onClick={this.handleNavigate.bind(this, 'next')}   tooltip="Next Question"/>
         </div>
       </div>
     </div>;
@@ -232,12 +232,12 @@ class MultiQuiz extends React.Component {
 }
 
 MultiQuiz.contextTypes = {
-  muiTheme: React.PropTypes.object,
-  router: React.PropTypes.func
+  muiTheme: PropTypes.object,
+  router: PropTypes.func
 };
 
 MultiQuiz.childContextTypes = {
-  muiTheme: React.PropTypes.object
+  muiTheme: PropTypes.object
 };
 
 

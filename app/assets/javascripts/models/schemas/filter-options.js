@@ -6,7 +6,9 @@ import ValuedCheckboxFactory from 'views/components/Editor/fields/valued-checkbo
 import RangeSelector from 'views/components/Editor/fields/range';
 import SelectFactory from 'views/components/Editor/fields/select';
 
-import {FlatButton, IconButton} from 'material-ui';
+import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
+import ClearIcon from '@material-ui/icons/Clear';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 import IntlService from "views/services/intl";
@@ -28,7 +30,7 @@ const SearchDocumentTypesTemplate = function (locals) {
         <div className="row" style={{margin: '15px 0'}}>
             <fieldset>
                 <legend>{locals.label} {(locals.items.length < 4) ?
-                    <FlatButton label={locals.add.label} onTouchTap={locals.add.click}/> : ''}</legend>
+                    <Button variant='flat' onClick={locals.add.click}>{locals.add.label}</Button> : ''}</legend>
                 {(locals.items || []).map(function (item, i) {
                     return <div key={i} className={classNames('col-xs-12')}>
                         <div style={{width: '60%', display: 'inline-block'}}>{item.input}</div>
@@ -38,8 +40,8 @@ const SearchDocumentTypesTemplate = function (locals) {
                                     key: 'remove_item',
                                     default: 'Remove Item',
                                     case: 'words'
-                                })} iconClassName="material-icons" key={i}
-                                                   onClick={button.click}>clear</IconButton>;
+                                })} key={i}
+                                onClick={button.click}><ClearIcon /></IconButton>;
                             }
                         })}</div>
                     </div>;

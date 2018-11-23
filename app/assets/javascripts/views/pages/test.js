@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, { Component, PropTypes } from 'react';
+import React, { Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, { List, Map } from 'immutable';
 
 import provide from 'react-redux-provide';
@@ -24,14 +25,11 @@ import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
 // Operations
 import DirectoryOperations from 'operations/DirectoryOperations';
-
-import GridList from 'material-ui/lib/grid-list/grid-list';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
-import CircularProgress from 'material-ui/lib/circular-progress';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import ProviderHelpers from 'common/ProviderHelpers';
-
-import {RaisedButton} from 'material-ui';
 
 import MediaList from 'views/components/Browsing/media-list';
 import withPagination from 'views/hoc/grid-list/with-pagination';
@@ -64,7 +62,7 @@ export default class Test extends Component {
   };
 
   /*static contextTypes = {
-      muiTheme: React.PropTypes.object.isRequired
+      muiTheme: PropTypes.object.isRequired
   };*/
 
   constructor(props, context){
@@ -201,7 +199,7 @@ export default class Test extends Component {
     
 
     if (!portalOperation || portalOperation.isFetching) {
-      return <div><CircularProgress mode="indeterminate" size={5} /> {selectn('message', portalOperation)}</div>;
+      return <div><CircularProgress style={{ color: "#b40000" }} variant="indeterminate" size={5} /> {selectn('message', portalOperation)}</div>;
     }
 
     if (portalOperation.isError) {

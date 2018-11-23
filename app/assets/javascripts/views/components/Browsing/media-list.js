@@ -13,16 +13,16 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List, Map} from 'immutable';
 import selectn from 'selectn';
 
 import ConfGlobal from 'conf/local.json';
 
-import Colors from 'material-ui/lib/styles/colors';
-
-import GridList from 'material-ui/lib/grid-list/grid-list';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 
 import UIHelpers from 'common/UIHelpers';
 import NavigationHelpers from 'common/NavigationHelpers';
@@ -129,14 +129,17 @@ export default class MediaList extends Component {
                         });
                     }
 
-                    return <GridTile
-                        onTouchTap={action.bind(this, tile)}
+                    return <GridListTile
+                        onClick={action.bind(this, tile)}
                         key={tile.uid}
-                        title={<a href={NavigationHelpers.generateUIDPath(this.props.theme, tile, 'media')}>{tile.title}</a>}
-                        titlePosition={fileTypeTilePosition}
-                        subtitle={
-                            <span><strong>{/*tile.properties['dc:description']*/}{Math.round(selectn('properties.common:size', tile) * 0.001)} KB</strong></span>}
-                    >{this._getMediaPreview(tile)}</GridTile>
+                    >{this._getMediaPreview(tile)}
+                        <GridListTileBar
+                            title={<a href={NavigationHelpers.generateUIDPath(this.props.theme, tile, 'media')}>{tile.title}</a>}
+                            titlePosition={fileTypeTilePosition}
+                            subtitle={
+                                <span><strong>{/*tile.properties['dc:description']*/}{Math.round(selectn('properties.common:size', tile) * 0.001)} KB</strong></span>}
+                        />
+                    </GridListTile>
                 }.bind(this))}
             </GridList>
         </div>;

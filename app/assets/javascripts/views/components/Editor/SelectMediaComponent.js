@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {Map} from 'immutable';
 
 import provide from 'react-redux-provide';
@@ -24,17 +25,20 @@ import classNames from 'classnames';
 import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
 
-import {Dialog, FlatButton, RaisedButton} from 'material-ui';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import Button from '@material-ui/core/Button';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 
 import MediaList from 'views/components/Browsing/media-list';
 import withPagination from 'views/hoc/grid-list/with-pagination';
 import withFilter from 'views/hoc/grid-list/with-filter';
-import LinearProgress from 'material-ui/lib/linear-progress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
-import IconButton from 'material-ui/lib/icon-button';
-import ActionInfo from 'material-ui/lib/svg-icons/action/info';
-import ActionInfoOutline from 'material-ui/lib/svg-icons/action/info-outline';
+import IconButton from '@material-ui/core/IconButton';
+import ActionInfo from '@material-ui/icons/Info';
+import ActionInfoOutline from '@material-ui/icons/InfoOutlined';
 import IntlService from "views/services/intl";
 
 const gridListStyle = {width: '100%', height: '100vh', overflowY: 'auto', marginBottom: 10};
@@ -49,7 +53,7 @@ const FilteredPaginatedMediaList = withFilter(withPagination(MediaList, DefaultF
 
 const intl = IntlService.instance;
 
-class SharedResourceGridTile extends Component {
+class SharedResourceGridListTile extends Component {
 
     constructor(props, context) {
         super(props, context);
@@ -76,17 +80,19 @@ class SharedResourceGridTile extends Component {
                 <ActionInfoOutline color='white'/> : <ActionInfo color='white'/>}</IconButton>;
         }
 
-        return <GridTile
-            onTouchTap={(this.props.action) ? this.props.action.bind(this, this.props.tile) : null}
-            key={selectn('uid', tile)}
-            title={selectn('properties.dc:title', tile)}
-            actionPosition="right"
-            titlePosition={this.props.fileTypeTilePosition}
-            actionIcon={actionIcon}
-            subtitle={<span><strong>{Math.round(selectn('properties.common:size', tile) * 0.001)} KB</strong></span>}
+        return <GridListTile
+            onClick={(this.props.action) ? this.props.action.bind(this, this.props.tile) : null}
+            key={selectn('uid', tile)}   
         >
             {this.props.preview}
-        </GridTile>;
+            <GridListTileBar
+                title={selectn('properties.dc:title', tile)}
+                actionPosition="right"
+                titlePosition={this.props.fileTypeTilePosition}
+                actionIcon={actionIcon}
+                subtitle={<span><strong>{Math.round(selectn('properties.common:size', tile) * 0.001)} KB</strong></span>}
+            />
+        </GridListTile>;
     }
 }
 
@@ -167,14 +173,6 @@ export default class SelectMediaComponent extends React.Component {
     }
 
     render() {
-
-        const actions = [
-            <FlatButton
-                label={intl.trans('cancel', 'Cancel', 'first')}
-                secondary={true}
-                onTouchTap={this._handleClose}/>
-        ];
-
         let fileTypeLabel = intl.trans('file', 'file', 'lower');
         let fileTypeCellHeight = 210;
         let fileTypeTilePosition = 'bottom';
@@ -199,18 +197,13 @@ export default class SelectMediaComponent extends React.Component {
         const computeResources = ProviderHelpers.getEntry(this.props.computeResources, '/FV/Workspaces/');
         const dialect = this.props.dialect;
 
-        var SharedResourceGridTileWithDialect = React.createClass({
-            render: function () {
-                return React.createElement(SharedResourceGridTile, {...this.props, dialect: dialect});
-            }
-        });
+        var SharedResourceGridListTileWithDialect = props => React.createElement(SharedResourceGridListTile, {...props, dialect: dialect});
 
         return (
             <div style={{display: 'inline'}}>
-                <RaisedButton label={this.props.label} onTouchTap={this._handleOpen}/>
+                <Button variant='raised' onClick={this._handleOpen}>{this.props.label}</Button>
                 <Dialog
                     title={intl.searchAndReplace("Select existing " + fileTypeLabel + " from " + selectn('properties.dc:title', dialect) + " dialect or shared resources") + ':'}
-                    actions={actions}
                     modal={true}
                     contentStyle={{width: '80%', height: '80vh', maxWidth: '100%'}}
                     autoScrollBodyContent={true}
@@ -219,7 +212,7 @@ export default class SelectMediaComponent extends React.Component {
                     <div
                         className={classNames('alert', 'alert-info', {'hidden': !selectn('isFetching', computeResources)})}>
                         {intl.trans('loading_results_please_wait', 'Loading results, please wait.', 'first')}<br/>
-                        <LinearProgress mode="indeterminate"/>
+                        <LinearProgress variant="indeterminate"/>
                     </div>
 
                     <FilteredPaginatedMediaList
@@ -229,11 +222,19 @@ export default class SelectMediaComponent extends React.Component {
                         filterOptionsKey={'ResourcesSelector'}
                         action={this._handleSelectElement}
                         fetcher={this.fetchData}
-                        gridListTile={SharedResourceGridTileWithDialect}
+                        gridListTile={SharedResourceGridListTileWithDialect}
                         fetcherParams={this.state.fetcherParams}
                         initialValues={{'dc:contributors': selectn("response.properties.username", this.props.computeLogin)}}
                         metadata={selectn('response', computeResources) || selectn('response_prev', computeResources)}
                         items={selectn('response.entries', computeResources) || selectn('response_prev.entries', computeResources) || []}/>
+
+                    <DialogActions>
+                        <Button variant='flat'
+                            color="secondary"
+                            onClick={this._handleClose}>
+                            {intl.trans('cancel', 'Cancel', 'first')}    
+                        </Button>
+                    </DialogActions>
 
                 </Dialog>
             </div>

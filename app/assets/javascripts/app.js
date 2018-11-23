@@ -15,12 +15,11 @@ limitations under the License.
 */
 import 'babel-polyfill';
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component} from 'react';
+import PropTypes from 'prop-types';
 import { render } from 'react-dom'
 
-import injectTapEventPlugin from 'react-tap-event-plugin';
-
-import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
 import FirstVoicesTheme from 'views/themes/FirstVoicesTheme.js';
 
@@ -32,33 +31,75 @@ import providers from './providers/index';
 // Views
 import AppWrapper from 'views/AppWrapper';
 
+import { pushEnhancer } from 'react-redux-provide';
+
+if (process.env.NODE_ENV !== 'production' && window.devToolsExtension) {
+  for (let providerKey in providers) {
+    pushEnhancer(
+      { provider: providers[providerKey] },
+      window.devToolsExtension({
+        actionsBlacklist: ['@@INIT']
+      })
+    );
+  }
+}
+
+
 require('!style-loader!css-loader!normalize.css');
 require('!style-loader!css-loader!alloyeditor/dist/alloy-editor/assets/alloy-editor-ocean-min.css');
 require('!style-loader!css-loader!tether-shepherd/dist/css/shepherd-theme-arrows.css');
 require('bootstrap/less/bootstrap');
+require('!style-loader!css-loader!react-quill/dist/quill.snow.css');
 require("styles/main");
 
-injectTapEventPlugin();
-
-const context = {
-    providers,
-    /*combinedProviders: [
-      providers // OK for all providers to share the same store for now, make sure actions are unique
-    ],*/
-    providedState: {
-        properties: {
-            title: ConfGlobal.title,
-            pageTitleParams: null,
-            domain: ConfGlobal.domain,
-            theme: {
-                palette: ThemeManager.getMuiTheme(FirstVoicesTheme),
-                id: 'default'
+const props = {
+    providers: {
+        ...providers,
+        navigation: {
+            ...providers.navigation,
+            state: {
+                ...providers.navigation.state,
+                properties: {
+                    title: ConfGlobal.title,
+                    pageTitleParams: null,
+                    domain: ConfGlobal.domain,
+                    theme: {
+                        palette: createMuiTheme(FirstVoicesTheme),
+                        id: 'default'
+                    }
+                }
             }
         }
     }
 };
 
-render(<AppWrapper {...context} />, document.getElementById('app-wrapper'));
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: '#b40000',
+        },
+        secondary: {
+            main: '#b40000',
+        },
+    },
+    typography: {
+        fontSize: 22,
+    },
+    overrides: {
+        MuiButton: {
+            root: {
+                borderRadius: 2,
+            },
+        },
+    },
+})
+
+render(
+    <MuiThemeProvider theme={theme}>
+        <AppWrapper {...props} />
+    </MuiThemeProvider>,
+    document.getElementById('app-wrapper')
+);
 
 /*window.addEventListener("unhandledrejection", function(err, promise) {
 // handle error here, for example log

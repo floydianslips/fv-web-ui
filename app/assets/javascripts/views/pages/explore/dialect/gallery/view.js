@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List, Map} from 'immutable';
 import classNames from 'classnames';
 import ImageGallery from 'react-image-gallery';
@@ -22,7 +23,7 @@ import selectn from 'selectn';
 
 import ConfGlobal from 'conf/local.json';
 
-import RaisedButton from 'material-ui/lib/raised-button';
+import Button from '@material-ui/core/Button';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';

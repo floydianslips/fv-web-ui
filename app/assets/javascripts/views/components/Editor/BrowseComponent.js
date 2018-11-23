@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {Map} from 'immutable';
 
 import provide from 'react-redux-provide';
@@ -24,15 +25,18 @@ import classNames from 'classnames';
 import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
 
-import {Dialog, FlatButton, RaisedButton} from 'material-ui';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import Button from '@material-ui/core/Button';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 
 import MediaList from 'views/components/Browsing/media-list';
-import LinearProgress from 'material-ui/lib/linear-progress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
-import IconButton from 'material-ui/lib/icon-button';
-import ActionInfo from 'material-ui/lib/svg-icons/action/info';
-import ActionInfoOutline from 'material-ui/lib/svg-icons/action/info-outline';
+import IconButton from '@material-ui/core/IconButton';
+import ActionInfo from '@material-ui/icons/Info';
+import ActionInfoOutline from '@material-ui/icons/InfoOutlined';
 
 import PhraseListView from 'views/pages/explore/dialect/learn/phrases/list-view';
 import WordListView from 'views/pages/explore/dialect/learn/words/list-view';
@@ -49,7 +53,7 @@ const DefaultFetcherParams = {
     filters: {'properties.dc:title': {appliedFilter: ''}, 'dialect': {appliedFilter: ''}}
 };
 
-class SharedResourceGridTile extends Component {
+class SharedResourceGridListTile extends Component {
 
     constructor(props, context) {
         super(props, context);
@@ -76,17 +80,19 @@ class SharedResourceGridTile extends Component {
                 <ActionInfoOutline color='white'/> : <ActionInfo color='white'/>}</IconButton>;
         }
 
-        return <GridTile
-            onTouchTap={(this.props.action) ? this.props.action.bind(this, this.props.tile) : null}
+        return <GridListTile
+            onClick={(this.props.action) ? this.props.action.bind(this, this.props.tile) : null}
             key={selectn('uid', tile)}
-            title={selectn('properties.dc:title', tile)}
-            actionPosition="right"
-            titlePosition={this.props.fileTypeTilePosition}
-            actionIcon={actionIcon}
-            subtitle={<span><strong>{Math.round(selectn('properties.common:size', tile) * 0.001)} KB</strong></span>}
         >
             {this.props.preview}
-        </GridTile>;
+            <GridListTileBar
+                title={selectn('properties.dc:title', tile)}
+                actionPosition="right"
+                titlePosition={this.props.fileTypeTilePosition}
+                actionIcon={actionIcon}
+                subtitle={<span><strong>{Math.round(selectn('properties.common:size', tile) * 0.001)} KB</strong></span>}
+            />
+        </GridListTile>;
     }
 }
 
@@ -172,13 +178,6 @@ export default class BrowseComponent extends React.Component {
         const dialect = this.props.dialect;
         const dialectPath = selectn('path', dialect);
 
-        const actions = [
-            <FlatButton
-                label={intl.trans('cancel', 'Cancel', 'first')}
-                secondary={true}
-                onTouchTap={this._handleClose}/>
-        ];
-
         let title = '';
         let view = null;
 
@@ -255,10 +254,9 @@ export default class BrowseComponent extends React.Component {
 
         return (
             <div style={{display: 'inline'}}>
-                <RaisedButton label={this.props.label} onTouchTap={this._handleOpen}/>
+                <Button variant='raised' onClick={this._handleOpen}>{this.props.label}</Button>
                 <Dialog
                     title={title}
-                    actions={actions}
                     modal={true}
                     contentStyle={{width: '80%', height: '80vh', maxWidth: '100%'}}
                     autoScrollBodyContent={true}
@@ -269,6 +267,14 @@ export default class BrowseComponent extends React.Component {
                             return view;
                         }
                     })()}
+
+                    <DialogActions>
+                        <Button variant='flat'
+                            color="secondary"
+                            onClick={this._handleClose}>
+                            {intl.trans('cancel', 'Cancel', 'first')}    
+                        </Button>                    
+                    </DialogActions>
 
                 </Dialog>
             </div>

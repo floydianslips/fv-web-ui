@@ -13,22 +13,21 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
 import provide from 'react-redux-provide';
 import selectn from 'selectn';
 
 // Components
-import Popover from 'material-ui/lib/popover/popover';
-import FlatButton from 'material-ui/lib/flat-button';
-import IconButton from 'material-ui/lib/icon-button';
-import RaisedButton from 'material-ui/lib/raised-button';
-import TextField from 'material-ui/lib/text-field';
+import Popover from '@material-ui/core/Popover';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
-import ActionExitToAppIcon from 'material-ui/lib/svg-icons/action/exit-to-app';
+import ActionExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-import CircularProgress from 'material-ui/lib/circular-progress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import {BrowserView, MobileView, isBrowser, isMobile} from 'react-device-detect';
 import IntlService from "views/services/intl";
@@ -52,6 +51,8 @@ export default class Login extends Component {
         //if (prevProps.userStore.currentUser !== this.props.userStore.currentUser) {
         //  this._handleClose();
         //}
+
+      this.anchorEl = ReactDOM.findDOMNode(this.anchorEl)
     }
 
     constructor(props, context) {
@@ -89,9 +90,9 @@ export default class Login extends Component {
     }
 
     _handleLogin() {
-
-        let username = this.refs.username.getValue();
-        let password = this.refs.password.getValue();
+        // This should be handled with state, not refs
+        let username = this.usernameRef.value;
+        let password = this.passwordRef.value;
 
         if (username !== null && password !== null) {
             if (username.length > 0 && password.length > 0) {
@@ -125,7 +126,7 @@ export default class Login extends Component {
 
     render() {
 
-        const themePalette = this.props.properties.theme.palette.rawTheme.palette;
+        const themePalette = this.props.properties.theme.palette.palette;
         const TextFieldStyle = {
             border: '1px solid',
             borderColor: '#a2291d',
@@ -167,19 +168,17 @@ export default class Login extends Component {
         }
 
         return (
-            <div style={{display: "inline-block", paddingTop: '15px', maxWidth: '205px'}}>
-                <FlatButton ref={(el) => {
+            <div style={{display: "inline-block", maxWidth: '205px'}}>
+                <Button variant='flat' ref={(el) => {
                     this.anchorEl = el
-                }} label={this.props.label} style={{"color": themePalette.alternateTextColor}}
-                            onTouchTap={this._handleOpen}/>
+                }} style={{"color": themePalette.alternateTextColor}}
+                            onClick={this._handleOpen}>{this.props.label}</Button>
                 <Popover open={this.state.open}
-                         anchorEl={ReactDOM.findDOMNode(this.anchorEl)}
-                         useLayerForClickAway={false}
+                         anchorEl={this.anchorEl}
                          style={{marginTop: "-14px", "backgroundColor": "transparent", "boxShadow": "none"}}
                          anchorOrigin={{"horizontal": "left", "vertical": "bottom"}}
-                         targetOrigin={{"horizontal": "middle", "vertical": "top"}}
-                         onRequestClose={this._handleClose}>
-
+                         transformOrigin={{"horizontal": "center", "vertical": "top"}}
+                         onClose={this._handleClose}>
                     <div style={{"width": "205px"}}>
                         <img style={{"position": "relative", "top": "14px", "zIndex": "999999", "left": "65%"}}
                              src="/assets/images/popover-arrow.png" alt=""/>
@@ -189,20 +188,20 @@ export default class Login extends Component {
                                 default: 'Sign in Below',
                                 case: 'first'
                             })} <a style={{"cursor": "pointer", "fontWeight": "100"}}
-                                   onTouchTap={this._onNavigateRequest.bind(this, "forgotpassword")}
+                                   onClick={this._onNavigateRequest.bind(this, "forgotpassword")}
                                    className="pull-right">{this.intl.translate({
                                 key: 'general.forgot?',
                                 default: 'Forgot?',
                                 case: 'first'
                             })}</a></h6>
                             <div><TextField style={Object.assign({}, TextFieldStyle, {"margin": "15px 0"})}
-                                            underlineShow={false} ref="username" hintText={this.intl.translate({
+                                            InputProps={{disableUnderline:true}} inputRef={el => this.usernameRef = el} placeholder={this.intl.translate({
                                 key: 'views.pages.explore.dialect.users.username',
                                 default: 'Username',
                                 case: 'first'
                             })}/></div>
-                            <div><TextField style={TextFieldStyle} underlineShow={false} ref="password" type="password"
-                                            hintText={this.intl.translate({
+                            <div><TextField style={TextFieldStyle} InputProps={{disableUnderline:true}} inputRef={el => this.passwordRef = el} type="password"
+                                            placeholder={this.intl.translate({
                                                 key: 'general.password',
                                                 default: 'Password',
                                                 case: 'first'
@@ -213,23 +212,25 @@ export default class Login extends Component {
                                 "backgroundColor": themePalette.primary4ColorLightest,
                                 "padding": "0 3px"
                             }}>{loginFeedbackMessage}</p>
-                            <RaisedButton style={{"width": "100%"}} secondary={true} onTouchTap={this._handleLogin}
-                                          label={this.intl.translate({
-                                            key: 'views.pages.users.login.sign_in',
-                                            default: 'Sign In',
-                                            case: 'first'
-                                        })}/>
+                            <Button variant='raised' style={{"width": "100%"}} color="secondary" onClick={this._handleLogin}>
+                                {this.intl.translate({
+                                    key: 'views.pages.users.login.sign_in',
+                                    default: 'Sign In',
+                                    case: 'first'
+                                })}
+                            </Button>
                             <h6 style={{"fontWeight": "500", "paddingTop": "10px"}}>{this.intl.translate({
                                 key: 'views.components.navigation.new_to_firstvoices',
                                 default: 'New to FirstVoices?'
                             })}</h6>
-                            <RaisedButton style={{"width": "100%"}} primary={true}
-                                          onTouchTap={this._onNavigateRequest.bind(this, "register")}
-                                          label={this.intl.translate({
-                                              key: 'general.register',
-                                              default: 'Register',
-                                              case: 'first'
-                                          })}/>
+                            <Button variant='raised' style={{"width": "100%"}} color="primary"
+                                          onClick={this._onNavigateRequest.bind(this, "register")}>
+                                {this.intl.translate({
+                                    key: 'general.register',
+                                    default: 'Register',
+                                    case: 'first'
+                                })}              
+                            </Button>
                         </div>
                     </div>
                 </Popover>

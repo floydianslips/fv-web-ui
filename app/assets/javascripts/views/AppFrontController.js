@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 
 import provide from 'react-redux-provide';
@@ -15,7 +16,7 @@ import AnalyticsHelpers from 'common/AnalyticsHelpers';
 
 import {Link} from 'provide-page';
 
-import FlatButton from 'material-ui/lib/flat-button';
+import Button from '@material-ui/core/Button';
 import Navigation from 'views/components/Navigation';
 import WorkspaceSwitcher from 'views/components/Navigation/workspace-switcher';
 import KidsNavigation from 'views/components/Kids/Navigation';
@@ -1444,8 +1445,7 @@ export default class AppFrontController extends Component {
     }
 
     _renderWithBreadcrumb(reactElement, matchedPage, props, theme) {
-
-        const themePalette = props.properties.theme.palette.rawTheme.palette;
+        const themePalette = props.properties.theme.palette.palette;
 
         return (
             <div>
@@ -1574,11 +1574,11 @@ export default class AppFrontController extends Component {
                 if (this.props.warnings.hasOwnProperty(warning) && !this.state.warningsDismissed) {
                     return <div style={{position: 'fixed', bottom: 0, zIndex: 99999}}
                                 className={classNames('alert', 'alert-warning')}>{selectn(warning, this.props.warnings)}
-                        <FlatButton label={intl.translate({
+                        <Button variant='flat' onClick={() => this.setState({warningsDismissed: true})}>{intl.translate({
                             key: 'dismiss',
                             default: 'Dismiss',
                             case: 'words'
-                        })} onTouchTap={() => this.setState({warningsDismissed: true})}/>
+                        })}</Button>
                     </div>;
                 }
             }.bind(this))}
@@ -1589,4 +1589,4 @@ export default class AppFrontController extends Component {
         </div>
         );
     }
-    }
+}

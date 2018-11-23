@@ -14,7 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
  */
 
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List, Map} from 'immutable';
 import classNames from 'classnames';
 import provide from 'react-redux-provide';
@@ -24,15 +25,18 @@ import ConfGlobal from 'conf/local.json';
 
 import t from 'tcomb-form';
 
-import Dialog from 'material-ui/lib/dialog';
+import Dialog from '@material-ui/core/Dialog';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
 
-import RaisedButton from 'material-ui/lib/raised-button';
-import FlatButton from 'material-ui/lib/flat-button';
+import Button from '@material-ui/core/Button';
 
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/lib/table';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
 
 import SelectFactory from 'views/components/Editor/fields/select';
 import DocumentView from 'views/components/Document/view';
@@ -201,19 +205,19 @@ export default class Tasks extends React.Component {
         (selectn('response', computeUserTasks) || []).map(function (task, i) {
 
             let tableRow = <TableRow key={i}>
-                <TableRowColumn>
-                    <a onTouchTap={this._handleOpen.bind(this, task.docref)}>{task.documentTitle}</a>
-                </TableRowColumn>
-                <TableRowColumn>
+                <TableCell>
+                    <a onClick={this._handleOpen.bind(this, task.docref)}>{task.documentTitle}</a>
+                </TableCell>
+                <TableCell>
                     <span>{intl.searchAndReplace(task.name)}</span>
-                </TableRowColumn>
-                <TableRowColumn>
-                    <RaisedButton label={intl.trans('approve', 'Approve', 'first')} secondary={true}
-                                  onTouchTap={this._handleTaskActions.bind(this, task.id, 'approve')}/> &nbsp;
-                    <RaisedButton label={intl.trans('reject', 'Reject', 'first')} secondary={true}
-                                  onTouchTap={this._handleTaskActions.bind(this, task.id, 'reject')}/>
-                </TableRowColumn>
-                <TableRowColumn>{task.dueDate}</TableRowColumn>
+                </TableCell>
+                <TableCell>
+                    <Button variant='raised' color="secondary"
+                                  onClick={this._handleTaskActions.bind(this, task.id, 'approve')}>{intl.trans('approve', 'Approve', 'first')}</Button> &nbsp;
+                    <Button variant='raised' color="secondary"
+                                  onClick={this._handleTaskActions.bind(this, task.id, 'reject')}>{intl.trans('reject', 'Reject', 'first')}</Button>
+                </TableCell>
+                <TableCell>{task.dueDate}</TableCell>
             </TableRow>;
 
             userTasks.push(tableRow);
@@ -226,19 +230,19 @@ export default class Tasks extends React.Component {
             let uid = selectn('uid', task);
 
             let tableRow = <TableRow key={i}>
-                <TableRowColumn>
-                    <a onTouchTap={this._handleOpen.bind(this, uid)}>{selectn('properties.dc:title', task)}</a>
-                </TableRowColumn>
-                <TableRowColumn>
+                <TableCell>
+                    <a onClick={this._handleOpen.bind(this, uid)}>{selectn('properties.dc:title', task)}</a>
+                </TableCell>
+                <TableCell>
                     <span>{intl.trans('views.pages.tasks.request_to_join', 'Request to join')} {selectn('properties.docinfo:documentTitle', task)}</span>
-                </TableRowColumn>
-                <TableRowColumn>
-                    <RaisedButton label={intl.trans('approve', 'Approve', 'first')} secondary={true}
-                                  onTouchTap={this._handlePreApprovalOpen.bind(this, task, 'approve')}/> &nbsp;
-                    <RaisedButton label={intl.trans('reject', 'Reject', 'first')} secondary={true}
-                                  onTouchTap={this._handleRegistrationActions.bind(this, uid, 'reject')}/>
-                </TableRowColumn>
-                <TableRowColumn>N/A</TableRowColumn>
+                </TableCell>
+                <TableCell>
+                    <Button variant='raised' color="secondary"
+                                  onClick={this._handlePreApprovalOpen.bind(this, task, 'approve')}>{intl.trans('approve', 'Approve', 'first')}</Button> &nbsp;
+                    <Button variant='raised' color="secondary"
+                                  onClick={this._handleRegistrationActions.bind(this, uid, 'reject')}>{intl.trans('reject', 'Reject', 'first')}</Button>
+                </TableCell>
+                <TableCell>N/A</TableCell>
             </TableRow>;
 
             userRegistrationTasks.push(tableRow);
@@ -250,15 +254,15 @@ export default class Tasks extends React.Component {
             <div>
                 <h1>{intl.trans('tasks', 'Tasks', 'first')}</h1>
                 <Table>
-                    <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
+                    <TableHead>
                         <TableRow>
-                            <TableHeaderColumn>{intl.trans('document_title', 'Document Title', 'words')}</TableHeaderColumn>
-                            <TableHeaderColumn>{intl.trans('task_type', 'Task Type', 'words')}</TableHeaderColumn>
-                            <TableHeaderColumn>{intl.trans('actions', 'Actions', 'words')}</TableHeaderColumn>
-                            <TableHeaderColumn>{intl.trans('task_due_date', 'Task Due Date', 'words')}</TableHeaderColumn>
+                            <TableCell>{intl.trans('document_title', 'Document Title', 'words')}</TableCell>
+                            <TableCell>{intl.trans('task_type', 'Task Type', 'words')}</TableCell>
+                            <TableCell>{intl.trans('actions', 'Actions', 'words')}</TableCell>
+                            <TableCell>{intl.trans('task_due_date', 'Task Due Date', 'words')}</TableCell>
                         </TableRow>
-                    </TableHeader>
-                    <TableBody displayRowCheckbox={false}>
+                    </TableHead>
+                    <TableBody>
                         {userTasks}
                         {userRegistrationTasks}
                     </TableBody>

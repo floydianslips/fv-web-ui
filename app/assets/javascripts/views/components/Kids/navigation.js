@@ -14,7 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import selectn from 'selectn';
 
@@ -25,23 +26,24 @@ import provide from 'react-redux-provide';
 import ProviderHelpers from 'common/ProviderHelpers';
 import NavigationHelpers from 'common/NavigationHelpers';
 
-// Components
-import AppBar from 'material-ui/lib/app-bar';
+import AppBar from '@material-ui/core/AppBar';
 
-import TextField from 'material-ui/lib/text-field';
+import Avatar from '@material-ui/core/Avatar';
+import IconMenu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
-import Avatar from 'material-ui/lib/avatar';
-import IconMenu from 'material-ui/lib/menus/icon-menu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
-
-import Badge from 'material-ui/lib/badge';
-import FlatButton from 'material-ui/lib/flat-button';
-import Toolbar from 'material-ui/lib/toolbar/toolbar';
-import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
-import IconButton from 'material-ui/lib/icon-button';
-import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
-import NotificationsIcon from 'material-ui/lib/svg-icons/social/notifications';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import Badge from '@material-ui/core/Badge';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import HomeIcon from '@material-ui/icons/Home';
+import AppsIcon from '@material-ui/icons/Apps';
+import ClearIcon from '@material-ui/icons/Clear';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import NotificationsIcon from '@material-ui/icons/Notifications';
 
 import Login from 'views/components/Navigation/Login';
 import AppLeftNav from 'views/components/Navigation/AppLeftNav';
@@ -66,14 +68,14 @@ export default class Navigation extends Component {
     };
 
     /*static childContextTypes = {
-      client: React.PropTypes.object,
-      muiTheme: React.PropTypes.object,
-      siteProps: React.PropTypes.object
+      client: PropTypes.object,
+      muiTheme: PropTypes.object,
+      siteProps: PropTypes.object
     };
 
     static contextTypes = {
-        muiTheme: React.PropTypes.object.isRequired,
-        siteProps: React.PropTypes.object.isRequired
+        muiTheme: PropTypes.object.isRequired,
+        siteProps: PropTypes.object.isRequired
     };
 
     getChildContext() {
@@ -168,41 +170,46 @@ export default class Navigation extends Component {
             <Avatar src={ConfGlobal.baseURL + portalLogo} size={50} style={{marginRight: '10px'}}/> : '';
 
         return <div>
-            <AppBar
-                title={<a style={{textDecoration: 'none', color: '#fff'}}
-                          onTouchTap={this._onNavigateRequest.bind(this, (!this.props.routeParams.dialect_path) ? '/kids' : '/kids' + this.props.routeParams.dialect_path)}>{avatar}
+            <AppBar position="static">
+                <Toolbar style={{alignItems: 'center', backgroundColor:'inherit'}}>
+                    <Typography variant="title" noWrap style={{flexGrow: 1}}>
+                        <a style={{textDecoration: 'none', color: '#fff'}}
+                            onClick={this._onNavigateRequest.bind(this, (!this.props.routeParams.dialect_path) ? '/kids' : '/kids' + this.props.routeParams.dialect_path)}>
+                            {avatar}
                     <span
-                        className="hidden-xs">{(selectn('response.contextParameters.ancestry.dialect.dc:title', computePortal) || this.props.properties.title) + ' ' + intl.trans('views.pages.explore.dialect.for_kids', 'for Kids')}</span></a>}
-                iconClassNameRight="muidocs-icon-navigation-expand-more"
-                showMenuIconButton={false}
-                onRightIconButtonTouchTap={() => this.props.toggleMenuAction("AppLeftNav")}>
+                        className="hidden-xs">{(selectn('response.contextParameters.ancestry.dialect.dc:title', computePortal) || this.props.properties.title) + ' ' + intl.trans('views.pages.explore.dialect.for_kids', 'for Kids')}
+                        </span></a>
+                    </Typography>
+                    <Tooltip title={intl.trans('back', 'Back', 'first')} placement="bottom-end">
+                        <IconButton className={classNames({'hidden': this.props.frontpage})}
+                                    onClick={(e) => NavigationHelpers.navigateBack()}
+                                    >
+                            <KeyboardBackspaceIcon />
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title={intl.trans('home', 'Home', 'first')} placement="bottom-end">
+                        <IconButton
+                            onClick={this._onNavigateRequest.bind(this, '/kids' + (this.props.routeParams.dialect_path ? this.props.routeParams.dialect_path : ''))}
+                            >
+                            <HomeIcon />
+                        </IconButton>
+                    </Tooltip>
 
-                <ToolbarGroup style={{paddingTop: '5px'}}>
+                    <Tooltip title={intl.trans('choose_lang', 'Choose a Language', 'first')} placement="bottom-end">
+                        <IconButton onClick={this._onNavigateRequest.bind(this, '/kids/FV/Workspaces/Data')}
+                                    >
+                                <AppsIcon />
+                        </IconButton>
+                    </Tooltip>
 
-                    <IconButton className={classNames({'hidden': this.props.frontpage})}
-                                onTouchTap={(e) => NavigationHelpers.navigateBack()}
-                                style={{paddingTop: 0, top: '8px', left: '-10px'}} iconClassName="material-icons"
-                                tooltipPosition="bottom-left"
-                                tooltip={intl.trans('back', 'Back', 'first')}>keyboard_backspace</IconButton>
-
-                    <IconButton
-                        onTouchTap={this._onNavigateRequest.bind(this, '/kids' + (this.props.routeParams.dialect_path ? this.props.routeParams.dialect_path : ''))}
-                        style={{paddingTop: 0, top: '8px', left: '-10px'}} iconClassName="material-icons"
-                        tooltipPosition="bottom-left" tooltip={intl.trans('home', 'Home', 'first')}>home</IconButton>
-
-                    <IconButton onTouchTap={this._onNavigateRequest.bind(this, '/kids/FV/Workspaces/Data')}
-                                style={{paddingTop: 0, top: '8px', left: '-10px'}} iconClassName="material-icons"
-                                tooltipPosition="bottom-left"
-                                tooltip={intl.trans('choose_lang', 'Choose a Language', 'first')}>apps</IconButton>
-
-                    <ToolbarSeparator style={{float: 'none', marginLeft: '0', marginRight: '15px'}}/>
-
-                    <IconButton style={{paddingTop: 0, paddingRight: 0, top: '8px', left: '-10px'}}
-                                iconClassName="material-icons" onTouchTap={this._onNavigateRequest.bind(this, '/')}
-                                tooltipPosition="bottom-left"
-                                tooltip={intl.trans('back_to_main_site', 'Back to Main Site', 'words')}>clear</IconButton>
-
-                </ToolbarGroup>
+                    <Tooltip title={intl.trans('back_to_main_site', 'Back to Main Site', 'words')} placement="bottom-end">
+                        <IconButton onClick={this._onNavigateRequest.bind(this, '/')}
+                                    >
+                                <ClearIcon />
+                        </IconButton>
+                    </Tooltip>
+                    
+                </Toolbar>
 
             </AppBar>
         </div>;

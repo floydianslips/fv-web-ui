@@ -13,14 +13,16 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 import ConfGlobal from 'conf/local.json';
 import selectn from 'selectn';
 import classNames from 'classnames';
 
-import FlatButton from 'material-ui/lib/flat-button';
-import FontIcon from 'material-ui/lib/font-icon';
+import Button from '@material-ui/core/Button';
+import InfoIcon from '@material-ui/icons/Info';
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 
 import PageStats from 'views/pages/explore/dialect/page-stats';
 
@@ -112,15 +114,15 @@ export default class Header extends Component {
                 <div className={classNames('dialect-info-banner')}>
 
                     <div className={classNames('dib-header', 'visible-xs')}>
-                        <FlatButton
-                            label={(this.state.showArchiveInfoMobile) ? intl.trans('info', 'Info', 'first') : intl.trans('info', 'Info', 'first')}
-                            labelPosition="before"
-                            onTouchTap={(e) => {
+                        <Button variant='flat'
+                            onClick={(e) => {
                                 this.setState({showArchiveInfoMobile: !this.state.showArchiveInfoMobile});
                                 e.preventDefault();
-                            }} icon={<FontIcon
-                            className="material-icons">{(this.state.showArchiveInfoMobile) ? 'info_outline' : 'info'}</FontIcon>}
-                            style={{float: 'right', lineHeight: 1}}/>
+                            }}
+                            style={{float: 'right', lineHeight: 1}}>
+                            {(this.state.showArchiveInfoMobile) ? intl.trans('info', 'Info', 'first') : intl.trans('info', 'Info', 'first')}    
+                            {this.state.showArchiveInfoMobile ? <InfoOutlinedIcon /> : <InfoIcon />}
+                        </Button>
                     </div>
 
                     <div className={classNames('dib-body', {'hidden-xs': !this.state.showArchiveInfoMobile})}

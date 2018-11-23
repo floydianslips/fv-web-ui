@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List, Set, Map} from 'immutable';
 import classNames from 'classnames';
 import provide from 'react-redux-provide';
@@ -36,8 +37,7 @@ import SongsStoriesListViewAlt from 'views/pages/explore/dialect/learn/songs-sto
 
 import ReportBrowser from './browse-view';
 
-import CircularProgress from 'material-ui/lib/circular-progress';
-import RaisedButton from 'material-ui/lib/raised-button';
+import Button from '@material-ui/core/Button';
 
 import FacetFilterList from 'views/components/Browsing/facet-filter-list';
 import IntlService from 'views/services/intl';

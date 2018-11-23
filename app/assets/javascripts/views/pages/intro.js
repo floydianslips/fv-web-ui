@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List} from 'immutable';
 
 import provide from 'react-redux-provide';
@@ -22,16 +23,14 @@ import classNames from 'classnames';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 
-import GridList from 'material-ui/lib/grid-list/grid-list';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
-import CircularProgress from 'material-ui/lib/circular-progress';
-import Paper from 'material-ui/lib/paper';
-import RaisedButton from 'material-ui/lib/raised-button';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
-import TextField from 'material-ui/lib/text-field';
-
-import IconMenu from 'material-ui/lib/menus/icon-menu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import IconMenu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import IntlService from "views/services/intl";
 
 /**
@@ -47,7 +46,7 @@ export default class PageHome extends Component {
     };
 
     /*static contextTypes = {
-        muiTheme: React.PropTypes.object.isRequired
+        muiTheme: PropTypes.object.isRequired
     };*/
 
     constructor(props, context) {
@@ -83,13 +82,15 @@ export default class PageHome extends Component {
                                                         alt="Language Legacies Celebrating Indigenous Cultures"
                                                         className="img-responsive"/></p>
                     <p><img src="/assets/images/logo.gif" alt="FirstVoices Logo" className="img-responsive"/></p>
-                    <a href="http://legacy.firstvoices.com/"><RaisedButton label="Legacy Site" style={{
+                    <a href="http://legacy.firstvoices.com/"><Button variant='raised' style={{
                         textAlign: 'center',
                         marginRight: '14px'
-                    }}/></a>
-                    <RaisedButton label={this.intl.translate({key: 'enter_firstvoices', default: "Enter FirstVoices"})}
-                                  onTouchTap={(e, v) => this._onNavigateRequest('/')}
-                                  style={{textAlign: 'center'}}/>
+                    }}>Legacy Site</Button></a>
+                    <Button variant='raised'
+                                  onClick={(e, v) => this._onNavigateRequest('/')}
+                                  style={{textAlign: 'center'}}>
+                        {this.intl.translate({key: 'enter_firstvoices', default: "Enter FirstVoices"})}
+                    </Button>
                     <p><img src="/assets/images/intro-french.gif"
                             alt="Des patrimoines linguistiques célébrant des cultures indigènes"
                             className="img-responsive"/></p>

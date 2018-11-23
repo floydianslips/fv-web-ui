@@ -1,12 +1,12 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import provide from 'react-redux-provide';
 import selectn from 'selectn';
 import Autosuggest from 'react-autosuggest';
 
-import RefreshIndicator from 'material-ui/lib/refresh-indicator';
-import LinearProgress from 'material-ui/lib/linear-progress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import IntlService from "views/services/intl";
 
 const theme = {
@@ -46,7 +46,7 @@ export default class AutoSuggestComponent extends Component {
     };
 
     static contextTypes = {
-        muiTheme: React.PropTypes.object
+        muiTheme: PropTypes.object
     };
 
     shouldRenderSuggestions(value) {
@@ -227,7 +227,7 @@ export default class AutoSuggestComponent extends Component {
                 </div>
 
                 <div className="col-xs-12">
-                    <LinearProgress mode="indeterminate"
+                    <LinearProgress variant="indeterminate"
                                     className={classNames({'hidden': !this.getComputeType().isFetching})}/>
                 </div>
 

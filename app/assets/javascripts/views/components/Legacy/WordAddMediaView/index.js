@@ -22,8 +22,8 @@ var _ = require('underscore');
 var classNames = require('classnames');
 var Mui = require('material-ui');
 var {
-      Card, CardHeader, CardMedia, CardTitle, CardActions, CardText, Avatar, FlatButton,
-      Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator, DropDownMenu, DropDownIcon, FontIcon, RaisedButton,
+      Card, CardHeader, CardMedia, CardTitle, CardActions, CardContent, Avatar, FlatButton,
+      DropDownMenu, DropDownIcon, RaisedButton,
       Tabs, Tab,
       Dialog
     } = Mui;
@@ -203,7 +203,7 @@ class WordAddMediaView extends React.Component {
 }
 
 WordAddMediaView.contextTypes = {
-  router: React.PropTypes.func
+  router: PropTypes.func
 };
 
 module.exports = WordAddMediaView;

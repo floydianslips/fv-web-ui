@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List, Map} from 'immutable';
 import classNames from 'classnames';
 import selectn from 'selectn';
@@ -13,7 +14,7 @@ import withToggle from 'views/hoc/view/with-toggle';
 import ProviderHelpers from 'common/ProviderHelpers';
 import FormHelpers from 'common/FormHelpers';
 
-import {RaisedButton, FlatButton, FontIcon} from 'material-ui';
+import Button from '@material-ui/core/Button';
 import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;
@@ -220,14 +221,17 @@ export default function withFilter(ComposedFilter, DefaultFetcherParams) {
                                         context={this.props.initialValues}
                                         value={this.state.formValue}
                                         options={options.toJS()}/>
-                                    <RaisedButton
-                                        onTouchTap={this._onReset}
-                                        label={intl.trans('reset', 'Reset', 'first')}
-                                        primary={true}/> &nbsp;
-                                    <RaisedButton
+                                    <Button variant='raised'
+                                        onClick={this._onReset}
+                                        color="primary">
+                                        {intl.trans('reset', 'Reset', 'first')}    
+                                    </Button> &nbsp;
+                                    <Button variant='raised'
                                         type="submit"
-                                        label={intl.trans('filter', 'Filter', 'first')}
-                                        primary={true}/>
+                                        color="primary"
+                                        onClick={this._onFilterSaveForm}>
+                                        {intl.trans('filter', 'Filter', 'first')}    
+                                    </Button>
                                 </FiltersWithToggle>
 
                             </form>

@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import provide from 'react-redux-provide';
 import selectn from 'selectn';
 import t from 'tcomb-form';
@@ -26,12 +27,9 @@ import ProviderHelpers from 'common/ProviderHelpers';
 import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';
 
-import {
-    Card, CardHeader, CardMedia, CardTitle, CardActions, CardText, Avatar, FlatButton,
-    Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator, DropDownMenu, DropDownIcon, FontIcon, RaisedButton,
-    Tabs, Tab,
-    Dialog
-} from 'material-ui';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import Button from '@material-ui/core/Button';
 import IntlService from "views/services/intl";
 
 const intl = IntlService.instance;
@@ -189,13 +187,6 @@ export default class AddMediaComponent extends Component {
         let form = "";
         let fileTypeLabel = intl.trans('file', 'File', 'first');
 
-        const actions = [
-            <FlatButton
-                label={intl.trans('cancel', 'Cancel', 'first')}
-                secondary={true}
-                onTouchTap={this.handleClose}/>
-        ];
-
         switch (this.props.type) {
             case 'FVAudio':
                 computeCreate = ProviderHelpers.getEntry(this.props.computeAudio, this.state.pathOrId);
@@ -235,21 +226,21 @@ export default class AddMediaComponent extends Component {
 
         if (computeCreate && computeCreate.success) {
             uploadText = <div className={classNames('alert', 'alert-success')} role="success">Upload successful!</div>
-            actions.push(<FlatButton
-                label={intl.trans('insert_into_entry', 'Insert into Entry', 'first')}
-                primary={true}
-                onTouchTap={this._handleSelectElement.bind(this, computeCreate.response)}/>);
+            actions.push(<Button variant='flat'
+                color="primary"
+                onClick={this._handleSelectElement.bind(this, computeCreate.response)}>{intl.trans('insert_into_entry', 'Insert into Entry', 'first')}</Button>);
             form = "";
         }
 
         return (
             <div style={{display: 'inline'}}>
-                <RaisedButton label={this.props.label} onTouchTap={this.handleOpen}/>
+                <Button variant='raised' onClick={this.handleOpen}>
+                    {this.props.label}
+                </Button>
                 <Dialog
                     title={intl.trans('views.components.editor.create_new_x_in_the_x_dialect',
                         "Create New " + fileTypeLabel + " in the " + selectn('properties.dc:title', this.props.dialect) + " dialect.",
                         'first', [fileTypeLabel, selectn('properties.dc:title', this.props.dialect)])}
-                    actions={actions}
                     modal={true}
                     autoScrollBodyContent={true}
                     open={this.state.open}>
@@ -258,6 +249,13 @@ export default class AddMediaComponent extends Component {
                         {uploadText}
                         {form}
                     </div>
+                    <DialogActions>
+                        <Button variant='flat'
+                            color="secondary"
+                            onClick={this.handleClose}>
+                            {intl.trans('cancel', 'Cancel', 'first')}    
+                        </Button>
+                    </DialogActions>
                 </Dialog>
             </div>
         );
