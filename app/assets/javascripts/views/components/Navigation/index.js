@@ -445,7 +445,10 @@ export default class Navigation extends Component {
                     })}</p>
                     <div>
                         <RadioGroup
-                            onChange={() => this.setState({searchLocal: !this.state.searchLocal})}
+                            onChange={() => {
+                              this.setState({searchLocal: !this.state.searchLocal})
+                              this.navigationSearchFieldRef.focus()
+                            }}
                             value={this.state.searchLocal ? 'local' : 'all'}
                             name="searchTarget" defaultSelected="local">
                             <FormControlLabel
