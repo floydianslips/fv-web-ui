@@ -219,11 +219,10 @@ export default class PageDialectLearnAlphabet extends PageDialectLearnBase {
                                             display: 'inline-block'
                                         }}>
                                             <Button variant='flat'
-                                             icon={<PlayArrowIcon
-                                                className="material-icons" />}
                                                 onClick={this._onCharAudioTouchTap.bind(this, char)}
                                                 //onClick={this._onNavigateRequest.bind(this, char.path.split('/')[char.path.split('/').length - 1])}
                                                 style={{minWidth: 'inherit', textTransform: 'initial'}}>
+                                                    {char.contextParameters.character.related_audio[0] && <PlayArrowIcon className="material-icons" />}
                                                     {char.title}
                                                 </Button>
                                             {(char.contextParameters.character.related_audio[0]) ?
