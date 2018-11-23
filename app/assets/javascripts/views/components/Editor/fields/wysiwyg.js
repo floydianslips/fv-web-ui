@@ -1,7 +1,8 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import t from 'tcomb-form';
 import classNames from 'classnames';
-import AlloyEditorComponent from 'views/components/Editor/AlloyEditorComponent';
+import ReactQuill from 'react-quill'
 
 /**
 * Custom textarea field for tcomb-form that uses alloy-editor
@@ -12,7 +13,12 @@ function renderTextarea(locals) {
     locals.onChange(value);
   }
 
-  return <AlloyEditorComponent content={locals.value} onContentChange={onContentChange} container={"editable" + locals.label.replace(' ', '_')} />
+  return (
+    <ReactQuill 
+      value={locals.value}
+      onChange={onContentChange}
+    />
+  )
 }
 
 const textboxTemplate = t.form.Form.templates.textbox.clone({ renderTextarea })

@@ -13,31 +13,28 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List} from 'immutable';
 
 import provide from 'react-redux-provide';
 import selectn from 'selectn';
 import classNames from 'classnames';
 
-import Colors from 'material-ui/lib/styles/colors';
-
 import ProviderHelpers from 'common/ProviderHelpers';
 
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
-import GridList from 'material-ui/lib/grid-list/grid-list';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
-import CircularProgress from 'material-ui/lib/circular-progress';
-import Paper from 'material-ui/lib/paper';
-import RaisedButton from 'material-ui/lib/raised-button';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 //import Map from 'views/components/Geo/map';
 
-import TextField from 'material-ui/lib/text-field';
-
-import IconMenu from 'material-ui/lib/menus/icon-menu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import IconMenu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import IntroCardView from 'views/components/Browsing/intro-card-view';
 import TextHeader from 'views/components/Document/Typography/text-header';
@@ -64,7 +61,7 @@ export default class PageHome extends Component {
     };
 
     /*static contextTypes = {
-        muiTheme: React.PropTypes.object.isRequired
+        muiTheme: PropTypes.object.isRequired
     };*/
 
     intl = IntlService.instance;
@@ -165,21 +162,20 @@ export default class PageHome extends Component {
                                     )
                                 }}></p></div>
                             <div>
-                                <RaisedButton label={this.intl.translate({
-                                    key: 'get_started!',
-                                    default: 'Get Started!',
-                                    case: 'words'
-                                }) + '!'} primary={true}
-                                              onTouchTap={this._onNavigateRequest.bind(this, '/explore/FV/sections/Data/')}
-                                              style={{marginRight: '10px', height: '50px'}}
-                                              labelColor={alternateTextColor} labelStyle={{fontSize: '1.34em'}}/>
-                                <div className="hidden" style={{display: 'inline-block'}}><RaisedButton primary={true}
-                                                                                                        label={this.intl.translate({
+                                <Button variant='raised' color="primary"
+                                              onClick={this._onNavigateRequest.bind(this, '/explore/FV/sections/Data/')}
+                                              style={{marginRight: '10px', height: '50px'}}>
+                                    {this.intl.translate({
+                                        key: 'get_started!',
+                                        default: 'Get Started!',
+                                        case: 'words'
+                                    }) + '!'}
+                                </Button>
+                                <div className="hidden" style={{display: 'inline-block'}}><Button variant='raised' color="primary" onClick={() => this.setState({mapVisible: !this.state.mapVisible})}>{this.intl.translate({
                                                                                                             key: ['views', 'pages', 'home', 'language_map'],
                                                                                                             default: 'Language Map',
                                                                                                             case: 'words'
-                                                                                                        })}
-                                                                                                        onTouchTap={() => this.setState({mapVisible: !this.state.mapVisible})}/>
+                                                                                                        })}</Button>
                                 </div>
                             </div>
                         </div>

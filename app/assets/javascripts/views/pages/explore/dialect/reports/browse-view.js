@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, { List, Map } from 'immutable';
 
 import classNames from 'classnames';
@@ -29,10 +30,9 @@ import StringHelpers from 'common/StringHelpers';
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 import PageDialectLearnBase from 'views/pages/explore/dialect/learn/base';
 
-import RaisedButton from 'material-ui/lib/raised-button';
+import Button from '@material-ui/core/Button';
 
-import DropDownMenu from 'material-ui/lib/DropDownMenu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import GeneralList from 'views/components/Browsing/general-list';
 import {CardView} from './list-view';

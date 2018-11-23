@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List, Map} from 'immutable';
 import classNames from 'classnames';
 import selectn from 'selectn';
@@ -11,20 +12,20 @@ import options from 'models/schemas/filter-options';
 import ProviderHelpers from 'common/ProviderHelpers';
 import StringHelpers from 'common/StringHelpers';
 
-import {RaisedButton, FontIcon, FlatButton} from 'material-ui';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Button from '@material-ui/core/Button';
 
 import PageToolbar from 'views/pages/explore/dialect/page-toolbar';
 
-import Tabs from 'material-ui/lib/tabs/tabs';
-import Tab from 'material-ui/lib/tabs/tab';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
-import Toolbar from 'material-ui/lib/toolbar/toolbar';
-import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
-import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
+import Toolbar from '@material-ui/core/Toolbar';
 
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 
-import Dialog from 'material-ui/lib/dialog';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
 import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;
@@ -224,20 +225,6 @@ export default function withActions(ComposedFilter, publishWarningEnabled = fals
                             title={intl.trans(
                                 'views.hoc.view.publish_x',
                                 'Publish ' + StringHelpers.toTitleCase(this.props.labels.single), 'first', [StringHelpers.toTitleCase(this.props.labels.single)])}
-                            actions={[
-                                <FlatButton
-                                    label={intl.trans('cancel', 'Cancel', 'first')}
-                                    secondary={true}
-                                    onTouchTap={() => this.setState({
-                                        prePublishDialogOpen: false,
-                                        publishToggleCancelled: true,
-                                        prePublishCompleteAction: null
-                                    })}/>,
-                                <FlatButton
-                                    label={intl.trans('publish', 'Publish', 'first')}
-                                    primary={true}
-                                    keyboardFocused={true}
-                                    onTouchTap={this.state.prePublishCompleteAction}/>]}
                             modal={false}
                             open={this.state.prePublishDialogOpen}
                             onRequestClose={() => this.setState({
@@ -259,33 +246,34 @@ export default function withActions(ComposedFilter, publishWarningEnabled = fals
                                 }
                             })()}
 
+                            <DialogActions>
+                                <Button variant='flat'
+                                    color="secondary"
+                                    onClick={() => this.setState({
+                                        prePublishDialogOpen: false,
+                                        publishToggleCancelled: true,
+                                        prePublishCompleteAction: null
+                                    })}>{intl.trans('cancel', 'Cancel', 'first')}</Button>,
+                                <Button variant='flat'
+                                    color="primary"
+                                    keyboardFocused={true}
+                                    onClick={this.state.prePublishCompleteAction}>{intl.trans('publish', 'Publish', 'first')}</Button>
+                            </DialogActions>
+
                         </Dialog>
                     </AuthorizationFilter>
 
                     <AuthorizationFilter
                         filter={{permission: 'Write', entity: selectn('response', this.props.computeItem)}}>
                         <div className="col-xs-12" style={{marginTop: '15px'}}>
-                            <Toolbar className="toolbar">
-                                <ToolbarGroup key={0} float="right">
-                                    <RaisedButton icon={<FontIcon className="material-icons">delete</FontIcon>}
-                                                  onTouchTap={() => this.setState({deleteDialogOpen: true})}
-                                                  secondary={true}
-                                                  label={intl.trans('views.hoc.view.delete_x', "Delete " + StringHelpers.toTitleCase(this.props.labels.single), 'first', [StringHelpers.toTitleCase(this.props.labels.single)])}/>
-                                </ToolbarGroup>
+                            <Toolbar className="toolbar" style={{justifyContent:'flex-end'}}>
+                                    <Button variant='raised' icon={<DeleteIcon className="material-icons" />}
+                                                  onClick={() => this.setState({deleteDialogOpen: true})}
+                                                  color="secondary">{intl.trans('views.hoc.view.delete_x', "Delete " + StringHelpers.toTitleCase(this.props.labels.single), 'first', [StringHelpers.toTitleCase(this.props.labels.single)])}</Button>
                             </Toolbar>
 
                             <Dialog
                                 title={intl.trans('views.hoc.view.deleting_x', "Deleting " + StringHelpers.toTitleCase(this.props.labels.single), 'first', [StringHelpers.toTitleCase(this.props.labels.single)])}
-                                actions={[
-                                    <FlatButton
-                                        label={intl.trans('cancel', 'Cancel', 'first')}
-                                        secondary={true}
-                                        onTouchTap={() => this.setState({deleteDialogOpen: false})}/>,
-                                    <FlatButton
-                                        label={intl.trans('delete', 'Delete', 'first')}
-                                        primary={true}
-                                        keyboardFocused={true}
-                                        onTouchTap={this._delete.bind(this, selectn('response', this.props.computeItem))}/>]}
                                 modal={false}
                                 open={this.state.deleteDialogOpen}
                                 onRequestClose={this._handleCancelDelete}>
@@ -295,21 +283,21 @@ export default function withActions(ComposedFilter, publishWarningEnabled = fals
                                     'Proceeding will also delete all published versions of this ' + this.props.labels.single,
                                     'first',
                                     [this.props.labels.single, selectn('response.title', this.props.computeItem), this.props.labels.single])}.
+
+                                    <DialogActions>
+                                        <Button variant='flat'
+                                            color="secondary"
+                                            onClick={() => this.setState({deleteDialogOpen: false})}>{intl.trans('cancel', 'Cancel', 'first')}</Button>,
+                                        <Button variant='flat'
+                                            color="primary"
+                                            keyboardFocused={true}
+                                            onClick={this._delete.bind(this, selectn('response', this.props.computeItem))}>{intl.trans('delete', 'Delete', 'first')}</Button>
+                                    </DialogActions>
                             </Dialog>
 
                             <Dialog
                                 title={intl.trans('views.hoc.view.delete_x',
                                     "Delete " + StringHelpers.toTitleCase(this.props.labels.single) + " Success", 'words', [StringHelpers.toTitleCase(this.props.labels.single)])}
-                                actions={[
-                                    <FlatButton
-                                        label={intl.trans('views.hoc.view.return_to_previous_page', "Return to Previous Page", 'words')}
-                                        secondary={true}
-                                        onTouchTap={() => window.history.back()}/>,
-                                    <FlatButton
-                                        label={intl.trans('views.hoc.view.go_to_dialect_language_home', "Go to Dialect Language Home", 'words')}
-                                        primary={true}
-                                        keyboardFocused={true}
-                                        onTouchTap={this.props.onNavigateRequest.bind(this, '/' + this.props.splitWindowPath.slice(0, this.props.splitWindowPath.length - 2).join('/'))}/>]}
                                 modal={true}
                                 open={this.state.deleteSuccessDialogOpen}>
                                 {intl.trans(
@@ -318,6 +306,16 @@ export default function withActions(ComposedFilter, publishWarningEnabled = fals
                                     'first',
                                     [this.props.labels.single, selectn('response.title', this.props.computeItem)]
                                 )}
+
+                                <DialogActions>
+                                    <Button variant='flat'
+                                        color="secondary"
+                                        onClick={() => window.history.back()}>{intl.trans('views.hoc.view.return_to_previous_page', "Return to Previous Page", 'words')}</Button>,
+                                    <Button variant='flat'
+                                        color="primary"
+                                        keyboardFocused={true}
+                                        onClick={this.props.onNavigateRequest.bind(this, '/' + this.props.splitWindowPath.slice(0, this.props.splitWindowPath.length - 2).join('/'))}>{intl.trans('views.hoc.view.go_to_dialect_language_home', "Go to Dialect Language Home", 'words')}</Button>
+                                </DialogActions>
                             </Dialog>
 
                         </div>

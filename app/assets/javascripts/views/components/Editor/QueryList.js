@@ -13,14 +13,15 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import provide from 'react-redux-provide';
 import selectn from 'selectn';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 
-import SelectField from 'material-ui/lib/SelectField';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import IntlService from "views/services/intl";
 
 const intl = IntlService.instance;
@@ -88,14 +89,14 @@ export default class DirectoryList extends Component {
                 {
                     (this.props.fancy) ?
 
-                        <SelectField maxHeight={300} autoWidth={true} value={this.props.value}
+                        <Select maxHeight={300} autoWidth={true} value={this.props.value}
                                      onChange={this._handleChange}
                                      floatingLabelText={intl.trans('select', 'Select', 'first') + ' ' + intl.searchAndReplace(this.props.label) + ':'}>
                             {entries.map((entry) =>
                                 <MenuItem key={selectn('ecm:uuid', entry)} value={selectn('ecm:uuid', entry)}
                                           primaryText={selectn('dc:title', entry)}/>
                             )}
-                        </SelectField>
+                        </Select>
 
                         :
 

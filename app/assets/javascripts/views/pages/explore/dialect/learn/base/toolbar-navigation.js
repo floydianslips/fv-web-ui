@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 import classNames from 'classnames';
 import provide from 'react-redux-provide';
@@ -22,11 +23,9 @@ import selectn from 'selectn';
 import ProviderHelpers from 'common/ProviderHelpers';
 import NavigationHelpers from 'common/NavigationHelpers';
 
-import EditorInsertChart from 'material-ui/lib/svg-icons/editor/insert-chart';
-import Toolbar from 'material-ui/lib/toolbar/toolbar';
-import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
-import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
-import FlatButton from 'material-ui/lib/flat-button';
+import EditorInsertChart from '@material-ui/icons/InsertChart';
+import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
 
 import AuthenticationFilter from 'views/components/Document/AuthenticationFilter';
 import IntlService from 'views/services/intl';
@@ -104,28 +103,21 @@ export default class ToolbarNavigation extends Component {
         let storyCount = (selectn(COUNT_FIELD1, computeStoriesCount) == undefined) ? '...' : selectn(COUNT_FIELD1, computeStoriesCount) + selectn(COUNT_FIELD2, computeStoriesCount);
 
 
-        return <Toolbar className="dialect-navigation">
+        return <Toolbar className="dialect-navigation" style={{ position: 'absolute', bottom: 0, width: '100%' }}>
 
-            <ToolbarGroup firstChild={true} float="left">
-                <FlatButton onTouchTap={this._onNavigateRequest.bind(this, 'words')}
-                            label={intl.trans('words', 'Words', 'first') + " (" + wordCount + ")"}/>
-                <FlatButton onTouchTap={this._onNavigateRequest.bind(this, 'phrases')}
-                            label={intl.trans('phrases', 'Phrases', 'first') + " (" + phraseCount + ")"}/>
-                <FlatButton onTouchTap={this._onNavigateRequest.bind(this, 'songs')}
-                            label={intl.trans('songs', 'Songs', 'first') + " (" + songCount + ")"}/>
-                <FlatButton onTouchTap={this._onNavigateRequest.bind(this, 'stories')}
-                            label={intl.trans('stories', 'Stories', 'first') + " (" + storyCount + ")"}/>
-                <FlatButton onTouchTap={this._onNavigateRequest.bind(this, 'alphabet')}
-                            label={intl.trans('alphabet', 'Alphabet', 'first')}/>
-            </ToolbarGroup>
+                <Button variant='flat' onClick={this._onNavigateRequest.bind(this, 'words')}>{intl.trans('words', 'Words', 'first') + " (" + wordCount + ")"}</Button>
+                <Button variant='flat' onClick={this._onNavigateRequest.bind(this, 'phrases')}>{intl.trans('phrases', 'Phrases', 'first') + " (" + phraseCount + ")"}</Button>
+                <Button variant='flat' onClick={this._onNavigateRequest.bind(this, 'songs')}>{intl.trans('songs', 'Songs', 'first') + " (" + songCount + ")"}</Button>
+                <Button variant='flat' onClick={this._onNavigateRequest.bind(this, 'stories')}>{intl.trans('stories', 'Stories', 'first') + " (" + storyCount + ")"}</Button>
+                <Button variant='flat' onClick={this._onNavigateRequest.bind(this, 'alphabet')}>{intl.trans('alphabet', 'Alphabet', 'first')}</Button>
 
             <AuthenticationFilter login={this.props.computeLogin} hideFromSections={true}
                                   routeParams={this.props.routeParams}>
-                <ToolbarGroup className={classNames('hidden-xs', {'hidden': !this.props.showStats})} firstChild={false}
+                <div className={classNames('hidden-xs', {'hidden': !this.props.showStats})} firstChild={false}
                               float="right">
-                    <FlatButton icon={<EditorInsertChart/>} style={{color: '#fff'}} onTouchTap={this.props.showStats}
+                    <Button variant='flat' icon={<EditorInsertChart/>} style={{color: '#fff'}} onClick={this.props.showStats}
                                 label={intl.trans('language_statistics', 'Language Statistics')}/>
-                </ToolbarGroup>
+                </div>
             </AuthenticationFilter>
 
         </Toolbar>;

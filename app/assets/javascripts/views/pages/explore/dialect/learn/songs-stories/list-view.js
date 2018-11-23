@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List, Map} from 'immutable';
 import classNames from 'classnames';
 import selectn from 'selectn';
@@ -27,27 +28,36 @@ import NavigationHelpers from 'common/NavigationHelpers';
 
 import Preview from 'views/components/Editor/Preview';
 
-import AVPlayArrow from 'material-ui/lib/svg-icons/av/play-arrow';
-import AVStop from 'material-ui/lib/svg-icons/av/stop';
+import AVPlayArrow from '@material-ui/icons/PlayArrow';
+import AVStop from '@material-ui/icons/Stop';
 
-import Card from 'material-ui/lib/card/card';
-import CardTitle from 'material-ui/lib/card/card-title';
-import CardActions from 'material-ui/lib/card/card-actions';
-import CardHeader from 'material-ui/lib/card/card-header';
-import CardMedia from 'material-ui/lib/card/card-media';
-import CardText from 'material-ui/lib/card/card-text';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import Typography from '@material-ui/core/Typography';
 
-import FlatButton from 'material-ui/lib/flat-button';
-import IconButton from 'material-ui/lib/icon-button';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import ClearIcon from '@material-ui/icons/Clear';
+import FlipToFrontIcon from '@material-ui/icons/FlipToFront';
 
-import Tabs from 'material-ui/lib/tabs/tabs';
-import Tab from 'material-ui/lib/tabs/tab';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;
 const defaultStyle = {marginBottom: '20px'};
 
 class Introduction extends Component {
+    state = {
+        tabValue: 0,
+    }
+
     render() {
 
         const DEFAULT_LANGUAGE = this.props.defaultLanguage;
@@ -77,21 +87,29 @@ class Introduction extends Component {
                 {introductionDiv}</div>;
         }
 
-        return <Tabs>
-            <Tab label={intl.trans('introduction', 'Introduction', 'first')}>
-                {introductionDiv}
-            </Tab>
-            <Tab label={intl.searchAndReplace(DEFAULT_LANGUAGE)}>
-                <div style={Object.assign(introTabStyle, this.props.style)}>
-                    {introductionTranslations.map(function (translation, i) {
-                        if (translation.language == DEFAULT_LANGUAGE) {
-                            return <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(translation.translation)}}
-                                        key={i}></div>;
-                        }
-                    })}
-                </div>
-            </Tab>
-        </Tabs>;
+        return <div>
+            <Tabs value={this.state.tabValue} onChange={(e, tabValue) => this.setState({ tabValue })}>
+                <Tab label={intl.trans('introduction', 'Introduction', 'first')} />
+                <Tab label={intl.searchAndReplace(DEFAULT_LANGUAGE)} />
+            </Tabs>
+            {this.state.tabValue === 0 && (
+                <Typography component="div" style={{ padding: 8 * 3 }}>
+                    {introductionDiv}
+                </Typography>
+            )}
+            {this.state.tabValue == 1 && (
+                <Typography component="div" style={{ padding: 8 * 3 }}>
+                    <div style={Object.assign(introTabStyle, this.props.style)}>
+                        {introductionTranslations.map(function (translation, i) {
+                            if (translation.language == DEFAULT_LANGUAGE) {
+                                return <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(translation.translation)}}
+                                            key={i}></div>;
+                            }
+                        })}
+                    </div>
+                </Typography>
+            )}
+        </div>;
     }
 }
 
@@ -149,24 +167,22 @@ class CardView extends Component {
                     className={classNames('col-xs-12', 'col-md-' + Math.ceil(12 / this.props.cols))}>
             <Card style={{minHeight: '260px'}}>
 
-                <CardMedia
-                    overlay={<CardTitle titleStyle={{fontSize: '19px'}} title={<span
-                        dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.props.item.title)}}/>}
-                                        subtitle={(selectn('properties.fvbook:title_literal_translation', this.props.item) || []).map(function (translation, i) {
-                                            if (translation.language == DEFAULT_LANGUAGE) {
-                                                return <span key={i}>{translation.translation}</span>;
-                                            }
-                                        })}/>}>
-
-                    <div style={{
-                        backgroundSize: (selectn('width', mediumImage) > 200) ? '100%' : 'cover',
-                        minWidth: 'inherit',
-                        width: '100%',
-                        height: '180px',
-                        textAlign: 'center',
-                        backgroundImage: 'url(\'' + coverImage + '?inline=true\')'
-                    }}>
-                    </div>
+                <CardMedia>
+                    <GridList cols={1}>
+                        <GridListTile>
+                            <img src={coverImage + '?inline=true'} />
+                            <GridListTileBar
+                                title={
+                                    <span dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.props.item.title)}}/>
+                                }
+                                subtitle={(selectn('properties.fvbook:title_literal_translation', this.props.item) || []).map(function (translation, i) {
+                                    if (translation.language == DEFAULT_LANGUAGE) {
+                                        return <span key={i}>{translation.translation}</span>;
+                                    }
+                                })}
+                            />
+                        </GridListTile>
+                    </GridList>
 
 
                     <div style={{
@@ -183,45 +199,46 @@ class CardView extends Component {
                         borderRadius: '0 0 10px 10px'
                     }}>
 
-                        <IconButton iconClassName="material-icons"
+                        <IconButton 
                                     style={{position: 'absolute', right: 0, zIndex: 1000}}
-                                    onTouchTap={() => this.setState({showIntro: false})}>clear</IconButton>
+                                    onClick={() => this.setState({showIntro: false})}><ClearIcon /></IconButton>
 
                         {(() => {
                             if (selectn('properties.fvbook:introduction', this.props.item)) {
                                 return <Introduction {...this.props} audio={(audioIcon) ? <IconButton
                                     style={{verticalAlign: 'middle', padding: '0', width: '25px', height: '25px'}}
-                                    iconStyle={{width: '25px', height: '25px'}}
-                                    onTouchTap={audioCallback}>{audioIcon}</IconButton> : null}/>
+                                    
+                                    onClick={audioCallback}>{audioIcon}</IconButton> : null}/>
                             }
                         })()}
 
                     </div>
                 </CardMedia>
 
-                <CardText style={{padding: '4px'}}>
+                <CardContent style={{padding: '4px'}}>
 
-                    <FlatButton
-                        onTouchTap={this.props.action.bind(this, this.props.item)}
-                        primary={true}
-                        label={translated_continue_label}/>
+                    <Button variant='flat'
+                        onClick={this.props.action.bind(this, this.props.item)}
+                        color="primary">
+                        {translated_continue_label}    
+                    </Button>
 
                     {(() => {
                         if (selectn('properties.fvbook:introduction', this.props.item)) {
 
-                            return <IconButton iconClassName="material-icons" style={{
+                            return <IconButton style={{
                                 verticalAlign: '-5px',
                                 padding: '5px',
                                 width: 'auto',
                                 height: 'auto',
                                 'float': 'right'
                             }} tooltipPosition="top-left"
-                                               onTouchTap={() => this.setState({showIntro: !this.state.showIntro})}
-                                               touch={true}>flip_to_front</IconButton>;
+                                               onClick={() => this.setState({showIntro: !this.state.showIntro})}
+                                               touch={true}><FlipToFrontIcon /></IconButton>;
                         }
                     })()}
 
-                </CardText>
+                </CardContent>
 
             </Card>
         </div>;

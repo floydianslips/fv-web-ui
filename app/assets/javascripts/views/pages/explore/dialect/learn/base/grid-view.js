@@ -13,26 +13,39 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List, Map} from 'immutable';
 import selectn from 'selectn';
 import classNames from 'classnames';
 
 import ConfGlobal from 'conf/local.json';
 
-import Colors from 'material-ui/lib/styles/colors';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 
-import GridList from 'material-ui/lib/grid-list/grid-list';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
+import IconButton from '@material-ui/core/IconButton';
 
-import IconButton from 'material-ui/lib/icon-button';
-
-import AVPlayArrow from 'material-ui/lib/svg-icons/av/play-arrow';
-import AVStop from 'material-ui/lib/svg-icons/av/stop';
+import { withStyles } from '@material-ui/core/styles'
+import AVPlayArrow from '@material-ui/icons/PlayArrow';
+import AVStop from '@material-ui/icons/Stop';
 
 import ProviderHelpers from 'common/ProviderHelpers';
 import UIHelpers from 'common/UIHelpers';
 import IntlService from 'views/services/intl';
+
+const WhiteAVPlayArrow = withStyles({
+  root: {
+    color: 'white'
+  }
+})(AVPlayArrow)
+
+const WhiteAVStop = withStyles({
+  root: {
+    color: 'white'
+  }
+})(AVStop)
 
 const intl = IntlService.instance;
 export default class GridView extends Component {
@@ -126,7 +139,7 @@ export default class GridView extends Component {
                         }.bind(this);
 
                         audioIcon = (decodeURIComponent(selectn('src', this.state.nowPlaying)) !== ConfGlobal.baseURL + audio) ?
-                            <AVPlayArrow color='white'/> : <AVStop color='white'/>;
+                            <WhiteAVPlayArrow /> : <WhiteAVStop />;
                         audioCallback = (decodeURIComponent(selectn('src', this.state.nowPlaying)) !== ConfGlobal.baseURL + audio) ? UIHelpers.playAudio.bind(this, this.state, stateFunc, ConfGlobal.baseURL + audio) : UIHelpers.stopAudio.bind(this, this.state, stateFunc);
                     }
 
@@ -145,18 +158,21 @@ export default class GridView extends Component {
                     }
 
                     let audioIconAction = <IconButton style={{marginRight: '10px'}}
-                                                      iconStyle={{width: '40px', height: '40px'}}
-                                                      onTouchTap={audioCallback}>{audioIcon}</IconButton>;
+                                                      
+                                                      onClick={audioCallback}>{audioIcon}</IconButton>;
 
-                    return <GridTile
-                        onTouchTap={(this.props.action) ? this.props.action.bind(this, tile.uid, tile) : audioCallback}
+                    return <GridListTile
+                        onClick={(this.props.action) ? this.props.action.bind(this, tile.uid, tile) : audioCallback}
                         key={i}
-                        title={title}
-                        titleBackground='rgba(180, 0, 0, 0.75)'
-                        actionPosition="right"
-                        actionIcon={(this.props.action) ? audioIconAction : audioIcon}
-                        subtitle={definitionsHTML || literal_translationsHTML}
-                    ><img src={UIHelpers.getThumbnail(imageObj, 'Small')} alt={title}/></GridTile>
+                    ><img src={UIHelpers.getThumbnail(imageObj, 'Small')} alt={title}/>
+                        <GridListTileBar
+                            title={title}
+                            style={{ backgroundColor: 'rgba(180, 0, 0, 0.75)' }}
+                            actionPosition="right"
+                            actionIcon={(this.props.action) ? audioIconAction : audioIcon}
+                            subtitle={definitionsHTML || literal_translationsHTML}
+                        />  
+                    </GridListTile>
                 }.bind(this))}
             </GridList>
         </div>;

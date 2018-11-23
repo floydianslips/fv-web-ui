@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import provide from 'react-redux-provide';
 import selectn from 'selectn';
@@ -30,9 +31,8 @@ import AppFrontController from './AppFrontController';
 
 import Shepherd from 'tether-shepherd';
 
-import FontIcon from 'material-ui/lib/font-icon';
-import Paper from 'material-ui/lib/paper';
-import FlatButton from 'material-ui/lib/flat-button';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 import IntlService from 'views/services/intl';
 
@@ -123,7 +123,7 @@ export default class AppWrapper extends Component {
     };
 
     static childContextTypes = {
-        muiTheme: React.PropTypes.object
+        muiTheme: PropTypes.object
     };
 
     // react-redux-provide will pass context such as providers (Note: this is only needed for debugging the store atm)
@@ -307,7 +307,7 @@ export default class AppWrapper extends Component {
                         key: 'super_admin_tools',
                         default: 'Super Admin Tools',
                         case: 'words'
-                    })}: <FlatButton onTouchTap={this._startAdminGuideAssist.bind(this.props.windowPath)}
+                    })}: <Button variant='flat' onClick={this._startAdminGuideAssist.bind(this.props.windowPath)}
                                      disabled={this.state.adminGuideStarted} label={this.intl.translate({
                     key: 'admin_guide_assist',
                     default: 'Admin Guide Assist', case: 'words'

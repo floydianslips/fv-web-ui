@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import selectn from 'selectn';
 
@@ -21,18 +22,18 @@ import DOMPurify from 'dompurify';
 
 import ConfGlobal from 'conf/local.json';
 
-import Paper from 'material-ui/lib/paper';
+import Paper from '@material-ui/core/Paper';
 
 import Preview from 'views/components/Editor/Preview';
 import MediaPanel from 'views/pages/explore/dialect/learn/base/media-panel';
 
 import {Introduction} from '../list-view';
 
-import RaisedButton from 'material-ui/lib/raised-button';
-import Tabs from 'material-ui/lib/tabs/tabs';
-import Tab from 'material-ui/lib/tabs/tab';
+import Button from '@material-ui/core/Button';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
-import ActionLaunch from 'material-ui/lib/svg-icons/action/launch';
+import ActionLaunch from '@material-ui/icons/Launch';
 import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;
@@ -40,15 +41,23 @@ const defaultInnerStyle = {padding: '15px', margin: '15px 0', minHeight: '420px'
 const defaultCoverStyle = {padding: '15px', margin: '15px 0'};
 
 class MediaThumbnail extends Component {
+    state = {
+        tabValue: 0,
+    };
+
     render() {
         const photoMediaPanel = <MediaPanel minimal={true} label="" type="FVPicture" items={this.props.photos}/>;
         const videoMediaPanel = <MediaPanel minimal={true} label="" type="FVVideo" items={this.props.videos}/>;
 
         if (this.props.photos.length > 0 && this.props.videos.length > 0) {
-            return <Tabs style={{marginTop: '15px'}}>
-                <Tab label="Photo(s)">{photoMediaPanel}</Tab>
-                <Tab label="Video(s)">{videoMediaPanel}</Tab>
-            </Tabs>;
+            return <div>
+                <Tabs value={this.state.tabValue} onChange={(e, tabValue) => this.setState({ tabValue })} style={{marginTop: '15px'}}>
+                    <Tab label="Photo(s)" />
+                    <Tab label="Video(s)" />
+                </Tabs>
+                {this.state.tabValue === 0 && photoMediaPanel}
+                {this.state.tabValue === 1 && videoMediaPanel}
+            </div>;
         } else if (this.props.photos.length > 0) {
             return photoMediaPanel;
         } else if (this.props.videos.length > 0) {
@@ -100,8 +109,8 @@ class Cover extends Component {
             <div className="col-xs-12">
                 <div className={classNames('col-xs-12', 'text-right')}>
                     {(this.props.openBookAction && this.props.pageCount > 0) ?
-                        <RaisedButton style={{marginRight: '10px'}} primary={true} label="Open Book"
-                                      onTouchTap={this.props.openBookAction} icon={<ActionLaunch/>}/> : ''}
+                        <Button variant='raised' style={{marginRight: '10px'}} color="primary"
+                                      onClick={this.props.openBookAction} icon={<ActionLaunch/>}>Open Book</Button> : ''}
                 </div>
             </div>
 
@@ -160,8 +169,8 @@ class Page extends Component {
 
             <div className="row">
                 <div className={classNames('col-xs-12', 'text-right')}>
-                    {(this.props.editAction) ? <RaisedButton label={intl.trans('edit', 'Edit', 'first')}
-                                                             onTouchTap={this.props.editAction.bind(this, this.props.entry)}/> : ''}
+                    {(this.props.editAction) ? <Button variant='raised'
+                                                             onClick={this.props.editAction.bind(this, this.props.entry)}>{intl.trans('edit', 'Edit', 'first')}</Button> : ''}
                     <div className="pull-right">{this.props.appendEntryControls}</div>
                 </div>
             </div>

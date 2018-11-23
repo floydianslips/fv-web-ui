@@ -13,12 +13,15 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import provide from 'react-redux-provide';
 import selectn from 'selectn';
 
-import SelectField from 'material-ui/lib/SelectField';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import IntlService from 'views/services/intl';
 const intl = IntlService.instance;
@@ -47,8 +50,8 @@ export default class DirectoryList extends Component {
         this._handleStandardSelectChange = this._handleStandardSelectChange.bind(this);
     }
 
-    _handleChange(event, index, value) {
-        this.props.onChange(value);
+    _handleChange(event) {
+        this.props.onChange(event.target.value);
     }
 
     _handleStandardSelectChange(event) {
@@ -80,14 +83,17 @@ export default class DirectoryList extends Component {
             <div>
                 {
                     (this.props.fancy) ?
-
-                        <SelectField maxHeight={300} autoWidth={true} value={this.props.value}
-                                     onChange={this._handleChange}
-                                     floatingLabelText={intl.trans('select_x', 'Select ' + this.props.label, 'first', [this.props.label]) + ':'}>
-                            {entries.map((entry) =>
-                                <MenuItem key={entry.value} value={entry.value} primaryText={entry.text}/>
-                            )}
-                        </SelectField>
+                        <FormControl style={{ minWidth: 200 }}>
+                            <InputLabel htmlFor={`${this.props.label}_select`}>
+                                {intl.trans('select_x', 'Select ' + this.props.label, 'first', [this.props.label]) + ':'}
+                            </InputLabel>
+                            <Select maxHeight={300} autoWidth={true} value={this.props.value}
+                                        onChange={this._handleChange} inputProps={{ name: `${this.props.label}_select` }}>
+                                {entries.map((entry) =>
+                                    <MenuItem key={entry.value} value={entry.value}>{entry.text}</MenuItem>
+                                )}
+                            </Select>
+                        </FormControl>
 
                         :
 

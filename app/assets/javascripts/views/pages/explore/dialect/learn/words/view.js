@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List, Map} from 'immutable';
 import classNames from 'classnames';
 import provide from 'react-redux-provide';
@@ -35,19 +36,14 @@ import TextHeader from 'views/components/Document/Typography/text-header';
 
 import {Link} from 'provide-page';
 
-//import Header from 'views/pages/explore/dialect/header';
-//import PageHeader from 'views/pages/explore/dialect/page-header';
+import Divider from '@material-ui/core/Divider';
 
-import FlatButton from 'material-ui/lib/flat-button';
-import Divider from 'material-ui/lib/divider';
+import ListUI from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 
-import ListUI from 'material-ui/lib/lists/list';
-import ListItem from 'material-ui/lib/lists/list-item';
+import Button from '@material-ui/core/Button';
 
-import FontIcon from 'material-ui/lib/font-icon';
-import RaisedButton from 'material-ui/lib/raised-button';
-
-import Tab from 'material-ui/lib/tabs/tab';
+import Tab from '@material-ui/core/Tab';
 
 import '!style-loader!css-loader!react-image-gallery/build/image-gallery.css';
 

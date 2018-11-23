@@ -160,7 +160,7 @@ class WordEditView extends React.Component {
 }
 
 WordEditView.contextTypes = {
-  router: React.PropTypes.func
+  router: PropTypes.func
 };
 
 module.exports = WordEditView;

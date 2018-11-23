@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List, Map} from 'immutable';
 import classNames from 'classnames';
 import provide from 'react-redux-provide';
@@ -27,8 +28,8 @@ import NavigationHelpers from 'common/NavigationHelpers';
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
 // Views
-import RaisedButton from 'material-ui/lib/raised-button';
-import Paper from 'material-ui/lib/paper';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';
@@ -203,7 +204,7 @@ export default class Register extends Component {
                         <p>Registration is intended for individuals who are engaged in language revitalization work.</p>
                         <p>If you want to learn a language or learn about a community, <strong>most information is available to the public without registration</strong>.</p>
                         <p>You can get started by clicking "<strong><a href="/explore/FV/sections/Data">Choose a Language</a></strong>", pick your language, and then click "Learn Our Language".</p>
-                        <RaisedButton label={intl.translate('choose_lang', 'Choose a Language', 'first')} primary={true} onClick={(e) => NavigationHelpers.navigate('/explore/FV/sections/Data', this.props.pushWindowPath)}/>
+                        <Button variant='raised' primary={true} onClick={(e) => NavigationHelpers.navigate('/explore/FV/sections/Data', this.props.pushWindowPath)}>{intl.translate('choose_lang', 'Choose a Language', 'first')}</Button>
                     </Paper>
                 </div>
                 <div className={classNames('col-xs-12', 'col-md-6')}>
@@ -211,7 +212,7 @@ export default class Register extends Component {
                         <h2>Registration</h2>
                         <p>If you are engaged in language revitalization work or want to join a community as a member, you can do so by using our <strong><a href="https://firstvoices.atlassian.net/servicedesk/customer/portal/1/create/15" target="_blank">registration form</a></strong> (preferred) or by emailing support@fpcc.ca</p>
                         <p>Your request will need to be approved by the community's language administrator.</p>
-                        <RaisedButton label="Submit Registration Request" primary={true} linkButton={true} href="https://firstvoices.atlassian.net/servicedesk/customer/portal/1/create/15" target="_blank" />
+                        <Button variant='raised' primary={true} linkButton={true} href="https://firstvoices.atlassian.net/servicedesk/customer/portal/1/create/15" target="_blank">Submit Registration Request</Button>
                     </Paper>
                 </div>
             </div>

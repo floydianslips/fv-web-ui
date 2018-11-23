@@ -1,10 +1,12 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List, Map} from 'immutable';
 
 import selectn from 'selectn';
 import DOMPurify from 'dompurify';
 
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 
 import UIHelpers from 'common/UIHelpers';
 import NavigationHelpers from 'common/NavigationHelpers';
@@ -114,20 +116,16 @@ export default class SearchResultTile extends Component {
 
         title = DOMPurify.sanitize(title);
 
-        return <GridTile
-            style={{borderBottom: '1px solid #e0e0e0', margin: '20px 0', paddingTop: '65px'}}
-            key={selectn('uid', tile)}
-            title={<a
+        return <div
+            style={{borderBottom: '1px solid #e0e0e0', margin: '20px 0' }}
+            key={selectn('uid', tile)}            
+            >
+            <a
                 href={targetPath}
-                //onTouchTap={(typeof this.props.action === "function") ? this.props.action.bind(this, targetPath) : null}
+                //onClick={(typeof this.props.action === "function") ? this.props.action.bind(this, targetPath) : null}
                 style={{fontSize: '1.2em', cursor: 'pointer'}}>{title}<strong
-                style={{fontSize: '0.6em'}}> [{type.replace('FV', '')}]</strong></a>}
-            actionPosition="right"
-            titlePosition="top"
-            //actionIcon={actionIcon}
-            titleBackground="#ffffff"
-            subtitle={<span style={{color: 'gray', fontSize: '1.2em'}}>{subtitle}</span>}
-        >
+                style={{fontSize: '0.6em'}}> [{type.replace('FV', '')}]</strong></a>
+
             <div style={{marginLeft: '16px', width: '80%'}}>
                 <div>{(imgObj) ? <div className="pull-right" style={{
                     height: '75px',
@@ -139,6 +137,8 @@ export default class SearchResultTile extends Component {
                 <p><span style={{color: 'gray'}} dangerouslySetInnerHTML={{__html: path.join(' &raquo; ')}}></span></p>
             </div>
 
-        </GridTile>;
+            <span style={{color: 'gray', fontSize: '1.2em'}}>{subtitle}</span>
+
+        </div>;
     }
 }

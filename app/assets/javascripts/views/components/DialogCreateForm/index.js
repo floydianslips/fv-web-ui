@@ -1,7 +1,7 @@
 import React from 'react';
-import Dialog from 'material-ui/lib/dialog';
-import FlatButton from 'material-ui/lib/flat-button';
-import RaisedButton from 'material-ui/lib/raised-button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import Button from '@material-ui/core/Button';
 
 import PageDialectPhrasesCreate from 'views/pages/explore/dialect/learn/phrases/create';
 import PageDialectCategoryCreate from 'views/pages/explore/dialect/category/create';
@@ -117,15 +117,8 @@ export default class DialogCreateForm extends React.Component {
         // Show Create New button, unless otherwise specified
         let createNewButton = "";
         if (!this.props.fieldAttributes.disableCreateNewButton || this.props.fieldAttributes.disableCreateNewButton === false) {
-            createNewButton = <RaisedButton label={createNewButtonLabel} onTouchTap={this.handleOpen}/>;
+            createNewButton = <Button variant='raised' onClick={this.handleOpen}>{createNewButtonLabel}</Button>;
         }
-
-        const actions = [
-            <FlatButton
-                label={intl.trans('cancel', 'Cancel', 'first')}
-                secondary={true}
-                onTouchTap={this.handleClose}/>
-        ];
 
         return (
             <div>
@@ -135,10 +128,17 @@ export default class DialogCreateForm extends React.Component {
                 <Dialog
                     open={this.state.open}
                     onRequestClose={this.handleClose}
-                    autoScrollBodyContent={true}
-                    actions={actions}>
+                    autoScrollBodyContent={true}>
 
                     {createForm}
+
+                    <DialogActions>
+                        <Button variant='flat'
+                            color="secondary"
+                            onClick={this.handleClose}>
+                            {intl.trans('cancel', 'Cancel', 'first')}    
+                        </Button>
+                    </DialogActions>
 
                 </Dialog>
 

@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List, Map} from 'immutable';
 import classNames from 'classnames';
 import provide from 'react-redux-provide';
@@ -24,8 +25,7 @@ import {User} from 'nuxeo';
 import ProviderHelpers from 'common/ProviderHelpers';
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
-// Views
-import RaisedButton from 'material-ui/lib/raised-button';
+import Button from '@material-ui/core/Button';
 
 import fields from 'models/schemas/fields';
 import options from 'models/schemas/options';

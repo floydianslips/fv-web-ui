@@ -13,17 +13,18 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import Immutable, {List, Map} from 'immutable';
 
-import RaisedButton from 'material-ui/lib/raised-button';
-import TextField from 'material-ui/lib/text-field';
-import Colors from 'material-ui/lib/styles/colors';
-import FontIcon from 'material-ui/lib/font-icon';
-import IconButton from 'material-ui/lib/icon-button';
-import AVPlayArrow from 'material-ui/lib/svg-icons/av/play-arrow';
-import AVStop from 'material-ui/lib/svg-icons/av/stop';
+import Button from '@material-ui/core/Button';
+import * as Colors from '@material-ui/core/colors';
+import IconButton from '@material-ui/core/IconButton';
+import AVPlayArrow from '@material-ui/icons/PlayArrow';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox';
+import AVStop from '@material-ui/icons/Stop';
 
 import classNames from 'classnames';
 
@@ -240,26 +241,28 @@ export class Scramble extends Component {
                     color: '#3f8b53'
                 }}><img style={{marginRight: '10px'}}
                         src={UIHelpers.getThumbnail(this.props.sentence.picture, 'Thumbnail')}/> {this.props.sentence.translation} {(this.state.complete) ?
-                    <IconButton onTouchTap={audioCallback}>{audioIcon}</IconButton> : ''}</div>
+                    <IconButton onClick={audioCallback}>{audioIcon}</IconButton> : ''}</div>
                 <div style={{minHeight: '50px', borderBottom: '1px solid #CCC', marginBottom: '16px'}}>
                     {this.state.selected.map((word, index) => {
-                        return <RaisedButton key={index} style={{backgroundColor: '#a7fba5'}} label={word}
-                                             onMouseUp={this.unSelectWord.bind(this, word, index)}/>
+                        return <Button variant='raised' key={index} style={{backgroundColor: '#a7fba5'}}
+                                             onMouseUp={this.unSelectWord.bind(this, word, index)}>
+                                    {word}
+                                </Button>
                     })}
-                    {this.state.complete ? <FontIcon className="material-icons" style={{
+                    {this.state.complete ? <CheckBoxIcon className="material-icons" style={{
                         color: Colors.greenA200,
                         fontSize: '50px',
                         position: 'absolute',
                         top: '5px',
                         right: '5px'
-                    }}>check_box</FontIcon> : false}
-                    {this.state.incorrect ? <FontIcon className="material-icons" style={{
+                    }} /> : false}
+                    {this.state.incorrect ? <IndeterminateCheckBoxIcon className="material-icons" style={{
                         color: Colors.red600,
                         fontSize: '50px',
                         position: 'absolute',
                         top: '5px',
                         right: '5px'
-                    }}>indeterminate_check_box</FontIcon> : false}
+                    }} /> : false}
                 </div>
                 {this.state.scrambledSentence.map((word, index) => {
                     let disabled = false;
@@ -267,18 +270,18 @@ export class Scramble extends Component {
                     if (this.state.selected.includes(word)) {
                         disabled = true;
                     }
-                    return <RaisedButton disabled={disabled} label={word} key={index}
-                                         onMouseUp={this.selectWord.bind(this, word)}/>
+                    return <Button variant='raised' disabled={disabled} key={index}
+                                         onMouseUp={this.selectWord.bind(this, word)}>{word}</Button>
                 })}
-                {this.state.complete ? <RaisedButton label={intl.trans('reset', 'Reset', 'first')} primary={true}
-                                                     onMouseUp={this.reset.bind(this)}/> : false}
-                <RaisedButton label={intl.trans('check', 'Check', 'first')}
+                {this.state.complete ? <Button variant='raised' color="primary"
+                                                     onMouseUp={this.reset.bind(this)}>{intl.trans('reset', 'Reset', 'first')}</Button> : false}
+                <Button variant='raised'
                               className={classNames({'invisible': this.state.complete})} style={{margin: '0 5px'}}
-                              disabled={this.state.complete ? true : false} secondary={true}
-                              onMouseUp={this.checkAnswer.bind(this)}/>
+                              disabled={this.state.complete ? true : false} color="secondary"
+                              onMouseUp={this.checkAnswer.bind(this)}>{intl.trans('check', 'Check', 'first')}</Button>
                 {this.state.complete ? false :
-                    <RaisedButton label={intl.trans('reset', 'Reset', 'first')} primary={true}
-                                  onMouseUp={this.reset.bind(this)}/>}
+                    <Button variant='raised' color="primary"
+                                  onMouseUp={this.reset.bind(this)}>{intl.trans('reset', 'Reset', 'first')}</Button>}
             </div>
         </div>
     }

@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {Map} from 'immutable';
 import classNames from 'classnames';
 import selectn from 'selectn';
@@ -23,8 +24,9 @@ import StringHelpers from 'common/StringHelpers';
 
 import t from 'tcomb-form';
 
-import FlatButton from 'material-ui/lib/flat-button';
-import Dialog from 'material-ui/lib/dialog';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
 import IntlService from "views/services/intl";
 
 const intl = IntlService.instance;
@@ -172,17 +174,17 @@ export default class GroupAssignmentDialog extends Component {
         return <Dialog
             open={this.props.open}
             actions={[
-                <FlatButton
-                    label={intl.trans('cancel', 'Cancel', 'first')}
-                    secondary={true}
-                    onTouchTap={this.props.closeMethod}
-                />,
-                <FlatButton
-                    label={intl.trans('submit', 'Submit', 'first')}
-                    primary={true}
+                <Button variant='flat'
+                    color="secondary"
+                    onClick={this.props.closeMethod}>
+                    {intl.trans('cancel', 'Cancel', 'first')}    
+                </Button>,
+                <Button variant='flat'
+                    color="primary"
                     keyboardFocused={true}
-                    onTouchTap={this._onRequestSaveForm}
-                />,
+                    onClick={this._onRequestSaveForm}>
+                    {intl.trans('views.pages.explore.dialect.learn.words.create_new_word', 'Create New Word', 'words')}    
+                </Button>,
             ]}
             onRequestClose={this.props.closeMethod}
             autoScrollBodyContent={true}>

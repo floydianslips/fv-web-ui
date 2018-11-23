@@ -13,7 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, {List, Map} from 'immutable';
 
 import classNames from 'classnames';
@@ -29,12 +30,11 @@ import NavigationHelpers from 'common/NavigationHelpers';
 import AuthorizationFilter from 'views/components/Document/AuthorizationFilter';
 import PageDialectLearnBase from 'views/pages/explore/dialect/learn/base';
 
-import RaisedButton from 'material-ui/lib/raised-button';
+import Button from '@material-ui/core/Button';
 
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
-import DropDownMenu from 'material-ui/lib/DropDownMenu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import GeneralList from 'views/components/Browsing/general-list';
 import {CardView} from './list-view';
@@ -162,10 +162,11 @@ export default class PageDialectLearnStoriesAndSongs extends Component {
                         entity: selectn('response', computeDialect2),
                         login: this.props.computeLogin
                     }}>
-                        <RaisedButton
-                            label={intl.trans('views.pages.explore.dialect.learn.songs_stories.create_x_book', "Create " + this.props.typeFilter + " Book", 'words', [this.props.typeFilter])}
-                            onTouchTap={this._onNavigateRequest.bind(this, this.props.windowPath + '/create')}
-                            primary={true}/>
+                        <Button variant='raised'
+                            onClick={this._onNavigateRequest.bind(this, this.props.windowPath + '/create')}
+                            color="primary">
+                            {intl.trans('views.pages.explore.dialect.learn.songs_stories.create_x_book', "Create " + this.props.typeFilter + " Book", 'words', [this.props.typeFilter])}    
+                        </Button>
                     </AuthorizationFilter>
                 </div>
 

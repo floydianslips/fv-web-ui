@@ -14,7 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Immutable, { List, Map } from 'immutable';
 
 import classNames from 'classnames';
@@ -26,13 +27,10 @@ import t from 'tcomb-form';
 import fields from 'models/schemas/filter-fields';
 import options from 'models/schemas/filter-options';
 
-import TextField from 'material-ui/lib/text-field';
-import RaisedButton from 'material-ui/lib/raised-button';
+import Button from '@material-ui/core/Button';
 
-import IconButton from 'material-ui/lib/icon-button';
-
-import SelectField from 'material-ui/lib/select-field';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import PromiseWrapper from 'views/components/Document/PromiseWrapper';
 
@@ -229,11 +227,7 @@ export default class Search extends DataListView {
 	let _onEntryNavigateRequest = this._onEntryNavigateRequest;
 	let searchTerm = this.props.routeParams.searchTerm;
 
-	let SearchResultTileWithProps = React.createClass({
-		render: function() {
-			return React.createElement(SearchResultTile, {searchTerm: searchTerm, action: _onEntryNavigateRequest, ...this.props });
-		}
-	});
+	let SearchResultTileWithProps = props => React.createElement(SearchResultTile, {searchTerm: searchTerm, action: _onEntryNavigateRequest, ...props });
 
     return <div>
 
@@ -250,14 +244,12 @@ export default class Search extends DataListView {
                                     type={t.struct(selectn('Search', fields))}
                                     options={selectn('Search', options)}
                                 />
-                                <RaisedButton
-                                    onTouchTap={this._onReset}
-                                    label={intl.trans('reset', 'Reset', 'first')}
-                                    primary={true}/> &nbsp;
-                                <RaisedButton
+                                <Button variant='raised'
+                                    onClick={this._onReset}
+                                    color="primary">{intl.trans('reset', 'Reset', 'first')}</Button> &nbsp;
+                                <Button variant='raised'
                                     type="submit"
-                                    label={intl.trans('search', 'Search', 'first')}
-                                    primary={true}/>
+                                    color="primary">{intl.trans('search', 'Search', 'first')}</Button>
                             </FiltersWithToggle>
                         </form>
                     </div>
