@@ -429,6 +429,7 @@ export default class Navigation extends Component {
               disableEnforceFocus
               disableAutoFocus
               disableRestoreFocus
+              onBackdropClick={() => this.setState({searchContextPopoverOpen: false })}
               PaperProps={{style: {maxWidth: (isDialect) ? '320px' : '220px', marginTop: '-14px', backgroundColor: 'transparent', boxShadow: 'none'}}}
               anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
               transformOrigin={{horizontal: 'center', vertical: 'top'}}>
