@@ -87,4 +87,10 @@ public class FVExportListenerTest
         assertNotNull("Should have a valid EditLockCheckListener", editLockCheckListener);
         assertTrue(events.stream().allMatch(editLockCheckListener::acceptEvent));
    }
+
+   @Test
+    public void listenerMessage()
+    {
+
+    }
 }
