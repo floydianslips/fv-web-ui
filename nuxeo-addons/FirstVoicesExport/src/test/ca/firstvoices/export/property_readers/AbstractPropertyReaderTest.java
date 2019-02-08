@@ -1,4 +1,4 @@
-package ca.firstvoices.property_readers;
+package ca.firstvoices.export.property_readers;
 
 import com.google.inject.Inject;
 import org.junit.Before;

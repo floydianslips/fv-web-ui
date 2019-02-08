@@ -1,4 +1,4 @@
-package ca.firstvoices.listeners;
+package ca.firstvoices.export.property_readers;
 
 import com.google.inject.Inject;
 import org.junit.Before;
@@ -49,42 +49,7 @@ import static org.junit.Assert.assertTrue;
         "FirstVoicesExport:OSGI-INF/extensions/fake-load-es-provider.xml",
         "FirstVoicesExport:OSGI-INF/extensions/fake-directory-sql-contrib.xml"} )
 
-
-public class FVExportListenerTest
+public class PartOfSpeechPropertyReaderTest
 {
-    protected final List<String> events = Arrays.asList(    "produceFormattedDocument",
-                                                                "produceWrappedBlob",
-                                                                "autoProduceFormattedDocument",
-                                                                "autoWorkOnNextDialect" );
 
-    @Inject
-    protected EventService eS;
-
-    @Inject
-    protected CoreSession session;
-
-
-    @Before
-    public void setUp() throws Exception {
-
-        // Clean up previous data
-        session.removeChildren(session.getRootDocument().getRef());
-        session.save();
-
-        assertNotNull("Should have a valid event service", eS );
-        assertNotNull("Should have a valid session", session );
-
-        //session.save();
-    }
-
-    @Test
-    public void listenerRegistration()
-    {
-        // loading a list of listeners as they are registered to inspect visually what was loaded
-        // it is not required for the test
-        List eL = eS.getEventListeners();
-        EventListenerDescriptor editLockCheckListener = eS.getEventListener("EditLockCheckListener");
-        assertNotNull("Should have a valid EditLockCheckListener", editLockCheckListener);
-        assertTrue(events.stream().allMatch(editLockCheckListener::acceptEvent));
-   }
 }

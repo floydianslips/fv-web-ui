@@ -1,4 +1,4 @@
-package ca.firstvoices.property_readers;
+package ca.firstvoices.export.property_readers;
 
 import com.google.inject.Inject;
 import org.junit.Before;
@@ -49,7 +49,7 @@ import static org.junit.Assert.assertTrue;
         "FirstVoicesExport:OSGI-INF/extensions/fake-load-es-provider.xml",
         "FirstVoicesExport:OSGI-INF/extensions/fake-directory-sql-contrib.xml"} )
 
-public class CompoundPropertyReaderTest
+public class CategoryPropertyReaderTest
 {
 
 }

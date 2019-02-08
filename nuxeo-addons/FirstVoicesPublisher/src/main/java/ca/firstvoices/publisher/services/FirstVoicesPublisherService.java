@@ -20,7 +20,7 @@ public interface FirstVoicesPublisherService {
 
     /**
      * Publish or republish a portal's assets (arrays or strings)
-     * @param dialect
+     * @param portal
      */
     public DocumentModel publishPortalAssets(DocumentModel portal);
 
