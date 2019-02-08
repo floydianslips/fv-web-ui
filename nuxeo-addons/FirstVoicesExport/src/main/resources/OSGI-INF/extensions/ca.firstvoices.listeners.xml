@@ -2,7 +2,7 @@
     <extension target="org.nuxeo.ecm.core.event.EventServiceComponent" point="listener">
 
         <listener name="FVExportListener" postCommit="false" async="true"
-                  class="ca.firstvoices.listeners.FVExportListener" priority="150">
+                  class="ca.firstvoices.export.listeners.FVExportListener" priority="150">
             <event>produceFormattedDocument</event>
             <event>produceWrappedBlob</event>>
             <event>autoProduceFormattedDocument</event>
