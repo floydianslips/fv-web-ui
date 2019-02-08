@@ -38,7 +38,7 @@
 
 {% block javascript %}
 
-{% if buildENV == "production" %}
+{% if buildENV == "production_DISABLE_FOR_NOW" %}
 <script type="text/javascript">
   Raven.config('https://9f99c993909b4dda85e7178a0eadc7fa@sentry.io/1212465').install();
 </script>

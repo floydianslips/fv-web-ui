@@ -30,7 +30,6 @@ class SearchDialect extends Component {
     searchByCulturalNotes: bool,
     searchPartOfSpeech: string,
     searchTerm: string,
-    searchType: string,
     updateAncestorState: func,
   }
   static defaultProps = {
@@ -41,11 +40,10 @@ class SearchDialect extends Component {
     resetSearch: () => {},
     searchByAlphabet: false,
     searchByCulturalNotes: false,
-    searchByTitle: false,
-    searchByDefinitions: false,
+    searchByTitle: true,
+    searchByDefinitions: true,
     searchByTranslations: false,
     searchTerm: '',
-    searchType: SEARCH_ADVANCED,
     searchPartOfSpeech: SEARCH_SORT_DEFAULT,
   }
 
@@ -53,7 +51,8 @@ class SearchDialect extends Component {
     super(props)
 
     this.state = {
-      userInteractedWithSearchDialectAdvanced: false,
+      partsOfSpeechOptions: null,
+      searchInfoOutput: this._getSearchInfo(),
     }
     ;[
       '_getSearchInfo',
@@ -68,8 +67,6 @@ class SearchDialect extends Component {
     ].forEach((method) => (this[method] = this[method].bind(this)))
   }
 
-  partsOfSpeech = []
-
   componentDidMount() {
     this.props.fetchDirectory('parts_of_speech')
   }
@@ -78,6 +75,7 @@ class SearchDialect extends Component {
     const searchNxqlQuery = this._generateNxql()
     const searchNxqlSort = this._getNxqlSearchSort()
     this.props.updateAncestorState({ searchNxqlQuery, searchNxqlSort })
+
     const prevComputeSuccess = selectn('computeDirectory.success', prevProps)
     const currentComputeSuccess = selectn('computeDirectory.success', this.props)
     if (prevComputeSuccess !== currentComputeSuccess && currentComputeSuccess === true) {
@@ -87,7 +85,36 @@ class SearchDialect extends Component {
         if (a.text > b.text) return 1
         return 0
       })
-      this.partsOfSpeech = _partsOfSpeechSort
+
+      let partsOfSpeechOptions = null
+      const _partsOfSpeechOptions = _partsOfSpeechSort.map((part, index) => {
+        return (
+          <option key={index} value={part.value}>
+            {part.text}
+          </option>
+        )
+      })
+
+      if (_partsOfSpeechOptions.length > 0) {
+        partsOfSpeechOptions = [
+          <option key="SEARCH_SORT_DIVIDER" disabled>
+            ─────────────
+          </option>,
+          ..._partsOfSpeechOptions,
+        ]
+      }
+
+      // Note: aware that we are triggering a new render
+      // eslint-disable-next-line
+      this.setState({ partsOfSpeechOptions })
+    }
+
+    if (prevProps.searchByAlphabet !== this.props.searchByAlphabet && this.props.searchByAlphabet === true) {
+      // Note: aware that we are triggering a new render
+      // eslint-disable-next-line
+      this.setState({
+        searchInfoOutput: this._getSearchInfo(),
+      })
     }
   }
 
@@ -95,66 +122,40 @@ class SearchDialect extends Component {
     const {
       isSearchingPhrases,
       searchTerm,
-      searchType,
       searchByCulturalNotes,
       searchByTitle,
       searchByDefinitions,
       searchByTranslations,
       searchPartOfSpeech,
     } = this.props
-    const searchInfoOutput = this._getSearchInfo()
-
     let searchButtonText = ''
     const resetButtonText = 'Reset search'
-    // resetButtonText = intl.trans('views.pages.explore.dialect.learn.words.reset_search', 'Clear Search', 'words')
     let searchByTitleText = ''
     if (isSearchingPhrases) {
-      searchByTitleText = 'Phrases'
+      searchByTitleText = 'Phrase'
       searchButtonText = 'Search'
     } else {
-      searchByTitleText = 'Words'
+      searchByTitleText = 'Word'
       searchButtonText = intl.trans('views.pages.explore.dialect.learn.words.search_words', 'Search Words', 'words')
     }
-    const disableButtonSearch = searchTerm === '' || searchTerm === null
-    const disableButtonReset = this.state.userInteractedWithSearchDialectAdvanced === false || (searchType === SEARCH_DEFAULT && disableButtonSearch)
-    let partsOfSpeechOptions = null
-    if (isSearchingPhrases === false) {
-      partsOfSpeechOptions = this.partsOfSpeech.map((part, index) => {
-        return (
-          <option key={index} value={part.value}>
-            {part.text}
-          </option>
-        )
-      })
-    }
 
+    const _css = 'SearchDialect'
     return (
-      <div className="SearchDialect">
-        <div
-          className={classNames({
-            SearchDialectDisplayAdvanced: this.state.userInteractedWithSearchDialectAdvanced,
-          })}
-        >
-          <div className="SearchDialectMain">
+      <div className={`${_css}`}>
+        {this.state.searchInfoOutput}
+        <div className={`${_css}Form`}>
+          <div className={`${_css}FormPrimary`}>
             <input
-              className="SearchDialectMainInput"
+              className={`${_css}FormPrimaryInput`}
               type="text"
               onChange={this._updateSearchTerm}
               onKeyPress={this._handleEnterSearch}
               value={searchTerm}
             />
 
-            <RaisedButton
-              className="SearchDialectMainBtn"
-              disabled={disableButtonSearch}
-              label={searchButtonText}
-              onTouchTap={this._handleSearch}
-              primary
-            />
+            <RaisedButton label={searchButtonText} onTouchTap={this._handleSearch} primary />
 
             <RaisedButton
-              className="SearchDialectMainBtn SearchDialectMainBtnReset"
-              disabled={disableButtonReset}
               label={resetButtonText}
               onTouchTap={this._resetSearch}
               primary={false}
@@ -162,176 +163,205 @@ class SearchDialect extends Component {
             />
           </div>
 
-          <div className="SearchDialectMode">
-            <span className="SearchDialectModeSet">
-              <input
-                checked={searchType === SEARCH_DEFAULT}
-                className="SearchDialectModeOption"
-                id={SEARCH_DEFAULT}
-                name="searchType"
-                onChange={this._handleCustomSearch}
-                type="radio"
-                value={SEARCH_DEFAULT}
-              />
-              <label className="SearchDialectModeLabel" htmlFor={SEARCH_DEFAULT}>
-                Search all fields
-              </label>
-            </span>
-
-            <span className="SearchDialectModeSet">
-              <input
-                checked={searchType === SEARCH_ADVANCED}
-                className="SearchDialectModeOption"
-                id={SEARCH_ADVANCED}
-                name="searchType"
-                onChange={this._handleCustomSearch}
-                type="radio"
-                value={SEARCH_ADVANCED}
-              />
-              <label className="SearchDialectModeLabel" htmlFor={SEARCH_ADVANCED}>
-                Advanced search
-              </label>
-            </span>
-          </div>
-
-          <div className="SearchDialectAdvanced">
-            <span className="SearchDialectAdvancedSet">
+          <div className={`${_css}FormSecondary`}>
+            <span className={`${_css}FormSecondaryGroup`}>
               <input
                 checked={searchByTitle}
-                className="SearchDialectAdvancedOption"
+                className={`${_css}Option`}
                 id="searchByTitle"
                 name="searchByTitle"
                 onChange={this._handleCustomSearch}
                 type="checkbox"
               />
-              <label className="SearchDialectAdvancedLabel" htmlFor="searchByTitle">
+              <label className={`${_css}Label`} htmlFor="searchByTitle">
                 {searchByTitleText}
               </label>
             </span>
 
-            <span className="SearchDialectAdvancedSet">
+            <span className={`${_css}FormSecondaryGroup`}>
               <input
                 checked={searchByDefinitions}
-                className="SearchDialectAdvancedOption"
+                className={`${_css}Option`}
                 id="searchByDefinitions"
                 name="searchByDefinitions"
                 onChange={this._handleCustomSearch}
                 type="checkbox"
               />
-              <label className="SearchDialectAdvancedLabel" htmlFor="searchByDefinitions">
+              <label className={`${_css}Label`} htmlFor="searchByDefinitions">
                 Definitions
               </label>
             </span>
 
             {isSearchingPhrases && (
-              <span className="SearchDialectAdvancedSet">
+              <span className={`${_css}FormSecondaryGroup`}>
                 <input
                   checked={searchByCulturalNotes}
-                  className="SearchDialectAdvancedOption"
+                  className={`${_css}Option`}
                   id="searchByCulturalNotes"
                   name="searchByCulturalNotes"
                   onChange={this._handleCustomSearch}
                   type="checkbox"
                 />
-                <label className="SearchDialectAdvancedLabel" htmlFor="searchByCulturalNotes">
+                <label className={`${_css}Label`} htmlFor="searchByCulturalNotes">
                   Cultural notes
                 </label>
               </span>
             )}
 
-            {isSearchingPhrases === false && (
-              <span className="SearchDialectAdvancedSet">
+            {isSearchingPhrases !== true && (
+              <span className={`${_css}FormSecondaryGroup`}>
                 <input
                   checked={searchByTranslations}
-                  className="SearchDialectAdvancedOption"
+                  className={`${_css}Option`}
                   id="searchByTranslations"
                   name="searchByTranslations"
                   onChange={this._handleCustomSearch}
                   type="checkbox"
                 />
-                <label className="SearchDialectAdvancedLabel" htmlFor="searchByTranslations">
+                <label className={`${_css}Label`} htmlFor="searchByTranslations">
                   Literal translations
                 </label>
               </span>
             )}
 
-            {isSearchingPhrases === false && (
-              <span className="SearchDialectAdvancedSet">
-                <label className="SearchDialectAdvancedLabel" htmlFor="searchPartOfSpeech">
+            {isSearchingPhrases !== true && (
+              <span className={`${_css}FormSecondaryGroup`}>
+                <label className={`${_css}Label`} htmlFor="searchPartOfSpeech">
                   Parts of speech:
                 </label>
                 <select
-                  className="SearchDialectAdvancedOption SearchDialectAdvancedPartsOfSpeech"
+                  className={`${_css}Option ${_css}PartsOfSpeech`}
                   id="searchPartOfSpeech"
                   name="searchPartOfSpeech"
                   onChange={this._handleCustomSearch}
                   value={searchPartOfSpeech}
                 >
-                  <option value={SEARCH_SORT_DEFAULT}>Any</option>
-                  <option disabled>─────────────</option>
-                  {partsOfSpeechOptions}
+                  <option key="SEARCH_SORT_DEFAULT" value={SEARCH_SORT_DEFAULT}>
+                    Any
+                  </option>
+                  {isSearchingPhrases === false && this.state.partsOfSpeechOptions}
                 </select>
               </span>
             )}
           </div>
         </div>
-
-        {searchInfoOutput}
       </div>
     )
   }
 
   _getSearchInfo() {
-    const { filterInfo, isSearchingPhrases } = this.props
+    const {
+      isSearchingPhrases,
+      searchByAlphabet,
+      searchByCulturalNotes,
+      searchByDefinitions,
+      searchTerm,
+      searchByTitle,
+      searchByTranslations,
+      searchPartOfSpeech,
+    } = this.props
 
-    let searchInfo = isSearchingPhrases ? (
-      <span>
-        Showing <strong>all phrases</strong> in the phrase books <strong>listed alphabetically</strong>.
-      </span>
-    ) : (
-      <span>
-        Showing <strong>all words</strong> in the dictionary <strong>listed alphabetically</strong>.
-      </span>
-    )
+    // Showing all words in the dictionary listed alphabetically.
 
-    if (filterInfo.get('currentAppliedFiltersDesc') && !filterInfo.get('currentAppliedFiltersDesc').isEmpty()) {
-      const appliedFilters = isSearchingPhrases ? ['Showing phrases that '] : ['Showing words that ']
-      let i = 0
+    // Showing words that start with the letter d
 
-      filterInfo.get('currentAppliedFiltersDesc').map((currentValue, index, arr) => {
-        appliedFilters.push(currentValue)
-        if (arr.size > 1 && arr.size - 1 !== i) {
-          appliedFilters.push(
-            <span>
-              {' '}
-              <span style={{ textDecoration: 'underline' }}>AND</span>{' '}
-            </span>
-          )
-        }
-        ++i
-      })
+    // Showing words that contain the search term 'd'
+    // Showing words that contain the search term 'd' in the 'Word' column
+    // Showing words that contain the search term 'd' in the 'Definitions' column
+    // Showing words that contain the search term 'd' in the 'Literal translations' column
+    // Showing words that contain the search term 'd' in the 'Word' and 'Definitions' columns
+    // Showing words that contain the search term 'd' in the 'Word' and 'Literal translations' columns
+    // Showing words that contain the search term 'd' in the 'Definitions' and 'Literal translations' columns
 
-      searchInfo = appliedFilters
+    // Showing words that contain the search term 'd', filtered by the selected 'Parts of speech'
+    // Showing words that contain the search term 'd' in the 'Word' column, filtered by the selected 'Parts of speech'
+    // Showing words that contain the search term 'd' in the 'Definitions' column, filtered by the selected 'Parts of speech'
+    // Showing words that contain the search term 'd' in the 'Literal translations' column, filtered by the selected 'Parts of speech'
+    // Showing words that contain the search term 'd' in the 'Word' and 'Definitions' columns, filtered by the selected 'Parts of speech'
+    // Showing words that contain the search term 'd' in the 'Word' and 'Literal translations' columns, filtered by the selected 'Parts of speech'
+    // Showing words that contain the search term 'd' in the 'Definitions' and 'Literal translations' columns, filtered by the selected 'Parts of speech'
+
+    const cols = []
+    if (searchByTitle) {
+      cols.push(isSearchingPhrases ? 'Phrase' : 'Word')
+    }
+    if (searchByDefinitions) {
+      cols.push('Definitions')
+    }
+    if (searchByCulturalNotes) {
+      cols.push('Cultural notes')
+    }
+    if (searchByTranslations) {
+      cols.push('Literal translations')
     }
 
-    return <div className={classNames('SearchDialectSearchFeedback', 'alert', 'alert-info')}>{searchInfo}</div>
+    const wordsOrPhrases = isSearchingPhrases ? 'phrases' : 'words'
+    const _searchTerm = <strong>{searchTerm}</strong>
+    const messagePartsOfSpeech =
+      searchPartOfSpeech !== SEARCH_SORT_DEFAULT ? ", filtered by the selected 'Parts of speech'" : ''
+    const messages = {
+      all: isSearchingPhrases ? (
+        <span>{`Showing all ${wordsOrPhrases} listed alphabetically${messagePartsOfSpeech}`}</span>
+      ) : (
+        <span>{`Showing all ${wordsOrPhrases} in the dictionary listed alphabetically${messagePartsOfSpeech}`}</span>
+      ),
+      startWith: (
+        <span>{`Showing ${wordsOrPhrases} that start with the letter '`}{_searchTerm}{`'${messagePartsOfSpeech}`}</span>
+      ),
+      contain: (
+        <span>{`Showing ${wordsOrPhrases} that contain the search term '`}{_searchTerm}{`'${messagePartsOfSpeech}`}</span>
+      ),
+      containColOne: (
+        <span>{`Showing ${wordsOrPhrases} that contain the search term '`}{_searchTerm}{`' in the '${
+          cols[0]
+        }' column${messagePartsOfSpeech}`}</span>
+      ),
+      containColsTwo: (
+        <span>{`Showing ${wordsOrPhrases} that contain the search term '`}{_searchTerm}{`' in the '${cols[0]}' and '${
+          cols[1]
+        }' columns${messagePartsOfSpeech}`}</span>
+      ),
+      containColsThree: (
+        <span>{`Showing ${wordsOrPhrases} that contain the search term '`}{_searchTerm}{`' in the '${cols[0]}', '${cols[1]}', and '${
+          cols[2]
+        }' columns${messagePartsOfSpeech}`}</span>
+      ),
+    }
+
+    let msg = ''
+    if (searchTerm === '' || searchTerm === null) {
+      msg = messages.all
+    } else if (searchByAlphabet) {
+      msg = messages.startWith
+    } else {
+      msg = messages.contain
+
+      if (cols.length === 1) {
+        msg = messages.containColOne
+      }
+
+      if (cols.length === 2) {
+        msg = messages.containColsTwo
+      }
+
+      if (cols.length >= 3) {
+        msg = messages.containColsThree
+      }
+    }
+    return <div className={classNames('SearchDialectSearchFeedback', 'alert', 'alert-info')}>{msg}</div>
   }
 
   _getNxqlSearchSort() {
-    const { searchByAlphabet, searchPartOfSpeech, searchTerm } = this.props
+    const { searchPartOfSpeech, searchTerm } = this.props
     // Default sort
-    let searchSortBy = 'ecm:fulltextScore'
+    let searchSortBy = 'dc:title'
 
-    if (searchByAlphabet) {
-      searchSortBy = 'dc:title'
-    } else {
-      const boolCount = this._getNxqlBoolCount()
-      if (boolCount > 0) {
-        searchSortBy = 'dc:title'
-      }
-      if (boolCount === 1 && searchPartOfSpeech) {
-        searchSortBy = 'fv-word:part_of_speech'
-      }
+    const boolCount = this._getNxqlBoolCount()
+    // if (boolCount > 0) {
+    //   searchSortBy = 'dc:title'
+    // }
+    if (boolCount === 1 && searchPartOfSpeech) {
+      searchSortBy = 'fv-word:part_of_speech'
     }
 
     return searchTerm
@@ -370,7 +400,6 @@ class SearchDialect extends Component {
   _generateNxql() {
     const {
       searchTerm,
-      searchType,
       searchByTitle,
       searchByAlphabet,
       searchByCulturalNotes,
@@ -381,7 +410,7 @@ class SearchDialect extends Component {
 
     const search = searchTerm || ''
     const nxqlTmpl = {
-      allFields: `ecm:fulltext = '*${StringHelpers.clean(search, 'fulltext')}*'`,
+      // allFields: `ecm:fulltext = '*${StringHelpers.clean(search, 'fulltext')}*'`,
       searchByTitle: `dc:title ILIKE '%${search}%'`,
       searchByAlphabet: `dc:title ILIKE '${search}%'`,
       searchByCulturalNotes: `fv:cultural_note ILIKE '%${search}%'`,
@@ -397,42 +426,41 @@ class SearchDialect extends Component {
         nxq.push(join)
       }
     }
-    const boolCount = this._getNxqlBoolCount()
-    if (searchType === SEARCH_ADVANCED && boolCount !== 0) {
-      /* if (searchByAlphabet) {
-        nxqlQueryJoin(nxqlQueries)
-        nxqlQueries.push(`${nxqlTmpl.searchByAlphabet}`)
-      } */
+
+    if (searchByAlphabet) {
+      nxqlQueries.push(`${nxqlTmpl.searchByAlphabet}`)
+    } else {
       if (searchByCulturalNotes) {
         nxqlQueryJoin(nxqlQueries)
-        nxqlQueries.push(`${nxqlTmpl.searchByCulturalNotes}`)
+        nxqlQueries.push(nxqlTmpl.searchByCulturalNotes)
       }
       if (searchByTitle) {
         nxqlQueryJoin(nxqlQueries)
-        nxqlQueries.push(`${nxqlTmpl.searchByTitle}`)
+        nxqlQueries.push(nxqlTmpl.searchByTitle)
       }
       if (searchByTranslations) {
         nxqlQueryJoin(nxqlQueries)
-        nxqlQueries.push(`${nxqlTmpl.searchByTranslations}`)
+        nxqlQueries.push(nxqlTmpl.searchByTranslations)
       }
       if (searchByDefinitions) {
         nxqlQueryJoin(nxqlQueries)
-        nxqlQueries.push(`${nxqlTmpl.searchByDefinitions}`)
+        nxqlQueries.push(nxqlTmpl.searchByDefinitions)
       }
       if (searchPartOfSpeech && searchPartOfSpeech !== SEARCH_SORT_DEFAULT) {
         if (!searchByTitle && search) {
           nxqlQueryJoin(nxqlQueries)
-          nxqlQueries.push(`${nxqlTmpl.searchByTitle}`)
+          nxqlQueries.push(nxqlTmpl.searchByTitle)
         }
-        nxqlQuerySpeech = `${nxqlQueries.length > 0 ? ' AND ' : ''} ${nxqlTmpl.searchPartOfSpeech}`
-      }
-    } else {
-      if (searchByAlphabet) {
-        nxqlQueries.push(`${nxqlTmpl.searchByAlphabet}`)
-      } else {
-        nxqlQueries.push(`${nxqlTmpl.allFields}`)
+        // nxqlQuerySpeech = `${nxqlQueries.length > 0 ? ' AND ' : ''} ${nxqlTmpl.searchPartOfSpeech}`
+        nxqlQuerySpeech = ` AND ${nxqlTmpl.searchPartOfSpeech}`
       }
     }
+
+    // Safety
+    if (nxqlQueries.length === 0) {
+      nxqlQueries.push(nxqlTmpl.searchByTitle)
+    }
+
     let nxqlQueryCollection = ''
     if (nxqlQueries.length > 0) {
       nxqlQueryCollection = `( ${nxqlQueries.join('')} )`
@@ -447,26 +475,13 @@ class SearchDialect extends Component {
     // always reset alphabet search
     updateState.searchByAlphabet = false
 
-    if (value === SEARCH_DEFAULT) {
-      // Reset everything
-      updateState.searchType = SEARCH_DEFAULT
-
-      updateState.searchByCulturalNotes = false
-      updateState.searchByTitle = false
-      updateState.searchByDefinitions = false
-      updateState.searchByTranslations = false
-      updateState.searchPartOfSpeech = SEARCH_SORT_DEFAULT
-    } else {
-      this.setState({ userInteractedWithSearchDialectAdvanced: true })
-      updateState.searchType = SEARCH_ADVANCED
-      // Record changes
-      switch (type) {
-        case 'checkbox':
-          updateState[id] = checked
-          break
-        default:
-          updateState[id] = value
-      }
+    // Record changes
+    switch (type) {
+      case 'checkbox':
+        updateState[id] = checked
+        break
+      default:
+        updateState[id] = value
     }
 
     this.props.updateAncestorState(updateState)
@@ -479,23 +494,28 @@ class SearchDialect extends Component {
   }
 
   _handleSearch() {
+    this.setState({
+      searchInfoOutput: this._getSearchInfo(),
+    })
     const updateState = { searchByAlphabet: false }
     this.props.updateAncestorState(updateState)
     this.props.handleSearch()
   }
 
-  _resetSearch() {
+  async _resetSearch() {
     const updateState = {
       searchTerm: null,
-      searchType: SEARCH_DEFAULT,
       searchByAlphabet: false,
       searchByCulturalNotes: false,
-      searchByTitle: false,
-      searchByDefinitions: false,
+      searchByTitle: true,
+      searchByDefinitions: true,
       searchByTranslations: false,
       searchPartOfSpeech: SEARCH_SORT_DEFAULT,
     }
-    this.props.updateAncestorState(updateState)
+    await this.props.updateAncestorState(updateState)
+    this.setState({
+      searchInfoOutput: this._getSearchInfo(),
+    })
     this.props.resetSearch()
   }
 

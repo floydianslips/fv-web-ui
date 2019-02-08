@@ -37,7 +37,7 @@
       window.ALLOYEDITOR_BASEPATH = window.CKEDITOR_BASEPATH = '/assets/vendor/alloyeditor/';
     </script>
 
-    {% if buildENV == "production" %}<script src="https://cdn.ravenjs.com/3.25.2/raven.min.js" crossorigin="anonymous"></script>{% endif %}
+    {% if buildENV == "production_DISABLE_FOR_NOW" %}<script src="https://cdn.ravenjs.com/3.25.2/raven.min.js" crossorigin="anonymous"></script>{% endif %}
 
     {% block head %}{% endblock %}
 
@@ -48,6 +48,9 @@
 
         <div class="container-fluid" id="page-wrapper">
             {% block content %}{% endblock %}
+        </div>
+        <div class="container-fluid" id="page-absolute-footer" style="background-color: #0d6c80;color: #fff;">
+            Version: {{uiVersion}}
         </div>
         <!-- /#page-wrapper -->
 

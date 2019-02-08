@@ -100,7 +100,7 @@ export default class DialectCategoryList extends Component {
     if (prevProps.facets.length !== this.props.facets.length) {
       this.categoriesSorted = this._sortCategories(this.props.facets)
       this.listItems = this._generateListItems(this.categoriesSorted)
-      this.setState({update: Math.random() + Math.random()}) // TODO: TEMP HACK
+      this.setState({ update: Math.random() + Math.random() }) // TODO: TEMP HACK
     }
 
     if (prevAppliedFilterIds.equals(currentAppliedFilterIds) === false) {
@@ -189,9 +189,8 @@ export default class DialectCategoryList extends Component {
       const parentActiveClass = appliedFilterIds.includes(uidParent) ? `${this._css}ItemActive` : ''
       const parentHref = `/${this.uidUrl[uidParent]}`
       const parentListItem = (
-        <li className={`${this._css}Item ${parentActiveClass}`}>
+        <li key={uidParent} className={`${this._css}Item ${parentActiveClass}`}>
           <a
-            key={uidParent}
             className={`${this._css}Link`}
             href={parentHref}
             onClick={(e) => {
