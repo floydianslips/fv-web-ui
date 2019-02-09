@@ -221,10 +221,9 @@ module.exports = function(env) {
         sourceMap: true,
         exclude: /\/node_modules/,
         uglifyOptions: {
-          ecma: 8,
+          ecma: 5,
           mangle: true,
           compress: {
-            ecma: 5,
             sequences: true,
             dead_code: true,
             conditionals: true,
@@ -235,7 +234,6 @@ module.exports = function(env) {
             drop_console: true,
           },
           output: {
-            ecma: 5,
             comments: false,
             beautify: false,
           },

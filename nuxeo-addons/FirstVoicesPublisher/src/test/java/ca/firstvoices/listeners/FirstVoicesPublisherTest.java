@@ -4,10 +4,7 @@
 
 package ca.firstvoices.listeners;
 
-import static org.junit.Assert.*;
-
-import java.security.InvalidParameterException;
-
+import ca.firstvoices.publisher.services.FirstVoicesPublisherService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,16 +14,14 @@ import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.DocumentNotFoundException;
 import org.nuxeo.ecm.core.api.IdRef;
 import org.nuxeo.ecm.core.test.CoreFeature;
-import org.nuxeo.runtime.test.runner.Deploy;
-import org.nuxeo.runtime.test.runner.Features;
-import org.nuxeo.runtime.test.runner.FeaturesRunner;
-import org.nuxeo.runtime.test.runner.LocalDeploy;
 import org.nuxeo.ecm.platform.publisher.api.PublisherService;
 import org.nuxeo.ecm.platform.test.PlatformFeature;
-import org.nuxeo.runtime.test.runner.RuntimeFeature;
+import org.nuxeo.runtime.test.runner.*;
 
-import ca.firstvoices.publisher.services.FirstVoicesPublisherService;
 import javax.inject.Inject;
+import java.security.InvalidParameterException;
+
+import static org.junit.Assert.*;
 
 /**
  * @author loopingz
@@ -114,6 +109,12 @@ public class FirstVoicesPublisherTest {
         domain = session.createDocument(session.createDocumentModel("/", "FV", "Domain"));
         sectionRoot = publisherService.getRootSectionFinder(session).getDefaultSectionRoots(true, true).get(0);
         createDialectTree();
+    }
+
+    @After
+    public void cleanup() {
+        session.removeChildren(session.getRootDocument().getRef());
+        session.save();
     }
 
     @Test
@@ -275,7 +276,7 @@ public class FirstVoicesPublisherTest {
         picture = session.createDocument(session.createDocumentModel("/Family/Language/Dialect/Resources", "myPicture", "FVPicture"));
         audio = session.createDocument(session.createDocumentModel("/Family/Language/Dialect/Resources", "myAudio", "FVAudio"));
         video = session.createDocument(session.createDocumentModel("/Family/Language/Dialect/Resources", "myVideo", "FVVideo"));
-        word = session.createDocumentModel("/Family/Language/Dialect/Dictionary", "myWord", "FVWord");
+        word = session.createDocumentModel("/Family/Language/Dialect/Dictionary", "myWord1", "FVWord");
         String[] values = new String[1];
         values[0]=audio.getId();
         word.setPropertyValue("fvcore:related_audio", values);
