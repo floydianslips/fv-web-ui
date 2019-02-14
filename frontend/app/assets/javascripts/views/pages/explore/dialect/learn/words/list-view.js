@@ -13,24 +13,24 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, { PropTypes } from "react"
-import Immutable, { Map } from "immutable"
-import provide from "react-redux-provide"
-import selectn from "selectn"
+import React, { PropTypes } from 'react'
+import Immutable, { Map } from 'immutable'
+import provide from 'react-redux-provide'
+import selectn from 'selectn'
 
-import PromiseWrapper from "views/components/Document/PromiseWrapper"
+import PromiseWrapper from 'views/components/Document/PromiseWrapper'
 
-import ProviderHelpers from "common/ProviderHelpers"
-import NavigationHelpers from "common/NavigationHelpers"
-import StringHelpers from "common/StringHelpers"
-import UIHelpers from "common/UIHelpers"
+import ProviderHelpers from 'common/ProviderHelpers'
+import NavigationHelpers from 'common/NavigationHelpers'
+import StringHelpers from 'common/StringHelpers'
+import UIHelpers from 'common/UIHelpers'
 
-import DocumentListView from "views/components/Document/DocumentListView"
+import DocumentListView from 'views/components/Document/DocumentListView'
 
-import DataListView from "views/pages/explore/dialect/learn/base/data-list-view"
+import DataListView from 'views/pages/explore/dialect/learn/base/data-list-view'
 
-import Preview from "views/components/Editor/Preview"
-import IntlService from "views/services/intl"
+import Preview from 'views/components/Editor/Preview'
+import IntlService from 'views/services/intl'
 
 const intl = IntlService.instance
 
@@ -41,20 +41,21 @@ const intl = IntlService.instance
 export default class ListView extends DataListView {
   static defaultProps = {
     disableWordClick: true,
-    DISABLED_SORT_COLS: ["state", "fv-word:categories", "related_audio", "related_pictures", "dc:modified"],
+    DISABLED_SORT_COLS: ['state', 'fv-word:categories', 'related_audio', 'related_pictures', 'dc:modified'],
     DEFAULT_PAGE: 1,
     DEFAULT_PAGE_SIZE: 10,
-    DEFAULT_LANGUAGE: "english",
-    DEFAULT_SORT_COL: "fv:custom_order",
-    DEFAULT_SORT_TYPE: "asc",
+    DEFAULT_LANGUAGE: 'english',
+    // DEFAULT_SORT_COL: 'fv:custom_order',
+    DEFAULT_SORT_COL: 'dc:title',
+    DEFAULT_SORT_TYPE: 'asc',
     ENABLED_COLS: [
-      "title",
-      "related_pictures",
-      "related_audio",
-      "fv:definitions",
-      "fv-word:pronunciation",
-      "fv-word:categories",
-      "fv-word:part_of_speech",
+      'title',
+      'related_pictures',
+      'related_audio',
+      'fv:definitions',
+      'fv-word:pronunciation',
+      'fv-word:categories',
+      'fv-word:part_of_speech',
     ],
     dialect: null,
     filter: new Map(),
@@ -115,27 +116,27 @@ export default class ListView extends DataListView {
     this.state = {
       columns: [
         {
-          name: "title",
-          title: intl.trans("word", "Word", "first"),
+          name: 'title',
+          title: intl.trans('word', 'Word', 'first'),
           render: (v, data) => {
-            const href = NavigationHelpers.generateUIDPath(this.props.routeParams.theme, data, "words")
+            const href = NavigationHelpers.generateUIDPath(this.props.routeParams.theme, data, 'words')
             const clickHandler = props.disableWordClick
               ? NavigationHelpers.disable
               : (e) => {
-                  e.preventDefault()
-                  NavigationHelpers.navigate(href, this.props.pushWindowPath, false)
-                }
+                e.preventDefault()
+                NavigationHelpers.navigate(href, this.props.pushWindowPath, false)
+              }
             return (
               <a onClick={clickHandler} href={href}>
                 {v}
               </a>
             )
           },
-          sortName: "fv:custom_order",
+          sortName: 'fv:custom_order',
         },
         {
-          name: "fv:definitions",
-          title: intl.trans("definitions", "Definitions", "first"),
+          name: 'fv:definitions',
+          title: intl.trans('definitions', 'Definitions', 'first'),
           render: (v, data, cellProps) => {
             return UIHelpers.renderComplexArrayRow(selectn(`properties.${cellProps.name}`, data), (entry, i) => {
               if (entry.language === this.props.DEFAULT_LANGUAGE && i < 2) {
@@ -143,20 +144,20 @@ export default class ListView extends DataListView {
               }
             })
           },
-          sortName: "fv:definitions/0/translation",
+          sortName: 'fv:definitions/0/translation',
         },
         {
-          name: "related_audio",
-          title: intl.trans("audio", "Audio", "first"),
+          name: 'related_audio',
+          title: intl.trans('audio', 'Audio', 'first'),
           render: (v, data, cellProps) => {
-            const firstAudio = selectn("contextParameters.word." + cellProps.name + "[0]", data)
+            const firstAudio = selectn('contextParameters.word.' + cellProps.name + '[0]', data)
             if (firstAudio) {
               return (
                 <Preview
-                  key={selectn("uid", firstAudio)}
+                  key={selectn('uid', firstAudio)}
                   minimal
-                  tagProps={{ preload: "none" }}
-                  tagStyles={{ width: "250px", maxWidth: "100%" }}
+                  tagProps={{ preload: 'none' }}
+                  tagStyles={{ width: '250px', maxWidth: '100%' }}
                   expandedValue={firstAudio}
                   type="FVAudio"
                 />
@@ -165,18 +166,18 @@ export default class ListView extends DataListView {
           },
         },
         {
-          name: "related_pictures",
+          name: 'related_pictures',
           width: 72,
-          textAlign: "center",
-          title: intl.trans("picture", "Picture", "first"),
+          textAlign: 'center',
+          title: intl.trans('picture', 'Picture', 'first'),
           render: (v, data, cellProps) => {
-            const firstPicture = selectn("contextParameters.word." + cellProps.name + "[0]", data)
+            const firstPicture = selectn('contextParameters.word.' + cellProps.name + '[0]', data)
             if (firstPicture) {
               return (
                 <img
-                  key={selectn("uid", firstPicture)}
-                  style={{ maxWidth: "62px", maxHeight: "45px" }}
-                  src={UIHelpers.getThumbnail(firstPicture, "Thumbnail")}
+                  key={selectn('uid', firstPicture)}
+                  style={{ maxWidth: '62px', maxHeight: '45px' }}
+                  src={UIHelpers.getThumbnail(firstPicture, 'Thumbnail')}
                   alt=""
                 />
               )
@@ -184,32 +185,32 @@ export default class ListView extends DataListView {
           },
         },
         {
-          name: "fv-word:part_of_speech",
-          title: intl.trans("part_of_speech", "Part of Speech", "first"),
-          render: (v, data) => selectn("contextParameters.word.part_of_speech", data),
+          name: 'fv-word:part_of_speech',
+          title: intl.trans('part_of_speech', 'Part of Speech', 'first'),
+          render: (v, data) => selectn('contextParameters.word.part_of_speech', data),
         },
         {
-          name: "dc:modified",
+          name: 'dc:modified',
           width: 210,
-          title: intl.trans("date_modified", "Date Modified"),
+          title: intl.trans('date_modified', 'Date Modified'),
           render: function(v, data, cellProps) {
-            return StringHelpers.formatUTCDateString(selectn("lastModified", data))
+            return StringHelpers.formatUTCDateString(selectn('lastModified', data))
           },
         },
         {
-          name: "dc:created",
+          name: 'dc:created',
           width: 210,
-          title: intl.trans("date_created", "Date Created"),
+          title: intl.trans('date_created', 'Date Created'),
           render: function(v, data, cellProps) {
-            return StringHelpers.formatUTCDateString(selectn("properties.dc:created", data))
+            return StringHelpers.formatUTCDateString(selectn('properties.dc:created', data))
           },
         },
         {
-          name: "fv-word:categories",
-          title: intl.trans("categories", "Categories", "first"),
+          name: 'fv-word:categories',
+          title: intl.trans('categories', 'Categories', 'first'),
           render: (v, data) =>
-            UIHelpers.renderComplexArrayRow(selectn("contextParameters.word.categories", data), (entry, i) => (
-              <li key={i}>{selectn("dc:title", entry)}</li>
+            UIHelpers.renderComplexArrayRow(selectn('contextParameters.word.categories', data), (entry, i) => (
+              <li key={i}>{selectn('dc:title', entry)}</li>
             )),
         },
       ],
@@ -225,8 +226,8 @@ export default class ListView extends DataListView {
     }
 
     // Reduce the number of columns displayed for mobile
-    if (UIHelpers.isViewSize("xs")) {
-      this.state.columns = this.state.columns.filter((v) => ["title", "fv:literal_translation"].indexOf(v.name) !== -1)
+    if (UIHelpers.isViewSize('xs')) {
+      this.state.columns = this.state.columns.filter((v) => ['title', 'fv:literal_translation'].indexOf(v.name) !== -1)
       this.state.hideStateColumn = true
     }
 
@@ -236,15 +237,15 @@ export default class ListView extends DataListView {
     }
 
     // Bind methods to 'this'
-    ;[
-      "_onNavigateRequest",
-      "_onEntryNavigateRequest",
-      "_handleRefetch",
-      "_handleSortChange",
-      "_handleColumnOrderChange",
-      "_resetColumns",
-      "_fetchData2",
-      "_getPathOrParentID",
+    [
+      '_onNavigateRequest',
+      '_onEntryNavigateRequest',
+      '_handleRefetch',
+      '_handleSortChange',
+      '_handleColumnOrderChange',
+      '_resetColumns',
+      '_fetchData2',
+      '_getPathOrParentID',
     ].forEach((method) => (this[method] = this[method].bind(this))) // eslint-disable-line
   }
 
@@ -254,10 +255,12 @@ export default class ListView extends DataListView {
 
   // NOTE: DataListView calls `fetchData`
   fetchData(newProps) {
+    // console.log('!!! fetchData 1')
     if (newProps.dialect === null && !this.getDialect(newProps)) {
+      // console.log('!!! fetchData 2')
       newProps.fetchDialect2(newProps.routeParams.dialect_path)
     }
-
+    // console.log('!!! fetchData 3')
     this._fetchListViewData(
       newProps,
       newProps.DEFAULT_PAGE,
@@ -272,7 +275,7 @@ export default class ListView extends DataListView {
       this.props.action(item)
     } else {
       NavigationHelpers.navigate(
-        NavigationHelpers.generateUIDPath(this.props.routeParams.theme, item, "words"),
+        NavigationHelpers.generateUIDPath(this.props.routeParams.theme, item, 'words'),
         this.props.pushWindowPath,
         true
       )
@@ -281,13 +284,16 @@ export default class ListView extends DataListView {
 
   // NOTE: DataListView calls `_fetchListViewData`
   _fetchListViewData(props, pageIndex, pageSize, sortOrder, sortBy) {
-    let currentAppliedFilter = ""
+    // console.log('!!! _fetchListViewData 1')
+    let currentAppliedFilter = ''
 
-    if (props.filter.has("currentAppliedFilter")) {
-      currentAppliedFilter = Object.values(props.filter.get("currentAppliedFilter").toJS()).join("")
+    if (props.filter.has('currentAppliedFilter')) {
+      // console.log('!!! _fetchListViewData 2')
+      currentAppliedFilter = Object.values(props.filter.get('currentAppliedFilter').toJS()).join('')
     }
     const nql = `${currentAppliedFilter}&currentPageIndex=${pageIndex -
       1}&pageSize=${pageSize}&sortOrder=${sortOrder}&sortBy=${sortBy}`
+    // console.log('!!! _fetchListViewData 3')
     props.fetchWords(this._getPathOrParentID(props), nql)
   }
 
@@ -335,13 +341,13 @@ export default class ListView extends DataListView {
     const computeDialect2 = this.props.dialect || this.getDialect()
 
     const listViewProps = {
-      className: "browseDataGrid",
+      className: 'browseDataGrid',
       columns: this.state.columns,
       data: computeWords,
-      dialect: selectn("response", computeDialect2),
+      dialect: selectn('response', computeDialect2),
       disablePageSize: this.props.disablePageSize,
       gridListView: this.props.gridListView,
-      objectDescriptions: "words",
+      objectDescriptions: 'words',
       onColumnOrderChange: this._handleColumnOrderChange,
       onSelectionChange: this._onEntryNavigateRequest,
       onSortChange: this._handleSortChange,
@@ -351,11 +357,11 @@ export default class ListView extends DataListView {
       refetcher2: this._handleRefetch,
       renderSimpleTable: this.props.renderSimpleTable,
       sortInfo: this.state.sortInfo.uiSortOrder,
-      type: "FVWord",
+      type: 'FVWord',
     }
     return (
       <PromiseWrapper renderOnError computeEntities={computeEntities}>
-        {selectn("response.entries", computeWords) && <DocumentListView {...listViewProps} />}
+        {selectn('response.entries', computeWords) && <DocumentListView {...listViewProps} />}
       </PromiseWrapper>
     )
   }

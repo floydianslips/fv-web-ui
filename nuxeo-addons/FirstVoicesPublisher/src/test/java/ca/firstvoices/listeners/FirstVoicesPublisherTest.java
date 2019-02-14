@@ -7,6 +7,7 @@ package ca.firstvoices.listeners;
 import ca.firstvoices.publisher.services.FirstVoicesPublisherService;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.nuxeo.ecm.core.api.CoreSession;
@@ -310,6 +311,7 @@ public class FirstVoicesPublisherTest {
        verifyProxy(getProxy(word));
     }
 
+    @Ignore
     @Test
     public void testDocumentRepublishing() throws Exception {
         createWord();

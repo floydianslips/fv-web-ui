@@ -13,14 +13,14 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import React, { Component, PropTypes } from "react"
+import React, { Component, PropTypes } from 'react'
 
-import selectn from "selectn"
-import GridView from "views/pages/explore/dialect/learn/base/grid-view"
-import DictionaryList from "views/components/Browsing/dictionary-list"
+import selectn from 'selectn'
+import GridView from 'views/pages/explore/dialect/learn/base/grid-view'
+import DictionaryList from 'views/components/Browsing/dictionary-list'
 
-import withPagination from "views/hoc/grid-list/with-pagination"
-import IntlService from "views/services/intl"
+import withPagination from 'views/hoc/grid-list/with-pagination'
+import IntlService from 'views/services/intl'
 
 // is TapEvent needed here?! Test on mobile
 //var injectTapEventPlugin = require("react-tap-event-plugin");
@@ -43,7 +43,7 @@ function debounce(a, b, c) {
   }
 }
 */
-const DefaultFetcherParams = { currentPageIndex: 1, pageSize: 10, sortBy: "fv:custom_order", sortOrder: "asc" }
+const DefaultFetcherParams = { currentPageIndex: 1, pageSize: 10, sortBy: 'fv:custom_order', sortOrder: 'asc' }
 const FilteredPaginatedDictionaryList = withPagination(DictionaryList, DefaultFetcherParams.pageSize)
 
 export default class DocumentListView extends Component {
@@ -113,18 +113,18 @@ export default class DocumentListView extends Component {
     } = this.props
 
     let gridViewProps = {
-      style: { overflowY: "auto", maxHeight: "50vh" },
+      style: { overflowY: 'auto', maxHeight: '50vh' },
       cols: gridCols,
       cellHeight: 160,
       fetcher: this._gridListFetcher,
       type: type,
       pagination: pagination,
       fetcherParams: { currentPageIndex: page, pageSize: pageSize },
-      metadata: selectn("response", data),
+      metadata: selectn('response', data),
       gridListTile: gridListTile,
       disablePageSize: disablePageSize,
       dialect: dialect,
-      items: selectn("response.entries", data),
+      items: selectn('response.entries', data),
     }
 
     if (gridListView) {

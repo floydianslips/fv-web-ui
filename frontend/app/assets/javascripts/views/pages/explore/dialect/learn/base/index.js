@@ -124,7 +124,6 @@ export default class PageDialectLearnBase extends Component {
         })
       }
     }
-
     // Category filter
     if (newList.size > 0) {
       categoryFilter = ` AND ${ProviderHelpers.switchWorkspaceSectionKeys(
@@ -138,6 +137,71 @@ export default class PageDialectLearnBase extends Component {
       newList.join('","') +
       '")';
       */
+    }
+
+    let newFilter = this.state.filterInfo.updateIn(['currentCategoryFilterIds'], () => {
+      return newList
+    })
+    newFilter = newFilter.updateIn(['currentAppliedFilter', 'categories'], () => {
+      return categoryFilter
+    })
+
+    // Update filter description based on if categories exist or don't exist
+    if (newList.size > 0) {
+      newFilter = newFilter.updateIn(['currentAppliedFiltersDesc', 'categories'], () => {
+        return " match the categories you've selected "
+      })
+    } else {
+      newFilter = newFilter.deleteIn(['currentAppliedFiltersDesc', 'categories'])
+    }
+
+    // Update page properties to use when navigating away
+    this._handlePagePropertiesChange({ filterInfo: newFilter })
+
+    // When facets change, pagination should be reset.
+    // In these pages (words/phrase), list views are controlled via URL
+    this._resetURLPagination()
+
+    this.setState({ filterInfo: newFilter })
+  }
+
+  handleDialectCategoryList(facetField, selected, unselected) {
+    const currentCategoryFilterIds = this.state.filterInfo.get('currentCategoryFilterIds')
+    let categoryFilter = ''
+    let newList = new Set()
+
+    if (unselected) {
+      const {checkedFacetUid: unselectedCheckedFacetUid, childrenIds: unselectedChildrenIds, parentFacetUid: unselectedParentFacetUid} = unselected
+      // Removing filter
+      newList = currentCategoryFilterIds.delete(currentCategoryFilterIds.keyOf(unselectedCheckedFacetUid))
+
+      if (unselectedParentFacetUid) {
+        newList = newList.delete(currentCategoryFilterIds.keyOf(unselectedParentFacetUid))
+      }
+      const unselectedChildrenIdsList = new Set(unselectedChildrenIds)
+      if (unselectedChildrenIdsList.size > 0) {
+        newList = newList.filter((v) => {
+          return !unselectedChildrenIdsList.includes(v)
+        })
+      }
+    }
+
+    if (selected) {
+      const {checkedFacetUid: selectedCheckedFacetUid, childrenIds: selectedChildrenIds } = selected
+      const selectedChildrenIdsList = new Set(selectedChildrenIds)
+      newList = newList.add(selectedCheckedFacetUid)
+
+      if (selectedChildrenIdsList.size > 0) {
+        newList = newList.merge(selectedChildrenIdsList)
+      }
+    }
+
+    // Category filter
+    if (newList.size > 0) {
+      categoryFilter = ` AND ${ProviderHelpers.switchWorkspaceSectionKeys(
+        facetField,
+        this.props.routeParams.area
+      )}/* IN ("${newList.join('","')}")`
     }
 
     let newFilter = this.state.filterInfo.updateIn(['currentCategoryFilterIds'], () => {
