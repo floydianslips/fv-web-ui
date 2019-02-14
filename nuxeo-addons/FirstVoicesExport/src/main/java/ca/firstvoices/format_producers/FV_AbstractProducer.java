@@ -176,7 +176,7 @@ abstract public class FV_AbstractProducer
                 }
                 else
                 {
-                   // log.warn
+                    // log.warn
                 }
             }
         }
@@ -256,7 +256,7 @@ abstract public class FV_AbstractProducer
             StringList columnNames = reader.getColumnNameForOutput();
 
             output.addAll(columnNames);
-         }
+        }
 
         return  output;
     }
@@ -271,7 +271,7 @@ abstract public class FV_AbstractProducer
         List< List<FV_DataBinding> > listToReturn = new ArrayList<>();
         int numOutputLines = 1;     // maximum number of output lines to be generated
         int scan = 1;               // since some columns may have more than 1 row we will need to rescan
-                                    // provided data multiple times
+        // provided data multiple times
         do
         {
             List<FV_DataBinding> singleLine = new ArrayList<>();

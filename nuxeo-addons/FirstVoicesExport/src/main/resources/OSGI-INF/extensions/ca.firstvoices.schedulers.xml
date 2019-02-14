@@ -4,7 +4,7 @@
 <!-- every day at 2,12,22 -> 0 0 0,2,12,22 ? * * * -->
 <!-- every day at 6PM, 2AM, 10AM -> 0 18,2,10 -->
 
-<component name="ca.firstvoices.export.schedulers.contrib">
+<component name="ca.firstvoices.schedulers.contrib">
     <extension target="org.nuxeo.ecm.core.scheduler.SchedulerService" point="schedule">
         <schedule id="document-export">
             <eventId>autoProduceFormattedDocument</eventId>

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<component name="ca.firstvoices.export.workers.contrib">
+<component name="ca.firstvoices.workers.contrib">
 
     <extension target="org.nuxeo.ecm.core.work.service" point="queues">
         <queue id="demandExportWorker">
