@@ -141,7 +141,7 @@ public class ExportTestUtil
             word.setPropertyValue("fv-word:part_of_speech", "Basic" );
             word.setPropertyValue("dc:title", wordValue );
             word.setPropertyValue("fv:available_in_childrens_archive", false );
-            word.setPropertyValue("fv:child_focused", true );
+//            word.setPropertyValue("fv:child_focused", true );
 
             // TODO add other types
             word = createDocument(session, word );
