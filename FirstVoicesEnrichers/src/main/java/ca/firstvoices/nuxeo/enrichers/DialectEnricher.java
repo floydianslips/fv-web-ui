@@ -60,7 +60,7 @@ public class DialectEnricher extends AbstractJsonEnricher<DocumentModel> {
                         keyboardJsonArray.add(keyboardJsonObj);
                     }
                 }
-                jsonObj.put("keyboards", keyboardJsonArray);
+                jsonObj.set("keyboards", keyboardJsonArray);
             }
 
             // Process "fvdialect:language_resources" values
@@ -75,10 +75,10 @@ public class DialectEnricher extends AbstractJsonEnricher<DocumentModel> {
                         languageResourcesJsonArray.add(languageResourceJsonObj);
                     }
                 }
-                jsonObj.put("language_resources", languageResourcesJsonArray);
+                jsonObj.set("language_resources", languageResourcesJsonArray);
             }
 
-            jsonObj.put("roles", EnricherUtils.getRolesAssociatedWithDialect(doc, session));
+            jsonObj.set("roles", EnricherUtils.getRolesAssociatedWithDialect(doc, session));
         }
 
         return jsonObj;

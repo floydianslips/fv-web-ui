@@ -76,7 +76,7 @@ public class WordEnricher extends AbstractJsonEnricher<DocumentModel> {
                     categoryArray.add(categoryObj);
                 }
             }
-            jsonObj.put("categories", categoryArray);
+            jsonObj.set("categories", categoryArray);
 
             // Process "fv-word:part_of_speech" value
             String partOfSpeechId = (String) doc.getProperty("fv-word", "part_of_speech");
@@ -94,7 +94,7 @@ public class WordEnricher extends AbstractJsonEnricher<DocumentModel> {
                         sourceArray.add(sourceObj);
                     }
                 }
-                jsonObj.put("sources", sourceArray);
+                jsonObj.set("sources", sourceArray);
             }
 
             // Process "fv-word:related_phrases" values
@@ -131,7 +131,7 @@ public class WordEnricher extends AbstractJsonEnricher<DocumentModel> {
                         jsonNode.put("translation", translation);
                         definitionsJsonArray.add(jsonNode);
                     }
-                    phraseObj.put("fv:definitions", definitionsJsonArray);
+                    phraseObj.set("fv:definitions", definitionsJsonArray);
 
                     // Construct JSON array node for fv:literal_translation
                     ArrayList<Object> literalTranslationList = (ArrayList<Object>) phraseDoc.getProperty("fvcore",
@@ -148,12 +148,12 @@ public class WordEnricher extends AbstractJsonEnricher<DocumentModel> {
                         jsonNode.put("translation", translation);
                         literalTranslationJsonArray.add(jsonNode);
                     }
-                    phraseObj.put("fv:literal_translation", literalTranslationJsonArray);
+                    phraseObj.set("fv:literal_translation", literalTranslationJsonArray);
 
                     phraseObj.put("dc:title", phraseDoc.getTitle());
                     phraseArray.add(phraseObj);
                 }
-                jsonObj.put("related_phrases", phraseArray);
+                jsonObj.set("related_phrases", phraseArray);
             }
 
             // Process "fv:related_audio" values
@@ -167,7 +167,7 @@ public class WordEnricher extends AbstractJsonEnricher<DocumentModel> {
                         audioJsonArray.add(binaryJsonObj);
                     }
                 }
-                jsonObj.put("related_audio", audioJsonArray);
+                jsonObj.set("related_audio", audioJsonArray);
             }
 
             // Process "fv:related_pictures" values
@@ -181,7 +181,7 @@ public class WordEnricher extends AbstractJsonEnricher<DocumentModel> {
                         pictureJsonArray.add(binaryJsonObj);
                     }
                 }
-                jsonObj.put("related_pictures", pictureJsonArray);
+                jsonObj.set("related_pictures", pictureJsonArray);
             }
 
             // Process "fv:related_video" values
@@ -195,7 +195,7 @@ public class WordEnricher extends AbstractJsonEnricher<DocumentModel> {
                         videoJsonArray.add(binaryJsonObj);
                     }
                 }
-                jsonObj.put("related_videos", videoJsonArray);
+                jsonObj.set("related_videos", videoJsonArray);
             }
         }
 

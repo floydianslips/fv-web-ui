@@ -91,7 +91,7 @@ public class EnricherUtils {
                     ++i;
                 }
 
-                binaryJsonObj.put("views", thumbnailsJsonArray);
+                binaryJsonObj.set("views", thumbnailsJsonArray);
             }
         } catch (DocumentNotFoundException | DocumentSecurityException de) {
             log.warn("Could not retrieve binary document.", de);

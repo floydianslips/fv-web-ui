@@ -66,7 +66,7 @@ public class BookEnricher extends AbstractJsonEnricher<DocumentModel> {
                             sourceArray.add(sourceObj);
                         }
                     }
-                    jsonObj.put("sources", sourceArray);
+                    jsonObj.set("sources", sourceArray);
                 }
 
                 // Process "fv-book:author" values
@@ -80,7 +80,7 @@ public class BookEnricher extends AbstractJsonEnricher<DocumentModel> {
                             authorArray.add(authorObj);
                         }
                     }
-                    jsonObj.put("authors", authorArray);
+                    jsonObj.set("authors", authorArray);
                 }
             }
 
@@ -95,7 +95,7 @@ public class BookEnricher extends AbstractJsonEnricher<DocumentModel> {
                         audioJsonArray.add(binaryJsonObj);
                     }
                 }
-                jsonObj.put("related_audio", audioJsonArray);
+                jsonObj.set("related_audio", audioJsonArray);
             }
 
             // Process "fv:related_pictures" values
@@ -109,7 +109,7 @@ public class BookEnricher extends AbstractJsonEnricher<DocumentModel> {
                         pictureJsonArray.add(binaryJsonObj);
                     }
                 }
-                jsonObj.put("related_pictures", pictureJsonArray);
+                jsonObj.set("related_pictures", pictureJsonArray);
             }
 
             // Process "fv:related_video" values
@@ -123,7 +123,7 @@ public class BookEnricher extends AbstractJsonEnricher<DocumentModel> {
                         videoJsonArray.add(binaryJsonObj);
                     }
                 }
-                jsonObj.put("related_videos", videoJsonArray);
+                jsonObj.set("related_videos", videoJsonArray);
             }
         }
 

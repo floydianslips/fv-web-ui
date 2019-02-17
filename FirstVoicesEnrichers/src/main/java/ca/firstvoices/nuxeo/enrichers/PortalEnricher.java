@@ -97,7 +97,7 @@ public class PortalEnricher extends AbstractJsonEnricher<DocumentModel> {
                         literalTranslationJsonObj.put("translation", translation);
                         literalTranslationJsonArray.add(literalTranslationJsonObj);
                     }
-                    featuredWordJsonObj.put("fv:literal_translation", literalTranslationJsonArray);
+                    featuredWordJsonObj.set("fv:literal_translation", literalTranslationJsonArray);
 
                     // Process "fv-word:definitions" values
                     Object definitionsObj = featuredWordDoc.getProperty("fvcore", "definitions");
@@ -114,7 +114,7 @@ public class PortalEnricher extends AbstractJsonEnricher<DocumentModel> {
                         definitionsJsonObj.put("translation", translation);
                         definitionsJsonArray.add(definitionsJsonObj);
                     }
-                    featuredWordJsonObj.put("fv:definitions", definitionsJsonArray);
+                    featuredWordJsonObj.set("fv:definitions", definitionsJsonArray);
 
                     // Process "fv-word:part_of_speech" value
                     String partOfSpeechId = (String) featuredWordDoc.getProperty("fv-word", "part_of_speech");
@@ -136,7 +136,7 @@ public class PortalEnricher extends AbstractJsonEnricher<DocumentModel> {
                         }
                     }
 
-                    featuredWordJsonObj.put("fv:related_audio", relatedAudioJsonArray);
+                    featuredWordJsonObj.set("fv:related_audio", relatedAudioJsonArray);
 
                     // Process "fv:related_pictures" values
                     String[] relatedPicturesIds = (!featuredWordDoc.isProxy())
@@ -153,7 +153,7 @@ public class PortalEnricher extends AbstractJsonEnricher<DocumentModel> {
                         }
                     }
 
-                    featuredWordJsonObj.put("fv:related_pictures", relatedPicturesJsonArray);
+                    featuredWordJsonObj.set("fv:related_pictures", relatedPicturesJsonArray);
 
                     featuredWordJsonArray.add(featuredWordJsonObj);
                 }
@@ -179,7 +179,7 @@ public class PortalEnricher extends AbstractJsonEnricher<DocumentModel> {
                 // Retrieve additional properties from the referenced binaries, and add them to the JSON
                 ObjectNode binaryJsonObj = EnricherUtils.getBinaryPropertiesJsonObject(backgroundTopImageId, session);
                 if (binaryJsonObj != null) {
-                    jsonObj.put("fv-portal:background_top_image", binaryJsonObj);
+                    jsonObj.set("fv-portal:background_top_image", binaryJsonObj);
                 }
             }
 
@@ -190,7 +190,7 @@ public class PortalEnricher extends AbstractJsonEnricher<DocumentModel> {
                 ObjectNode binaryJsonObj = EnricherUtils.getBinaryPropertiesJsonObject(backgroundBottomImageId,
                         session);
                 if (binaryJsonObj != null) {
-                    jsonObj.put("fv-portal:background_bottom_image", binaryJsonObj);
+                    jsonObj.set("fv-portal:background_bottom_image", binaryJsonObj);
                 }
             }
 
@@ -216,7 +216,7 @@ public class PortalEnricher extends AbstractJsonEnricher<DocumentModel> {
                         relatedLinkJsonArray.add(relatedLinkJsonObj);
                     }
                 }
-                jsonObj.put("fv-portal:related_links", relatedLinkJsonArray);
+                jsonObj.set("fv-portal:related_links", relatedLinkJsonArray);
             }
         }
 

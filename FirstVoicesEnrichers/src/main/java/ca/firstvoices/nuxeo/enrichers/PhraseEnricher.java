@@ -60,7 +60,7 @@ public class PhraseEnricher extends AbstractJsonEnricher<DocumentModel> {
                     phraseBookArray.add(phraseBookObj);
                 }
             }
-            jsonObj.put("phrase_books", phraseBookArray);
+            jsonObj.set("phrase_books", phraseBookArray);
 
             // Process "fvcore:source" values
             String[] sourceIds = (!doc.isProxy()) ? (String[]) doc.getProperty("fvcore", "source")
@@ -73,7 +73,7 @@ public class PhraseEnricher extends AbstractJsonEnricher<DocumentModel> {
                         sourceArray.add(sourceObj);
                     }
                 }
-                jsonObj.put("sources", sourceArray);
+                jsonObj.set("sources", sourceArray);
             }
 
             // Process "fv:related_audio" values
@@ -87,7 +87,7 @@ public class PhraseEnricher extends AbstractJsonEnricher<DocumentModel> {
                         audioJsonArray.add(binaryJsonObj);
                     }
                 }
-                jsonObj.put("related_audio", audioJsonArray);
+                jsonObj.set("related_audio", audioJsonArray);
             }
 
             // Process "fv:related_pictures" values
@@ -101,7 +101,7 @@ public class PhraseEnricher extends AbstractJsonEnricher<DocumentModel> {
                         pictureJsonArray.add(binaryJsonObj);
                     }
                 }
-                jsonObj.put("related_pictures", pictureJsonArray);
+                jsonObj.set("related_pictures", pictureJsonArray);
             }
 
             // Process "fv:related_video" values
@@ -115,7 +115,7 @@ public class PhraseEnricher extends AbstractJsonEnricher<DocumentModel> {
                         videoJsonArray.add(binaryJsonObj);
                     }
                 }
-                jsonObj.put("related_videos", videoJsonArray);
+                jsonObj.set("related_videos", videoJsonArray);
             }
         }
 

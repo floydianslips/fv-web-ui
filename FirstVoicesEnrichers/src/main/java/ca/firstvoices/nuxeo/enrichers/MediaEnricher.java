@@ -66,7 +66,7 @@ public class MediaEnricher extends AbstractJsonEnricher<DocumentModel> {
                         sourceArray.add(sourceObj);
                     }
                 }
-                jsonObj.put("sources", sourceArray);
+                jsonObj.set("sources", sourceArray);
             }
 
             // Process "fvm:recorder" values
@@ -80,7 +80,7 @@ public class MediaEnricher extends AbstractJsonEnricher<DocumentModel> {
                         recorderArray.add(recorderObj);
                     }
                 }
-                jsonObj.put("recorders", recorderArray);
+                jsonObj.set("recorders", recorderArray);
             }
 
             // Process "fvm:origin" value
@@ -90,7 +90,7 @@ public class MediaEnricher extends AbstractJsonEnricher<DocumentModel> {
                 // Retrieve additional properties from the referenced binaries, and add them to the JSON
                 ObjectNode originObj = EnricherUtils.getDocumentIdAndTitleAndPathJsonObject(originId, session);
                 if (originObj != null) {
-                    jsonObj.put("origin", originObj);
+                    jsonObj.set("origin", originObj);
                 }
             }
         }

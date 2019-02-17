@@ -60,7 +60,7 @@ public class AncestryEnricher extends AbstractJsonEnricher<DocumentModel> {
                 ObjectNode languageFamilyObj = mapper.createObjectNode();
                 languageFamilyObj.put("uid", languageFamilyId);
                 languageFamilyObj.put("dc:title", ancestryFamilyResolver.resolvedDoc.getTitle());
-                jsonObj.put("family", languageFamilyObj);
+                jsonObj.set("family", languageFamilyObj);
             }
         }
 
@@ -79,7 +79,7 @@ public class AncestryEnricher extends AbstractJsonEnricher<DocumentModel> {
                 ObjectNode languageObj = mapper.createObjectNode();
                 languageObj.put("uid", languageId);
                 languageObj.put("dc:title", ancestryLanguageResolver.resolvedDoc.getTitle());
-                jsonObj.put("language", languageObj);
+                jsonObj.set("language", languageObj);
             }
         }
 
@@ -111,7 +111,7 @@ public class AncestryEnricher extends AbstractJsonEnricher<DocumentModel> {
                 dialectDoc.put("fvdialect:region",
                         (String) ancestryDialectResolver.resolvedDoc.getPropertyValue("fvdialect:region"));
 
-                jsonObj.put("dialect", dialectDoc);
+                jsonObj.set("dialect", dialectDoc);
             }
         }
 

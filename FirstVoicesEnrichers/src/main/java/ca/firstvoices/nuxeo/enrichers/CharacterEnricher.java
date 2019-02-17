@@ -68,7 +68,7 @@ public class CharacterEnricher extends AbstractJsonEnricher<DocumentModel> {
                         audioJsonArray.add(binaryJsonObj);
                     }
                 }
-                jsonObj.put("related_audio", audioJsonArray);
+                jsonObj.set("related_audio", audioJsonArray);
             }
 
             // Process "fvcharacter:related_words" values
@@ -105,7 +105,7 @@ public class CharacterEnricher extends AbstractJsonEnricher<DocumentModel> {
                         jsonNode.put("translation", translation);
                         definitionsJsonArray.add(jsonNode);
                     }
-                    wordObj.put("fv:definitions", definitionsJsonArray);
+                    wordObj.set("fv:definitions", definitionsJsonArray);
 
                     // Construct JSON array node for fv:literal_translation
                     ArrayList<Object> literalTranslationList = (ArrayList<Object>) wordDoc.getProperty("fvcore",
@@ -122,12 +122,12 @@ public class CharacterEnricher extends AbstractJsonEnricher<DocumentModel> {
                         jsonNode.put("translation", translation);
                         literalTranslationJsonArray.add(jsonNode);
                     }
-                    wordObj.put("fv:literal_translation", literalTranslationJsonArray);
+                    wordObj.set("fv:literal_translation", literalTranslationJsonArray);
 
                     wordObj.put("dc:title", wordDoc.getTitle());
                     wordArray.add(wordObj);
                 }
-                jsonObj.put("related_words", wordArray);
+                jsonObj.set("related_words", wordArray);
             }
 
         }

@@ -58,7 +58,7 @@ public class GalleryEnricher extends AbstractJsonEnricher<DocumentModel> {
                         pictureJsonArray.add(binaryJsonObj);
                     }
                 }
-                jsonObj.put("related_pictures", pictureJsonArray);
+                jsonObj.set("related_pictures", pictureJsonArray);
             }
         }
 
