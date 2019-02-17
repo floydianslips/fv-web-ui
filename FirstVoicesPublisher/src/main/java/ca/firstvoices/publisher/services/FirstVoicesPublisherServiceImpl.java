@@ -103,11 +103,11 @@ public class FirstVoicesPublisherServiceImpl extends AbstractService implements 
         }
         DocumentModelList roots = null;
         if (workspace != null) {
-            PublisherService publisherService = Framework.getLocalService(PublisherService.class);
+            PublisherService publisherService = Framework.getService(PublisherService.class);
             roots = publisherService.getRootSectionFinder(session).getSectionRootsForWorkspace(workspace);
         }
         if (roots == null || roots.size() == 0) {
-            PublisherService publisherService = Framework.getLocalService(PublisherService.class);
+            PublisherService publisherService = Framework.getService(PublisherService.class);
             roots = publisherService.getRootSectionFinder(session).getDefaultSectionRoots(true, true);
         }
         if (roots.size() == 0) {
@@ -226,7 +226,7 @@ public class FirstVoicesPublisherServiceImpl extends AbstractService implements 
                     DocumentModel dependencyDocModel = session.getDocument(dependencyRef);
                     DocumentModel parentDependencySection;
                     if ("FVCategory".equals(dependencyDocModel.getType())) {
-                        PublisherService publisherService = Framework.getLocalService(PublisherService.class);
+                        PublisherService publisherService = Framework.getService(PublisherService.class);
                         publishedDep = PublisherUtils.publishAncestors(session, "FVCategory", dependencyDocModel,
                                 publisherService);
                     } else {
@@ -327,7 +327,7 @@ public class FirstVoicesPublisherServiceImpl extends AbstractService implements 
                     DocumentModel dependencyDocModel = session.getDocument(dependencyRef);
                     DocumentModel parentDependencySection;
                     if ("FVCategory".equals(dependencyDocModel.getType())) {
-                        PublisherService publisherService = Framework.getLocalService(PublisherService.class);
+                        PublisherService publisherService = Framework.getService(PublisherService.class);
                         publishedDep = PublisherUtils.publishAncestors(session, "FVCategory", dependencyDocModel,
                                 publisherService);
                     } else {
