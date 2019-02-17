@@ -97,7 +97,6 @@ public class FVExportWorker extends FVAbstractExportWork {
 
                 fileOutputProducer.close(session.getDocument(new IdRef(getDialectGUID())), getWorkInfo());
                 lctx.logout();
-                session.close();
             }
         } catch (Exception e) {
             log.warn(e);

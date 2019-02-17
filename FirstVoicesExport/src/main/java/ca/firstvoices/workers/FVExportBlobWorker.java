@@ -72,7 +72,6 @@ public class FVExportBlobWorker extends FVAbstractExportWork {
             }
 
             lctx.logout();
-            session.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
