@@ -87,9 +87,8 @@ public class FVValidateRegistrationAttempt {
             lctx.logout();
         } catch (Exception e) {
             log.warn(e);
-        } finally {
-            if (session != null)
-                session.close();
+        } finally
+        {
         }
 
         return verificationState;

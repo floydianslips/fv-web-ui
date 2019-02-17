@@ -344,10 +344,6 @@ public class FVRegistrationUtilities {
         } catch (Exception e) {
             log.warn(e);
             throw e;
-        } finally {
-            if (s != null)
-                s.close();
-
         }
 
         return registrationId;
@@ -540,7 +536,7 @@ public class FVRegistrationUtilities {
         } catch (Exception e) {
             log.warn(e);
         } finally {
-            session.close();
+
         }
     }
 }

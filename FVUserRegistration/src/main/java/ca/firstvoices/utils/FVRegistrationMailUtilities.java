@@ -111,7 +111,6 @@ public class FVRegistrationMailUtilities {
         PrincipalHelper ph = new PrincipalHelper(umgr, permissionProvider);
         Set<String> result = ph.getEmailsForPermission(dialect, "Everything", false);
 
-        session.close();
         lctx.logout();
 
         return composeEmailString(result);

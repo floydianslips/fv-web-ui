@@ -32,7 +32,6 @@ public class FVMoveUserToDialectServiceImpl implements FVMoveUserToDialectServic
         session = CoreInstance.openCoreSession("default");
         moveUserBetweenGroups(dialect, newUsername, "members", groupName.toLowerCase());
         lctx.logout();
-        session.close();
     }
 
     public void moveUserBetweenGroups(DocumentModel dialect, String userName, String fromGroupName, String toGroupName)
