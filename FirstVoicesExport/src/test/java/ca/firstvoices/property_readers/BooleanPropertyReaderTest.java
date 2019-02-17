@@ -44,13 +44,14 @@ import static org.junit.Assert.*;
         "FirstVoicesExport:schemas/fvexport.xsd",
         "FirstVoicesNuxeoPublisher:schemas/fvproxy.xsd",
         "FirstVoicesSecurity:OSGI-INF/extensions/ca.firstvoices.operations.xml",
-
+        "FirstVoicesExport.test:OSGI-INF/extensions/ca.firstvoices.fake-load-action.xml",
+        "FirstVoicesExport.test:OSGI-INF/extensions/ca.firstvoices.fake-load-es-provider.xml",
         "FirstVoicesExport.test:OSGI-INF/extensions/ca.firstvoices.fake-directory-sql-contrib.xml",
         "FirstVoicesExport.test:OSGI-INF/extensions/ca.firstvoices.fakestudio.xml"
 
 })
 
-@Deploy( {
+//@Deploy( {
  //       "org.nuxeo.ecm.platform.forum.core:OSGI-INF/forum-schemas-contrib.xml",
  //       "org.nuxeo.elasticsearch.core:pageprovider-test-contrib.xml",
  //       "org.nuxeo.elasticsearch.core:schemas-test-contrib.xml",
@@ -60,7 +61,9 @@ import static org.junit.Assert.*;
 //        "FirstVoicesNuxeoPublisher:OSGI-INF/extensions/ca.firstvoices.publisher.services.xml",
 //        "FirstVoicesExport.test:OSGI-INF/extensions/ca.firstvoices.fake-load-action.xml",
 //        "FirstVoicesExport.test:OSGI-INF/extensions/ca.firstvoices.fake-load-es-provider.xml",
-} )
+//        "FirstVoicesExport.test:OSGI-INF/extensions/ca.firstvoices.fake-directory-sql-contrib.xml",
+//        "FirstVoicesExport.test:OSGI-INF/extensions/ca.firstvoices.fakestudio.xml"
+//} )
 
 
 public class BooleanPropertyReaderTest
