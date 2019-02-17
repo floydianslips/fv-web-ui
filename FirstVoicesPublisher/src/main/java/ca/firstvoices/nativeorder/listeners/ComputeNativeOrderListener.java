@@ -9,8 +9,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.event.DocumentEventTypes;
-import org.nuxeo.ecm.core.api.model.DocumentPart;
+// import org.nuxeo.ecm.core.api.model.DocumentPart;
 import org.nuxeo.ecm.core.api.model.Property;
+import org.nuxeo.ecm.core.api.model.PropertyNotFoundException;
 import org.nuxeo.ecm.core.event.Event;
 import org.nuxeo.ecm.core.event.EventContext;
 import org.nuxeo.ecm.core.event.EventListener;
@@ -39,30 +40,42 @@ public class ComputeNativeOrderListener implements EventListener {
         Boolean titleModified = false;
         Boolean customOrderModified = false;
 
-        DocumentPart[] docParts = doc.getParts();
-        for (DocumentPart docPart : docParts) {
-            Iterator<Property> dirtyChildrenIterator = docPart.getDirtyChildren();
-
-            while (dirtyChildrenIterator.hasNext()) {
-                Property property = dirtyChildrenIterator.next();
-                String propertyName = property.getField().getName().toString();
-
-                if (propertyName.equals("dc:title") && property.isDirty()) {
-                    titleModified = true;
-                    ++found;
-                }
-
-                if (propertyName.equals("fv:custom_order") && property.isDirty()) {
-                    customOrderModified = true;
-                    ++found;
-                }
-
-                // No need to keep checking
-                if (found == 2) {
-                    break;
-                }
-            }
+        try
+        {
+            Property titleProperty = doc.getProperty("dc:title");
+            if( titleProperty.isDirty()) titleModified = true;
+            Property customOrderProperty = doc.getProperty("fv:custom_order");
+            if( customOrderProperty.isDirty() ) customOrderModified = true;
         }
+        catch( PropertyNotFoundException e)
+        {
+            // do nothing, guarding against possible case of non-existing property
+        }
+
+//        DocumentPart[] docParts = doc.getParts();
+//        for (DocumentPart docPart : docParts) {
+//            Iterator<Property> dirtyChildrenIterator = docPart.getDirtyChildren();
+//
+//            while (dirtyChildrenIterator.hasNext()) {
+//                Property property = dirtyChildrenIterator.next();
+//                String propertyName = property.getField().getName().toString();
+//
+//                if (propertyName.equals("dc:title") && property.isDirty()) {
+//                    titleModified = true;
+//                    ++found;
+//                }
+//
+//                if (propertyName.equals("fv:custom_order") && property.isDirty()) {
+//                    customOrderModified = true;
+//                    ++found;
+//                }
+//
+//                // No need to keep checking
+//                if (found == 2) {
+//                    break;
+//                }
+//            }
+//        }
 
         return (titleModified && !customOrderModified);
     }
