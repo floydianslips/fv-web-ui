@@ -17,6 +17,7 @@ import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.DocumentModelList;
 import org.nuxeo.ecm.core.event.EventService;
 import org.nuxeo.ecm.core.test.CoreFeature;
+import org.nuxeo.ecm.platform.test.PlatformFeature;
 import org.nuxeo.runtime.test.runner.Deploy;
 import org.nuxeo.runtime.test.runner.Features;
 import org.nuxeo.runtime.test.runner.FeaturesRunner;
@@ -28,15 +29,22 @@ import ca.firstvoices.nativeorder.services.NativeOrderComputeService;
  * @author loopingz
  */
 @RunWith(FeaturesRunner.class)
-@Features({ RuntimeFeature.class, CoreFeature.class, AutomationFeature.class })
-@Deploy({ "studio.extensions.First-Voices", "org.nuxeo.ecm.platform", "org.nuxeo.ecm.platform.commandline.executor",
-        "org.nuxeo.ecm.platform.picture.core", "org.nuxeo.ecm.platform.rendition.core",
-        "org.nuxeo.ecm.platform.video.core", "org.nuxeo.ecm.platform.audio.core",
-        "org.nuxeo.ecm.automation.scripting", })
-@Deploy({ "FirstVoicesNuxeoPublisher.tests:OSGI-INF/extensions/ca.firstvoices.fakestudio.xml",
-        "FirstVoicesNuxeoPublisher:OSGI-INF/extensions/ca.firstvoices.templates.factories.xml",
-        "FirstVoicesSecurity:OSGI-INF/extensions/ca.firstvoices.operations.xml",
-        "FirstVoicesNuxeoPublisher:OSGI-INF/extensions/ca.firstvoices.nativeorder.services.xml" })
+@Features({ RuntimeFeature.class, CoreFeature.class, PlatformFeature.class, AutomationFeature.class })
+@Deploy({
+            "studio.extensions.First-Voices",
+            "org.nuxeo.ecm.platform",
+            "org.nuxeo.ecm.platform.commandline.executor",
+//            "org.nuxeo.ecm.platform.preview.adapter.contrib",
+            "org.nuxeo.ecm.platform.picture.core",
+            "org.nuxeo.ecm.platform.rendition.core",
+            "org.nuxeo.ecm.platform.video.core",
+            "org.nuxeo.ecm.platform.audio.core",
+            "org.nuxeo.ecm.automation.scripting",
+            "FirstVoicesNuxeoPublisher.tests:OSGI-INF/extensions/ca.firstvoices.fakestudio.xml",
+            "FirstVoicesNuxeoPublisher:OSGI-INF/extensions/ca.firstvoices.templates.factories.xml",
+            "FirstVoicesSecurity:OSGI-INF/extensions/ca.firstvoices.operations.xml",
+            "FirstVoicesNuxeoPublisher:OSGI-INF/extensions/ca.firstvoices.nativeorder.services.xml"
+})
 public class FirstVoicesNativeOrderTest {
     @Inject
     protected CoreSession session;
