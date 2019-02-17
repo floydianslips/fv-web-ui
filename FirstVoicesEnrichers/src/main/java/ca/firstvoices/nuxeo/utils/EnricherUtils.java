@@ -175,7 +175,7 @@ public class EnricherUtils {
      */
     public static String getPartOfSpeechLabel(String partOfSpeechId) {
 
-        DirectoryService directoryService = Framework.getLocalService(DirectoryService.class);
+        DirectoryService directoryService = Framework.getService(DirectoryService.class);
         Session directorySession = directoryService.open("parts_of_speech");
         String partOfSpeechLabel = "";
         if (partOfSpeechId != null && !partOfSpeechId.isEmpty()) {
@@ -192,7 +192,6 @@ public class EnricherUtils {
                 }
             }
         }
-        directorySession.close();
 
         return partOfSpeechLabel;
     }
