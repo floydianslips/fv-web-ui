@@ -104,8 +104,6 @@ public class FVRegistrationTimeOutWorker extends AbstractWork {
         } catch (Exception e) {
             log.warn(e);
         } finally {
-            if (s != null)
-                s.close();
             try {
                 if (lctx != null)
                     lctx.logout();
