@@ -8,7 +8,7 @@
             <maxThreads>1</maxThreads>
             <capacity>10000</capacity>
             <clearCompletedAfterSeconds>600</clearCompletedAfterSeconds>
-            <category>default</category>
+            <category>export</category>
         </queue>
     </extension>
 
@@ -18,7 +18,7 @@
             <maxThreads>1</maxThreads>
             <capacity>10000</capacity>
             <clearCompletedAfterSeconds>600</clearCompletedAfterSeconds>
-            <category>default</category>
+            <category>export</category>
         </queue>
     </extension>
 
@@ -28,7 +28,7 @@
             <maxThreads>1</maxThreads>
             <capacity>10000</capacity>
             <clearCompletedAfterSeconds>600</clearCompletedAfterSeconds>
-            <category>default</category>
+            <category>export</category>
         </queue>
     </extension>
 
