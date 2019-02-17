@@ -10,8 +10,9 @@ import org.apache.commons.logging.LogFactory;
 import org.nuxeo.ecm.core.api.CoreSession;
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.event.DocumentEventTypes;
-import org.nuxeo.ecm.core.api.model.DocumentPart;
+// import org.nuxeo.ecm.core.api.model.DocumentPart;
 import org.nuxeo.ecm.core.api.model.Property;
+import org.nuxeo.ecm.core.api.model.PropertyNotFoundException;
 import org.nuxeo.ecm.core.event.Event;
 import org.nuxeo.ecm.core.api.IdRef;
 import org.nuxeo.ecm.core.event.EventListener;
@@ -54,19 +55,29 @@ public class ComputeNativeOrderAlphabetListener implements EventListener {
 
                 Boolean orderModified = false;
 
-                DocumentPart[] docParts = doc.getParts();
-                for (DocumentPart docPart : docParts) {
-                    Iterator<Property> dirtyChildrenIterator = docPart.getDirtyChildren();
-
-                    while (dirtyChildrenIterator.hasNext()) {
-                        Property property = dirtyChildrenIterator.next();
-                        String propertyName = property.getField().getName().toString();
-
-                        if (propertyName.equals("fvcharacter:alphabet_order") && property.isDirty()) {
-                            orderModified = true;
-                        }
-                    }
+                try
+                {
+                    Property alphabetOrderProperty = doc.getProperty("fvcharacter:alphabet_order");
+                    if( alphabetOrderProperty.isDirty() ) orderModified = true;
                 }
+                catch(PropertyNotFoundException e)
+                {
+
+                }
+
+//                DocumentPart[] docParts = doc.getParts();
+//                for (DocumentPart docPart : docParts) {
+//                    Iterator<Property> dirtyChildrenIterator = docPart.getDirtyChildren();
+//
+//                    while (dirtyChildrenIterator.hasNext()) {
+//                        Property property = dirtyChildrenIterator.next();
+//                        String propertyName = property.getField().getName().toString();
+//
+//                        if (propertyName.equals("fvcharacter:alphabet_order") && property.isDirty()) {
+//                            orderModified = true;
+//                        }
+//                    }
+//                }
 
                 if (!orderModified) {
                     return;
