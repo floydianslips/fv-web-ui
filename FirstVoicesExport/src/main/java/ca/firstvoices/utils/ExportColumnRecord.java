@@ -21,7 +21,7 @@ public class ExportColumnRecord {
 
     public FV_DataBinding compound[];
 
-    ExportColumnRecord(String cID, String prop, Boolean ufe, Integer nc, Class rpr, FV_DataBinding[] c) {
+    public ExportColumnRecord(String cID, String prop, Boolean ufe, Integer nc, Class rpr, FV_DataBinding[] c) {
         colID = cID;
         property = prop;
         useForExport = ufe;
