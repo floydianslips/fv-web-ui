@@ -1,2 +1,10 @@
-<component name="org.nuxeo.ecm.platform.actions">
-</component>
+<components>
+    <component name="org.nuxeo.ecm.platform.actions"/>
+    <component name="org.nuxeo.ecm.platform.rendition.contrib"/>
+    <component name="org.nuxeo.ecm.platform.picture.filemanager.contrib"/>
+    <component name="org.nuxeo.ecm.platform.video.filemanager.contrib"/>
+    <component name="org.nuxeo.ecm.platform.audio.filemanager.contrib"/>
+    <component name="org.nuxeo.ecm.directory.sql.storage"/>
+    <component name="org.nuxeo.ecm.tags.schemas"/>
+    <component name="org.nuxeo.ecm.platform.preview.adapter.contrib"/>
+</components>
