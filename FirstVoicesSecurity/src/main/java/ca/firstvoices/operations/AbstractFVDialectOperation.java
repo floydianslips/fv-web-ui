@@ -2,8 +2,9 @@ package ca.firstvoices.operations;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.lang.String;
 
-import org.apache.commons.lang3.text.WordUtils;
+//import org.apache.commons.lang3.text.WordUtils;
 import org.apache.commons.logging.Log;
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.security.ACE;
@@ -23,7 +24,7 @@ public abstract class AbstractFVDialectOperation {
     }
 
     protected String generateGroupLabelFromDialect(String dialectName, String groupName) {
-        return dialectName + " " + WordUtils.capitalize(groupName.replace("_", " "));
+        return dialectName + " " + (groupName.replace("_", " ")).toUpperCase();
 
     }
 
@@ -61,7 +62,7 @@ public abstract class AbstractFVDialectOperation {
                 parentGroupDocModel.setProperty(userManager.getGroupSchemaName(), userManager.getGroupIdField(),
                         group.getKey());
                 parentGroupDocModel.setProperty(userManager.getGroupSchemaName(), userManager.getGroupLabelField(),
-                        WordUtils.capitalize(group.getKey().replace("_", " ")));
+                        (group.getKey().replace("_", " ")).toUpperCase());
                 parentGroupDocModel.setProperty(userManager.getGroupSchemaName(),
                         userManager.getGroupParentGroupsField(), parentParentGroups);
 

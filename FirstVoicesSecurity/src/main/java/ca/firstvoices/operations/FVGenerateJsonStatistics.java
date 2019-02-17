@@ -75,7 +75,7 @@ public class FVGenerateJsonStatistics {
             if (allowedDocTypes.contains(docType)
                     && (dialectPath.startsWith("/FV/Workspaces/") || dialectPath.startsWith("/FV/sections/"))) {
                 ObjectNode jsonObj = generateDocumentStatsJson(docType);
-                rootJsonObj.put(docType, jsonObj);
+                rootJsonObj.set(docType, jsonObj);
             }
         }
         return new StringBlob(rootJsonObj.toString(), "application/json");
