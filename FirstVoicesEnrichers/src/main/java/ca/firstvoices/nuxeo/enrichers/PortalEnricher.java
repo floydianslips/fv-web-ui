@@ -157,7 +157,7 @@ public class PortalEnricher extends AbstractJsonEnricher<DocumentModel> {
 
                     featuredWordJsonArray.add(featuredWordJsonObj);
                 }
-                jsonObj.put("fv-portal:featured_words", featuredWordJsonArray);
+                jsonObj.set("fv-portal:featured_words", featuredWordJsonArray);
             }
 
             // Process "fv-portal:featured_audio" value
@@ -167,7 +167,7 @@ public class PortalEnricher extends AbstractJsonEnricher<DocumentModel> {
                 // Retrieve additional properties from the referenced binaries, and add them to the JSON
                 ObjectNode binaryJsonObj = EnricherUtils.getBinaryPropertiesJsonObject(featuredAudioId, session);
                 if (binaryJsonObj != null) {
-                    jsonObj.put("fv-portal:featured_audio", binaryJsonObj);
+                    jsonObj.set("fv-portal:featured_audio", binaryJsonObj);
                 }
             }
 
@@ -201,7 +201,7 @@ public class PortalEnricher extends AbstractJsonEnricher<DocumentModel> {
                 // Retrieve additional properties from the referenced binaries, and add them to the JSON
                 ObjectNode binaryJsonObj = EnricherUtils.getBinaryPropertiesJsonObject(logoImageId, session);
                 if (binaryJsonObj != null) {
-                    jsonObj.put("fv-portal:logo", binaryJsonObj);
+                    jsonObj.set("fv-portal:logo", binaryJsonObj);
                 }
             }
 
@@ -220,7 +220,7 @@ public class PortalEnricher extends AbstractJsonEnricher<DocumentModel> {
             }
         }
 
-        jsonObj.put("roles",
+        jsonObj.set("roles",
                 EnricherUtils.getRolesAssociatedWithDialect(session.getDocument(doc.getParentRef()), session));
 
         return jsonObj;
