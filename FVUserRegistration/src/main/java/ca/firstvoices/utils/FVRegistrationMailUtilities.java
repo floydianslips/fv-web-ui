@@ -1,19 +1,15 @@
 package ca.firstvoices.utils;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.nuxeo.ecm.automation.AutomationService;
-import org.nuxeo.ecm.automation.OperationContext;
-import org.nuxeo.ecm.automation.core.util.StringList;
-import org.nuxeo.ecm.platform.web.common.vh.VirtualHostHelper;
-import org.nuxeo.ecm.automation.features.PrincipalHelper;
-import org.nuxeo.ecm.platform.rendering.api.RenderingException;
-import org.nuxeo.ecm.core.api.*;
-import org.nuxeo.ecm.core.api.security.PermissionProvider;
-import org.nuxeo.ecm.platform.usermanager.UserManager;
-import org.nuxeo.ecm.user.invite.RenderingHelper;
-import org.nuxeo.runtime.api.Framework;
+import static ca.firstvoices.utils.FVRegistrationConstants.MID_REGISTRATION_PERIOD_ACT;
+import static ca.firstvoices.utils.FVRegistrationConstants.NEW_USER_SELF_REGISTRATION_ACT;
+import static ca.firstvoices.utils.FVRegistrationConstants.REGISTRATION_DELETION_ACT;
+import static ca.firstvoices.utils.FVRegistrationConstants.REGISTRATION_EXPIRATION_ACT;
+
+import java.io.StringWriter;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -24,15 +20,20 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.security.auth.login.LoginContext;
 import javax.security.auth.login.LoginException;
-import java.io.StringWriter;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
-import static ca.firstvoices.utils.FVRegistrationConstants.*;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.nuxeo.ecm.automation.features.PrincipalHelper;
+import org.nuxeo.ecm.core.api.CoreSession;
+import org.nuxeo.ecm.core.api.DocumentModel;
+import org.nuxeo.ecm.core.api.NuxeoException;
+import org.nuxeo.ecm.core.api.security.PermissionProvider;
+import org.nuxeo.ecm.platform.rendering.api.RenderingException;
+import org.nuxeo.ecm.platform.usermanager.UserManager;
+import org.nuxeo.ecm.user.invite.RenderingHelper;
+import org.nuxeo.runtime.api.Framework;
 
 public class FVRegistrationMailUtilities {
 
@@ -56,7 +57,7 @@ public class FVRegistrationMailUtilities {
 
         MimeMessage msg = new MimeMessage(session);
         msg.setFrom(new InternetAddress(session.getProperty("mail.from")));
-        msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse((String) destination, false));
+        msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(destination, false));
 
         if (!StringUtils.isBlank(copy)) {
             msg.addRecipient(Message.RecipientType.CC, new InternetAddress(copy, false));
@@ -102,17 +103,11 @@ public class FVRegistrationMailUtilities {
      * @return
      */
     public String getLanguageAdministratorEmail(DocumentModel dialect) throws LoginException {
-        LoginContext lctx = Framework.login();
-
-        CoreSession session = CoreInstance.openCoreSession("default");
         UserManager umgr = Framework.getService(UserManager.class);
         PermissionProvider permissionProvider = Framework.getService(PermissionProvider.class);
 
         PrincipalHelper ph = new PrincipalHelper(umgr, permissionProvider);
         Set<String> result = ph.getEmailsForPermission(dialect, "Everything", false);
-
-        lctx.logout();
-
         return composeEmailString(result);
     }
 
@@ -123,6 +118,7 @@ public class FVRegistrationMailUtilities {
     }
 
     private class AdminMailContent implements EmailContentAssembler {
+        @Override
         public String getEmailTitle(int variant, Map<String, String> options) {
             String title = null;
 
@@ -141,6 +137,7 @@ public class FVRegistrationMailUtilities {
             return title;
         }
 
+        @Override
         public String getEmailBody(int variant, Map<String, String> options) {
             String bodyTemplate = null;
 
@@ -175,6 +172,7 @@ public class FVRegistrationMailUtilities {
     }
 
     private class UserReminderMailContent implements EmailContentAssembler {
+        @Override
         public String getEmailTitle(int variant, Map<String, String> options) {
             String title = null;
 
@@ -193,6 +191,7 @@ public class FVRegistrationMailUtilities {
             return title;
         }
 
+        @Override
         public String getEmailBody(int variant, Map<String, String> options) {
             String body = null;
             String g = "Dear " + options.get("fName") + ",";

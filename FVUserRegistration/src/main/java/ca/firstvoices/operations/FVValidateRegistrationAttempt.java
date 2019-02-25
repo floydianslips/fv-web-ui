@@ -1,8 +1,14 @@
 package ca.firstvoices.operations;
 
+import static ca.firstvoices.utils.FVRegistrationConstants.LOGIN_AND_EMAIL_EXIST_ERROR;
+import static ca.firstvoices.utils.FVRegistrationConstants.LOGIN_EXISTS_ERROR;
+import static ca.firstvoices.utils.FVRegistrationConstants.REGISTRATION_CAN_PROCEED;
+import static ca.firstvoices.utils.FVRegistrationConstants.REGISTRATION_EXISTS_ERROR;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.nuxeo.ecm.automation.core.Constants;
+import org.nuxeo.ecm.automation.core.annotations.Context;
 import org.nuxeo.ecm.automation.core.annotations.Operation;
 import org.nuxeo.ecm.automation.core.annotations.OperationMethod;
 import org.nuxeo.ecm.automation.core.annotations.Param;
@@ -12,10 +18,6 @@ import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.DocumentModelList;
 import org.nuxeo.ecm.platform.usermanager.UserManager;
 import org.nuxeo.runtime.api.Framework;
-
-import javax.security.auth.login.LoginContext;
-
-import static ca.firstvoices.utils.FVRegistrationConstants.*;
 
 /*
     public static final int REGISTRATION_CAN_PROCEED       = 0;
@@ -37,22 +39,19 @@ public class FVValidateRegistrationAttempt {
     @Param(name = "email:", required = false)
     protected String email = null;
 
+    @Context
+    protected CoreSession session;
+
     @OperationMethod
     public int run() {
-        LoginContext lctx = null;
-        CoreSession session = null;
 
-        DocumentModelList registrations = null;
-        DocumentModel userE = null;
-        DocumentModel user = null;
-        int verificationState = REGISTRATION_CAN_PROCEED;
+        CoreInstance.doPrivileged(session, s -> {
 
-        try {
-            lctx = Framework.login();
-            session = CoreInstance.openCoreSession("default");
+            DocumentModelList registrations = null;
+            DocumentModel userE = null;
+            int verificationState = REGISTRATION_CAN_PROCEED;
             UserManager userManager = Framework.getService(UserManager.class);
-
-            user = userManager.getUserModel(login);
+            DocumentModel user = userManager.getUserModel(login);
 
             if (user != null) {
                 verificationState = LOGIN_EXISTS_ERROR;
@@ -76,21 +75,16 @@ public class FVValidateRegistrationAttempt {
                 }
 
                 if (userE == null && querryStr != null) {
-                    registrations = session.query(querryStr);
+                    registrations = s.query(querryStr);
 
                     if (registrations != null && !registrations.isEmpty()) {
                         verificationState = REGISTRATION_EXISTS_ERROR;
                     }
                 }
             }
+            return verificationState;
 
-            lctx.logout();
-        } catch (Exception e) {
-            log.warn(e);
-        } finally
-        {
-        }
-
-        return verificationState;
+        });
+        return REGISTRATION_CAN_PROCEED;
     }
 }

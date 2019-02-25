@@ -25,6 +25,11 @@ import ca.firstvoices.utils.FVRegistrationUtilities;
  */
 public class FVRegistrationTimeOutWorker extends AbstractWork {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+
     private static final Log log = LogFactory.getLog(FVRegistrationTimeOutWorker.class);
 
     public static final String CATEGORY_CHECK_REGISTRATION_TIMEOUT = "checkEditLocks";
@@ -104,9 +109,7 @@ public class FVRegistrationTimeOutWorker extends AbstractWork {
                 session.removeDocument(uReg.getRef());
             }
         }
-
         session.save();
-
     }
 
 }
