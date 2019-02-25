@@ -4,36 +4,51 @@
  */
 package ca.firstvoices.utils;
 
-import ca.firstvoices.user.FVUserRegistrationInfo;
-import ca.firstvoices.webengine.FVUserInvitationObject;
+import static ca.firstvoices.utils.FVRegistrationConstants.EMAIL_EXISTS_ERROR;
+import static ca.firstvoices.utils.FVRegistrationConstants.LOGIN_AND_EMAIL_EXIST_ERROR;
+import static ca.firstvoices.utils.FVRegistrationConstants.LOGIN_EXISTS_ERROR;
+import static ca.firstvoices.utils.FVRegistrationConstants.NEW_USER_SELF_REGISTRATION_ACT;
+import static ca.firstvoices.utils.FVRegistrationConstants.REGISTRATION_CAN_PROCEED;
+import static ca.firstvoices.utils.FVRegistrationConstants.REGISTRATION_EXISTS_ERROR;
+
+import java.io.Serializable;
+import java.time.Year;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.security.auth.login.LoginContext;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.nuxeo.ecm.automation.AutomationService;
 import org.nuxeo.ecm.automation.OperationContext;
 import org.nuxeo.ecm.automation.core.util.StringList;
 import org.nuxeo.ecm.automation.server.jaxrs.RestOperationException;
-import org.nuxeo.ecm.core.api.*;
+import org.nuxeo.ecm.core.api.CoreInstance;
+import org.nuxeo.ecm.core.api.CoreSession;
+import org.nuxeo.ecm.core.api.DocumentModel;
+import org.nuxeo.ecm.core.api.DocumentModelList;
+import org.nuxeo.ecm.core.api.IdRef;
+import org.nuxeo.ecm.core.api.NuxeoException;
+import org.nuxeo.ecm.core.api.NuxeoGroup;
+import org.nuxeo.ecm.core.api.NuxeoPrincipal;
+import org.nuxeo.ecm.core.api.UnrestrictedSessionRunner;
 import org.nuxeo.ecm.core.api.security.ACE;
 import org.nuxeo.ecm.core.api.security.ACL;
 import org.nuxeo.ecm.core.api.security.ACP;
 import org.nuxeo.ecm.core.api.security.SecurityConstants;
 import org.nuxeo.ecm.platform.usermanager.UserManager;
-import org.nuxeo.ecm.platform.web.common.vh.VirtualHostHelper;
+import org.nuxeo.ecm.user.invite.UserInvitationService.ValidationMethod;
 import org.nuxeo.ecm.user.invite.UserRegistrationException;
 import org.nuxeo.ecm.user.registration.DocumentRegistrationInfo;
 import org.nuxeo.ecm.user.registration.UserRegistrationService;
 import org.nuxeo.runtime.api.Framework;
-import org.nuxeo.runtime.services.config.ConfigurationService;
 
-import javax.security.auth.login.LoginContext;
-import javax.security.auth.login.LoginException;
-import java.io.Serializable;
-import java.time.Year;
-import java.util.*;
-import org.apache.commons.lang3.StringUtils;
-
-import static ca.firstvoices.utils.FVRegistrationConstants.*;
-import static org.nuxeo.ecm.user.invite.UserInvitationService.ValidationMethod;
+import ca.firstvoices.user.FVUserRegistrationInfo;
 
 public class FVRegistrationUtilities {
     private static final Log log = LogFactory.getLog(FVRegistrationUtilities.class);
@@ -181,7 +196,8 @@ public class FVRegistrationUtilities {
             String defaultUserPrefs = up.createDefaultUserPreferencesWithRegistration(registrationRequest);
             userInfo.setPreferences(defaultUserPrefs);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e);
+            throw new NuxeoException(e);
         }
 
         docInfo = new DocumentRegistrationInfo();
@@ -298,8 +314,8 @@ public class FVRegistrationUtilities {
 
             validationStatus = (int) automationService.run(ctx, "FVValidateRegistrationAttempt", params);
         } catch (Exception e) {
-            log.warn("Exception while validating registration.");
-            throw new Exception("Exception while invoking registration validation. " + e);
+            log.error("Exception while validating registration.");
+            throw new NuxeoException("Exception while invoking registration validation. " + e);
         }
 
         if (validationStatus != REGISTRATION_CAN_PROCEED) {
@@ -515,6 +531,7 @@ public class FVRegistrationUtilities {
                 userManager.updateUser(userDoc);
             } catch (Exception e) {
                 log.warn("Exception while updating user preferences " + e);
+                throw new NuxeoException(e);
             }
 
             // Only email language admins if requested role is involved in language revitalization

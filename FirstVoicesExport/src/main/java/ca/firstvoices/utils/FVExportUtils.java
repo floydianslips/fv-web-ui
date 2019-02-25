@@ -1,17 +1,23 @@
 package ca.firstvoices.utils;
 
-import ca.firstvoices.format_producers.FV_AbstractProducer;
-import ca.firstvoices.property_readers.FV_AbstractPropertyReader;
-import org.apache.commons.codec.digest.DigestUtils;
-import org.nuxeo.ecm.core.api.*;
-import org.nuxeo.ecm.core.work.api.WorkManager;
+import static ca.firstvoices.utils.FVExportConstants.DIALECT_RESOURCES_TYPE;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
-import static ca.firstvoices.utils.FVExportConstants.DIALECT_RESOURCES_TYPE;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.nuxeo.ecm.core.api.CoreSession;
+import org.nuxeo.ecm.core.api.DocumentModel;
+import org.nuxeo.ecm.core.api.DocumentModelList;
+import org.nuxeo.ecm.core.api.DocumentRef;
+import org.nuxeo.ecm.core.api.NuxeoException;
+import org.nuxeo.ecm.core.work.api.WorkManager;
+
+import ca.firstvoices.format_producers.FV_AbstractProducer;
+import ca.firstvoices.property_readers.FV_AbstractPropertyReader;
 
 public class FVExportUtils {
     public static DocumentModel findDialectChildWithRef(CoreSession session, DocumentRef dialectRef,
@@ -122,12 +128,21 @@ public class FVExportUtils {
     }
 
     public static FV_AbstractPropertyReader makePropertyReader(CoreSession session, ExportColumnRecord colR,
-            FV_AbstractProducer producer) throws Exception {
+            FV_AbstractProducer producer) {
         Class<?> clazz = colR.requiredPropertyReader;
-        Constructor<?> constructor = clazz.getConstructor(CoreSession.class, ExportColumnRecord.class,
-                FV_AbstractProducer.class);
-        FV_AbstractPropertyReader instance = (FV_AbstractPropertyReader) constructor.newInstance(session, colR,
-                producer);
+        Constructor<?> constructor;
+        try {
+            constructor = clazz.getConstructor(CoreSession.class, ExportColumnRecord.class, FV_AbstractProducer.class);
+        } catch (NoSuchMethodException | SecurityException e) {
+            throw new NuxeoException(e);
+        }
+        FV_AbstractPropertyReader instance;
+        try {
+            instance = (FV_AbstractPropertyReader) constructor.newInstance(session, colR, producer);
+        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+                | InvocationTargetException e) {
+            throw new NuxeoException(e);
+        }
         instance.session = session;
 
         return instance;

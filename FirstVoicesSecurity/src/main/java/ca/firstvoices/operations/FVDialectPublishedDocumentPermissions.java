@@ -31,10 +31,10 @@ import org.nuxeo.ecm.automation.core.collectors.DocumentModelCollector;
 import org.nuxeo.ecm.automation.core.util.DocumentHelper;
 import org.nuxeo.ecm.core.api.CoreSession;
 import org.nuxeo.ecm.core.api.DocumentModel;
+import org.nuxeo.ecm.core.api.DocumentNotFoundException;
 import org.nuxeo.ecm.core.api.security.ACE;
 import org.nuxeo.ecm.core.api.security.ACL;
 import org.nuxeo.ecm.core.api.security.ACP;
-import org.nuxeo.ecm.core.api.DocumentNotFoundException;
 import org.nuxeo.ecm.core.api.security.SecurityConstants;
 
 import ca.firstvoices.utils.CustomSecurityConstants;
@@ -89,10 +89,7 @@ public class FVDialectPublishedDocumentPermissions extends AbstractFVDialectOper
 
         } catch (DocumentNotFoundException e) {
             log.warn("Could not find document.", e);
-        } catch (Exception e) {
-            log.warn("Could not create groups automatically.", e);
         }
-
         return input;
     }
 

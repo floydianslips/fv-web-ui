@@ -1,10 +1,10 @@
 package ca.firstvoices.workers;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import static ca.firstvoices.utils.FVExportConstants.CYCLIC_EXPORT_WORKER_CATEGORY;
 import static ca.firstvoices.utils.FVExportConstants.CYCLIC_WORKER_ID;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /*
    Worker description is in FVAbstractExportWorker file.
@@ -37,10 +37,6 @@ public class FVCyclicExportWorker extends FVAbstractExportWork {
         // - how to drive updates
         // - how to check if export needs to be updated
         // - how to trigger autoamtic re-run of the worker, outside of cron, to process all exports
-        try {
-            log.warn("FVCyclicExportWorker is not implemented yet.");
-        } catch (Exception e) {
-            log.warn(e);
-        }
+        log.warn("FVCyclicExportWorker is not implemented yet.");
     }
 }

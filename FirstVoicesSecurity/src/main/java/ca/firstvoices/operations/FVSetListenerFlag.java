@@ -48,12 +48,8 @@ public class FVSetListenerFlag {
     @OperationMethod
     public void run() {
 
-        try {
-            eventServiceAdmin.setListenerEnabledFlag(listenerName, (state.equals("Enabled")) ? true : false);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        eventServiceAdmin.setListenerEnabledFlag(listenerName, (state.equals("Enabled")) ? true : false);
+
     }
 
 }

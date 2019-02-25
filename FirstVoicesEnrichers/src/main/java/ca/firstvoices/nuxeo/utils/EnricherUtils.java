@@ -7,8 +7,6 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import org.nuxeo.ecm.core.api.CoreSession;
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.DocumentModelList;
@@ -23,6 +21,8 @@ import org.nuxeo.ecm.directory.Session;
 import org.nuxeo.ecm.directory.api.DirectoryService;
 import org.nuxeo.runtime.api.Framework;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class EnricherUtils {
@@ -96,8 +96,6 @@ public class EnricherUtils {
         } catch (DocumentNotFoundException | DocumentSecurityException de) {
             log.warn("Could not retrieve binary document.", de);
             return null;
-        } catch (Exception e) {
-            log.error(e.getMessage());
         }
 
         return binaryJsonObj;

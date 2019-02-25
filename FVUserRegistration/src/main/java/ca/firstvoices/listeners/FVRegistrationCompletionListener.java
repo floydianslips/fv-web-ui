@@ -51,6 +51,7 @@ public class FVRegistrationCompletionListener implements EventListener {
                 } catch (Exception e) {
                     log.error(e);
                 }
+
             }
 
             break;

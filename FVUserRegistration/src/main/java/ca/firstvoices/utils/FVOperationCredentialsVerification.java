@@ -1,13 +1,11 @@
 package ca.firstvoices.utils;
 
-import org.nuxeo.ecm.automation.core.util.StringList;
+import java.util.List;
+
 import org.nuxeo.ecm.core.api.CoreSession;
-import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.DocumentModelList;
 import org.nuxeo.ecm.core.api.NuxeoPrincipal;
 import org.nuxeo.ecm.platform.usermanager.UserManager;
-
-import java.util.List;
 
 public class FVOperationCredentialsVerification {
     private static int GLOBAL_ADMINISTRATOR_OR_SYSTEM = 1;
@@ -44,34 +42,29 @@ public class FVOperationCredentialsVerification {
 
     public static boolean terminateOnInvalidCredentials_NewUserHomeChange(CoreSession session, UserManager userManager,
             String username, String dialectGUID) {
-        try {
-            NuxeoPrincipal invoking_principal = (NuxeoPrincipal) session.getPrincipal();
+        NuxeoPrincipal invoking_principal = session.getPrincipal();
 
-            int credentialsType = isValidPrincipal(invoking_principal);
+        int credentialsType = isValidPrincipal(invoking_principal);
 
-            if (credentialsType != GLOBAL_ADMINISTRATOR_OR_SYSTEM) {
-                // language admin can make changes to a user in their dialect
-                if (credentialsType == LANGUAGE_ADMINISTRATOR) {
-                    DocumentModelList registrations = FVRegistrationUtilities.getRegistrations(session, username,
-                            dialectGUID);
+        if (credentialsType != GLOBAL_ADMINISTRATOR_OR_SYSTEM) {
+            // language admin can make changes to a user in their dialect
+            if (credentialsType == LANGUAGE_ADMINISTRATOR) {
+                DocumentModelList registrations = FVRegistrationUtilities.getRegistrations(session, username,
+                        dialectGUID);
 
-                    // If registrations for this dialect found, allow moving user
-                    if (registrations.size() > 0)
-                        return false;
-                }
-
-                return true; // invalid credentials
+                // If registrations for this dialect found, allow moving user
+                if (registrations.size() > 0)
+                    return false;
             }
-        } catch (Exception e) {
-            return true;
-        }
 
+            return true; // invalid credentials
+        }
         return false; // continue executing command - valid credentials
     }
 
     public static boolean terminateOnInvalidCredentials_UserUpdate(CoreSession session, UserManager userManager,
             String username) {
-        NuxeoPrincipal invoking_principal = (NuxeoPrincipal) session.getPrincipal();
+        NuxeoPrincipal invoking_principal = session.getPrincipal();
 
         int credentialsType = isValidPrincipal(invoking_principal);
 
@@ -100,7 +93,7 @@ public class FVOperationCredentialsVerification {
     }
 
     public static boolean terminateOnInvalidCredentials_GroupUpdate(CoreSession session, String groupName) {
-        NuxeoPrincipal invoking_principal = (NuxeoPrincipal) session.getPrincipal();
+        NuxeoPrincipal invoking_principal = session.getPrincipal();
 
         int credentialsType = isValidPrincipal(invoking_principal);
 

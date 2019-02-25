@@ -2,7 +2,6 @@ package ca.firstvoices.operations;
 
 import java.util.ArrayList;
 import java.util.Map;
-import java.lang.String;
 
 //import org.apache.commons.lang3.text.WordUtils;
 import org.apache.commons.logging.Log;
@@ -34,7 +33,7 @@ public abstract class AbstractFVDialectOperation {
     /**
      * This method will create the relevant groups in the system when a new dialect is created. It assigns the correct
      * hierarchy to that group.
-     * 
+     *
      * @param input FVDialect being processed
      * @param group Map of groups and relevant permission for that group
      */
@@ -70,21 +69,17 @@ public abstract class AbstractFVDialectOperation {
                 userManager.createGroup(parentGroupDocModel);
             }
 
-            try {
-                // Add additional parent Groups
-                parentGroups = addParentsToGroup(parentGroups, groupDocModel, group, input);
+            // Add additional parent Groups
+            parentGroups = addParentsToGroup(parentGroups, groupDocModel, group, input);
 
-                groupDocModel.setProperty(userManager.getGroupSchemaName(), userManager.getGroupIdField(), groupName);
-                groupDocModel.setProperty(userManager.getGroupSchemaName(), userManager.getGroupLabelField(),
-                        groupLabel);
-                groupDocModel.setProperty(userManager.getGroupSchemaName(), userManager.getGroupParentGroupsField(),
-                        parentGroups);
+            groupDocModel.setProperty(userManager.getGroupSchemaName(), userManager.getGroupIdField(), groupName);
+            groupDocModel.setProperty(userManager.getGroupSchemaName(), userManager.getGroupLabelField(), groupLabel);
+            groupDocModel.setProperty(userManager.getGroupSchemaName(), userManager.getGroupParentGroupsField(),
+                    parentGroups);
 
-                // Create group
-                userManager.createGroup(groupDocModel);
-            } catch (Exception e) {
-                log.warn("Could not create group automatically.", e);
-            }
+            // Create group
+            userManager.createGroup(groupDocModel);
+
         }
 
         // Add permission to document
