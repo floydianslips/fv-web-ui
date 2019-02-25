@@ -1,17 +1,24 @@
 package ca.firstvoices.workers;
 
-import ca.firstvoices.utils.FVRegistrationMailUtilities;
-import ca.firstvoices.utils.FVRegistrationUtilities;
-import org.nuxeo.ecm.core.api.*;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.nuxeo.ecm.core.work.AbstractWork;
-import org.nuxeo.runtime.api.Framework;
-import javax.security.auth.login.LoginContext;
+import static ca.firstvoices.operations.FVGetPendingUserRegistrations.APPROVED;
+import static ca.firstvoices.utils.FVRegistrationConstants.MID_REGISTRATION_PERIOD_ACT;
+import static ca.firstvoices.utils.FVRegistrationConstants.MID_REGISTRATION_PERIOD_IN_DAYS;
+import static ca.firstvoices.utils.FVRegistrationConstants.REGISTRATION_DELETION_ACT;
+import static ca.firstvoices.utils.FVRegistrationConstants.REGISTRATION_DELETION_IN_DAYS;
+import static ca.firstvoices.utils.FVRegistrationConstants.REGISTRATION_EXPIRATION_ACT;
+import static ca.firstvoices.utils.FVRegistrationConstants.REGISTRATION_EXPIRATION_IN_DAYS;
+
 import java.util.Calendar;
 
-import static ca.firstvoices.operations.FVGetPendingUserRegistrations.APPROVED;
-import static ca.firstvoices.utils.FVRegistrationConstants.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.nuxeo.ecm.core.api.DocumentModel;
+import org.nuxeo.ecm.core.api.DocumentModelList;
+import org.nuxeo.ecm.core.api.NuxeoException;
+import org.nuxeo.ecm.core.work.AbstractWork;
+
+import ca.firstvoices.utils.FVRegistrationMailUtilities;
+import ca.firstvoices.utils.FVRegistrationUtilities;
 
 /**
  *
@@ -55,62 +62,51 @@ public class FVRegistrationTimeOutWorker extends AbstractWork {
 
     @Override
     public void work() {
-        LoginContext lctx = null;
-        CoreSession s = null;
+        openSystemSession();
         FVRegistrationMailUtilities mailUtil = new FVRegistrationMailUtilities();
 
-        try {
-            lctx = Framework.login(); // system login
-            s = CoreInstance.openCoreSession("default");
+        DocumentModelList registrations = session.query(
+                String.format("Select * from Document where ecm:mixinType = 'UserRegistration'"));
 
-            DocumentModelList registrations = s.query(
-                    String.format("Select * from Document where ecm:mixinType = 'UserRegistration'"));
+        for (DocumentModel uReg : registrations) {
+            Calendar regCreated = (Calendar) uReg.getPropertyValue("dc:created");
 
-            for (DocumentModel uReg : registrations) {
-                Calendar regCreated = (Calendar) uReg.getPropertyValue("dc:created");
+            int regTOType = checkRegistrationTimeOut(regCreated);
 
-                int regTOType = checkRegistrationTimeOut(regCreated);
+            // regTOType
+            //
+            // 0 - no action required (either already dealt with or still within no-action period)
+            //
+            // MID_REGISTRATION_PERIOD_ACT - registration is closing on timeout
+            // an email needs to be sent to a user who started registration
+            // and email informing LanguageAdministrator that user registration will be deleted in ? days
+            //
+            // REGISTRATION_EXPIRATION_ACT - registration timed out and it will be deleted in 24 hrs - last chance
+            // to activate account
+            // send an email to originator of registration request with information about cancellation
+            //
+            // REGISTRATION_DELETION_ACT - registration should be deleted
+            //
 
-                // regTOType
-                //
-                // 0 - no action required (either already dealt with or still within no-action period)
-                //
-                // MID_REGISTRATION_PERIOD_ACT - registration is closing on timeout
-                // an email needs to be sent to a user who started registration
-                // and email informing LanguageAdministrator that user registration will be deleted in ? days
-                //
-                // REGISTRATION_EXPIRATION_ACT - registration timed out and it will be deleted in 24 hrs - last chance
-                // to activate account
-                // send an email to originator of registration request with information about cancellation
-                //
-                // REGISTRATION_DELETION_ACT - registration should be deleted
-                //
-
-                // if registration has lifecycle set to accepted user already provided password
-                // and registration is just a reminder of the registration operation
-                if (uReg.getCurrentLifeCycleState().equals(APPROVED)) {
-                    mailUtil.emailReminder(regTOType, uReg, s);
-                }
-
-                if (regTOType == REGISTRATION_DELETION_ACT) {
-                    log.info("Registration period expired for user" + uReg.getPropertyValue("userinfo:firstName") + " "
-                            + uReg.getPropertyValue("userinfo:lastName") + ". Registration was deleted");
-                    s.removeDocument(uReg.getRef());
+            // if registration has lifecycle set to accepted user already provided password
+            // and registration is just a reminder of the registration operation
+            if (uReg.getCurrentLifeCycleState().equals(APPROVED)) {
+                try {
+                    mailUtil.emailReminder(regTOType, uReg, session);
+                } catch (Exception e) {
+                    throw new NuxeoException(e);
                 }
             }
 
-            s.save();
-
-        } catch (Exception e) {
-            log.warn(e);
-        } finally {
-            try {
-                if (lctx != null)
-                    lctx.logout();
-            } catch (Exception e) {
-                log.warn(e);
+            if (regTOType == REGISTRATION_DELETION_ACT) {
+                log.info("Registration period expired for user" + uReg.getPropertyValue("userinfo:firstName") + " "
+                        + uReg.getPropertyValue("userinfo:lastName") + ". Registration was deleted");
+                session.removeDocument(uReg.getRef());
             }
         }
+
+        session.save();
+
     }
 
 }

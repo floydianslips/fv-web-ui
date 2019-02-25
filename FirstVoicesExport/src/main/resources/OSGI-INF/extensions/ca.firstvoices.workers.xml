@@ -18,7 +18,7 @@
             <maxThreads>1</maxThreads>
             <capacity>10000</capacity>
             <clearCompletedAfterSeconds>600</clearCompletedAfterSeconds>
-            <category>export</category>
+            <category>blob</category>
         </queue>
     </extension>
 
@@ -28,7 +28,7 @@
             <maxThreads>1</maxThreads>
             <capacity>10000</capacity>
             <clearCompletedAfterSeconds>600</clearCompletedAfterSeconds>
-            <category>export</category>
+            <category>cyclic</category>
         </queue>
     </extension>
 
