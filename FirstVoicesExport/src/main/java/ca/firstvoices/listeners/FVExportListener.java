@@ -72,7 +72,8 @@ public class FVExportListener implements EventListener {
     }
 
     private FVAbstractExportWork produceWorker(EventContext ctx, FVAbstractExportWork work) {
-        if (ctx.hasProperty(EXPORT_WORK_INFO)) {
+        if (ctx.hasProperty(EXPORT_WORK_INFO))
+        {
             work.setWorkInfo((FVExportWorkInfo) ctx.getProperty(EXPORT_WORK_INFO));
 
             StringList pc = work.getExportColumns();
@@ -80,11 +81,12 @@ public class FVExportListener implements EventListener {
             work.setExportColumns(pc);
 
             work.setDocuments("FV", (ArrayList<String>) ctx.getProperty(DOCS_TO_EXPORT));
-        } else {
+        }
+        else
+        {
             FVExportWorkInfo workInfo = new FVExportWorkInfo();
 
             workInfo.workDuration = System.currentTimeMillis();
-            ;
             workInfo.dialectGUID = INHERITED_FROM_OTHER;
             workInfo.dialectName = INHERITED_FROM_OTHER;
             workInfo.exportFormat = INHERITED_FROM_OTHER;
