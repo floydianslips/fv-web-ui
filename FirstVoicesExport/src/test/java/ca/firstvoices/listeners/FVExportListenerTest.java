@@ -19,6 +19,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import org.junit.Ignore;
 
 @RunWith(FeaturesRunner.class)
 @Features({RuntimeFeature.class, CoreFeature.class, AutomationFeature.class } )
@@ -48,7 +49,7 @@ import static org.junit.Assert.assertTrue;
         "FirstVoicesExport:OSGI-INF/extensions/fake-load-es-provider.xml",
         "FirstVoicesExport:OSGI-INF/extensions/fake-directory-sql-contrib.xml"} )
 
-
+@Ignore
 public class FVExportListenerTest
 {
     protected final List<String> events = Arrays.asList(    "produceFormattedDocument",
