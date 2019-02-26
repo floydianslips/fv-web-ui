@@ -101,7 +101,6 @@
         <dependency>
             <groupId>org.nuxeo.elasticsearch</groupId>
             <artifactId>nuxeo-elasticsearch-core</artifactId>
-            <version>7.10-HF46</version>
             <type>test-jar</type>
             <scope>test</scope>
         </dependency>
