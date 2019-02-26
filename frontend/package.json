@@ -27,7 +27,7 @@
     "merge-stream": "~0.1.8",
     "normalize.css": "~3.0.3",
     "npm": "^6.7.0",
-    "nuxeo": "~0.24.0",
+    "nuxeo": "~3.11.0",
     "object-assign": "~2.1.1",
     "phaser-ce": "^2.7.3",
     "pretty-hrtime": "~0.2.1",
