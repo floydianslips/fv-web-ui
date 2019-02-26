@@ -96,7 +96,7 @@ export default class CategoryList extends Component {
                         className="category-grid-tile"
                         titlePosition='bottom'
                     ><img
-                        src={(selectn('properties.file:content.data', tile) || '/assets/images/cover.png')}/></GridTile>
+                        src={(selectn('properties.file:content.data', tile) || 'assets/images/cover.png')}/></GridTile>
                 }.bind(this))}
             </GridList>
         </div>;

@@ -79,10 +79,10 @@ export default class PageHome extends Component {
         return <div>
             <div className="row" style={introMarginStyle}>
                 <div className={classNames('col-xs-12', 'col-md-4', 'col-md-offset-2')}>
-                    <p style={{marginTop: '15px'}}><img src="/assets/images/intro-english.gif"
+                    <p style={{marginTop: '15px'}}><img src="assets/images/intro-english.gif"
                                                         alt="Language Legacies Celebrating Indigenous Cultures"
                                                         className="img-responsive"/></p>
-                    <p><img src="/assets/images/logo.gif" alt="FirstVoices Logo" className="img-responsive"/></p>
+                    <p><img src="assets/images/logo.gif" alt="FirstVoices Logo" className="img-responsive"/></p>
                     <a href="http://legacy.firstvoices.com/"><RaisedButton label="Legacy Site" style={{
                         textAlign: 'center',
                         marginRight: '14px'
@@ -90,12 +90,12 @@ export default class PageHome extends Component {
                     <RaisedButton label={this.intl.translate({key: 'enter_firstvoices', default: "Enter FirstVoices"})}
                                   onTouchTap={(e, v) => this._onNavigateRequest('/')}
                                   style={{textAlign: 'center'}}/>
-                    <p><img src="/assets/images/intro-french.gif"
+                    <p><img src="assets/images/intro-french.gif"
                             alt="Des patrimoines linguistiques célébrant des cultures indigènes"
                             className="img-responsive"/></p>
                 </div>
                 <div className={classNames('col-xs-12', 'col-md-4')} style={{textAlign: 'right'}}>
-                    <img src="/assets/images/fv-girl.jpg" alt="FirstVoices Girl" className="img-responsive"
+                    <img src="assets/images/fv-girl.jpg" alt="FirstVoices Girl" className="img-responsive"
                          style={{paddingTop: '10px'}}/>
                 </div>
             </div>
@@ -103,38 +103,38 @@ export default class PageHome extends Component {
             <div className="row">
                 <div className={classNames('col-xs-12')} style={{textAlign: 'center', padding: '15px 0'}}>
                     <a href="http://www.fpcc.ca/" target="_blank">
-                        <img src="/assets/images/logos/fphlcc-logo_sm.gif"
+                        <img src="assets/images/logos/fphlcc-logo_sm.gif"
                              alt="First Peoples' Heritage Language and Culture Council " width="145" height="36"
                              hspace="5" border="0" align="absmiddle"/>
                     </a> &nbsp;
                     <a href="http://www.fpcf.ca/" target="_blank">
-                        <img src="/assets/images/logos/fpcf-logo_sm.gif" alt="First Peoples' Cultural Foundation   "
+                        <img src="assets/images/logos/fpcf-logo_sm.gif" alt="First Peoples' Cultural Foundation   "
                              width="199" height="36" hspace="5" border="0" align="absmiddle"/>
                     </a>
                     <p style={{padding: '15px 0'}}>We gratefully acknowledge the following supporters:</p>
                     <a href="http://www.gov.bc.ca/arr/" target="_blank">
-                        <img src="/assets/images/logos/BC_ARR_H.jpg"
+                        <img src="assets/images/logos/BC_ARR_H.jpg"
                              alt="Ministry of Aboriginal Relations and Reconcilation" width="127" height="36" border="0"
                              align="absmiddle"/>
                     </a> &nbsp;
                     <a href="http://www.pch.gc.ca/" target="_blank">
-                        <img src="/assets/images/logos/logo_pch.gif" alt="Canadian Heritage" width="180" height="36"
+                        <img src="assets/images/logos/logo_pch.gif" alt="Canadian Heritage" width="180" height="36"
                              border="0" align="absmiddle"/>
                     </a> &nbsp;
                     <a href="http://www.fntc.info/" target="_blank">
-                        <img src="/assets/images/logos/FNTC.gif" alt="First Nation Technology Council" width="88"
+                        <img src="assets/images/logos/FNTC.gif" alt="First Nation Technology Council" width="88"
                              height="87" border="0"/>
                     </a> &nbsp;
                     <a href="http://www.newrelationshiptrust.ca/" target="_blank">
-                        <img src="/assets/images/logos/New-NRT-Logo-sm.jpg" alt="New Relationship Trust" width="126"
+                        <img src="assets/images/logos/New-NRT-Logo-sm.jpg" alt="New Relationship Trust" width="126"
                              height="88" border="0" align="absmiddle"/>
                     </a> &nbsp;
 
-                    <a href="http://www.languagegeek.com" target="_blank"><img src="/assets/images/logos/lg.gif"
+                    <a href="http://www.languagegeek.com" target="_blank"><img src="assets/images/logos/lg.gif"
                                                                                alt="Languagegeek.com" width="191"
                                                                                height="36" border="0"/></a> &nbsp;
 
-                    <a href="http://www.tavultesoft.com/" target="_blank"><img src="/assets/images/logos/tav.gif"
+                    <a href="http://www.tavultesoft.com/" target="_blank"><img src="assets/images/logos/tav.gif"
                                                                                alt="Tavultesoft" width="191" height="29"
                                                                                border="0"/></a>
                 </div>

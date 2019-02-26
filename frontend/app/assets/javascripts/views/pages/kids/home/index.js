@@ -70,7 +70,7 @@ export default class PageKidsHome extends Component {
 
         return <div>
             <div className={classNames("container-fluid", "kids-home")} style={{
-                backgroundImage: 'url(/assets/images/boy.gif), url(/assets/images/girl.gif)',
+                backgroundImage: 'url(assets/images/boy.gif), url(assets/images/girl.gif)',
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'left 40px, right 45px'
             }}>

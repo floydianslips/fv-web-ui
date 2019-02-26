@@ -114,7 +114,7 @@ export default class PageHome extends Component {
             position: 'relative',
             minHeight: '155px',
             backgroundAttachment: 'fixed',
-            background: 'transparent url("/assets/images/fv-intro-background.jpg") bottom ' + bgAlign + ' no-repeat',
+            background: 'transparent url("assets/images/fv-intro-background.jpg") bottom ' + bgAlign + ' no-repeat',
             backgroundSize: 'cover',
             boxShadow: 'inset 0px 64px 112px 0 rgba(0,0,0,0.6)',
             overflow: 'hidden'

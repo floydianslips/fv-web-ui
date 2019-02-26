@@ -99,7 +99,7 @@ export default class Index extends Component {
             {(this.props.dialects || []).map(function (dialect, i) {
 
                 let myIcon = L.icon({
-                    iconUrl: UIHelpers.getThumbnail(selectn('contextParameters.portal.fv-portal:logo', dialect), 'Thumbnail') || '/assets/images/cover.png',
+                    iconUrl: UIHelpers.getThumbnail(selectn('contextParameters.portal.fv-portal:logo', dialect), 'Thumbnail') || 'assets/images/cover.png',
                     iconSize: [25, 25],
                 });
 

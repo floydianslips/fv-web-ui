@@ -32,7 +32,7 @@ import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;
 const containerStyle = {
-    background: 'url(/assets/games/wordscramble/assets/images/background.png)',
+    background: 'url(/assets/games/wordscrambleassets/images/background.png)',
     backgroundSize: 'cover',
     padding: '10px',
     display: 'block',

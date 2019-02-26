@@ -124,7 +124,7 @@ class CardView extends Component {
     let cardImage = <Cover />
     const mediumImage = selectn('contextParameters.book.related_pictures[0].views[2]', item)
     if (mediumImage) {
-      const coverImage = selectn('url', mediumImage) || '/assets/images/cover.png'
+      const coverImage = selectn('url', mediumImage) || 'assets/images/cover.png'
       cardImage = (
         <div
           className="CardViewMedia"

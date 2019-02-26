@@ -4,7 +4,7 @@
 <div id="app-wrapper" class="app-wrapper">
   <div id="app-loader" class="app-loader">
     <div class="app-loader-content">
-      <h1><img src="/assets/images/logo.png" alt="FirstVoices" /></h1>
+      <h1><img src="assets/images/logo.png" alt="FirstVoices" /></h1>
       <p>FirstVoices is a suite of web-based tools and services designed to support Indigenous people engaged in language archiving, language teaching and culture revitalization.</p>
       <p>Loading / Chargement / Cargando...</p>
   </div>

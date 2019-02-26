@@ -63,7 +63,7 @@ export default class CardView extends Component {
             coverImage = selectn('contextParameters.' + this.props.contextParamsKey + '.related_pictures[0].views[2]', this.props.item);
         }
 
-        coverImage = coverImage || {url: '/assets/images/cover.png'};
+        coverImage = coverImage || {url: 'assets/images/cover.png'};
 
         let introduction = (this.props.introduction) ? React.cloneElement(this.props.introduction, {...this.props}) : '';
 

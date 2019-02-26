@@ -109,7 +109,7 @@ export default class ExploreArchive extends Component {
                     title={tile.title}
                     subtitle={tile.description}
                   >
-                    <img src="/assets/images/cover.png" />
+                    <img src="assets/images/cover.png" />
                   </GridTile>
                 ))}
               </GridList>

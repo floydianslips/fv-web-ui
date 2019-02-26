@@ -41,7 +41,7 @@ import IntlService from 'views/services/intl';
 
 const intl = IntlService.instance;
 const containerStyle = {
-    background: 'url(/assets/games/wordscramble/assets/images/background.png)',
+    background: 'url(/assets/games/wordscrambleassets/images/background.png)',
     backgroundSize: 'cover',
     minHeight: '600px',
     padding: '40px 0',
@@ -61,7 +61,7 @@ const titleLogoStyle = {
     backgroundRepeat: 'no-repeat',
     width: '100%',
     height: '87px',
-    background: 'transparent url(/assets/games/wordscramble/assets/images/word_scramble_title.png) 0 0 no-repeat',
+    background: 'transparent url(/assets/games/wordscrambleassets/images/word_scramble_title.png) 0 0 no-repeat',
     textIndent: '-9000px',
     backgroundSize: 'contain',
     backgroundPosition: 'center center',

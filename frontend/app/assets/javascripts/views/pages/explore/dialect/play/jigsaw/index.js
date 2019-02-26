@@ -114,25 +114,25 @@ export default class Jigsaw extends Component {
                     word: 'Bear',
                     translation: 'Bear',
                     audio: '/assets/games/jigsaw/assets/sounds/sample.mp3',
-                    picture: '/assets/games/jigsaw/assets/images/picture1.jpg'
+                    picture: '/assets/games/jigsawassets/images/picture1.jpg'
                 },
                     {
                         word: 'Totem',
                         translation: 'Totem',
                         audio: '/assets/games/jigsaw/assets/sounds/sample.mp3',
-                        picture: '/assets/games/jigsaw/assets/images/picture2.jpg'
+                        picture: '/assets/games/jigsawassets/images/picture2.jpg'
                     },
                     {
                         word: 'Fish',
                         translation: 'Fish',
                         audio: '/assets/games/jigsaw/assets/sounds/sample.mp3',
-                        picture: '/assets/games/jigsaw/assets/images/picture3.jpg'
+                        picture: '/assets/games/jigsawassets/images/picture3.jpg'
                     },
                     {
                         word: 'Fire',
                         translation: 'Fire',
                         audio: '/assets/games/jigsaw/assets/sounds/sample.mp3',
-                        picture: '/assets/games/jigsaw/assets/images/picture4.jpg'
+                        picture: '/assets/games/jigsawassets/images/picture4.jpg'
                     }]
             }
 

@@ -59,38 +59,38 @@ export default class Play extends Component {
                         <div className="grid">
                             <div className="cell" style={cellStyle}>
                                 <a href="jigsaw" onClick={this.navigate}>
-                                    <img src="/assets/games/jigsaw/assets/images/preview.png"
+                                    <img src="/assets/games/jigsawassets/images/preview.png"
                                         className="responsive-image" /></a>
                             </div>
                             {/* <div className="cell" style={cellStyle}>
                                 <a href="colouringbook" onClick={this.navigate}><img
-                                    src="/assets/games/colouring-book/assets/images/preview.png"
+                                    src="/assets/games/colouring-bookassets/images/preview.png"
                                     className="responsive-image" /></a>
                             </div> */}
                             <div className="cell" style={cellStyle}>
                                 <a href="wordsearch" onClick={this.navigate}><img
-                                    src="/assets/games/wordsearch/assets/images/preview.png"
+                                    src="/assets/games/wordsearchassets/images/preview.png"
                                     className="responsive-image" /></a>
                             </div>
                             <div className="cell" style={cellStyle}>
-                                <a href="wordscramble" onClick={this.navigate}><img src="/assets/images/preview-wordscramble.png"
+                                <a href="wordscramble" onClick={this.navigate}><img src="assets/images/preview-wordscramble.png"
                                     className="responsive-image" /></a>
                             </div>
                             {/* <div className="cell" style={cellStyle}>
                                 <a href="picturethis" onClick={this.navigate}><img
-                                    src="/assets/games/picturethis/assets/images/preview.png"
+                                    src="/assets/games/picturethisassets/images/preview.png"
                                     className="responsive-image"/></a>
                             </div> */}
                             <div className="cell" style={cellStyle}>
-                                <a href="hangman" onClick={this.navigate} ><img src="/assets/games/hangman/assets/images/preview.png"
+                                <a href="hangman" onClick={this.navigate} ><img src="/assets/games/hangmanassets/images/preview.png"
                                     className="responsive-image" /></a>
                             </div>
                             <div className="cell" style={cellStyle}>
-                                <a href="concentration" onClick={this.navigate}><img src="/assets/games/memory/assets/images/preview.png"
+                                <a href="concentration" onClick={this.navigate}><img src="/assets/games/memoryassets/images/preview.png"
                                     className="responsive-image" /></a>
                             </div>
                             <div className="cell" style={cellStyle}>
-                                <a href="quiz" onClick={this.navigate}><img src="/assets/images/preview-quiz.png"
+                                <a href="quiz" onClick={this.navigate}><img src="assets/images/preview-quiz.png"
                                     className="responsive-image" /></a>
                             </div>
                         </div>

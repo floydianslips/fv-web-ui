@@ -66,7 +66,7 @@ export default class Header extends Component {
       portal.compute
     )
 
-    let portalBackgroundImagePath = '/assets/images/cover.png'
+    let portalBackgroundImagePath = 'assets/images/cover.png'
 
     if (backgroundImage && backgroundImage.length > 0) {
       portalBackgroundImagePath = ConfGlobal.baseURL + backgroundImage

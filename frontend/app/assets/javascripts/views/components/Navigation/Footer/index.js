@@ -41,7 +41,7 @@ export default class Footer extends React.Component {
 
                             <div className={classNames('col-xs-12', 'col-md-5', 'col-md-offset-1')}
                                  style={{paddingTop: '20px'}}>
-                                <img src="/assets/images/logo-fpcc-white.png" alt="FirstVoices Logo"
+                                <img src="assets/images/logo-fpcc-white.png" alt="FirstVoices Logo"
                                      className={classNames('pull-left')}/>
                             </div>
 

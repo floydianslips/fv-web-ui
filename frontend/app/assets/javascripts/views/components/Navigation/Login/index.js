@@ -182,7 +182,7 @@ export default class Login extends Component {
 
                     <div style={{"width": "205px"}}>
                         <img style={{"position": "relative", "top": "14px", "zIndex": "999999", "left": "65%"}}
-                             src="/assets/images/popover-arrow.png" alt=""/>
+                             src="assets/images/popover-arrow.png" alt=""/>
                         <div style={{"backgroundColor": "#fff", "padding": "10px", "width": "100%"}}>
                             <h6>{this.intl.translate({
                                 key: 'views.pages.users.login.sign_in_below',

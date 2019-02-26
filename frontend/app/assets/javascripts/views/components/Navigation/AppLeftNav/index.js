@@ -205,7 +205,7 @@ export default class AppLeftNav extends Component {
             </IconButton>
           }
           title={
-            <img src="/assets/images/logo.png" style={{ padding: "0 0 5px 0" }} alt={this.props.properties.title} />
+            <img src="assets/images/logo.png" style={{ padding: "0 0 5px 0" }} alt={this.props.properties.title} />
           }
         />
 
