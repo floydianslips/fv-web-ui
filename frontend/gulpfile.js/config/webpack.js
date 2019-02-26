@@ -3,7 +3,7 @@ var webpack = require("webpack")
 var webpackManifest = require("../lib/webpackManifest")
 
 var WriteFilePlugin = require("write-file-webpack-plugin")
-var UglifyJsPlugin = require("uglifyjs-webpack-plugin")
+var TerserPlugin = require("terser-webpack-plugin")
 var HappyPack = require("happypack")
 var config = require("./")
 
@@ -216,12 +216,12 @@ module.exports = function(env) {
           NODE_ENV: JSON.stringify("production"),
         },
       }),
-      new UglifyJsPlugin({
+      new TerserPlugin({
         parallel: true,
         sourceMap: true,
         exclude: /\/node_modules/,
-        uglifyOptions: {
-          ecma: 5,
+        terserOptions: {
+          ecma: 6,
           mangle: true,
           compress: {
             sequences: true,
