@@ -15,7 +15,6 @@ import org.nuxeo.ecm.core.test.DefaultRepositoryInit;
 import org.nuxeo.ecm.core.test.annotations.Granularity;
 import org.nuxeo.ecm.core.test.annotations.RepositoryConfig;
 import org.nuxeo.ecm.platform.test.PlatformFeature;
-import org.nuxeo.elasticsearch.test.RepositoryElasticSearchFeature;
 import org.nuxeo.runtime.test.runner.*;
 
 import java.util.List;
@@ -23,7 +22,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 @RunWith(FeaturesRunner.class)
-@Features({RuntimeFeature.class, CoreFeature.class, PlatformFeature.class, AutomationFeature.class , RepositoryElasticSearchFeature.class} )
+@Features({RuntimeFeature.class, CoreFeature.class, PlatformFeature.class, AutomationFeature.class } )
 @RepositoryConfig(init = DefaultRepositoryInit.class, cleanup = Granularity.METHOD)
 @Deploy( {
        "studio.extensions.First-Voices",
