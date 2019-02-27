@@ -176,6 +176,8 @@ public class FVRegistrationUtilities
         userInfo.setFirstName( (String) registrationRequest.getPropertyValue("userinfo:firstName"));
         userInfo.setLastName((String) registrationRequest.getPropertyValue("userinfo:lastName"));
         userInfo.setComment( (String) registrationRequest.getPropertyValue("fvuserinfo:comment") );
+       // userInfo.setLanguageTeamMember( (String) registrationRequest.getPropertyValue("fvuserinfo:language_team_member") );
+
         userInfo.setLogin( userInfo.getEmail() );
 
         try
