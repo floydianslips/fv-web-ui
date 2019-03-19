@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import React, { Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 import Immutable, { Map } from 'immutable'
 
 import classNames from 'classnames'
@@ -42,12 +42,12 @@ import DocumentListView from 'views/components/Document/DocumentListView'
 
 import withToggle from 'views/hoc/view/with-toggle'
 import IntlService from 'views/services/intl'
+import NavigationHelpers from 'common/NavigationHelpers'
 
 const FiltersWithToggle = withToggle()
 const intl = IntlService.instance
 
-@provide
-export default class Search extends DataListView {
+export class Search extends DataListView {
   static defaultProps = {
     DISABLED_SORT_COLS: ['state', 'fv-word:categories', 'related_audio', 'related_pictures'],
     DEFAULT_PAGE: 1,
@@ -183,7 +183,7 @@ export default class Search extends DataListView {
         )
       }
 
-      this.props.replaceWindowPath(`/explore${this._getQueryPath()}/search/${properties.searchTerm}`)
+      this.props.replaceWindowPath(`${NavigationHelpers.getContextPath()}/explore${this._getQueryPath()}/search/${properties.searchTerm}`)
     }
   }
 
@@ -211,7 +211,7 @@ export default class Search extends DataListView {
     return queryParam
   }
 
-  _onReset(event, props = this.props) {
+  _onReset() {
     // Reset all controlled inputs
     const inputs = selectn('refs.input.refs', this.refs.search_form)
 
@@ -226,7 +226,7 @@ export default class Search extends DataListView {
     })
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     const computeSearchDocuments = ProviderHelpers.getEntry(this.props.computeSearchDocuments, this._getQueryPath())
 
     if (selectn('response.totalSize', computeSearchDocuments) !== undefined) {
@@ -334,3 +334,5 @@ export default class Search extends DataListView {
     )
   }
 }
+
+export default provide(Search)
